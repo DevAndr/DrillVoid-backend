@@ -87,3 +87,13 @@ export type PlanetVisit = Prisma.PlanetVisitModel
  * 
  */
 export type Cycle = Prisma.CycleModel
+/**
+ * Model Currency
+ * 
+ */
+export type Currency = Prisma.CurrencyModel
+/**
+ * Model Balance
+ * 
+ */
+export type Balance = Prisma.BalanceModel

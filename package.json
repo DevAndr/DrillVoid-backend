@@ -25,7 +25,7 @@
     "dev-ms-game-data": "nest start --watch ms-game-data",
     "prisma:gen": "npx libs/prisma/prisma generate --schema=./libs/prisma/prisma/schema.prisma --watch",
     "prisma:migration": "npx libs/prisma/prisma migrate dev --schema ./libs/prisma/prisma/schema.prisma",
-    "prisma:seed": "npx libs/prisma/prisma db seed",
+    "prisma:seed": "npx prisma db seed",
     "prisma:reset": "npx libs/prisma/prisma migrate reset --schema=./libs/prisma/prisma/schema.prisma",
     "dev:all": "concurrently -c \"cyan.bold,red.bold,green.bold,yellow.bold,magenta.bold,blue.bold,purple.bold,magenta.bold,yellow.bold,green.bold,red.bold,cyan.bold\" \"yarn:dev-*\"",
     "testing": "concurrently -c \"cyan,red,green,yellow,blue,magenta\" \"nest start --watch getaway\" \"nest start --watch ms-auth\" \"nest start --watch ms-achievement\"  \"nest start --watch ms-planet\" \"nest start --watch ms-ship\""
@@ -120,5 +120,8 @@
       "^@app/prisma(|/.*)$": "<rootDir>/libs/prisma/src/$1"
     }
   },
-  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e",
+  "prisma": {
+    "seed": "ts-node libs/prisma/prisma/seed.ts all"
+  }
 }

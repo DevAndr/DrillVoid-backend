@@ -28,12 +28,10 @@ export type AggregateShip = {
 
 export type ShipAvgAggregateOutputType = {
   level: number | null
-  gameDataShipId: number | null
 }
 
 export type ShipSumAggregateOutputType = {
   level: number | null
-  gameDataShipId: number | null
 }
 
 export type ShipMinAggregateOutputType = {
@@ -43,7 +41,7 @@ export type ShipMinAggregateOutputType = {
   type: $Enums.TypeShip | null
   createdAt: Date | null
   updatedAt: Date | null
-  gameDataShipId: number | null
+  gameDataShipId: string | null
   warehouseId: string | null
 }
 
@@ -54,7 +52,7 @@ export type ShipMaxAggregateOutputType = {
   type: $Enums.TypeShip | null
   createdAt: Date | null
   updatedAt: Date | null
-  gameDataShipId: number | null
+  gameDataShipId: string | null
   warehouseId: string | null
 }
 
@@ -73,12 +71,10 @@ export type ShipCountAggregateOutputType = {
 
 export type ShipAvgAggregateInputType = {
   level?: true
-  gameDataShipId?: true
 }
 
 export type ShipSumAggregateInputType = {
   level?: true
-  gameDataShipId?: true
 }
 
 export type ShipMinAggregateInputType = {
@@ -208,7 +204,7 @@ export type ShipGroupByOutputType = {
   type: $Enums.TypeShip
   createdAt: Date
   updatedAt: Date
-  gameDataShipId: number | null
+  gameDataShipId: string | null
   warehouseId: string | null
   _count: ShipCountAggregateOutputType | null
   _avg: ShipAvgAggregateOutputType | null
@@ -242,7 +238,7 @@ export type ShipWhereInput = {
   type?: Prisma.EnumTypeShipFilter<"Ship"> | $Enums.TypeShip
   createdAt?: Prisma.DateTimeFilter<"Ship"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Ship"> | Date | string
-  gameDataShipId?: Prisma.IntNullableFilter<"Ship"> | number | null
+  gameDataShipId?: Prisma.StringNullableFilter<"Ship"> | string | null
   warehouseId?: Prisma.StringNullableFilter<"Ship"> | string | null
   warehouse?: Prisma.XOR<Prisma.WarehouseNullableScalarRelationFilter, Prisma.WarehouseWhereInput> | null
   GameData?: Prisma.XOR<Prisma.GameDataNullableScalarRelationFilter, Prisma.GameDataWhereInput> | null
@@ -272,7 +268,7 @@ export type ShipWhereUniqueInput = Prisma.AtLeast<{
   type?: Prisma.EnumTypeShipFilter<"Ship"> | $Enums.TypeShip
   createdAt?: Prisma.DateTimeFilter<"Ship"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Ship"> | Date | string
-  gameDataShipId?: Prisma.IntNullableFilter<"Ship"> | number | null
+  gameDataShipId?: Prisma.StringNullableFilter<"Ship"> | string | null
   warehouseId?: Prisma.StringNullableFilter<"Ship"> | string | null
   warehouse?: Prisma.XOR<Prisma.WarehouseNullableScalarRelationFilter, Prisma.WarehouseWhereInput> | null
   GameData?: Prisma.XOR<Prisma.GameDataNullableScalarRelationFilter, Prisma.GameDataWhereInput> | null
@@ -304,7 +300,7 @@ export type ShipScalarWhereWithAggregatesInput = {
   type?: Prisma.EnumTypeShipWithAggregatesFilter<"Ship"> | $Enums.TypeShip
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Ship"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Ship"> | Date | string
-  gameDataShipId?: Prisma.IntNullableWithAggregatesFilter<"Ship"> | number | null
+  gameDataShipId?: Prisma.StringNullableWithAggregatesFilter<"Ship"> | string | null
   warehouseId?: Prisma.StringNullableWithAggregatesFilter<"Ship"> | string | null
 }
 
@@ -326,7 +322,7 @@ export type ShipUncheckedCreateInput = {
   type: $Enums.TypeShip
   createdAt?: Date | string
   updatedAt?: Date | string
-  gameDataShipId?: number | null
+  gameDataShipId?: string | null
   warehouseId?: string | null
 }
 
@@ -348,7 +344,7 @@ export type ShipUncheckedUpdateInput = {
   type?: Prisma.EnumTypeShipFieldUpdateOperationsInput | $Enums.TypeShip
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  gameDataShipId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  gameDataShipId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   warehouseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
@@ -359,7 +355,7 @@ export type ShipCreateManyInput = {
   type: $Enums.TypeShip
   createdAt?: Date | string
   updatedAt?: Date | string
-  gameDataShipId?: number | null
+  gameDataShipId?: string | null
   warehouseId?: string | null
 }
 
@@ -379,7 +375,7 @@ export type ShipUncheckedUpdateManyInput = {
   type?: Prisma.EnumTypeShipFieldUpdateOperationsInput | $Enums.TypeShip
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  gameDataShipId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  gameDataShipId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   warehouseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
@@ -401,7 +397,6 @@ export type ShipCountOrderByAggregateInput = {
 
 export type ShipAvgOrderByAggregateInput = {
   level?: Prisma.SortOrder
-  gameDataShipId?: Prisma.SortOrder
 }
 
 export type ShipMaxOrderByAggregateInput = {
@@ -428,7 +423,6 @@ export type ShipMinOrderByAggregateInput = {
 
 export type ShipSumOrderByAggregateInput = {
   level?: Prisma.SortOrder
-  gameDataShipId?: Prisma.SortOrder
 }
 
 export type ShipListRelationFilter = {
@@ -585,7 +579,7 @@ export type ShipScalarWhereInput = {
   type?: Prisma.EnumTypeShipFilter<"Ship"> | $Enums.TypeShip
   createdAt?: Prisma.DateTimeFilter<"Ship"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Ship"> | Date | string
-  gameDataShipId?: Prisma.IntNullableFilter<"Ship"> | number | null
+  gameDataShipId?: Prisma.StringNullableFilter<"Ship"> | string | null
   warehouseId?: Prisma.StringNullableFilter<"Ship"> | string | null
 }
 
@@ -606,7 +600,7 @@ export type ShipUncheckedCreateWithoutWarehouseInput = {
   type: $Enums.TypeShip
   createdAt?: Date | string
   updatedAt?: Date | string
-  gameDataShipId?: number | null
+  gameDataShipId?: string | null
 }
 
 export type ShipCreateOrConnectWithoutWarehouseInput = {
@@ -682,7 +676,7 @@ export type ShipCreateManyWarehouseInput = {
   type: $Enums.TypeShip
   createdAt?: Date | string
   updatedAt?: Date | string
-  gameDataShipId?: number | null
+  gameDataShipId?: string | null
 }
 
 export type ShipUpdateWithoutWarehouseInput = {
@@ -702,7 +696,7 @@ export type ShipUncheckedUpdateWithoutWarehouseInput = {
   type?: Prisma.EnumTypeShipFieldUpdateOperationsInput | $Enums.TypeShip
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  gameDataShipId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  gameDataShipId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type ShipUncheckedUpdateManyWithoutWarehouseInput = {
@@ -712,7 +706,7 @@ export type ShipUncheckedUpdateManyWithoutWarehouseInput = {
   type?: Prisma.EnumTypeShipFieldUpdateOperationsInput | $Enums.TypeShip
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  gameDataShipId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  gameDataShipId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -794,7 +788,7 @@ export type $ShipPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     type: $Enums.TypeShip
     createdAt: Date
     updatedAt: Date
-    gameDataShipId: number | null
+    gameDataShipId: string | null
     warehouseId: string | null
   }, ExtArgs["result"]["ship"]>
   composites: {}
@@ -1227,7 +1221,7 @@ export interface ShipFieldRefs {
   readonly type: Prisma.FieldRef<"Ship", 'TypeShip'>
   readonly createdAt: Prisma.FieldRef<"Ship", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Ship", 'DateTime'>
-  readonly gameDataShipId: Prisma.FieldRef<"Ship", 'Int'>
+  readonly gameDataShipId: Prisma.FieldRef<"Ship", 'String'>
   readonly warehouseId: Prisma.FieldRef<"Ship", 'String'>
 }
     

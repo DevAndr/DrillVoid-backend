@@ -28,12 +28,10 @@ export type AggregateUser = {
 
 export type UserAvgAggregateOutputType = {
   telegramId: number | null
-  gameDataShipId: number | null
 }
 
 export type UserSumAggregateOutputType = {
   telegramId: number | null
-  gameDataShipId: number | null
 }
 
 export type UserMinAggregateOutputType = {
@@ -45,7 +43,7 @@ export type UserMinAggregateOutputType = {
   hashRefreshToken: string | null
   createdAt: Date | null
   updatedAt: Date | null
-  gameDataShipId: number | null
+  gameDataShipId: string | null
 }
 
 export type UserMaxAggregateOutputType = {
@@ -57,7 +55,7 @@ export type UserMaxAggregateOutputType = {
   hashRefreshToken: string | null
   createdAt: Date | null
   updatedAt: Date | null
-  gameDataShipId: number | null
+  gameDataShipId: string | null
 }
 
 export type UserCountAggregateOutputType = {
@@ -76,12 +74,10 @@ export type UserCountAggregateOutputType = {
 
 export type UserAvgAggregateInputType = {
   telegramId?: true
-  gameDataShipId?: true
 }
 
 export type UserSumAggregateInputType = {
   telegramId?: true
-  gameDataShipId?: true
 }
 
 export type UserMinAggregateInputType = {
@@ -216,7 +212,7 @@ export type UserGroupByOutputType = {
   hashRefreshToken: string | null
   createdAt: Date
   updatedAt: Date
-  gameDataShipId: number | null
+  gameDataShipId: string | null
   _count: UserCountAggregateOutputType | null
   _avg: UserAvgAggregateOutputType | null
   _sum: UserSumAggregateOutputType | null
@@ -251,7 +247,7 @@ export type UserWhereInput = {
   hashRefreshToken?: Prisma.StringNullableFilter<"User"> | string | null
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
-  gameDataShipId?: Prisma.IntNullableFilter<"User"> | number | null
+  gameDataShipId?: Prisma.StringNullableFilter<"User"> | string | null
   GameData?: Prisma.XOR<Prisma.GameDataNullableScalarRelationFilter, Prisma.GameDataWhereInput> | null
   PlanetVisit?: Prisma.PlanetVisitListRelationFilter
 }
@@ -282,7 +278,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   hashRefreshToken?: Prisma.StringNullableFilter<"User"> | string | null
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
-  gameDataShipId?: Prisma.IntNullableFilter<"User"> | number | null
+  gameDataShipId?: Prisma.StringNullableFilter<"User"> | string | null
   GameData?: Prisma.XOR<Prisma.GameDataNullableScalarRelationFilter, Prisma.GameDataWhereInput> | null
   PlanetVisit?: Prisma.PlanetVisitListRelationFilter
 }, "uid" | "telegramId" | "username">
@@ -316,7 +312,7 @@ export type UserScalarWhereWithAggregatesInput = {
   hashRefreshToken?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
-  gameDataShipId?: Prisma.IntNullableWithAggregatesFilter<"User"> | number | null
+  gameDataShipId?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
 }
 
 export type UserCreateInput = {
@@ -341,7 +337,7 @@ export type UserUncheckedCreateInput = {
   hashRefreshToken?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  gameDataShipId?: number | null
+  gameDataShipId?: string | null
   PlanetVisit?: Prisma.PlanetVisitUncheckedCreateNestedManyWithoutUserInput
 }
 
@@ -367,7 +363,7 @@ export type UserUncheckedUpdateInput = {
   hashRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  gameDataShipId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  gameDataShipId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   PlanetVisit?: Prisma.PlanetVisitUncheckedUpdateManyWithoutUserNestedInput
 }
 
@@ -380,7 +376,7 @@ export type UserCreateManyInput = {
   hashRefreshToken?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  gameDataShipId?: number | null
+  gameDataShipId?: string | null
 }
 
 export type UserUpdateManyMutationInput = {
@@ -403,7 +399,7 @@ export type UserUncheckedUpdateManyInput = {
   hashRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  gameDataShipId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  gameDataShipId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type UserCountOrderByAggregateInput = {
@@ -420,7 +416,6 @@ export type UserCountOrderByAggregateInput = {
 
 export type UserAvgOrderByAggregateInput = {
   telegramId?: Prisma.SortOrder
-  gameDataShipId?: Prisma.SortOrder
 }
 
 export type UserMaxOrderByAggregateInput = {
@@ -449,7 +444,6 @@ export type UserMinOrderByAggregateInput = {
 
 export type UserSumOrderByAggregateInput = {
   telegramId?: Prisma.SortOrder
-  gameDataShipId?: Prisma.SortOrder
 }
 
 export type UserListRelationFilter = {
@@ -485,14 +479,6 @@ export type NullableStringFieldUpdateOperationsInput = {
 
 export type DateTimeFieldUpdateOperationsInput = {
   set?: Date | string
-}
-
-export type NullableIntFieldUpdateOperationsInput = {
-  set?: number | null
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
 }
 
 export type UserCreateNestedManyWithoutGameDataInput = {
@@ -613,7 +599,7 @@ export type UserScalarWhereInput = {
   hashRefreshToken?: Prisma.StringNullableFilter<"User"> | string | null
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
-  gameDataShipId?: Prisma.IntNullableFilter<"User"> | number | null
+  gameDataShipId?: Prisma.StringNullableFilter<"User"> | string | null
 }
 
 export type UserCreateWithoutPlanetVisitInput = {
@@ -637,7 +623,7 @@ export type UserUncheckedCreateWithoutPlanetVisitInput = {
   hashRefreshToken?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  gameDataShipId?: number | null
+  gameDataShipId?: string | null
 }
 
 export type UserCreateOrConnectWithoutPlanetVisitInput = {
@@ -677,7 +663,7 @@ export type UserUncheckedUpdateWithoutPlanetVisitInput = {
   hashRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  gameDataShipId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  gameDataShipId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type UserCreateManyGameDataInput = {
@@ -838,7 +824,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     hashRefreshToken: string | null
     createdAt: Date
     updatedAt: Date
-    gameDataShipId: number | null
+    gameDataShipId: string | null
   }, ExtArgs["result"]["user"]>
   composites: {}
 }
@@ -1272,7 +1258,7 @@ export interface UserFieldRefs {
   readonly hashRefreshToken: Prisma.FieldRef<"User", 'String'>
   readonly createdAt: Prisma.FieldRef<"User", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"User", 'DateTime'>
-  readonly gameDataShipId: Prisma.FieldRef<"User", 'Int'>
+  readonly gameDataShipId: Prisma.FieldRef<"User", 'String'>
 }
     
 

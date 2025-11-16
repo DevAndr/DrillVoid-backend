@@ -57,7 +57,9 @@ export const ModelName = {
   Planet: 'Planet',
   PlanetResource: 'PlanetResource',
   PlanetVisit: 'PlanetVisit',
-  Cycle: 'Cycle'
+  Cycle: 'Cycle',
+  Currency: 'Currency',
+  Balance: 'Balance'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -198,6 +200,31 @@ export const CycleScalarFieldEnum = {
 } as const
 
 export type CycleScalarFieldEnum = (typeof CycleScalarFieldEnum)[keyof typeof CycleScalarFieldEnum]
+
+
+export const CurrencyScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  symbol: 'symbol',
+  description: 'description',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CurrencyScalarFieldEnum = (typeof CurrencyScalarFieldEnum)[keyof typeof CurrencyScalarFieldEnum]
+
+
+export const BalanceScalarFieldEnum = {
+  id: 'id',
+  uid: 'uid',
+  currencyId: 'currencyId',
+  amount: 'amount',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  gameDataShipId: 'gameDataShipId'
+} as const
+
+export type BalanceScalarFieldEnum = (typeof BalanceScalarFieldEnum)[keyof typeof BalanceScalarFieldEnum]
 
 
 export const SortOrder = {

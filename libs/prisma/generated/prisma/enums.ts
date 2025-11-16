@@ -113,3 +113,12 @@ export const CurrencyType = {
 } as const
 
 export type CurrencyType = (typeof CurrencyType)[keyof typeof CurrencyType]
+
+
+export const CurrencyAsset = {
+  ALFA: 'ALFA',
+  BETTA: 'BETTA',
+  OMEGA: 'OMEGA'
+} as const
+
+export type CurrencyAsset = (typeof CurrencyAsset)[keyof typeof CurrencyAsset]
