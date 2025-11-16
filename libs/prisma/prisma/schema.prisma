@@ -110,12 +110,12 @@ model Warehouse {
 }
 
 enum PlanetType {
-  ROCKY
-  LUSH
-  FROZEN
-  TOXIC
-  EXOTIC
-  BLACKHOLE
+  ROCKY //скалистая
+  LUSH //
+  FROZEN // замершая
+  TOXIC // токсичная
+  EXOTIC // экзотическая
+  BLACKHOLE // черная дыра
 }
 
 model Planet {
@@ -126,7 +126,7 @@ model Planet {
   sector        Int        @default(1)
   totalCapacity Json // {"iron": 50000, "alphacredits": 20000}
   currentStock  Json // {"iron": 42500, "alphacredits": 18000}
-  scannedBy     String? // uid (кто сканировал)
+  scannedBy     String? // uid (кто сканировал) первооткрыватель
 
   createdAt      DateTime         @default(now())
   updatedAt      DateTime         @updatedAt

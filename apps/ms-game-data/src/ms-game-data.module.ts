@@ -1,9 +1,10 @@
 import { Module } from '@nestjs/common';
 import { MsGameDataController } from './ms-game-data.controller';
 import { MsGameDataService } from './ms-game-data.service';
+import { ConfigModule } from '@app/core';
 
 @Module({
-  imports: [],
+  imports: [ConfigModule],
   controllers: [MsGameDataController],
   providers: [MsGameDataService],
 })
