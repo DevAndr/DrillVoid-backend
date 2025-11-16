@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json.schemastore.org/nest-cli",
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "apps/gateway/src",
+  "compilerOptions": {
+    "deleteOutDir": true,
+    "webpack": true,
+    "tsConfigPath": "apps/gateway/tsconfig.app.json"
+  },
+  "monorepo": true,
+  "root": "apps/gateway",
+  "projects": {
+    "contracts": {
+      "type": "library",
+      "root": "libs/contracts",
+      "entryFile": "index",
+      "sourceRoot": "libs/contracts/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/contracts/tsconfig.lib.json"
+      }
+    },
+    "core": {
+      "type": "library",
+      "root": "libs/core",
+      "entryFile": "index",
+      "sourceRoot": "libs/core/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/core/tsconfig.lib.json"
+      }
+    },
+    "gateway": {
+      "type": "application",
+      "root": "apps/gateway",
+      "entryFile": "main",
+      "sourceRoot": "apps/geteway/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/geteway/tsconfig.app.json"
+      }
+    },
+    "ms-auth": {
+      "type": "application",
+      "root": "apps/ms-auth",
+      "entryFile": "main",
+      "sourceRoot": "apps/ms-auth/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/ms-auth/tsconfig.app.json"
+      }
+    },
+    "ms-game-data": {
+      "type": "application",
+      "root": "apps/ms-game-data",
+      "entryFile": "main",
+      "sourceRoot": "apps/ms-game-data/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/ms-game-data/tsconfig.app.json"
+      }
+    },
+    "ms-planet": {
+      "type": "application",
+      "root": "apps/ms-planet",
+      "entryFile": "main",
+      "sourceRoot": "apps/ms-planet/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/ms-planet/tsconfig.app.json"
+      }
+    },
+    "ms-ship": {
+      "type": "application",
+      "root": "apps/ms-ship",
+      "entryFile": "main",
+      "sourceRoot": "apps/ms-ship/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/ms-ship/tsconfig.app.json"
+      }
+    },
+    "ms-user": {
+      "type": "application",
+      "root": "apps/ms-user",
+      "entryFile": "main",
+      "sourceRoot": "apps/ms-user/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/ms-user/tsconfig.app.json"
+      }
+    },
+    "prisma": {
+      "type": "library",
+      "root": "libs/prisma",
+      "entryFile": "index",
+      "sourceRoot": "libs/prisma/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/prisma/tsconfig.lib.json"
+      }
+    }
+  }
+}

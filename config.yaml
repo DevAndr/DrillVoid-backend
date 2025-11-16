@@ -1,0 +1,45 @@
+getaway:
+  port: 3030
+
+ws-getaway:
+  port: 3040
+
+microservices:
+  ms-auth:
+    port: 3031
+
+  ms-achievement:
+    port: 3032
+
+  ms-planet:
+    port: 3035
+
+  ms-ship:
+    port: 3033
+
+  ms-notification:
+    port: 3036
+
+  ms-referral:
+    port: 3037
+
+  ms-web3:
+    port: 3038
+
+  ms-game-data:
+    port: 3039
+
+rabbitmq:
+  url: 'amqp://guest:guest@localhost:5672'
+
+redis:
+  host: 'localhost'
+  port: 6379
+
+auth:
+  AT_SECRET: 'at-secret'
+  RT_SECRET: 'rt-secret'
+
+telegram:
+  bot-token: '7893212468:AAGsL-9VLqlknktK9u3qKiJQM6rsk1VHmmo'
+  bot-username: '@test_bot_username'

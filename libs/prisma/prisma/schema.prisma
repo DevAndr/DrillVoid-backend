@@ -1,0 +1,228 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  uid              String  @id @default(uuid())
+  telegramId       Int     @unique
+  username         String  @unique
+  urlPhoto         String?
+  hashPassword     String
+  hashRefreshToken String?
+
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+  GameData       GameData?     @relation(fields: [gameDataShipId], references: [shipId])
+  PlanetVisit    PlanetVisit[]
+  gameDataShipId Int?
+}
+
+enum TypeShip {
+  STARTER
+  CARGO
+  BIG_CARGO
+}
+
+model Ship {
+  id        String     @default(uuid())
+  uid       String
+  level     Int
+  type      TypeShip
+  warehouse Warehouse? @relation(fields: [warehouseId], references: [id])
+
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  GameData       GameData? @relation(fields: [gameDataShipId], references: [shipId])
+  gameDataShipId Int?
+  warehouseId    String?
+
+  @@id([id, uid])
+  @@unique([id, uid])
+  @@unique([uid])
+}
+
+enum ShipComponentType {
+  SCANER
+  DRILL
+  ENGINE
+  WAREHOUSE
+}
+
+model ShipComponent {
+  id          String            @id @default(uuid())
+  name        String
+  type        ShipComponentType
+  description String
+  upgradeCost Json
+  level       Int
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model GameData {
+  id     Int @default(autoincrement())
+  uid    Int
+  shipId Int @unique
+
+  User User[]
+  Ship Ship[]
+}
+
+enum Rarity {
+  COMMON
+  UNCOMMON
+  RARE
+  EPIC
+  LEGENDARY
+  MYTHICAL
+}
+
+// склады ресурсов
+model Warehouse {
+  id            String            @id @default(uuid())
+  uid           String            @unique
+  level         Int               @default(1) // Уровень склада
+  type          ShipComponentType @default(WAREHOUSE) // Тип склада
+  shipId        String            @unique // Уникальная связь (только один склад на санаторий) // ID санатория
+  foodQuantity  Int               @default(0) // Количество еды на складе
+  coalQuantity  Int               @default(0) // Количество угля
+  waterQuantity Int               @default(0) // Количество воды
+  herbsQuantity Int               @default(0) // Количество трав
+  paperQuantity Int               @default(0) // Количество бумаги
+  upgradeCost   Json
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  Ship      Ship[]
+}
+
+enum PlanetType {
+  ROCKY
+  LUSH
+  FROZEN
+  TOXIC
+  EXOTIC
+  BLACKHOLE
+}
+
+model Planet {
+  id            String     @id @default(uuid())
+  seed          String     @unique
+  name          String
+  type          PlanetType // "Rocky", "Exotic"
+  sector        Int        @default(1)
+  totalCapacity Json // {"iron": 50000, "alphacredits": 20000}
+  currentStock  Json // {"iron": 42500, "alphacredits": 18000}
+  scannedBy     String? // uid (кто сканировал)
+
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+  PlanetResource PlanetResource[]
+  PlanetVisit    PlanetVisit[]
+}
+
+enum ResourceType {
+  COPPER
+  CARBON
+  SILICON
+  ALUMINUM
+  TITANIUM
+  NICKEL
+  COBALT
+  URANIUM
+  ALPHACREDITS
+  GOLD
+  PLATINUM
+  IRIDIUM
+  EXOTICMATTER
+  GAMMARSHARDS
+  MAGNESIUM
+  CALCIUM
+  OBSIDIAN
+  COAL
+  MANGANESE
+  CHROMIUM
+  ZINC
+  TUNGSTEN
+  MOLYBDENUM
+  RHODIUM
+  PALLADIUM
+  OSMIUM
+  RUTHENIUM
+  HELIUM3
+  TRITIUM
+  DEUTERIUM
+  LITHIUM
+  BORON
+  PHOSPHORUS
+  SULFUR
+  WATERICE
+  AMMONIA
+  METHANE
+  BETATOKENS
+  NAQUADA
+  UNOBTANIUM
+  KYRIPTONITE
+  DILITHIUM
+  TRILLIUM
+  VERYNIUM
+  ADRA
+  STRYDIUM
+  NEUTRONIUM
+  QUANTUMORE
+}
+
+// 4. Ресурсы планеты (для finite tracking, вместо Json для запросов)
+model PlanetResource {
+  id           String @id @default(uuid())
+  planetId     String
+  typeResource String // "iron", "alphacredits"
+  totalAmount  Float
+  current      Float
+
+  planet Planet @relation(fields: [planetId], references: [id], onDelete: Cascade)
+}
+
+// 10. История визитов (статистика, ачивки)
+model PlanetVisit {
+  id        String   @id @default(uuid())
+  uid       String
+  planetId  String
+  mined     Json // {"iron": 1200, "alphacredits": 500}
+  exhausted Boolean  @default(false)
+  timestamp DateTime @default(now())
+
+  user   User   @relation(fields: [uid], references: [uid], onDelete: Cascade)
+  planet Planet @relation(fields: [planetId], references: [id], onDelete: Cascade)
+}
+
+enum CurrencyType {
+  ALFA
+  BETTA
+  OMEGA
+}
+
+model Cycle {
+  id          String       @id @default(uuid())
+  name        String
+  description String
+  type        CurrencyType
+  startDate   DateTime
+  endDate     DateTime
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
