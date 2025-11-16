@@ -26,7 +26,7 @@ model User {
   updatedAt      DateTime      @updatedAt
   GameData       GameData?     @relation(fields: [gameDataShipId], references: [shipId])
   PlanetVisit    PlanetVisit[]
-  gameDataShipId Int?
+  gameDataShipId String?
 }
 
 enum TypeShip {
@@ -45,7 +45,7 @@ model Ship {
   createdAt      DateTime  @default(now())
   updatedAt      DateTime  @updatedAt
   GameData       GameData? @relation(fields: [gameDataShipId], references: [shipId])
-  gameDataShipId Int?
+  gameDataShipId String?
   warehouseId    String?
 
   @@id([id, uid])
@@ -73,12 +73,13 @@ model ShipComponent {
 }
 
 model GameData {
-  id     Int @default(autoincrement())
-  uid    Int
-  shipId Int @unique
+  id     Int    @default(autoincrement())
+  uid    String
+  shipId String @unique
 
-  User User[]
-  Ship Ship[]
+  User    User[]
+  Ship    Ship[]
+  Balance Balance[]
 }
 
 enum Rarity {
@@ -225,4 +226,38 @@ model Cycle {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+enum CurrencyAsset {
+  ALFA
+  BETTA
+  OMEGA
+}
+
+model Currency {
+  id          String        @id @default(uuid())
+  name        String        @unique
+  symbol      CurrencyAsset @unique // Например, "DMC" для демонической валюты
+  description String?
+
+  balance Balance[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Balance {
+  id         String   @id @default(uuid())
+  uid        String
+  currencyId String   @unique
+  currency   Currency @relation(fields: [currencyId], references: [id])
+  amount     Int
+
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  GameData       GameData? @relation(fields: [gameDataShipId], references: [shipId])
+  gameDataShipId String?
+
+  @@unique([uid, currencyId])
+  @@index([uid])
 }
