@@ -233,7 +233,7 @@ export type BalanceWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"Balance"> | Date | string
   gameDataShipId?: Prisma.StringNullableFilter<"Balance"> | string | null
   currency?: Prisma.XOR<Prisma.CurrencyScalarRelationFilter, Prisma.CurrencyWhereInput>
-  GameData?: Prisma.XOR<Prisma.GameDataNullableScalarRelationFilter, Prisma.GameDataWhereInput> | null
+  gameData?: Prisma.XOR<Prisma.GameDataNullableScalarRelationFilter, Prisma.GameDataWhereInput> | null
 }
 
 export type BalanceOrderByWithRelationInput = {
@@ -245,7 +245,7 @@ export type BalanceOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder
   gameDataShipId?: Prisma.SortOrderInput | Prisma.SortOrder
   currency?: Prisma.CurrencyOrderByWithRelationInput
-  GameData?: Prisma.GameDataOrderByWithRelationInput
+  gameData?: Prisma.GameDataOrderByWithRelationInput
 }
 
 export type BalanceWhereUniqueInput = Prisma.AtLeast<{
@@ -261,7 +261,7 @@ export type BalanceWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"Balance"> | Date | string
   gameDataShipId?: Prisma.StringNullableFilter<"Balance"> | string | null
   currency?: Prisma.XOR<Prisma.CurrencyScalarRelationFilter, Prisma.CurrencyWhereInput>
-  GameData?: Prisma.XOR<Prisma.GameDataNullableScalarRelationFilter, Prisma.GameDataWhereInput> | null
+  gameData?: Prisma.XOR<Prisma.GameDataNullableScalarRelationFilter, Prisma.GameDataWhereInput> | null
 }, "id" | "currencyId" | "uid_currencyId">
 
 export type BalanceOrderByWithAggregationInput = {
@@ -299,7 +299,7 @@ export type BalanceCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   currency: Prisma.CurrencyCreateNestedOneWithoutBalanceInput
-  GameData?: Prisma.GameDataCreateNestedOneWithoutBalanceInput
+  gameData?: Prisma.GameDataCreateNestedOneWithoutBalanceInput
 }
 
 export type BalanceUncheckedCreateInput = {
@@ -319,7 +319,7 @@ export type BalanceUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   currency?: Prisma.CurrencyUpdateOneRequiredWithoutBalanceNestedInput
-  GameData?: Prisma.GameDataUpdateOneWithoutBalanceNestedInput
+  gameData?: Prisma.GameDataUpdateOneWithoutBalanceNestedInput
 }
 
 export type BalanceUncheckedUpdateInput = {
@@ -560,7 +560,7 @@ export type BalanceCreateWithoutCurrencyInput = {
   amount: number
   createdAt?: Date | string
   updatedAt?: Date | string
-  GameData?: Prisma.GameDataCreateNestedOneWithoutBalanceInput
+  gameData?: Prisma.GameDataCreateNestedOneWithoutBalanceInput
 }
 
 export type BalanceUncheckedCreateWithoutCurrencyInput = {
@@ -649,7 +649,7 @@ export type BalanceUpdateWithoutCurrencyInput = {
   amount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  GameData?: Prisma.GameDataUpdateOneWithoutBalanceNestedInput
+  gameData?: Prisma.GameDataUpdateOneWithoutBalanceNestedInput
 }
 
 export type BalanceUncheckedUpdateWithoutCurrencyInput = {
@@ -681,7 +681,7 @@ export type BalanceSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   updatedAt?: boolean
   gameDataShipId?: boolean
   currency?: boolean | Prisma.CurrencyDefaultArgs<ExtArgs>
-  GameData?: boolean | Prisma.Balance$GameDataArgs<ExtArgs>
+  gameData?: boolean | Prisma.Balance$gameDataArgs<ExtArgs>
 }, ExtArgs["result"]["balance"]>
 
 export type BalanceSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -693,7 +693,7 @@ export type BalanceSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   updatedAt?: boolean
   gameDataShipId?: boolean
   currency?: boolean | Prisma.CurrencyDefaultArgs<ExtArgs>
-  GameData?: boolean | Prisma.Balance$GameDataArgs<ExtArgs>
+  gameData?: boolean | Prisma.Balance$gameDataArgs<ExtArgs>
 }, ExtArgs["result"]["balance"]>
 
 export type BalanceSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -705,7 +705,7 @@ export type BalanceSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   updatedAt?: boolean
   gameDataShipId?: boolean
   currency?: boolean | Prisma.CurrencyDefaultArgs<ExtArgs>
-  GameData?: boolean | Prisma.Balance$GameDataArgs<ExtArgs>
+  gameData?: boolean | Prisma.Balance$gameDataArgs<ExtArgs>
 }, ExtArgs["result"]["balance"]>
 
 export type BalanceSelectScalar = {
@@ -721,22 +721,22 @@ export type BalanceSelectScalar = {
 export type BalanceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "uid" | "currencyId" | "amount" | "createdAt" | "updatedAt" | "gameDataShipId", ExtArgs["result"]["balance"]>
 export type BalanceInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   currency?: boolean | Prisma.CurrencyDefaultArgs<ExtArgs>
-  GameData?: boolean | Prisma.Balance$GameDataArgs<ExtArgs>
+  gameData?: boolean | Prisma.Balance$gameDataArgs<ExtArgs>
 }
 export type BalanceIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   currency?: boolean | Prisma.CurrencyDefaultArgs<ExtArgs>
-  GameData?: boolean | Prisma.Balance$GameDataArgs<ExtArgs>
+  gameData?: boolean | Prisma.Balance$gameDataArgs<ExtArgs>
 }
 export type BalanceIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   currency?: boolean | Prisma.CurrencyDefaultArgs<ExtArgs>
-  GameData?: boolean | Prisma.Balance$GameDataArgs<ExtArgs>
+  gameData?: boolean | Prisma.Balance$gameDataArgs<ExtArgs>
 }
 
 export type $BalancePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Balance"
   objects: {
     currency: Prisma.$CurrencyPayload<ExtArgs>
-    GameData: Prisma.$GameDataPayload<ExtArgs> | null
+    gameData: Prisma.$GameDataPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1141,7 +1141,7 @@ readonly fields: BalanceFieldRefs;
 export interface Prisma__BalanceClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   currency<T extends Prisma.CurrencyDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CurrencyDefaultArgs<ExtArgs>>): Prisma.Prisma__CurrencyClient<runtime.Types.Result.GetResult<Prisma.$CurrencyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  GameData<T extends Prisma.Balance$GameDataArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Balance$GameDataArgs<ExtArgs>>): Prisma.Prisma__GameDataClient<runtime.Types.Result.GetResult<Prisma.$GameDataPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  gameData<T extends Prisma.Balance$gameDataArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Balance$gameDataArgs<ExtArgs>>): Prisma.Prisma__GameDataClient<runtime.Types.Result.GetResult<Prisma.$GameDataPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1574,9 +1574,9 @@ export type BalanceDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inter
 }
 
 /**
- * Balance.GameData
+ * Balance.gameData
  */
-export type Balance$GameDataArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Balance$gameDataArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the GameData
    */

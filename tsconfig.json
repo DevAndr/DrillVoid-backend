@@ -39,6 +39,12 @@
       "@app/prisma/*": [
         "libs/prisma/src/*",
         "libs/prisma/src/*"
+      ],
+      "@app/redis": [
+        "libs/redis/src"
+      ],
+      "@app/redis/*": [
+        "libs/redis/src/*"
       ]
     }
   }

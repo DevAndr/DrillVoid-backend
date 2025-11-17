@@ -101,7 +101,8 @@ export const ShipScalarFieldEnum = {
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   gameDataShipId: 'gameDataShipId',
-  warehouseId: 'warehouseId'
+  warehouseId: 'warehouseId',
+  isSelected: 'isSelected'
 } as const
 
 export type ShipScalarFieldEnum = (typeof ShipScalarFieldEnum)[keyof typeof ShipScalarFieldEnum]

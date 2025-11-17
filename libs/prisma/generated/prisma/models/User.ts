@@ -248,8 +248,8 @@ export type UserWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   gameDataShipId?: Prisma.StringNullableFilter<"User"> | string | null
-  GameData?: Prisma.XOR<Prisma.GameDataNullableScalarRelationFilter, Prisma.GameDataWhereInput> | null
-  PlanetVisit?: Prisma.PlanetVisitListRelationFilter
+  gameData?: Prisma.XOR<Prisma.GameDataNullableScalarRelationFilter, Prisma.GameDataWhereInput> | null
+  planetVisit?: Prisma.PlanetVisitListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -262,8 +262,8 @@ export type UserOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   gameDataShipId?: Prisma.SortOrderInput | Prisma.SortOrder
-  GameData?: Prisma.GameDataOrderByWithRelationInput
-  PlanetVisit?: Prisma.PlanetVisitOrderByRelationAggregateInput
+  gameData?: Prisma.GameDataOrderByWithRelationInput
+  planetVisit?: Prisma.PlanetVisitOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -279,8 +279,8 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   gameDataShipId?: Prisma.StringNullableFilter<"User"> | string | null
-  GameData?: Prisma.XOR<Prisma.GameDataNullableScalarRelationFilter, Prisma.GameDataWhereInput> | null
-  PlanetVisit?: Prisma.PlanetVisitListRelationFilter
+  gameData?: Prisma.XOR<Prisma.GameDataNullableScalarRelationFilter, Prisma.GameDataWhereInput> | null
+  planetVisit?: Prisma.PlanetVisitListRelationFilter
 }, "uid" | "telegramId" | "username">
 
 export type UserOrderByWithAggregationInput = {
@@ -324,8 +324,8 @@ export type UserCreateInput = {
   hashRefreshToken?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  GameData?: Prisma.GameDataCreateNestedOneWithoutUserInput
-  PlanetVisit?: Prisma.PlanetVisitCreateNestedManyWithoutUserInput
+  gameData?: Prisma.GameDataCreateNestedOneWithoutUserInput
+  planetVisit?: Prisma.PlanetVisitCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -338,7 +338,7 @@ export type UserUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   gameDataShipId?: string | null
-  PlanetVisit?: Prisma.PlanetVisitUncheckedCreateNestedManyWithoutUserInput
+  planetVisit?: Prisma.PlanetVisitUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
@@ -350,8 +350,8 @@ export type UserUpdateInput = {
   hashRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  GameData?: Prisma.GameDataUpdateOneWithoutUserNestedInput
-  PlanetVisit?: Prisma.PlanetVisitUpdateManyWithoutUserNestedInput
+  gameData?: Prisma.GameDataUpdateOneWithoutUserNestedInput
+  planetVisit?: Prisma.PlanetVisitUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -364,7 +364,7 @@ export type UserUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   gameDataShipId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  PlanetVisit?: Prisma.PlanetVisitUncheckedUpdateManyWithoutUserNestedInput
+  planetVisit?: Prisma.PlanetVisitUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -546,7 +546,7 @@ export type UserCreateWithoutGameDataInput = {
   hashRefreshToken?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  PlanetVisit?: Prisma.PlanetVisitCreateNestedManyWithoutUserInput
+  planetVisit?: Prisma.PlanetVisitCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutGameDataInput = {
@@ -558,7 +558,7 @@ export type UserUncheckedCreateWithoutGameDataInput = {
   hashRefreshToken?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  PlanetVisit?: Prisma.PlanetVisitUncheckedCreateNestedManyWithoutUserInput
+  planetVisit?: Prisma.PlanetVisitUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutGameDataInput = {
@@ -611,7 +611,7 @@ export type UserCreateWithoutPlanetVisitInput = {
   hashRefreshToken?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  GameData?: Prisma.GameDataCreateNestedOneWithoutUserInput
+  gameData?: Prisma.GameDataCreateNestedOneWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutPlanetVisitInput = {
@@ -651,7 +651,7 @@ export type UserUpdateWithoutPlanetVisitInput = {
   hashRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  GameData?: Prisma.GameDataUpdateOneWithoutUserNestedInput
+  gameData?: Prisma.GameDataUpdateOneWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPlanetVisitInput = {
@@ -686,7 +686,7 @@ export type UserUpdateWithoutGameDataInput = {
   hashRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  PlanetVisit?: Prisma.PlanetVisitUpdateManyWithoutUserNestedInput
+  planetVisit?: Prisma.PlanetVisitUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutGameDataInput = {
@@ -698,7 +698,7 @@ export type UserUncheckedUpdateWithoutGameDataInput = {
   hashRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  PlanetVisit?: Prisma.PlanetVisitUncheckedUpdateManyWithoutUserNestedInput
+  planetVisit?: Prisma.PlanetVisitUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateManyWithoutGameDataInput = {
@@ -718,11 +718,11 @@ export type UserUncheckedUpdateManyWithoutGameDataInput = {
  */
 
 export type UserCountOutputType = {
-  PlanetVisit: number
+  planetVisit: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  PlanetVisit?: boolean | UserCountOutputTypeCountPlanetVisitArgs
+  planetVisit?: boolean | UserCountOutputTypeCountPlanetVisitArgs
 }
 
 /**
@@ -753,8 +753,8 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   createdAt?: boolean
   updatedAt?: boolean
   gameDataShipId?: boolean
-  GameData?: boolean | Prisma.User$GameDataArgs<ExtArgs>
-  PlanetVisit?: boolean | Prisma.User$PlanetVisitArgs<ExtArgs>
+  gameData?: boolean | Prisma.User$gameDataArgs<ExtArgs>
+  planetVisit?: boolean | Prisma.User$planetVisitArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -768,7 +768,7 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   createdAt?: boolean
   updatedAt?: boolean
   gameDataShipId?: boolean
-  GameData?: boolean | Prisma.User$GameDataArgs<ExtArgs>
+  gameData?: boolean | Prisma.User$gameDataArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -781,7 +781,7 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   createdAt?: boolean
   updatedAt?: boolean
   gameDataShipId?: boolean
-  GameData?: boolean | Prisma.User$GameDataArgs<ExtArgs>
+  gameData?: boolean | Prisma.User$gameDataArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectScalar = {
@@ -798,22 +798,22 @@ export type UserSelectScalar = {
 
 export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"uid" | "telegramId" | "username" | "urlPhoto" | "hashPassword" | "hashRefreshToken" | "createdAt" | "updatedAt" | "gameDataShipId", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  GameData?: boolean | Prisma.User$GameDataArgs<ExtArgs>
-  PlanetVisit?: boolean | Prisma.User$PlanetVisitArgs<ExtArgs>
+  gameData?: boolean | Prisma.User$gameDataArgs<ExtArgs>
+  planetVisit?: boolean | Prisma.User$planetVisitArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  GameData?: boolean | Prisma.User$GameDataArgs<ExtArgs>
+  gameData?: boolean | Prisma.User$gameDataArgs<ExtArgs>
 }
 export type UserIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  GameData?: boolean | Prisma.User$GameDataArgs<ExtArgs>
+  gameData?: boolean | Prisma.User$gameDataArgs<ExtArgs>
 }
 
 export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "User"
   objects: {
-    GameData: Prisma.$GameDataPayload<ExtArgs> | null
-    PlanetVisit: Prisma.$PlanetVisitPayload<ExtArgs>[]
+    gameData: Prisma.$GameDataPayload<ExtArgs> | null
+    planetVisit: Prisma.$PlanetVisitPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     uid: string
@@ -1219,8 +1219,8 @@ readonly fields: UserFieldRefs;
  */
 export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  GameData<T extends Prisma.User$GameDataArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$GameDataArgs<ExtArgs>>): Prisma.Prisma__GameDataClient<runtime.Types.Result.GetResult<Prisma.$GameDataPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  PlanetVisit<T extends Prisma.User$PlanetVisitArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$PlanetVisitArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PlanetVisitPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  gameData<T extends Prisma.User$gameDataArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$gameDataArgs<ExtArgs>>): Prisma.Prisma__GameDataClient<runtime.Types.Result.GetResult<Prisma.$GameDataPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  planetVisit<T extends Prisma.User$planetVisitArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$planetVisitArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PlanetVisitPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1655,9 +1655,9 @@ export type UserDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
- * User.GameData
+ * User.gameData
  */
-export type User$GameDataArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$gameDataArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the GameData
    */
@@ -1674,9 +1674,9 @@ export type User$GameDataArgs<ExtArgs extends runtime.Types.Extensions.InternalA
 }
 
 /**
- * User.PlanetVisit
+ * User.planetVisit
  */
-export type User$PlanetVisitArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$planetVisitArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the PlanetVisit
    */

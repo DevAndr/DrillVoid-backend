@@ -22,6 +22,7 @@
     "dev-ms-auth": "nest start --watch ms-auth",
     "dev-ms-planet": "nest start --watch ms-planet",
     "dev-ms-ship": "nest start --watch ms-ship",
+    "dev-ws-gateway": "nest start  --watch ws-gateway",
     "dev-ms-game-data": "nest start --watch ms-game-data",
     "prisma:gen": "npx libs/prisma/prisma generate --schema=./libs/prisma/prisma/schema.prisma --watch",
     "prisma:migration": "npx libs/prisma/prisma migrate dev --schema ./libs/prisma/prisma/schema.prisma",
@@ -117,7 +118,8 @@
     "moduleNameMapper": {
       "^@app/contracts(|/.*)$": "<rootDir>/libs/contracts/src/$1",
       "^@app/core(|/.*)$": "<rootDir>/libs/core/src/$1",
-      "^@app/prisma(|/.*)$": "<rootDir>/libs/prisma/src/$1"
+      "^@app/prisma(|/.*)$": "<rootDir>/libs/prisma/src/$1",
+      "^@app/redis(|/.*)$": "<rootDir>/libs/redis/src/$1"
     }
   },
   "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e",
