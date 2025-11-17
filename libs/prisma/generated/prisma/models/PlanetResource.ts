@@ -39,7 +39,7 @@ export type PlanetResourceSumAggregateOutputType = {
 export type PlanetResourceMinAggregateOutputType = {
   id: string | null
   planetId: string | null
-  typeResource: string | null
+  typeResource: $Enums.ResourceType | null
   totalAmount: number | null
   current: number | null
 }
@@ -47,7 +47,7 @@ export type PlanetResourceMinAggregateOutputType = {
 export type PlanetResourceMaxAggregateOutputType = {
   id: string | null
   planetId: string | null
-  typeResource: string | null
+  typeResource: $Enums.ResourceType | null
   totalAmount: number | null
   current: number | null
 }
@@ -186,7 +186,7 @@ export type PlanetResourceGroupByArgs<ExtArgs extends runtime.Types.Extensions.I
 export type PlanetResourceGroupByOutputType = {
   id: string
   planetId: string
-  typeResource: string
+  typeResource: $Enums.ResourceType
   totalAmount: number
   current: number
   _count: PlanetResourceCountAggregateOutputType | null
@@ -217,7 +217,7 @@ export type PlanetResourceWhereInput = {
   NOT?: Prisma.PlanetResourceWhereInput | Prisma.PlanetResourceWhereInput[]
   id?: Prisma.StringFilter<"PlanetResource"> | string
   planetId?: Prisma.StringFilter<"PlanetResource"> | string
-  typeResource?: Prisma.StringFilter<"PlanetResource"> | string
+  typeResource?: Prisma.EnumResourceTypeFilter<"PlanetResource"> | $Enums.ResourceType
   totalAmount?: Prisma.FloatFilter<"PlanetResource"> | number
   current?: Prisma.FloatFilter<"PlanetResource"> | number
   planet?: Prisma.XOR<Prisma.PlanetScalarRelationFilter, Prisma.PlanetWhereInput>
@@ -238,7 +238,7 @@ export type PlanetResourceWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.PlanetResourceWhereInput[]
   NOT?: Prisma.PlanetResourceWhereInput | Prisma.PlanetResourceWhereInput[]
   planetId?: Prisma.StringFilter<"PlanetResource"> | string
-  typeResource?: Prisma.StringFilter<"PlanetResource"> | string
+  typeResource?: Prisma.EnumResourceTypeFilter<"PlanetResource"> | $Enums.ResourceType
   totalAmount?: Prisma.FloatFilter<"PlanetResource"> | number
   current?: Prisma.FloatFilter<"PlanetResource"> | number
   planet?: Prisma.XOR<Prisma.PlanetScalarRelationFilter, Prisma.PlanetWhereInput>
@@ -263,14 +263,14 @@ export type PlanetResourceScalarWhereWithAggregatesInput = {
   NOT?: Prisma.PlanetResourceScalarWhereWithAggregatesInput | Prisma.PlanetResourceScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"PlanetResource"> | string
   planetId?: Prisma.StringWithAggregatesFilter<"PlanetResource"> | string
-  typeResource?: Prisma.StringWithAggregatesFilter<"PlanetResource"> | string
+  typeResource?: Prisma.EnumResourceTypeWithAggregatesFilter<"PlanetResource"> | $Enums.ResourceType
   totalAmount?: Prisma.FloatWithAggregatesFilter<"PlanetResource"> | number
   current?: Prisma.FloatWithAggregatesFilter<"PlanetResource"> | number
 }
 
 export type PlanetResourceCreateInput = {
   id?: string
-  typeResource: string
+  typeResource: $Enums.ResourceType
   totalAmount: number
   current: number
   planet: Prisma.PlanetCreateNestedOneWithoutPlanetResourceInput
@@ -279,14 +279,14 @@ export type PlanetResourceCreateInput = {
 export type PlanetResourceUncheckedCreateInput = {
   id?: string
   planetId: string
-  typeResource: string
+  typeResource: $Enums.ResourceType
   totalAmount: number
   current: number
 }
 
 export type PlanetResourceUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  typeResource?: Prisma.StringFieldUpdateOperationsInput | string
+  typeResource?: Prisma.EnumResourceTypeFieldUpdateOperationsInput | $Enums.ResourceType
   totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
   current?: Prisma.FloatFieldUpdateOperationsInput | number
   planet?: Prisma.PlanetUpdateOneRequiredWithoutPlanetResourceNestedInput
@@ -295,7 +295,7 @@ export type PlanetResourceUpdateInput = {
 export type PlanetResourceUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   planetId?: Prisma.StringFieldUpdateOperationsInput | string
-  typeResource?: Prisma.StringFieldUpdateOperationsInput | string
+  typeResource?: Prisma.EnumResourceTypeFieldUpdateOperationsInput | $Enums.ResourceType
   totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
   current?: Prisma.FloatFieldUpdateOperationsInput | number
 }
@@ -303,14 +303,14 @@ export type PlanetResourceUncheckedUpdateInput = {
 export type PlanetResourceCreateManyInput = {
   id?: string
   planetId: string
-  typeResource: string
+  typeResource: $Enums.ResourceType
   totalAmount: number
   current: number
 }
 
 export type PlanetResourceUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  typeResource?: Prisma.StringFieldUpdateOperationsInput | string
+  typeResource?: Prisma.EnumResourceTypeFieldUpdateOperationsInput | $Enums.ResourceType
   totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
   current?: Prisma.FloatFieldUpdateOperationsInput | number
 }
@@ -318,7 +318,7 @@ export type PlanetResourceUpdateManyMutationInput = {
 export type PlanetResourceUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   planetId?: Prisma.StringFieldUpdateOperationsInput | string
-  typeResource?: Prisma.StringFieldUpdateOperationsInput | string
+  typeResource?: Prisma.EnumResourceTypeFieldUpdateOperationsInput | $Enums.ResourceType
   totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
   current?: Prisma.FloatFieldUpdateOperationsInput | number
 }
@@ -409,6 +409,10 @@ export type PlanetResourceUncheckedUpdateManyWithoutPlanetNestedInput = {
   deleteMany?: Prisma.PlanetResourceScalarWhereInput | Prisma.PlanetResourceScalarWhereInput[]
 }
 
+export type EnumResourceTypeFieldUpdateOperationsInput = {
+  set?: $Enums.ResourceType
+}
+
 export type FloatFieldUpdateOperationsInput = {
   set?: number
   increment?: number
@@ -419,14 +423,14 @@ export type FloatFieldUpdateOperationsInput = {
 
 export type PlanetResourceCreateWithoutPlanetInput = {
   id?: string
-  typeResource: string
+  typeResource: $Enums.ResourceType
   totalAmount: number
   current: number
 }
 
 export type PlanetResourceUncheckedCreateWithoutPlanetInput = {
   id?: string
-  typeResource: string
+  typeResource: $Enums.ResourceType
   totalAmount: number
   current: number
 }
@@ -463,35 +467,35 @@ export type PlanetResourceScalarWhereInput = {
   NOT?: Prisma.PlanetResourceScalarWhereInput | Prisma.PlanetResourceScalarWhereInput[]
   id?: Prisma.StringFilter<"PlanetResource"> | string
   planetId?: Prisma.StringFilter<"PlanetResource"> | string
-  typeResource?: Prisma.StringFilter<"PlanetResource"> | string
+  typeResource?: Prisma.EnumResourceTypeFilter<"PlanetResource"> | $Enums.ResourceType
   totalAmount?: Prisma.FloatFilter<"PlanetResource"> | number
   current?: Prisma.FloatFilter<"PlanetResource"> | number
 }
 
 export type PlanetResourceCreateManyPlanetInput = {
   id?: string
-  typeResource: string
+  typeResource: $Enums.ResourceType
   totalAmount: number
   current: number
 }
 
 export type PlanetResourceUpdateWithoutPlanetInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  typeResource?: Prisma.StringFieldUpdateOperationsInput | string
+  typeResource?: Prisma.EnumResourceTypeFieldUpdateOperationsInput | $Enums.ResourceType
   totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
   current?: Prisma.FloatFieldUpdateOperationsInput | number
 }
 
 export type PlanetResourceUncheckedUpdateWithoutPlanetInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  typeResource?: Prisma.StringFieldUpdateOperationsInput | string
+  typeResource?: Prisma.EnumResourceTypeFieldUpdateOperationsInput | $Enums.ResourceType
   totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
   current?: Prisma.FloatFieldUpdateOperationsInput | number
 }
 
 export type PlanetResourceUncheckedUpdateManyWithoutPlanetInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  typeResource?: Prisma.StringFieldUpdateOperationsInput | string
+  typeResource?: Prisma.EnumResourceTypeFieldUpdateOperationsInput | $Enums.ResourceType
   totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
   current?: Prisma.FloatFieldUpdateOperationsInput | number
 }
@@ -552,7 +556,7 @@ export type $PlanetResourcePayload<ExtArgs extends runtime.Types.Extensions.Inte
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     planetId: string
-    typeResource: string
+    typeResource: $Enums.ResourceType
     totalAmount: number
     current: number
   }, ExtArgs["result"]["planetResource"]>
@@ -981,7 +985,7 @@ export interface Prisma__PlanetResourceClient<T, Null = never, ExtArgs extends r
 export interface PlanetResourceFieldRefs {
   readonly id: Prisma.FieldRef<"PlanetResource", 'String'>
   readonly planetId: Prisma.FieldRef<"PlanetResource", 'String'>
-  readonly typeResource: Prisma.FieldRef<"PlanetResource", 'String'>
+  readonly typeResource: Prisma.FieldRef<"PlanetResource", 'ResourceType'>
   readonly totalAmount: Prisma.FieldRef<"PlanetResource", 'Float'>
   readonly current: Prisma.FieldRef<"PlanetResource", 'Float'>
 }

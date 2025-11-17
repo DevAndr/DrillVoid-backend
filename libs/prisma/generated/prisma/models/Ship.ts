@@ -43,6 +43,7 @@ export type ShipMinAggregateOutputType = {
   updatedAt: Date | null
   gameDataShipId: string | null
   warehouseId: string | null
+  isSelected: boolean | null
 }
 
 export type ShipMaxAggregateOutputType = {
@@ -54,6 +55,7 @@ export type ShipMaxAggregateOutputType = {
   updatedAt: Date | null
   gameDataShipId: string | null
   warehouseId: string | null
+  isSelected: boolean | null
 }
 
 export type ShipCountAggregateOutputType = {
@@ -65,6 +67,7 @@ export type ShipCountAggregateOutputType = {
   updatedAt: number
   gameDataShipId: number
   warehouseId: number
+  isSelected: number
   _all: number
 }
 
@@ -86,6 +89,7 @@ export type ShipMinAggregateInputType = {
   updatedAt?: true
   gameDataShipId?: true
   warehouseId?: true
+  isSelected?: true
 }
 
 export type ShipMaxAggregateInputType = {
@@ -97,6 +101,7 @@ export type ShipMaxAggregateInputType = {
   updatedAt?: true
   gameDataShipId?: true
   warehouseId?: true
+  isSelected?: true
 }
 
 export type ShipCountAggregateInputType = {
@@ -108,6 +113,7 @@ export type ShipCountAggregateInputType = {
   updatedAt?: true
   gameDataShipId?: true
   warehouseId?: true
+  isSelected?: true
   _all?: true
 }
 
@@ -206,6 +212,7 @@ export type ShipGroupByOutputType = {
   updatedAt: Date
   gameDataShipId: string | null
   warehouseId: string | null
+  isSelected: boolean
   _count: ShipCountAggregateOutputType | null
   _avg: ShipAvgAggregateOutputType | null
   _sum: ShipSumAggregateOutputType | null
@@ -240,8 +247,9 @@ export type ShipWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"Ship"> | Date | string
   gameDataShipId?: Prisma.StringNullableFilter<"Ship"> | string | null
   warehouseId?: Prisma.StringNullableFilter<"Ship"> | string | null
+  isSelected?: Prisma.BoolFilter<"Ship"> | boolean
   warehouse?: Prisma.XOR<Prisma.WarehouseNullableScalarRelationFilter, Prisma.WarehouseWhereInput> | null
-  GameData?: Prisma.XOR<Prisma.GameDataNullableScalarRelationFilter, Prisma.GameDataWhereInput> | null
+  gameData?: Prisma.XOR<Prisma.GameDataNullableScalarRelationFilter, Prisma.GameDataWhereInput> | null
 }
 
 export type ShipOrderByWithRelationInput = {
@@ -253,8 +261,9 @@ export type ShipOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder
   gameDataShipId?: Prisma.SortOrderInput | Prisma.SortOrder
   warehouseId?: Prisma.SortOrderInput | Prisma.SortOrder
+  isSelected?: Prisma.SortOrder
   warehouse?: Prisma.WarehouseOrderByWithRelationInput
-  GameData?: Prisma.GameDataOrderByWithRelationInput
+  gameData?: Prisma.GameDataOrderByWithRelationInput
 }
 
 export type ShipWhereUniqueInput = Prisma.AtLeast<{
@@ -270,8 +279,9 @@ export type ShipWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"Ship"> | Date | string
   gameDataShipId?: Prisma.StringNullableFilter<"Ship"> | string | null
   warehouseId?: Prisma.StringNullableFilter<"Ship"> | string | null
+  isSelected?: Prisma.BoolFilter<"Ship"> | boolean
   warehouse?: Prisma.XOR<Prisma.WarehouseNullableScalarRelationFilter, Prisma.WarehouseWhereInput> | null
-  GameData?: Prisma.XOR<Prisma.GameDataNullableScalarRelationFilter, Prisma.GameDataWhereInput> | null
+  gameData?: Prisma.XOR<Prisma.GameDataNullableScalarRelationFilter, Prisma.GameDataWhereInput> | null
 }, "id_uid" | "id_uid" | "uid">
 
 export type ShipOrderByWithAggregationInput = {
@@ -283,6 +293,7 @@ export type ShipOrderByWithAggregationInput = {
   updatedAt?: Prisma.SortOrder
   gameDataShipId?: Prisma.SortOrderInput | Prisma.SortOrder
   warehouseId?: Prisma.SortOrderInput | Prisma.SortOrder
+  isSelected?: Prisma.SortOrder
   _count?: Prisma.ShipCountOrderByAggregateInput
   _avg?: Prisma.ShipAvgOrderByAggregateInput
   _max?: Prisma.ShipMaxOrderByAggregateInput
@@ -302,6 +313,7 @@ export type ShipScalarWhereWithAggregatesInput = {
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Ship"> | Date | string
   gameDataShipId?: Prisma.StringNullableWithAggregatesFilter<"Ship"> | string | null
   warehouseId?: Prisma.StringNullableWithAggregatesFilter<"Ship"> | string | null
+  isSelected?: Prisma.BoolWithAggregatesFilter<"Ship"> | boolean
 }
 
 export type ShipCreateInput = {
@@ -311,8 +323,9 @@ export type ShipCreateInput = {
   type: $Enums.TypeShip
   createdAt?: Date | string
   updatedAt?: Date | string
+  isSelected?: boolean
   warehouse?: Prisma.WarehouseCreateNestedOneWithoutShipInput
-  GameData?: Prisma.GameDataCreateNestedOneWithoutShipInput
+  gameData?: Prisma.GameDataCreateNestedOneWithoutShipInput
 }
 
 export type ShipUncheckedCreateInput = {
@@ -324,6 +337,7 @@ export type ShipUncheckedCreateInput = {
   updatedAt?: Date | string
   gameDataShipId?: string | null
   warehouseId?: string | null
+  isSelected?: boolean
 }
 
 export type ShipUpdateInput = {
@@ -333,8 +347,9 @@ export type ShipUpdateInput = {
   type?: Prisma.EnumTypeShipFieldUpdateOperationsInput | $Enums.TypeShip
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isSelected?: Prisma.BoolFieldUpdateOperationsInput | boolean
   warehouse?: Prisma.WarehouseUpdateOneWithoutShipNestedInput
-  GameData?: Prisma.GameDataUpdateOneWithoutShipNestedInput
+  gameData?: Prisma.GameDataUpdateOneWithoutShipNestedInput
 }
 
 export type ShipUncheckedUpdateInput = {
@@ -346,6 +361,7 @@ export type ShipUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   gameDataShipId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   warehouseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isSelected?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type ShipCreateManyInput = {
@@ -357,6 +373,7 @@ export type ShipCreateManyInput = {
   updatedAt?: Date | string
   gameDataShipId?: string | null
   warehouseId?: string | null
+  isSelected?: boolean
 }
 
 export type ShipUpdateManyMutationInput = {
@@ -366,6 +383,7 @@ export type ShipUpdateManyMutationInput = {
   type?: Prisma.EnumTypeShipFieldUpdateOperationsInput | $Enums.TypeShip
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isSelected?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type ShipUncheckedUpdateManyInput = {
@@ -377,6 +395,7 @@ export type ShipUncheckedUpdateManyInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   gameDataShipId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   warehouseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isSelected?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type ShipIdUidCompoundUniqueInput = {
@@ -393,6 +412,7 @@ export type ShipCountOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
   gameDataShipId?: Prisma.SortOrder
   warehouseId?: Prisma.SortOrder
+  isSelected?: Prisma.SortOrder
 }
 
 export type ShipAvgOrderByAggregateInput = {
@@ -408,6 +428,7 @@ export type ShipMaxOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
   gameDataShipId?: Prisma.SortOrder
   warehouseId?: Prisma.SortOrder
+  isSelected?: Prisma.SortOrder
 }
 
 export type ShipMinOrderByAggregateInput = {
@@ -419,6 +440,7 @@ export type ShipMinOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
   gameDataShipId?: Prisma.SortOrder
   warehouseId?: Prisma.SortOrder
+  isSelected?: Prisma.SortOrder
 }
 
 export type ShipSumOrderByAggregateInput = {
@@ -437,6 +459,10 @@ export type ShipOrderByRelationAggregateInput = {
 
 export type EnumTypeShipFieldUpdateOperationsInput = {
   set?: $Enums.TypeShip
+}
+
+export type BoolFieldUpdateOperationsInput = {
+  set?: boolean
 }
 
 export type ShipCreateNestedManyWithoutGameDataInput = {
@@ -530,6 +556,7 @@ export type ShipCreateWithoutGameDataInput = {
   type: $Enums.TypeShip
   createdAt?: Date | string
   updatedAt?: Date | string
+  isSelected?: boolean
   warehouse?: Prisma.WarehouseCreateNestedOneWithoutShipInput
 }
 
@@ -541,6 +568,7 @@ export type ShipUncheckedCreateWithoutGameDataInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   warehouseId?: string | null
+  isSelected?: boolean
 }
 
 export type ShipCreateOrConnectWithoutGameDataInput = {
@@ -581,6 +609,7 @@ export type ShipScalarWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"Ship"> | Date | string
   gameDataShipId?: Prisma.StringNullableFilter<"Ship"> | string | null
   warehouseId?: Prisma.StringNullableFilter<"Ship"> | string | null
+  isSelected?: Prisma.BoolFilter<"Ship"> | boolean
 }
 
 export type ShipCreateWithoutWarehouseInput = {
@@ -590,7 +619,8 @@ export type ShipCreateWithoutWarehouseInput = {
   type: $Enums.TypeShip
   createdAt?: Date | string
   updatedAt?: Date | string
-  GameData?: Prisma.GameDataCreateNestedOneWithoutShipInput
+  isSelected?: boolean
+  gameData?: Prisma.GameDataCreateNestedOneWithoutShipInput
 }
 
 export type ShipUncheckedCreateWithoutWarehouseInput = {
@@ -601,6 +631,7 @@ export type ShipUncheckedCreateWithoutWarehouseInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   gameDataShipId?: string | null
+  isSelected?: boolean
 }
 
 export type ShipCreateOrConnectWithoutWarehouseInput = {
@@ -637,6 +668,7 @@ export type ShipCreateManyGameDataInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   warehouseId?: string | null
+  isSelected?: boolean
 }
 
 export type ShipUpdateWithoutGameDataInput = {
@@ -646,6 +678,7 @@ export type ShipUpdateWithoutGameDataInput = {
   type?: Prisma.EnumTypeShipFieldUpdateOperationsInput | $Enums.TypeShip
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isSelected?: Prisma.BoolFieldUpdateOperationsInput | boolean
   warehouse?: Prisma.WarehouseUpdateOneWithoutShipNestedInput
 }
 
@@ -657,6 +690,7 @@ export type ShipUncheckedUpdateWithoutGameDataInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   warehouseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isSelected?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type ShipUncheckedUpdateManyWithoutGameDataInput = {
@@ -667,6 +701,7 @@ export type ShipUncheckedUpdateManyWithoutGameDataInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   warehouseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isSelected?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type ShipCreateManyWarehouseInput = {
@@ -677,6 +712,7 @@ export type ShipCreateManyWarehouseInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   gameDataShipId?: string | null
+  isSelected?: boolean
 }
 
 export type ShipUpdateWithoutWarehouseInput = {
@@ -686,7 +722,8 @@ export type ShipUpdateWithoutWarehouseInput = {
   type?: Prisma.EnumTypeShipFieldUpdateOperationsInput | $Enums.TypeShip
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  GameData?: Prisma.GameDataUpdateOneWithoutShipNestedInput
+  isSelected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gameData?: Prisma.GameDataUpdateOneWithoutShipNestedInput
 }
 
 export type ShipUncheckedUpdateWithoutWarehouseInput = {
@@ -697,6 +734,7 @@ export type ShipUncheckedUpdateWithoutWarehouseInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   gameDataShipId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isSelected?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type ShipUncheckedUpdateManyWithoutWarehouseInput = {
@@ -707,6 +745,7 @@ export type ShipUncheckedUpdateManyWithoutWarehouseInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   gameDataShipId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isSelected?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 
@@ -720,8 +759,9 @@ export type ShipSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   updatedAt?: boolean
   gameDataShipId?: boolean
   warehouseId?: boolean
+  isSelected?: boolean
   warehouse?: boolean | Prisma.Ship$warehouseArgs<ExtArgs>
-  GameData?: boolean | Prisma.Ship$GameDataArgs<ExtArgs>
+  gameData?: boolean | Prisma.Ship$gameDataArgs<ExtArgs>
 }, ExtArgs["result"]["ship"]>
 
 export type ShipSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -733,8 +773,9 @@ export type ShipSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   updatedAt?: boolean
   gameDataShipId?: boolean
   warehouseId?: boolean
+  isSelected?: boolean
   warehouse?: boolean | Prisma.Ship$warehouseArgs<ExtArgs>
-  GameData?: boolean | Prisma.Ship$GameDataArgs<ExtArgs>
+  gameData?: boolean | Prisma.Ship$gameDataArgs<ExtArgs>
 }, ExtArgs["result"]["ship"]>
 
 export type ShipSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -746,8 +787,9 @@ export type ShipSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   updatedAt?: boolean
   gameDataShipId?: boolean
   warehouseId?: boolean
+  isSelected?: boolean
   warehouse?: boolean | Prisma.Ship$warehouseArgs<ExtArgs>
-  GameData?: boolean | Prisma.Ship$GameDataArgs<ExtArgs>
+  gameData?: boolean | Prisma.Ship$gameDataArgs<ExtArgs>
 }, ExtArgs["result"]["ship"]>
 
 export type ShipSelectScalar = {
@@ -759,27 +801,28 @@ export type ShipSelectScalar = {
   updatedAt?: boolean
   gameDataShipId?: boolean
   warehouseId?: boolean
+  isSelected?: boolean
 }
 
-export type ShipOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "uid" | "level" | "type" | "createdAt" | "updatedAt" | "gameDataShipId" | "warehouseId", ExtArgs["result"]["ship"]>
+export type ShipOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "uid" | "level" | "type" | "createdAt" | "updatedAt" | "gameDataShipId" | "warehouseId" | "isSelected", ExtArgs["result"]["ship"]>
 export type ShipInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   warehouse?: boolean | Prisma.Ship$warehouseArgs<ExtArgs>
-  GameData?: boolean | Prisma.Ship$GameDataArgs<ExtArgs>
+  gameData?: boolean | Prisma.Ship$gameDataArgs<ExtArgs>
 }
 export type ShipIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   warehouse?: boolean | Prisma.Ship$warehouseArgs<ExtArgs>
-  GameData?: boolean | Prisma.Ship$GameDataArgs<ExtArgs>
+  gameData?: boolean | Prisma.Ship$gameDataArgs<ExtArgs>
 }
 export type ShipIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   warehouse?: boolean | Prisma.Ship$warehouseArgs<ExtArgs>
-  GameData?: boolean | Prisma.Ship$GameDataArgs<ExtArgs>
+  gameData?: boolean | Prisma.Ship$gameDataArgs<ExtArgs>
 }
 
 export type $ShipPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Ship"
   objects: {
     warehouse: Prisma.$WarehousePayload<ExtArgs> | null
-    GameData: Prisma.$GameDataPayload<ExtArgs> | null
+    gameData: Prisma.$GameDataPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -790,6 +833,7 @@ export type $ShipPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     updatedAt: Date
     gameDataShipId: string | null
     warehouseId: string | null
+    isSelected: boolean
   }, ExtArgs["result"]["ship"]>
   composites: {}
 }
@@ -1185,7 +1229,7 @@ readonly fields: ShipFieldRefs;
 export interface Prisma__ShipClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   warehouse<T extends Prisma.Ship$warehouseArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Ship$warehouseArgs<ExtArgs>>): Prisma.Prisma__WarehouseClient<runtime.Types.Result.GetResult<Prisma.$WarehousePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  GameData<T extends Prisma.Ship$GameDataArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Ship$GameDataArgs<ExtArgs>>): Prisma.Prisma__GameDataClient<runtime.Types.Result.GetResult<Prisma.$GameDataPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  gameData<T extends Prisma.Ship$gameDataArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Ship$gameDataArgs<ExtArgs>>): Prisma.Prisma__GameDataClient<runtime.Types.Result.GetResult<Prisma.$GameDataPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1223,6 +1267,7 @@ export interface ShipFieldRefs {
   readonly updatedAt: Prisma.FieldRef<"Ship", 'DateTime'>
   readonly gameDataShipId: Prisma.FieldRef<"Ship", 'String'>
   readonly warehouseId: Prisma.FieldRef<"Ship", 'String'>
+  readonly isSelected: Prisma.FieldRef<"Ship", 'Boolean'>
 }
     
 
@@ -1638,9 +1683,9 @@ export type Ship$warehouseArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
- * Ship.GameData
+ * Ship.gameData
  */
-export type Ship$GameDataArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Ship$gameDataArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the GameData
    */

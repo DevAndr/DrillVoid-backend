@@ -419,10 +419,6 @@ export type PlanetVisitUncheckedUpdateManyWithoutPlanetNestedInput = {
   deleteMany?: Prisma.PlanetVisitScalarWhereInput | Prisma.PlanetVisitScalarWhereInput[]
 }
 
-export type BoolFieldUpdateOperationsInput = {
-  set?: boolean
-}
-
 export type PlanetVisitCreateWithoutUserInput = {
   id?: string
   mined: Prisma.JsonNullValueInput | runtime.InputJsonValue

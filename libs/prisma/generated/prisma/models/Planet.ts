@@ -248,8 +248,8 @@ export type PlanetWhereInput = {
   scannedBy?: Prisma.StringNullableFilter<"Planet"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Planet"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Planet"> | Date | string
-  PlanetResource?: Prisma.PlanetResourceListRelationFilter
-  PlanetVisit?: Prisma.PlanetVisitListRelationFilter
+  planetResource?: Prisma.PlanetResourceListRelationFilter
+  planetVisit?: Prisma.PlanetVisitListRelationFilter
 }
 
 export type PlanetOrderByWithRelationInput = {
@@ -263,8 +263,8 @@ export type PlanetOrderByWithRelationInput = {
   scannedBy?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  PlanetResource?: Prisma.PlanetResourceOrderByRelationAggregateInput
-  PlanetVisit?: Prisma.PlanetVisitOrderByRelationAggregateInput
+  planetResource?: Prisma.PlanetResourceOrderByRelationAggregateInput
+  planetVisit?: Prisma.PlanetVisitOrderByRelationAggregateInput
 }
 
 export type PlanetWhereUniqueInput = Prisma.AtLeast<{
@@ -281,8 +281,8 @@ export type PlanetWhereUniqueInput = Prisma.AtLeast<{
   scannedBy?: Prisma.StringNullableFilter<"Planet"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Planet"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Planet"> | Date | string
-  PlanetResource?: Prisma.PlanetResourceListRelationFilter
-  PlanetVisit?: Prisma.PlanetVisitListRelationFilter
+  planetResource?: Prisma.PlanetResourceListRelationFilter
+  planetVisit?: Prisma.PlanetVisitListRelationFilter
 }, "id" | "seed">
 
 export type PlanetOrderByWithAggregationInput = {
@@ -330,8 +330,8 @@ export type PlanetCreateInput = {
   scannedBy?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  PlanetResource?: Prisma.PlanetResourceCreateNestedManyWithoutPlanetInput
-  PlanetVisit?: Prisma.PlanetVisitCreateNestedManyWithoutPlanetInput
+  planetResource?: Prisma.PlanetResourceCreateNestedManyWithoutPlanetInput
+  planetVisit?: Prisma.PlanetVisitCreateNestedManyWithoutPlanetInput
 }
 
 export type PlanetUncheckedCreateInput = {
@@ -345,8 +345,8 @@ export type PlanetUncheckedCreateInput = {
   scannedBy?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  PlanetResource?: Prisma.PlanetResourceUncheckedCreateNestedManyWithoutPlanetInput
-  PlanetVisit?: Prisma.PlanetVisitUncheckedCreateNestedManyWithoutPlanetInput
+  planetResource?: Prisma.PlanetResourceUncheckedCreateNestedManyWithoutPlanetInput
+  planetVisit?: Prisma.PlanetVisitUncheckedCreateNestedManyWithoutPlanetInput
 }
 
 export type PlanetUpdateInput = {
@@ -360,8 +360,8 @@ export type PlanetUpdateInput = {
   scannedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  PlanetResource?: Prisma.PlanetResourceUpdateManyWithoutPlanetNestedInput
-  PlanetVisit?: Prisma.PlanetVisitUpdateManyWithoutPlanetNestedInput
+  planetResource?: Prisma.PlanetResourceUpdateManyWithoutPlanetNestedInput
+  planetVisit?: Prisma.PlanetVisitUpdateManyWithoutPlanetNestedInput
 }
 
 export type PlanetUncheckedUpdateInput = {
@@ -375,8 +375,8 @@ export type PlanetUncheckedUpdateInput = {
   scannedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  PlanetResource?: Prisma.PlanetResourceUncheckedUpdateManyWithoutPlanetNestedInput
-  PlanetVisit?: Prisma.PlanetVisitUncheckedUpdateManyWithoutPlanetNestedInput
+  planetResource?: Prisma.PlanetResourceUncheckedUpdateManyWithoutPlanetNestedInput
+  planetVisit?: Prisma.PlanetVisitUncheckedUpdateManyWithoutPlanetNestedInput
 }
 
 export type PlanetCreateManyInput = {
@@ -509,7 +509,7 @@ export type PlanetCreateWithoutPlanetResourceInput = {
   scannedBy?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  PlanetVisit?: Prisma.PlanetVisitCreateNestedManyWithoutPlanetInput
+  planetVisit?: Prisma.PlanetVisitCreateNestedManyWithoutPlanetInput
 }
 
 export type PlanetUncheckedCreateWithoutPlanetResourceInput = {
@@ -523,7 +523,7 @@ export type PlanetUncheckedCreateWithoutPlanetResourceInput = {
   scannedBy?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  PlanetVisit?: Prisma.PlanetVisitUncheckedCreateNestedManyWithoutPlanetInput
+  planetVisit?: Prisma.PlanetVisitUncheckedCreateNestedManyWithoutPlanetInput
 }
 
 export type PlanetCreateOrConnectWithoutPlanetResourceInput = {
@@ -553,7 +553,7 @@ export type PlanetUpdateWithoutPlanetResourceInput = {
   scannedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  PlanetVisit?: Prisma.PlanetVisitUpdateManyWithoutPlanetNestedInput
+  planetVisit?: Prisma.PlanetVisitUpdateManyWithoutPlanetNestedInput
 }
 
 export type PlanetUncheckedUpdateWithoutPlanetResourceInput = {
@@ -567,7 +567,7 @@ export type PlanetUncheckedUpdateWithoutPlanetResourceInput = {
   scannedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  PlanetVisit?: Prisma.PlanetVisitUncheckedUpdateManyWithoutPlanetNestedInput
+  planetVisit?: Prisma.PlanetVisitUncheckedUpdateManyWithoutPlanetNestedInput
 }
 
 export type PlanetCreateWithoutPlanetVisitInput = {
@@ -581,7 +581,7 @@ export type PlanetCreateWithoutPlanetVisitInput = {
   scannedBy?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  PlanetResource?: Prisma.PlanetResourceCreateNestedManyWithoutPlanetInput
+  planetResource?: Prisma.PlanetResourceCreateNestedManyWithoutPlanetInput
 }
 
 export type PlanetUncheckedCreateWithoutPlanetVisitInput = {
@@ -595,7 +595,7 @@ export type PlanetUncheckedCreateWithoutPlanetVisitInput = {
   scannedBy?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  PlanetResource?: Prisma.PlanetResourceUncheckedCreateNestedManyWithoutPlanetInput
+  planetResource?: Prisma.PlanetResourceUncheckedCreateNestedManyWithoutPlanetInput
 }
 
 export type PlanetCreateOrConnectWithoutPlanetVisitInput = {
@@ -625,7 +625,7 @@ export type PlanetUpdateWithoutPlanetVisitInput = {
   scannedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  PlanetResource?: Prisma.PlanetResourceUpdateManyWithoutPlanetNestedInput
+  planetResource?: Prisma.PlanetResourceUpdateManyWithoutPlanetNestedInput
 }
 
 export type PlanetUncheckedUpdateWithoutPlanetVisitInput = {
@@ -639,7 +639,7 @@ export type PlanetUncheckedUpdateWithoutPlanetVisitInput = {
   scannedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  PlanetResource?: Prisma.PlanetResourceUncheckedUpdateManyWithoutPlanetNestedInput
+  planetResource?: Prisma.PlanetResourceUncheckedUpdateManyWithoutPlanetNestedInput
 }
 
 
@@ -648,13 +648,13 @@ export type PlanetUncheckedUpdateWithoutPlanetVisitInput = {
  */
 
 export type PlanetCountOutputType = {
-  PlanetResource: number
-  PlanetVisit: number
+  planetResource: number
+  planetVisit: number
 }
 
 export type PlanetCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  PlanetResource?: boolean | PlanetCountOutputTypeCountPlanetResourceArgs
-  PlanetVisit?: boolean | PlanetCountOutputTypeCountPlanetVisitArgs
+  planetResource?: boolean | PlanetCountOutputTypeCountPlanetResourceArgs
+  planetVisit?: boolean | PlanetCountOutputTypeCountPlanetVisitArgs
 }
 
 /**
@@ -693,8 +693,8 @@ export type PlanetSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   scannedBy?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  PlanetResource?: boolean | Prisma.Planet$PlanetResourceArgs<ExtArgs>
-  PlanetVisit?: boolean | Prisma.Planet$PlanetVisitArgs<ExtArgs>
+  planetResource?: boolean | Prisma.Planet$planetResourceArgs<ExtArgs>
+  planetVisit?: boolean | Prisma.Planet$planetVisitArgs<ExtArgs>
   _count?: boolean | Prisma.PlanetCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["planet"]>
 
@@ -739,8 +739,8 @@ export type PlanetSelectScalar = {
 
 export type PlanetOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "seed" | "name" | "type" | "sector" | "totalCapacity" | "currentStock" | "scannedBy" | "createdAt" | "updatedAt", ExtArgs["result"]["planet"]>
 export type PlanetInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  PlanetResource?: boolean | Prisma.Planet$PlanetResourceArgs<ExtArgs>
-  PlanetVisit?: boolean | Prisma.Planet$PlanetVisitArgs<ExtArgs>
+  planetResource?: boolean | Prisma.Planet$planetResourceArgs<ExtArgs>
+  planetVisit?: boolean | Prisma.Planet$planetVisitArgs<ExtArgs>
   _count?: boolean | Prisma.PlanetCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type PlanetIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -749,8 +749,8 @@ export type PlanetIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
 export type $PlanetPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Planet"
   objects: {
-    PlanetResource: Prisma.$PlanetResourcePayload<ExtArgs>[]
-    PlanetVisit: Prisma.$PlanetVisitPayload<ExtArgs>[]
+    planetResource: Prisma.$PlanetResourcePayload<ExtArgs>[]
+    planetVisit: Prisma.$PlanetVisitPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1157,8 +1157,8 @@ readonly fields: PlanetFieldRefs;
  */
 export interface Prisma__PlanetClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  PlanetResource<T extends Prisma.Planet$PlanetResourceArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Planet$PlanetResourceArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PlanetResourcePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  PlanetVisit<T extends Prisma.Planet$PlanetVisitArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Planet$PlanetVisitArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PlanetVisitPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  planetResource<T extends Prisma.Planet$planetResourceArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Planet$planetResourceArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PlanetResourcePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  planetVisit<T extends Prisma.Planet$planetVisitArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Planet$planetVisitArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PlanetVisitPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1586,9 +1586,9 @@ export type PlanetDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Intern
 }
 
 /**
- * Planet.PlanetResource
+ * Planet.planetResource
  */
-export type Planet$PlanetResourceArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Planet$planetResourceArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the PlanetResource
    */
@@ -1610,9 +1610,9 @@ export type Planet$PlanetResourceArgs<ExtArgs extends runtime.Types.Extensions.I
 }
 
 /**
- * Planet.PlanetVisit
+ * Planet.planetVisit
  */
-export type Planet$PlanetVisitArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Planet$planetVisitArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the PlanetVisit
    */

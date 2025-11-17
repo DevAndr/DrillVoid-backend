@@ -296,7 +296,7 @@ export type WarehouseWhereInput = {
   upgradeCost?: Prisma.JsonFilter<"Warehouse">
   createdAt?: Prisma.DateTimeFilter<"Warehouse"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Warehouse"> | Date | string
-  Ship?: Prisma.ShipListRelationFilter
+  ship?: Prisma.ShipListRelationFilter
 }
 
 export type WarehouseOrderByWithRelationInput = {
@@ -313,7 +313,7 @@ export type WarehouseOrderByWithRelationInput = {
   upgradeCost?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  Ship?: Prisma.ShipOrderByRelationAggregateInput
+  ship?: Prisma.ShipOrderByRelationAggregateInput
 }
 
 export type WarehouseWhereUniqueInput = Prisma.AtLeast<{
@@ -333,7 +333,7 @@ export type WarehouseWhereUniqueInput = Prisma.AtLeast<{
   upgradeCost?: Prisma.JsonFilter<"Warehouse">
   createdAt?: Prisma.DateTimeFilter<"Warehouse"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Warehouse"> | Date | string
-  Ship?: Prisma.ShipListRelationFilter
+  ship?: Prisma.ShipListRelationFilter
 }, "id" | "uid" | "shipId">
 
 export type WarehouseOrderByWithAggregationInput = {
@@ -390,7 +390,7 @@ export type WarehouseCreateInput = {
   upgradeCost: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
-  Ship?: Prisma.ShipCreateNestedManyWithoutWarehouseInput
+  ship?: Prisma.ShipCreateNestedManyWithoutWarehouseInput
 }
 
 export type WarehouseUncheckedCreateInput = {
@@ -407,7 +407,7 @@ export type WarehouseUncheckedCreateInput = {
   upgradeCost: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
-  Ship?: Prisma.ShipUncheckedCreateNestedManyWithoutWarehouseInput
+  ship?: Prisma.ShipUncheckedCreateNestedManyWithoutWarehouseInput
 }
 
 export type WarehouseUpdateInput = {
@@ -424,7 +424,7 @@ export type WarehouseUpdateInput = {
   upgradeCost?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  Ship?: Prisma.ShipUpdateManyWithoutWarehouseNestedInput
+  ship?: Prisma.ShipUpdateManyWithoutWarehouseNestedInput
 }
 
 export type WarehouseUncheckedUpdateInput = {
@@ -441,7 +441,7 @@ export type WarehouseUncheckedUpdateInput = {
   upgradeCost?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  Ship?: Prisma.ShipUncheckedUpdateManyWithoutWarehouseNestedInput
+  ship?: Prisma.ShipUncheckedUpdateManyWithoutWarehouseNestedInput
 }
 
 export type WarehouseCreateManyInput = {
@@ -663,11 +663,11 @@ export type WarehouseUncheckedUpdateWithoutShipInput = {
  */
 
 export type WarehouseCountOutputType = {
-  Ship: number
+  ship: number
 }
 
 export type WarehouseCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  Ship?: boolean | WarehouseCountOutputTypeCountShipArgs
+  ship?: boolean | WarehouseCountOutputTypeCountShipArgs
 }
 
 /**
@@ -702,7 +702,7 @@ export type WarehouseSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   upgradeCost?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  Ship?: boolean | Prisma.Warehouse$ShipArgs<ExtArgs>
+  ship?: boolean | Prisma.Warehouse$shipArgs<ExtArgs>
   _count?: boolean | Prisma.WarehouseCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["warehouse"]>
 
@@ -756,7 +756,7 @@ export type WarehouseSelectScalar = {
 
 export type WarehouseOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "uid" | "level" | "type" | "shipId" | "foodQuantity" | "coalQuantity" | "waterQuantity" | "herbsQuantity" | "paperQuantity" | "upgradeCost" | "createdAt" | "updatedAt", ExtArgs["result"]["warehouse"]>
 export type WarehouseInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  Ship?: boolean | Prisma.Warehouse$ShipArgs<ExtArgs>
+  ship?: boolean | Prisma.Warehouse$shipArgs<ExtArgs>
   _count?: boolean | Prisma.WarehouseCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type WarehouseIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -765,7 +765,7 @@ export type WarehouseIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
 export type $WarehousePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Warehouse"
   objects: {
-    Ship: Prisma.$ShipPayload<ExtArgs>[]
+    ship: Prisma.$ShipPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1175,7 +1175,7 @@ readonly fields: WarehouseFieldRefs;
  */
 export interface Prisma__WarehouseClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  Ship<T extends Prisma.Warehouse$ShipArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Warehouse$ShipArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ShipPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  ship<T extends Prisma.Warehouse$shipArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Warehouse$shipArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ShipPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1606,9 +1606,9 @@ export type WarehouseDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Int
 }
 
 /**
- * Warehouse.Ship
+ * Warehouse.ship
  */
-export type Warehouse$ShipArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Warehouse$shipArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the Ship
    */

@@ -24,8 +24,8 @@ model User {
 
   createdAt      DateTime      @default(now())
   updatedAt      DateTime      @updatedAt
-  GameData       GameData?     @relation(fields: [gameDataShipId], references: [shipId])
-  PlanetVisit    PlanetVisit[]
+  gameData       GameData?     @relation(fields: [gameDataShipId], references: [shipId])
+  planetVisit    PlanetVisit[]
   gameDataShipId String?
 }
 
@@ -44,9 +44,10 @@ model Ship {
 
   createdAt      DateTime  @default(now())
   updatedAt      DateTime  @updatedAt
-  GameData       GameData? @relation(fields: [gameDataShipId], references: [shipId])
+  gameData       GameData? @relation(fields: [gameDataShipId], references: [shipId])
   gameDataShipId String?
   warehouseId    String?
+  isSelected     Boolean   @default(false)
 
   @@id([id, uid])
   @@unique([id, uid])
@@ -74,12 +75,12 @@ model ShipComponent {
 
 model GameData {
   id     Int    @default(autoincrement())
-  uid    String
+  uid    String @unique
   shipId String @unique
 
   User    User[]
-  Ship    Ship[]
-  Balance Balance[]
+  balance Balance[]
+  ship    Ship[]
 }
 
 enum Rarity {
@@ -107,7 +108,7 @@ model Warehouse {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  Ship      Ship[]
+  ship      Ship[]
 }
 
 enum PlanetType {
@@ -131,8 +132,8 @@ model Planet {
 
   createdAt      DateTime         @default(now())
   updatedAt      DateTime         @updatedAt
-  PlanetResource PlanetResource[]
-  PlanetVisit    PlanetVisit[]
+  planetResource PlanetResource[]
+  planetVisit    PlanetVisit[]
 }
 
 enum ResourceType {
@@ -188,9 +189,9 @@ enum ResourceType {
 
 // 4. Ресурсы планеты (для finite tracking, вместо Json для запросов)
 model PlanetResource {
-  id           String @id @default(uuid())
+  id           String       @id @default(uuid())
   planetId     String
-  typeResource String // "iron", "alphacredits"
+  typeResource ResourceType // "iron", "alphacredits"
   totalAmount  Float
   current      Float
 
@@ -255,7 +256,7 @@ model Balance {
 
   createdAt      DateTime  @default(now())
   updatedAt      DateTime  @updatedAt
-  GameData       GameData? @relation(fields: [gameDataShipId], references: [shipId])
+  gameData       GameData? @relation(fields: [gameDataShipId], references: [shipId])
   gameDataShipId String?
 
   @@unique([uid, currencyId])

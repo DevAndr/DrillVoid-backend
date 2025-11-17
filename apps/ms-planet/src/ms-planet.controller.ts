@@ -1,12 +1,7 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller } from '@nestjs/common';
 import { MsPlanetService } from './ms-planet.service';
 
-@Controller()
+@Controller('planet')
 export class MsPlanetController {
   constructor(private readonly msPlanetService: MsPlanetService) {}
-
-  @Get()
-  getHello(): string {
-    return this.msPlanetService.getHello();
-  }
 }
