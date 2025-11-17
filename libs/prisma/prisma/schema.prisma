@@ -92,7 +92,6 @@ enum Rarity {
   RARE
   EPIC
   LEGENDARY
-  MYTHICAL
 }
 
 // склады ресурсов
@@ -128,10 +127,12 @@ model Planet {
   seed          String     @unique
   name          String
   type          PlanetType // "Rocky", "Exotic"
-  sector        Int        @default(1)
   totalCapacity Json // {"iron": 50000, "alphacredits": 20000}
   currentStock  Json // {"iron": 42500, "alphacredits": 18000}
   scannedBy     String? // uid (кто сканировал) первооткрыватель
+  coordinates   Json
+  rarity        Rarity
+  depleted      Boolean    @default(false)
 
   createdAt      DateTime         @default(now())
   updatedAt      DateTime         @updatedAt
@@ -192,11 +193,12 @@ enum ResourceType {
 
 // 4. Ресурсы планеты (для finite tracking, вместо Json для запросов)
 model PlanetResource {
-  id           String       @id @default(uuid())
-  planetId     String
-  typeResource ResourceType // "iron", "alphacredits"
-  totalAmount  Float
-  current      Float
+  id                 String       @id @default(uuid())
+  planetId           String
+  typeResource       ResourceType // "iron", "alphacredits"
+  totalAmount        Float
+  current            Float
+  drillPowerRequired Float
 
   planet Planet @relation(fields: [planetId], references: [id], onDelete: Cascade)
 }
