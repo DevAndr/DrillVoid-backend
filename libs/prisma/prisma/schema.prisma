@@ -27,6 +27,9 @@ model User {
   gameData       GameData?     @relation(fields: [gameDataShipId], references: [shipId])
   planetVisit    PlanetVisit[]
   gameDataShipId String?
+
+  @@unique([telegramId, uid])
+  @@index([uid, telegramId])
 }
 
 enum TypeShip {
