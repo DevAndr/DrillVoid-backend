@@ -1,10 +1,10 @@
 import { NestFactory } from '@nestjs/core';
-import { MsAuthModule } from '../../ms-auth/src/ms-auth.module';
 import { ConfigService } from '@nestjs/config';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
+import { MsUserModule } from './ms-user.module';
 
 async function bootstrap() {
-  const appContext = await NestFactory.createApplicationContext(MsAuthModule);
+  const appContext = await NestFactory.createApplicationContext(MsUserModule);
   const configService = appContext.get(ConfigService);
   const url = configService.get<string>(
     'rabbitmq.url',
@@ -12,7 +12,7 @@ async function bootstrap() {
   );
 
   const app = await NestFactory.createMicroservice<MicroserviceOptions>(
-    MsAuthModule,
+    MsUserModule,
     {
       transport: Transport.RMQ,
       options: {

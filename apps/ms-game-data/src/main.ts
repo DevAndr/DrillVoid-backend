@@ -1,10 +1,11 @@
 import { NestFactory } from '@nestjs/core';
-import { MsAuthModule } from '../../ms-auth/src/ms-auth.module';
 import { ConfigService } from '@nestjs/config';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
+import { MsGameDataModule } from './ms-game-data.module';
 
 async function bootstrap() {
-  const appContext = await NestFactory.createApplicationContext(MsAuthModule);
+  const appContext =
+    await NestFactory.createApplicationContext(MsGameDataModule);
   const configService = appContext.get(ConfigService);
   const url = configService.get<string>(
     'rabbitmq.url',
@@ -12,7 +13,7 @@ async function bootstrap() {
   );
 
   const app = await NestFactory.createMicroservice<MicroserviceOptions>(
-    MsAuthModule,
+    MsGameDataModule,
     {
       transport: Transport.RMQ,
       options: {
