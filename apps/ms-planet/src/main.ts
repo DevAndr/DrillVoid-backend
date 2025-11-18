@@ -1,28 +1,18 @@
 import { NestFactory } from '@nestjs/core';
 import { MsAuthModule } from '../../ms-auth/src/ms-auth.module';
 import { ConfigService } from '@nestjs/config';
-import { MicroserviceOptions, Transport } from '@nestjs/microservices';
+import { MicroserviceOptions } from '@nestjs/microservices';
+import { RABBIT_MQ_QUEUE } from '@app/contracts/planet/constants';
+import { configRabbitMq } from '@app/core/rabbitmq/config';
+import { MsPlanetModule } from './ms-planet.module';
 
 async function bootstrap() {
   const appContext = await NestFactory.createApplicationContext(MsAuthModule);
   const configService = appContext.get(ConfigService);
-  const url = configService.get<string>(
-    'rabbitmq.url',
-    'amqp://guest:guest@localhost:5672',
-  );
 
   const app = await NestFactory.createMicroservice<MicroserviceOptions>(
-    MsAuthModule,
-    {
-      transport: Transport.RMQ,
-      options: {
-        urls: [url],
-        queue: 'planet-queue',
-        queueOptions: {
-          durable: false,
-        },
-      },
-    },
+    MsPlanetModule,
+    configRabbitMq(RABBIT_MQ_QUEUE, configService, true, true),
   );
 
   console.log('🚀 Planet Microservice is running');
