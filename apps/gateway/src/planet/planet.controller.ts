@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { PlanetService } from './planet.service';
 
 @Controller('planet')
@@ -11,8 +11,8 @@ export class PlanetController {
   }
 
   @Post('generate_planet/:uid')
-  handleGeneratePlanet(@Param('uid') uid: string) {
+  handleGeneratePlanet(@Param('uid') uid: string, @Body() data) {
     console.log({ uid });
-    return this.planetService.generatePlanet(uid);
+    return this.planetService.generatePlanet(data);
   }
 }

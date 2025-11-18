@@ -1,4 +1,4 @@
-class SciFiNameGenerator {
+export class SciFiNameGenerator {
   private static roots = [
     'Astra',
     'Xero',
@@ -75,33 +75,19 @@ class SciFiNameGenerator {
     return arr[Math.floor(Math.random() * arr.length)];
   }
 
-  static generate(seed: string): string {
-    // привязываем случайность к seed
-    const num = seed.split('').reduce((a, c) => a + c.charCodeAt(0), 0);
+  static generate(rand: () => number): string {
+    const p = this.roots[Math.floor(rand() * this.roots.length)];
+    const m = this.suffixes[Math.floor(rand() * this.suffixes.length)];
+    const s = this.modifiers[Math.floor(rand() * this.modifiers.length)];
 
-    const root = this.roots[num % this.roots.length];
-    const suffix = this.suffixes[num % this.suffixes.length];
+    let num = '';
 
-    let name = root + suffix;
+    const chanceRoman = rand() % 100;
 
-    // 40% шанс на модификатор
-    if (num % 100 < 40) {
-      name += ' ' + this.random(this.modifiers);
+    if (chanceRoman > 0.7) {
+      num = ' - ' + this.roman[Math.floor(rand() * this.roman.length)];
     }
 
-    // 40% шанс на римскую цифру
-    if (num % 100 > 60) {
-      name += ' ' + this.random(this.roman);
-    }
-
-    // 30% шанс на код
-    if (num % 10 < 3) {
-      name += '-' + ((num % 900) + 100).toString();
-      if (num % 5 === 0) {
-        name += String.fromCharCode(97 + (num % 5)); // 'a' - 'e'
-      }
-    }
-
-    return name;
+    return p + m + ' ' + s + num;
   }
 }

@@ -84,32 +84,6 @@ export const RESOURCE_PLANET_POOL: Record<
   },
 };
 
-export const PREFIXES_NAME_PLANET: string[] = [
-  'Zor',
-  'Krag',
-  'Neb',
-  'Vort',
-  'Ely',
-  'Thar',
-  'Drak',
-  'Syl',
-  'Quor',
-  'Xan',
-];
-
-export const SUFFIXES_NAME_PLANET: string[] = [
-  'Prime',
-  'Alpha',
-  'Beta',
-  'Void',
-  'Nexus',
-  'Core',
-  'Rift',
-  'Storm',
-  'Dust',
-  'Ice',
-];
-
 export const BASE_AMOUNT_RESOURCE: Record<ResourceType, [number, number]> = {
   ADRA: [0, 0],
   ALPHACREDITS: [0, 0],
@@ -161,7 +135,10 @@ export const BASE_AMOUNT_RESOURCE: Record<ResourceType, [number, number]> = {
   ZINC: [0, 0],
 };
 
-const RESOURCE_INFO: Record<ResourceType, Record<Rarity, [number, number]>> = {
+export const RESOURCE_INFO: Record<
+  ResourceType,
+  Record<Rarity, [number, number]>
+> = {
   // === БАЗОВЫЕ МЕТАЛЛЫ ===
   COPPER: {
     COMMON: [80_000, 300_000],

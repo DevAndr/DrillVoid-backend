@@ -7,10 +7,12 @@ import {
   RmqContext,
 } from '@nestjs/microservices';
 import { MS_PLANET_PATTERNS } from '@app/contracts/planet/constants';
+import { MsPlanetService } from './ms-planet.service';
+import { GPSPoint } from './types';
 
 @Controller()
 export class MsPlanetController {
-  // constructor(private readonly msPlanetService: MsPlanetService) {}
+  constructor(private readonly msPlanetService: MsPlanetService) {}
 
   @EventPattern(MS_PLANET_PATTERNS.GENERATE_PLANET)
   handleGeneratePlanet(@Payload() uid: string) {
@@ -19,9 +21,9 @@ export class MsPlanetController {
   }
 
   @MessagePattern(MS_PLANET_PATTERNS.GENERATE_PLANET)
-  handleScanPlanets(@Payload() data: number[], @Ctx() context: RmqContext) {
-    console.log(`Pattern: ${context.getPattern()}`);
-    return 123;
+  handleScanPlanets(@Payload() data: GPSPoint, @Ctx() context: RmqContext) {
+    console.log(`Pattern: ${context.getPattern()}`, data);
+    return this.msPlanetService.planetGenerate(data);
   }
 
   // @MessagePattern(MS_PLANET_PATTERNS.GENERATE_PLANET)

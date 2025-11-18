@@ -6,6 +6,8 @@ import {
   PlanetType,
   Rarity,
 } from '../../../libs/prisma/generated/prisma/enums';
+import { RESOURCE_INFO, RESOURCE_PLANET_POOL } from './constants';
+import { SciFiNameGenerator } from './utils/SciFiNameGenerator';
 
 @Injectable()
 export class MsPlanetService {
@@ -24,19 +26,32 @@ export class MsPlanetService {
   }
 
   planetGenerate(point: GPSPoint) {
-    const seed = `${point.lat.toFixed(4)}_${point.lon.toFixed(4)}`;
-
+    const seed = `${point.lat}${point.lon.toFixed(4)}`;
+    const rnd = this.mulberry32(+seed);
+    const rndValue = rnd();
+    this.logger.log({ seed, rndValue });
     // 1. Biome
     const biome = this.defineBiome(point);
+
+    this.logger.log({ biome });
 
     // 2. Rarity
     const rarity = this.defineRarity(point);
 
+    this.logger.log({ rarity });
+
     // 3. Resources
-    const resources = this.generateResources(biome, rarity);
+    // Количество ресурсов
+    const resourceCount = Math.floor(rnd() * 3) + 2; // 2–4 ресурса
+    const resources = [];
+
+    for (let i = 0; i < resourceCount; i++) {
+      const resource = this.generateResource(biome, rarity, rnd);
+      resources.push(resource);
+    }
 
     return {
-      name: this.generateName(seed),
+      name: this.generateName(rnd),
       biome,
       rarity,
       resources,
@@ -67,9 +82,40 @@ export class MsPlanetService {
     return Rarity.LEGENDARY;
   }
 
-  private generateName(seed: string) {}
+  private defineRarityResource(rnd: () => number) {
+    const rndValue = rnd();
+    const n = (rndValue + 1) / 2;
 
-  private generateResources(biome: PlanetType, rarity: Rarity) {}
+    if (n < 0.6) return Rarity.COMMON;
+    if (n < 0.85) return Rarity.UNCOMMON;
+    if (n < 0.94) return Rarity.RARE;
+    if (n < 0.99) return Rarity.EPIC;
+    return Rarity.LEGENDARY;
+  }
+
+  private generateName(rnd: () => number) {
+    return SciFiNameGenerator.generate(rnd);
+  }
+
+  private generateResource(
+    biome: PlanetType,
+    rarity: Rarity,
+    rnd: () => number,
+  ) {
+    const resources = RESOURCE_PLANET_POOL[biome][rarity];
+    const resource = resources[Math.floor(rnd() * resources.length)];
+    const rarityResource = this.defineRarityResource(rnd);
+
+    const [min, max] = RESOURCE_INFO[resource][rarityResource];
+    const amount = Math.floor(rnd() * (max - min) + min * 0.2); // +20% per sector
+
+    return {
+      type: resource,
+      rarity: rarityResource,
+      totalAmount: amount,
+      remainingAmount: null,
+    };
+  }
 }
 
 class RNG {
