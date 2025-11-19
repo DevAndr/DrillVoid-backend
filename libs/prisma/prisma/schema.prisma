@@ -46,12 +46,11 @@ model Ship {
   warpSpeed   Float      @default(1)
   miningPower Float      @default(1) // Мощность бура
   cargoSize   Float      @default(100) // Лимит ресурсов в трюме
-  warehouse   Warehouse? @relation(fields: [warehouseId], references: [id])
 
   createdAt      DateTime  @default(now())
   updatedAt      DateTime  @updatedAt
-  gameData       GameData? @relation(fields: [gameDataShipId], references: [shipId])
-  gameDataShipId String?
+  gameData       GameData? @relation(fields: [gameDataId], references: [id])
+  gameDataId String?
   warehouseId    String?
   isSelected     Boolean   @default(false)
 
@@ -85,7 +84,7 @@ model ShipComponent {
 }
 
 model GameData {
-  id     Int    @default(autoincrement())
+  id     String @id @default(uuid())
   uid    String @unique
   shipId String @unique
 
@@ -107,25 +106,6 @@ enum Rarity {
   RARE
   EPIC
   LEGENDARY
-}
-
-// склады ресурсов
-model Warehouse {
-  id            String            @id @default(uuid())
-  uid           String            @unique
-  level         Int               @default(1) // Уровень склада
-  type          ShipComponentType @default(WAREHOUSE) // Тип склада
-  shipId        String            @unique // Уникальная связь (только один склад на санаторий) // ID санатория
-  foodQuantity  Int               @default(0) // Количество еды на складе
-  coalQuantity  Int               @default(0) // Количество угля
-  waterQuantity Int               @default(0) // Количество воды
-  herbsQuantity Int               @default(0) // Количество трав
-  paperQuantity Int               @default(0) // Количество бумаги
-  upgradeCost   Json
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  ship      Ship[]
 }
 
 enum PlanetType {
@@ -290,10 +270,10 @@ model Balance {
   currency   Currency @relation(fields: [currencyId], references: [id])
   amount     Int
 
-  createdAt      DateTime  @default(now())
-  updatedAt      DateTime  @updatedAt
-  gameData       GameData? @relation(fields: [gameDataShipId], references: [shipId])
-  gameDataShipId String?
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  gameData   GameData? @relation(fields: [gameDataId], references: [id])
+  gameDataId String
 
   @@unique([uid, currencyId])
   @@index([uid])
