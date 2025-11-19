@@ -33,8 +33,7 @@ export const Rarity = {
   UNCOMMON: 'UNCOMMON',
   RARE: 'RARE',
   EPIC: 'EPIC',
-  LEGENDARY: 'LEGENDARY',
-  MYTHICAL: 'MYTHICAL'
+  LEGENDARY: 'LEGENDARY'
 } as const
 
 export type Rarity = (typeof Rarity)[keyof typeof Rarity]
@@ -122,3 +121,13 @@ export const CurrencyAsset = {
 } as const
 
 export type CurrencyAsset = (typeof CurrencyAsset)[keyof typeof CurrencyAsset]
+
+
+export const MiningStatus = {
+  PENDING: 'PENDING',
+  IN_PROGRESS: 'IN_PROGRESS',
+  FINISHED: 'FINISHED',
+  CANCELLED: 'CANCELLED'
+} as const
+
+export type MiningStatus = (typeof MiningStatus)[keyof typeof MiningStatus]

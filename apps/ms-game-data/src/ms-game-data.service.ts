@@ -2,7 +2,8 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class MsGameDataService {
-  getHello(): string {
-    return 'Hello World!';
+  initial(uid: string) {
+    console.log({ uid });
+    return 'ok';
   }
 }

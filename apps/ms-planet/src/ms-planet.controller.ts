@@ -8,7 +8,7 @@ import {
 } from '@nestjs/microservices';
 import { MS_PLANET_PATTERNS } from '@app/contracts/planet/constants';
 import { MsPlanetService } from './ms-planet.service';
-import { GPSPoint } from './types';
+import { PayloadScanPlanets, Point3D } from '@app/contracts/planet/types';
 
 @Controller()
 export class MsPlanetController {
@@ -21,13 +21,17 @@ export class MsPlanetController {
   }
 
   @MessagePattern(MS_PLANET_PATTERNS.GENERATE_PLANET)
-  handleScanPlanets(@Payload() data: GPSPoint, @Ctx() context: RmqContext) {
+  handleGeneratePlanetV2(@Payload() data: Point3D, @Ctx() context: RmqContext) {
     console.log(`Pattern: ${context.getPattern()}`, data);
     return this.msPlanetService.planetGenerate(data);
   }
 
-  // @MessagePattern(MS_PLANET_PATTERNS.GENERATE_PLANET)
-  // test() {
-  //   console.log('data');
-  // }
+  @MessagePattern(MS_PLANET_PATTERNS.SCAN)
+  handleScanPlanets(
+    @Payload() data: PayloadScanPlanets,
+    @Ctx() context: RmqContext,
+  ) {
+    console.log(`Pattern: ${context.getPattern()}`, data);
+    return this.msPlanetService.generateNearbyPlanets(data.point, data.options);
+  }
 }

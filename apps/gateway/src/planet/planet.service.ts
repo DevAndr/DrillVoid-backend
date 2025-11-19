@@ -17,4 +17,10 @@ export class PlanetService {
       this.planetClient.send(MS_PLANET_PATTERNS.GENERATE_PLANET, uid),
     );
   }
+
+  scanPlanets(data) {
+    return firstValueFrom(
+      this.planetClient.send(MS_PLANET_PATTERNS.SCAN, data),
+    );
+  }
 }

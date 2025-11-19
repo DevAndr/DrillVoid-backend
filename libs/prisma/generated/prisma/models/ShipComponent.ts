@@ -42,6 +42,8 @@ export type ShipComponentMinAggregateOutputType = {
   level: number | null
   createdAt: Date | null
   updatedAt: Date | null
+  shipId: string | null
+  uid: string | null
 }
 
 export type ShipComponentMaxAggregateOutputType = {
@@ -52,6 +54,8 @@ export type ShipComponentMaxAggregateOutputType = {
   level: number | null
   createdAt: Date | null
   updatedAt: Date | null
+  shipId: string | null
+  uid: string | null
 }
 
 export type ShipComponentCountAggregateOutputType = {
@@ -63,6 +67,8 @@ export type ShipComponentCountAggregateOutputType = {
   level: number
   createdAt: number
   updatedAt: number
+  shipId: number
+  uid: number
   _all: number
 }
 
@@ -83,6 +89,8 @@ export type ShipComponentMinAggregateInputType = {
   level?: true
   createdAt?: true
   updatedAt?: true
+  shipId?: true
+  uid?: true
 }
 
 export type ShipComponentMaxAggregateInputType = {
@@ -93,6 +101,8 @@ export type ShipComponentMaxAggregateInputType = {
   level?: true
   createdAt?: true
   updatedAt?: true
+  shipId?: true
+  uid?: true
 }
 
 export type ShipComponentCountAggregateInputType = {
@@ -104,6 +114,8 @@ export type ShipComponentCountAggregateInputType = {
   level?: true
   createdAt?: true
   updatedAt?: true
+  shipId?: true
+  uid?: true
   _all?: true
 }
 
@@ -202,6 +214,8 @@ export type ShipComponentGroupByOutputType = {
   level: number
   createdAt: Date
   updatedAt: Date
+  shipId: string | null
+  uid: string | null
   _count: ShipComponentCountAggregateOutputType | null
   _avg: ShipComponentAvgAggregateOutputType | null
   _sum: ShipComponentSumAggregateOutputType | null
@@ -236,6 +250,9 @@ export type ShipComponentWhereInput = {
   level?: Prisma.IntFilter<"ShipComponent"> | number
   createdAt?: Prisma.DateTimeFilter<"ShipComponent"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ShipComponent"> | Date | string
+  shipId?: Prisma.StringNullableFilter<"ShipComponent"> | string | null
+  uid?: Prisma.StringNullableFilter<"ShipComponent"> | string | null
+  Ship?: Prisma.XOR<Prisma.ShipNullableScalarRelationFilter, Prisma.ShipWhereInput> | null
 }
 
 export type ShipComponentOrderByWithRelationInput = {
@@ -247,6 +264,9 @@ export type ShipComponentOrderByWithRelationInput = {
   level?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  shipId?: Prisma.SortOrderInput | Prisma.SortOrder
+  uid?: Prisma.SortOrderInput | Prisma.SortOrder
+  Ship?: Prisma.ShipOrderByWithRelationInput
 }
 
 export type ShipComponentWhereUniqueInput = Prisma.AtLeast<{
@@ -261,6 +281,9 @@ export type ShipComponentWhereUniqueInput = Prisma.AtLeast<{
   level?: Prisma.IntFilter<"ShipComponent"> | number
   createdAt?: Prisma.DateTimeFilter<"ShipComponent"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ShipComponent"> | Date | string
+  shipId?: Prisma.StringNullableFilter<"ShipComponent"> | string | null
+  uid?: Prisma.StringNullableFilter<"ShipComponent"> | string | null
+  Ship?: Prisma.XOR<Prisma.ShipNullableScalarRelationFilter, Prisma.ShipWhereInput> | null
 }, "id">
 
 export type ShipComponentOrderByWithAggregationInput = {
@@ -272,6 +295,8 @@ export type ShipComponentOrderByWithAggregationInput = {
   level?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  shipId?: Prisma.SortOrderInput | Prisma.SortOrder
+  uid?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.ShipComponentCountOrderByAggregateInput
   _avg?: Prisma.ShipComponentAvgOrderByAggregateInput
   _max?: Prisma.ShipComponentMaxOrderByAggregateInput
@@ -291,6 +316,8 @@ export type ShipComponentScalarWhereWithAggregatesInput = {
   level?: Prisma.IntWithAggregatesFilter<"ShipComponent"> | number
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"ShipComponent"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"ShipComponent"> | Date | string
+  shipId?: Prisma.StringNullableWithAggregatesFilter<"ShipComponent"> | string | null
+  uid?: Prisma.StringNullableWithAggregatesFilter<"ShipComponent"> | string | null
 }
 
 export type ShipComponentCreateInput = {
@@ -302,6 +329,7 @@ export type ShipComponentCreateInput = {
   level: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  Ship?: Prisma.ShipCreateNestedOneWithoutComponentsInput
 }
 
 export type ShipComponentUncheckedCreateInput = {
@@ -313,6 +341,8 @@ export type ShipComponentUncheckedCreateInput = {
   level: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  shipId?: string | null
+  uid?: string | null
 }
 
 export type ShipComponentUpdateInput = {
@@ -324,6 +354,7 @@ export type ShipComponentUpdateInput = {
   level?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  Ship?: Prisma.ShipUpdateOneWithoutComponentsNestedInput
 }
 
 export type ShipComponentUncheckedUpdateInput = {
@@ -335,6 +366,8 @@ export type ShipComponentUncheckedUpdateInput = {
   level?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  shipId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type ShipComponentCreateManyInput = {
@@ -346,6 +379,8 @@ export type ShipComponentCreateManyInput = {
   level: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  shipId?: string | null
+  uid?: string | null
 }
 
 export type ShipComponentUpdateManyMutationInput = {
@@ -368,6 +403,18 @@ export type ShipComponentUncheckedUpdateManyInput = {
   level?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  shipId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type ShipComponentListRelationFilter = {
+  every?: Prisma.ShipComponentWhereInput
+  some?: Prisma.ShipComponentWhereInput
+  none?: Prisma.ShipComponentWhereInput
+}
+
+export type ShipComponentOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
 }
 
 export type ShipComponentCountOrderByAggregateInput = {
@@ -379,6 +426,8 @@ export type ShipComponentCountOrderByAggregateInput = {
   level?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  shipId?: Prisma.SortOrder
+  uid?: Prisma.SortOrder
 }
 
 export type ShipComponentAvgOrderByAggregateInput = {
@@ -393,6 +442,8 @@ export type ShipComponentMaxOrderByAggregateInput = {
   level?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  shipId?: Prisma.SortOrder
+  uid?: Prisma.SortOrder
 }
 
 export type ShipComponentMinOrderByAggregateInput = {
@@ -403,14 +454,166 @@ export type ShipComponentMinOrderByAggregateInput = {
   level?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  shipId?: Prisma.SortOrder
+  uid?: Prisma.SortOrder
 }
 
 export type ShipComponentSumOrderByAggregateInput = {
   level?: Prisma.SortOrder
 }
 
+export type ShipComponentCreateNestedManyWithoutShipInput = {
+  create?: Prisma.XOR<Prisma.ShipComponentCreateWithoutShipInput, Prisma.ShipComponentUncheckedCreateWithoutShipInput> | Prisma.ShipComponentCreateWithoutShipInput[] | Prisma.ShipComponentUncheckedCreateWithoutShipInput[]
+  connectOrCreate?: Prisma.ShipComponentCreateOrConnectWithoutShipInput | Prisma.ShipComponentCreateOrConnectWithoutShipInput[]
+  createMany?: Prisma.ShipComponentCreateManyShipInputEnvelope
+  connect?: Prisma.ShipComponentWhereUniqueInput | Prisma.ShipComponentWhereUniqueInput[]
+}
+
+export type ShipComponentUncheckedCreateNestedManyWithoutShipInput = {
+  create?: Prisma.XOR<Prisma.ShipComponentCreateWithoutShipInput, Prisma.ShipComponentUncheckedCreateWithoutShipInput> | Prisma.ShipComponentCreateWithoutShipInput[] | Prisma.ShipComponentUncheckedCreateWithoutShipInput[]
+  connectOrCreate?: Prisma.ShipComponentCreateOrConnectWithoutShipInput | Prisma.ShipComponentCreateOrConnectWithoutShipInput[]
+  createMany?: Prisma.ShipComponentCreateManyShipInputEnvelope
+  connect?: Prisma.ShipComponentWhereUniqueInput | Prisma.ShipComponentWhereUniqueInput[]
+}
+
+export type ShipComponentUpdateManyWithoutShipNestedInput = {
+  create?: Prisma.XOR<Prisma.ShipComponentCreateWithoutShipInput, Prisma.ShipComponentUncheckedCreateWithoutShipInput> | Prisma.ShipComponentCreateWithoutShipInput[] | Prisma.ShipComponentUncheckedCreateWithoutShipInput[]
+  connectOrCreate?: Prisma.ShipComponentCreateOrConnectWithoutShipInput | Prisma.ShipComponentCreateOrConnectWithoutShipInput[]
+  upsert?: Prisma.ShipComponentUpsertWithWhereUniqueWithoutShipInput | Prisma.ShipComponentUpsertWithWhereUniqueWithoutShipInput[]
+  createMany?: Prisma.ShipComponentCreateManyShipInputEnvelope
+  set?: Prisma.ShipComponentWhereUniqueInput | Prisma.ShipComponentWhereUniqueInput[]
+  disconnect?: Prisma.ShipComponentWhereUniqueInput | Prisma.ShipComponentWhereUniqueInput[]
+  delete?: Prisma.ShipComponentWhereUniqueInput | Prisma.ShipComponentWhereUniqueInput[]
+  connect?: Prisma.ShipComponentWhereUniqueInput | Prisma.ShipComponentWhereUniqueInput[]
+  update?: Prisma.ShipComponentUpdateWithWhereUniqueWithoutShipInput | Prisma.ShipComponentUpdateWithWhereUniqueWithoutShipInput[]
+  updateMany?: Prisma.ShipComponentUpdateManyWithWhereWithoutShipInput | Prisma.ShipComponentUpdateManyWithWhereWithoutShipInput[]
+  deleteMany?: Prisma.ShipComponentScalarWhereInput | Prisma.ShipComponentScalarWhereInput[]
+}
+
+export type ShipComponentUncheckedUpdateManyWithoutShipNestedInput = {
+  create?: Prisma.XOR<Prisma.ShipComponentCreateWithoutShipInput, Prisma.ShipComponentUncheckedCreateWithoutShipInput> | Prisma.ShipComponentCreateWithoutShipInput[] | Prisma.ShipComponentUncheckedCreateWithoutShipInput[]
+  connectOrCreate?: Prisma.ShipComponentCreateOrConnectWithoutShipInput | Prisma.ShipComponentCreateOrConnectWithoutShipInput[]
+  upsert?: Prisma.ShipComponentUpsertWithWhereUniqueWithoutShipInput | Prisma.ShipComponentUpsertWithWhereUniqueWithoutShipInput[]
+  createMany?: Prisma.ShipComponentCreateManyShipInputEnvelope
+  set?: Prisma.ShipComponentWhereUniqueInput | Prisma.ShipComponentWhereUniqueInput[]
+  disconnect?: Prisma.ShipComponentWhereUniqueInput | Prisma.ShipComponentWhereUniqueInput[]
+  delete?: Prisma.ShipComponentWhereUniqueInput | Prisma.ShipComponentWhereUniqueInput[]
+  connect?: Prisma.ShipComponentWhereUniqueInput | Prisma.ShipComponentWhereUniqueInput[]
+  update?: Prisma.ShipComponentUpdateWithWhereUniqueWithoutShipInput | Prisma.ShipComponentUpdateWithWhereUniqueWithoutShipInput[]
+  updateMany?: Prisma.ShipComponentUpdateManyWithWhereWithoutShipInput | Prisma.ShipComponentUpdateManyWithWhereWithoutShipInput[]
+  deleteMany?: Prisma.ShipComponentScalarWhereInput | Prisma.ShipComponentScalarWhereInput[]
+}
+
 export type EnumShipComponentTypeFieldUpdateOperationsInput = {
   set?: $Enums.ShipComponentType
+}
+
+export type ShipComponentCreateWithoutShipInput = {
+  id?: string
+  name: string
+  type: $Enums.ShipComponentType
+  description: string
+  upgradeCost: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  level: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type ShipComponentUncheckedCreateWithoutShipInput = {
+  id?: string
+  name: string
+  type: $Enums.ShipComponentType
+  description: string
+  upgradeCost: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  level: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type ShipComponentCreateOrConnectWithoutShipInput = {
+  where: Prisma.ShipComponentWhereUniqueInput
+  create: Prisma.XOR<Prisma.ShipComponentCreateWithoutShipInput, Prisma.ShipComponentUncheckedCreateWithoutShipInput>
+}
+
+export type ShipComponentCreateManyShipInputEnvelope = {
+  data: Prisma.ShipComponentCreateManyShipInput | Prisma.ShipComponentCreateManyShipInput[]
+  skipDuplicates?: boolean
+}
+
+export type ShipComponentUpsertWithWhereUniqueWithoutShipInput = {
+  where: Prisma.ShipComponentWhereUniqueInput
+  update: Prisma.XOR<Prisma.ShipComponentUpdateWithoutShipInput, Prisma.ShipComponentUncheckedUpdateWithoutShipInput>
+  create: Prisma.XOR<Prisma.ShipComponentCreateWithoutShipInput, Prisma.ShipComponentUncheckedCreateWithoutShipInput>
+}
+
+export type ShipComponentUpdateWithWhereUniqueWithoutShipInput = {
+  where: Prisma.ShipComponentWhereUniqueInput
+  data: Prisma.XOR<Prisma.ShipComponentUpdateWithoutShipInput, Prisma.ShipComponentUncheckedUpdateWithoutShipInput>
+}
+
+export type ShipComponentUpdateManyWithWhereWithoutShipInput = {
+  where: Prisma.ShipComponentScalarWhereInput
+  data: Prisma.XOR<Prisma.ShipComponentUpdateManyMutationInput, Prisma.ShipComponentUncheckedUpdateManyWithoutShipInput>
+}
+
+export type ShipComponentScalarWhereInput = {
+  AND?: Prisma.ShipComponentScalarWhereInput | Prisma.ShipComponentScalarWhereInput[]
+  OR?: Prisma.ShipComponentScalarWhereInput[]
+  NOT?: Prisma.ShipComponentScalarWhereInput | Prisma.ShipComponentScalarWhereInput[]
+  id?: Prisma.StringFilter<"ShipComponent"> | string
+  name?: Prisma.StringFilter<"ShipComponent"> | string
+  type?: Prisma.EnumShipComponentTypeFilter<"ShipComponent"> | $Enums.ShipComponentType
+  description?: Prisma.StringFilter<"ShipComponent"> | string
+  upgradeCost?: Prisma.JsonFilter<"ShipComponent">
+  level?: Prisma.IntFilter<"ShipComponent"> | number
+  createdAt?: Prisma.DateTimeFilter<"ShipComponent"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"ShipComponent"> | Date | string
+  shipId?: Prisma.StringNullableFilter<"ShipComponent"> | string | null
+  uid?: Prisma.StringNullableFilter<"ShipComponent"> | string | null
+}
+
+export type ShipComponentCreateManyShipInput = {
+  id?: string
+  name: string
+  type: $Enums.ShipComponentType
+  description: string
+  upgradeCost: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  level: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type ShipComponentUpdateWithoutShipInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumShipComponentTypeFieldUpdateOperationsInput | $Enums.ShipComponentType
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  upgradeCost?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  level?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type ShipComponentUncheckedUpdateWithoutShipInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumShipComponentTypeFieldUpdateOperationsInput | $Enums.ShipComponentType
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  upgradeCost?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  level?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type ShipComponentUncheckedUpdateManyWithoutShipInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumShipComponentTypeFieldUpdateOperationsInput | $Enums.ShipComponentType
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  upgradeCost?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  level?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
@@ -424,6 +627,9 @@ export type ShipComponentSelect<ExtArgs extends runtime.Types.Extensions.Interna
   level?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  shipId?: boolean
+  uid?: boolean
+  Ship?: boolean | Prisma.ShipComponent$ShipArgs<ExtArgs>
 }, ExtArgs["result"]["shipComponent"]>
 
 export type ShipComponentSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -435,6 +641,9 @@ export type ShipComponentSelectCreateManyAndReturn<ExtArgs extends runtime.Types
   level?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  shipId?: boolean
+  uid?: boolean
+  Ship?: boolean | Prisma.ShipComponent$ShipArgs<ExtArgs>
 }, ExtArgs["result"]["shipComponent"]>
 
 export type ShipComponentSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -446,6 +655,9 @@ export type ShipComponentSelectUpdateManyAndReturn<ExtArgs extends runtime.Types
   level?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  shipId?: boolean
+  uid?: boolean
+  Ship?: boolean | Prisma.ShipComponent$ShipArgs<ExtArgs>
 }, ExtArgs["result"]["shipComponent"]>
 
 export type ShipComponentSelectScalar = {
@@ -457,13 +669,26 @@ export type ShipComponentSelectScalar = {
   level?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  shipId?: boolean
+  uid?: boolean
 }
 
-export type ShipComponentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "type" | "description" | "upgradeCost" | "level" | "createdAt" | "updatedAt", ExtArgs["result"]["shipComponent"]>
+export type ShipComponentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "type" | "description" | "upgradeCost" | "level" | "createdAt" | "updatedAt" | "shipId" | "uid", ExtArgs["result"]["shipComponent"]>
+export type ShipComponentInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  Ship?: boolean | Prisma.ShipComponent$ShipArgs<ExtArgs>
+}
+export type ShipComponentIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  Ship?: boolean | Prisma.ShipComponent$ShipArgs<ExtArgs>
+}
+export type ShipComponentIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  Ship?: boolean | Prisma.ShipComponent$ShipArgs<ExtArgs>
+}
 
 export type $ShipComponentPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "ShipComponent"
-  objects: {}
+  objects: {
+    Ship: Prisma.$ShipPayload<ExtArgs> | null
+  }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     name: string
@@ -473,6 +698,8 @@ export type $ShipComponentPayload<ExtArgs extends runtime.Types.Extensions.Inter
     level: number
     createdAt: Date
     updatedAt: Date
+    shipId: string | null
+    uid: string | null
   }, ExtArgs["result"]["shipComponent"]>
   composites: {}
 }
@@ -867,6 +1094,7 @@ readonly fields: ShipComponentFieldRefs;
  */
 export interface Prisma__ShipComponentClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  Ship<T extends Prisma.ShipComponent$ShipArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ShipComponent$ShipArgs<ExtArgs>>): Prisma.Prisma__ShipClient<runtime.Types.Result.GetResult<Prisma.$ShipPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -904,6 +1132,8 @@ export interface ShipComponentFieldRefs {
   readonly level: Prisma.FieldRef<"ShipComponent", 'Int'>
   readonly createdAt: Prisma.FieldRef<"ShipComponent", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"ShipComponent", 'DateTime'>
+  readonly shipId: Prisma.FieldRef<"ShipComponent", 'String'>
+  readonly uid: Prisma.FieldRef<"ShipComponent", 'String'>
 }
     
 
@@ -920,6 +1150,10 @@ export type ShipComponentFindUniqueArgs<ExtArgs extends runtime.Types.Extensions
    * Omit specific fields from the ShipComponent
    */
   omit?: Prisma.ShipComponentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ShipComponentInclude<ExtArgs> | null
   /**
    * Filter, which ShipComponent to fetch.
    */
@@ -939,6 +1173,10 @@ export type ShipComponentFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Ext
    */
   omit?: Prisma.ShipComponentOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ShipComponentInclude<ExtArgs> | null
+  /**
    * Filter, which ShipComponent to fetch.
    */
   where: Prisma.ShipComponentWhereUniqueInput
@@ -956,6 +1194,10 @@ export type ShipComponentFindFirstArgs<ExtArgs extends runtime.Types.Extensions.
    * Omit specific fields from the ShipComponent
    */
   omit?: Prisma.ShipComponentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ShipComponentInclude<ExtArgs> | null
   /**
    * Filter, which ShipComponent to fetch.
    */
@@ -1005,6 +1247,10 @@ export type ShipComponentFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Exte
    */
   omit?: Prisma.ShipComponentOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ShipComponentInclude<ExtArgs> | null
+  /**
    * Filter, which ShipComponent to fetch.
    */
   where?: Prisma.ShipComponentWhereInput
@@ -1053,6 +1299,10 @@ export type ShipComponentFindManyArgs<ExtArgs extends runtime.Types.Extensions.I
    */
   omit?: Prisma.ShipComponentOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ShipComponentInclude<ExtArgs> | null
+  /**
    * Filter, which ShipComponents to fetch.
    */
   where?: Prisma.ShipComponentWhereInput
@@ -1096,6 +1346,10 @@ export type ShipComponentCreateArgs<ExtArgs extends runtime.Types.Extensions.Int
    */
   omit?: Prisma.ShipComponentOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ShipComponentInclude<ExtArgs> | null
+  /**
    * The data needed to create a ShipComponent.
    */
   data: Prisma.XOR<Prisma.ShipComponentCreateInput, Prisma.ShipComponentUncheckedCreateInput>
@@ -1129,6 +1383,10 @@ export type ShipComponentCreateManyAndReturnArgs<ExtArgs extends runtime.Types.E
    */
   data: Prisma.ShipComponentCreateManyInput | Prisma.ShipComponentCreateManyInput[]
   skipDuplicates?: boolean
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ShipComponentIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1143,6 +1401,10 @@ export type ShipComponentUpdateArgs<ExtArgs extends runtime.Types.Extensions.Int
    * Omit specific fields from the ShipComponent
    */
   omit?: Prisma.ShipComponentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ShipComponentInclude<ExtArgs> | null
   /**
    * The data needed to update a ShipComponent.
    */
@@ -1195,6 +1457,10 @@ export type ShipComponentUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.E
    * Limit how many ShipComponents to update.
    */
   limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ShipComponentIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1209,6 +1475,10 @@ export type ShipComponentUpsertArgs<ExtArgs extends runtime.Types.Extensions.Int
    * Omit specific fields from the ShipComponent
    */
   omit?: Prisma.ShipComponentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ShipComponentInclude<ExtArgs> | null
   /**
    * The filter to search for the ShipComponent to update in case it exists.
    */
@@ -1236,6 +1506,10 @@ export type ShipComponentDeleteArgs<ExtArgs extends runtime.Types.Extensions.Int
    */
   omit?: Prisma.ShipComponentOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ShipComponentInclude<ExtArgs> | null
+  /**
    * Filter which ShipComponent to delete.
    */
   where: Prisma.ShipComponentWhereUniqueInput
@@ -1256,6 +1530,25 @@ export type ShipComponentDeleteManyArgs<ExtArgs extends runtime.Types.Extensions
 }
 
 /**
+ * ShipComponent.Ship
+ */
+export type ShipComponent$ShipArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Ship
+   */
+  select?: Prisma.ShipSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Ship
+   */
+  omit?: Prisma.ShipOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ShipInclude<ExtArgs> | null
+  where?: Prisma.ShipWhereInput
+}
+
+/**
  * ShipComponent without action
  */
 export type ShipComponentDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1267,4 +1560,8 @@ export type ShipComponentDefaultArgs<ExtArgs extends runtime.Types.Extensions.In
    * Omit specific fields from the ShipComponent
    */
   omit?: Prisma.ShipComponentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ShipComponentInclude<ExtArgs> | null
 }

@@ -20,18 +20,8 @@ export type PlanetModel = runtime.Types.Result.DefaultSelection<Prisma.$PlanetPa
 
 export type AggregatePlanet = {
   _count: PlanetCountAggregateOutputType | null
-  _avg: PlanetAvgAggregateOutputType | null
-  _sum: PlanetSumAggregateOutputType | null
   _min: PlanetMinAggregateOutputType | null
   _max: PlanetMaxAggregateOutputType | null
-}
-
-export type PlanetAvgAggregateOutputType = {
-  sector: number | null
-}
-
-export type PlanetSumAggregateOutputType = {
-  sector: number | null
 }
 
 export type PlanetMinAggregateOutputType = {
@@ -39,8 +29,9 @@ export type PlanetMinAggregateOutputType = {
   seed: string | null
   name: string | null
   type: $Enums.PlanetType | null
-  sector: number | null
   scannedBy: string | null
+  rarity: $Enums.Rarity | null
+  depleted: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -50,8 +41,9 @@ export type PlanetMaxAggregateOutputType = {
   seed: string | null
   name: string | null
   type: $Enums.PlanetType | null
-  sector: number | null
   scannedBy: string | null
+  rarity: $Enums.Rarity | null
+  depleted: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -61,31 +53,26 @@ export type PlanetCountAggregateOutputType = {
   seed: number
   name: number
   type: number
-  sector: number
   totalCapacity: number
   currentStock: number
   scannedBy: number
+  coordinates: number
+  rarity: number
+  depleted: number
   createdAt: number
   updatedAt: number
   _all: number
 }
 
 
-export type PlanetAvgAggregateInputType = {
-  sector?: true
-}
-
-export type PlanetSumAggregateInputType = {
-  sector?: true
-}
-
 export type PlanetMinAggregateInputType = {
   id?: true
   seed?: true
   name?: true
   type?: true
-  sector?: true
   scannedBy?: true
+  rarity?: true
+  depleted?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -95,8 +82,9 @@ export type PlanetMaxAggregateInputType = {
   seed?: true
   name?: true
   type?: true
-  sector?: true
   scannedBy?: true
+  rarity?: true
+  depleted?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -106,10 +94,12 @@ export type PlanetCountAggregateInputType = {
   seed?: true
   name?: true
   type?: true
-  sector?: true
   totalCapacity?: true
   currentStock?: true
   scannedBy?: true
+  coordinates?: true
+  rarity?: true
+  depleted?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -153,18 +143,6 @@ export type PlanetAggregateArgs<ExtArgs extends runtime.Types.Extensions.Interna
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
-   * Select which fields to average
-  **/
-  _avg?: PlanetAvgAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
-   * Select which fields to sum
-  **/
-  _sum?: PlanetSumAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
    * Select which fields to find the minimum value
   **/
   _min?: PlanetMinAggregateInputType
@@ -195,8 +173,6 @@ export type PlanetGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalA
   take?: number
   skip?: number
   _count?: PlanetCountAggregateInputType | true
-  _avg?: PlanetAvgAggregateInputType
-  _sum?: PlanetSumAggregateInputType
   _min?: PlanetMinAggregateInputType
   _max?: PlanetMaxAggregateInputType
 }
@@ -206,15 +182,15 @@ export type PlanetGroupByOutputType = {
   seed: string
   name: string
   type: $Enums.PlanetType
-  sector: number
   totalCapacity: runtime.JsonValue
   currentStock: runtime.JsonValue
   scannedBy: string | null
+  coordinates: runtime.JsonValue
+  rarity: $Enums.Rarity
+  depleted: boolean
   createdAt: Date
   updatedAt: Date
   _count: PlanetCountAggregateOutputType | null
-  _avg: PlanetAvgAggregateOutputType | null
-  _sum: PlanetSumAggregateOutputType | null
   _min: PlanetMinAggregateOutputType | null
   _max: PlanetMaxAggregateOutputType | null
 }
@@ -242,10 +218,12 @@ export type PlanetWhereInput = {
   seed?: Prisma.StringFilter<"Planet"> | string
   name?: Prisma.StringFilter<"Planet"> | string
   type?: Prisma.EnumPlanetTypeFilter<"Planet"> | $Enums.PlanetType
-  sector?: Prisma.IntFilter<"Planet"> | number
   totalCapacity?: Prisma.JsonFilter<"Planet">
   currentStock?: Prisma.JsonFilter<"Planet">
   scannedBy?: Prisma.StringNullableFilter<"Planet"> | string | null
+  coordinates?: Prisma.JsonFilter<"Planet">
+  rarity?: Prisma.EnumRarityFilter<"Planet"> | $Enums.Rarity
+  depleted?: Prisma.BoolFilter<"Planet"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Planet"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Planet"> | Date | string
   planetResource?: Prisma.PlanetResourceListRelationFilter
@@ -257,10 +235,12 @@ export type PlanetOrderByWithRelationInput = {
   seed?: Prisma.SortOrder
   name?: Prisma.SortOrder
   type?: Prisma.SortOrder
-  sector?: Prisma.SortOrder
   totalCapacity?: Prisma.SortOrder
   currentStock?: Prisma.SortOrder
   scannedBy?: Prisma.SortOrderInput | Prisma.SortOrder
+  coordinates?: Prisma.SortOrder
+  rarity?: Prisma.SortOrder
+  depleted?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   planetResource?: Prisma.PlanetResourceOrderByRelationAggregateInput
@@ -275,10 +255,12 @@ export type PlanetWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.PlanetWhereInput | Prisma.PlanetWhereInput[]
   name?: Prisma.StringFilter<"Planet"> | string
   type?: Prisma.EnumPlanetTypeFilter<"Planet"> | $Enums.PlanetType
-  sector?: Prisma.IntFilter<"Planet"> | number
   totalCapacity?: Prisma.JsonFilter<"Planet">
   currentStock?: Prisma.JsonFilter<"Planet">
   scannedBy?: Prisma.StringNullableFilter<"Planet"> | string | null
+  coordinates?: Prisma.JsonFilter<"Planet">
+  rarity?: Prisma.EnumRarityFilter<"Planet"> | $Enums.Rarity
+  depleted?: Prisma.BoolFilter<"Planet"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Planet"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Planet"> | Date | string
   planetResource?: Prisma.PlanetResourceListRelationFilter
@@ -290,17 +272,17 @@ export type PlanetOrderByWithAggregationInput = {
   seed?: Prisma.SortOrder
   name?: Prisma.SortOrder
   type?: Prisma.SortOrder
-  sector?: Prisma.SortOrder
   totalCapacity?: Prisma.SortOrder
   currentStock?: Prisma.SortOrder
   scannedBy?: Prisma.SortOrderInput | Prisma.SortOrder
+  coordinates?: Prisma.SortOrder
+  rarity?: Prisma.SortOrder
+  depleted?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.PlanetCountOrderByAggregateInput
-  _avg?: Prisma.PlanetAvgOrderByAggregateInput
   _max?: Prisma.PlanetMaxOrderByAggregateInput
   _min?: Prisma.PlanetMinOrderByAggregateInput
-  _sum?: Prisma.PlanetSumOrderByAggregateInput
 }
 
 export type PlanetScalarWhereWithAggregatesInput = {
@@ -311,10 +293,12 @@ export type PlanetScalarWhereWithAggregatesInput = {
   seed?: Prisma.StringWithAggregatesFilter<"Planet"> | string
   name?: Prisma.StringWithAggregatesFilter<"Planet"> | string
   type?: Prisma.EnumPlanetTypeWithAggregatesFilter<"Planet"> | $Enums.PlanetType
-  sector?: Prisma.IntWithAggregatesFilter<"Planet"> | number
   totalCapacity?: Prisma.JsonWithAggregatesFilter<"Planet">
   currentStock?: Prisma.JsonWithAggregatesFilter<"Planet">
   scannedBy?: Prisma.StringNullableWithAggregatesFilter<"Planet"> | string | null
+  coordinates?: Prisma.JsonWithAggregatesFilter<"Planet">
+  rarity?: Prisma.EnumRarityWithAggregatesFilter<"Planet"> | $Enums.Rarity
+  depleted?: Prisma.BoolWithAggregatesFilter<"Planet"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Planet"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Planet"> | Date | string
 }
@@ -324,10 +308,12 @@ export type PlanetCreateInput = {
   seed: string
   name: string
   type: $Enums.PlanetType
-  sector?: number
   totalCapacity: Prisma.JsonNullValueInput | runtime.InputJsonValue
   currentStock: Prisma.JsonNullValueInput | runtime.InputJsonValue
   scannedBy?: string | null
+  coordinates: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  rarity: $Enums.Rarity
+  depleted?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   planetResource?: Prisma.PlanetResourceCreateNestedManyWithoutPlanetInput
@@ -339,10 +325,12 @@ export type PlanetUncheckedCreateInput = {
   seed: string
   name: string
   type: $Enums.PlanetType
-  sector?: number
   totalCapacity: Prisma.JsonNullValueInput | runtime.InputJsonValue
   currentStock: Prisma.JsonNullValueInput | runtime.InputJsonValue
   scannedBy?: string | null
+  coordinates: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  rarity: $Enums.Rarity
+  depleted?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   planetResource?: Prisma.PlanetResourceUncheckedCreateNestedManyWithoutPlanetInput
@@ -354,10 +342,12 @@ export type PlanetUpdateInput = {
   seed?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumPlanetTypeFieldUpdateOperationsInput | $Enums.PlanetType
-  sector?: Prisma.IntFieldUpdateOperationsInput | number
   totalCapacity?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   currentStock?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   scannedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coordinates?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  rarity?: Prisma.EnumRarityFieldUpdateOperationsInput | $Enums.Rarity
+  depleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   planetResource?: Prisma.PlanetResourceUpdateManyWithoutPlanetNestedInput
@@ -369,10 +359,12 @@ export type PlanetUncheckedUpdateInput = {
   seed?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumPlanetTypeFieldUpdateOperationsInput | $Enums.PlanetType
-  sector?: Prisma.IntFieldUpdateOperationsInput | number
   totalCapacity?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   currentStock?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   scannedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coordinates?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  rarity?: Prisma.EnumRarityFieldUpdateOperationsInput | $Enums.Rarity
+  depleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   planetResource?: Prisma.PlanetResourceUncheckedUpdateManyWithoutPlanetNestedInput
@@ -384,10 +376,12 @@ export type PlanetCreateManyInput = {
   seed: string
   name: string
   type: $Enums.PlanetType
-  sector?: number
   totalCapacity: Prisma.JsonNullValueInput | runtime.InputJsonValue
   currentStock: Prisma.JsonNullValueInput | runtime.InputJsonValue
   scannedBy?: string | null
+  coordinates: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  rarity: $Enums.Rarity
+  depleted?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -397,10 +391,12 @@ export type PlanetUpdateManyMutationInput = {
   seed?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumPlanetTypeFieldUpdateOperationsInput | $Enums.PlanetType
-  sector?: Prisma.IntFieldUpdateOperationsInput | number
   totalCapacity?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   currentStock?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   scannedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coordinates?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  rarity?: Prisma.EnumRarityFieldUpdateOperationsInput | $Enums.Rarity
+  depleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -410,10 +406,12 @@ export type PlanetUncheckedUpdateManyInput = {
   seed?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumPlanetTypeFieldUpdateOperationsInput | $Enums.PlanetType
-  sector?: Prisma.IntFieldUpdateOperationsInput | number
   totalCapacity?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   currentStock?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   scannedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coordinates?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  rarity?: Prisma.EnumRarityFieldUpdateOperationsInput | $Enums.Rarity
+  depleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -423,16 +421,14 @@ export type PlanetCountOrderByAggregateInput = {
   seed?: Prisma.SortOrder
   name?: Prisma.SortOrder
   type?: Prisma.SortOrder
-  sector?: Prisma.SortOrder
   totalCapacity?: Prisma.SortOrder
   currentStock?: Prisma.SortOrder
   scannedBy?: Prisma.SortOrder
+  coordinates?: Prisma.SortOrder
+  rarity?: Prisma.SortOrder
+  depleted?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-}
-
-export type PlanetAvgOrderByAggregateInput = {
-  sector?: Prisma.SortOrder
 }
 
 export type PlanetMaxOrderByAggregateInput = {
@@ -440,8 +436,9 @@ export type PlanetMaxOrderByAggregateInput = {
   seed?: Prisma.SortOrder
   name?: Prisma.SortOrder
   type?: Prisma.SortOrder
-  sector?: Prisma.SortOrder
   scannedBy?: Prisma.SortOrder
+  rarity?: Prisma.SortOrder
+  depleted?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -451,14 +448,11 @@ export type PlanetMinOrderByAggregateInput = {
   seed?: Prisma.SortOrder
   name?: Prisma.SortOrder
   type?: Prisma.SortOrder
-  sector?: Prisma.SortOrder
   scannedBy?: Prisma.SortOrder
+  rarity?: Prisma.SortOrder
+  depleted?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-}
-
-export type PlanetSumOrderByAggregateInput = {
-  sector?: Prisma.SortOrder
 }
 
 export type PlanetScalarRelationFilter = {
@@ -468,6 +462,10 @@ export type PlanetScalarRelationFilter = {
 
 export type EnumPlanetTypeFieldUpdateOperationsInput = {
   set?: $Enums.PlanetType
+}
+
+export type EnumRarityFieldUpdateOperationsInput = {
+  set?: $Enums.Rarity
 }
 
 export type PlanetCreateNestedOneWithoutPlanetResourceInput = {
@@ -503,10 +501,12 @@ export type PlanetCreateWithoutPlanetResourceInput = {
   seed: string
   name: string
   type: $Enums.PlanetType
-  sector?: number
   totalCapacity: Prisma.JsonNullValueInput | runtime.InputJsonValue
   currentStock: Prisma.JsonNullValueInput | runtime.InputJsonValue
   scannedBy?: string | null
+  coordinates: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  rarity: $Enums.Rarity
+  depleted?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   planetVisit?: Prisma.PlanetVisitCreateNestedManyWithoutPlanetInput
@@ -517,10 +517,12 @@ export type PlanetUncheckedCreateWithoutPlanetResourceInput = {
   seed: string
   name: string
   type: $Enums.PlanetType
-  sector?: number
   totalCapacity: Prisma.JsonNullValueInput | runtime.InputJsonValue
   currentStock: Prisma.JsonNullValueInput | runtime.InputJsonValue
   scannedBy?: string | null
+  coordinates: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  rarity: $Enums.Rarity
+  depleted?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   planetVisit?: Prisma.PlanetVisitUncheckedCreateNestedManyWithoutPlanetInput
@@ -547,10 +549,12 @@ export type PlanetUpdateWithoutPlanetResourceInput = {
   seed?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumPlanetTypeFieldUpdateOperationsInput | $Enums.PlanetType
-  sector?: Prisma.IntFieldUpdateOperationsInput | number
   totalCapacity?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   currentStock?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   scannedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coordinates?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  rarity?: Prisma.EnumRarityFieldUpdateOperationsInput | $Enums.Rarity
+  depleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   planetVisit?: Prisma.PlanetVisitUpdateManyWithoutPlanetNestedInput
@@ -561,10 +565,12 @@ export type PlanetUncheckedUpdateWithoutPlanetResourceInput = {
   seed?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumPlanetTypeFieldUpdateOperationsInput | $Enums.PlanetType
-  sector?: Prisma.IntFieldUpdateOperationsInput | number
   totalCapacity?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   currentStock?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   scannedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coordinates?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  rarity?: Prisma.EnumRarityFieldUpdateOperationsInput | $Enums.Rarity
+  depleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   planetVisit?: Prisma.PlanetVisitUncheckedUpdateManyWithoutPlanetNestedInput
@@ -575,10 +581,12 @@ export type PlanetCreateWithoutPlanetVisitInput = {
   seed: string
   name: string
   type: $Enums.PlanetType
-  sector?: number
   totalCapacity: Prisma.JsonNullValueInput | runtime.InputJsonValue
   currentStock: Prisma.JsonNullValueInput | runtime.InputJsonValue
   scannedBy?: string | null
+  coordinates: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  rarity: $Enums.Rarity
+  depleted?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   planetResource?: Prisma.PlanetResourceCreateNestedManyWithoutPlanetInput
@@ -589,10 +597,12 @@ export type PlanetUncheckedCreateWithoutPlanetVisitInput = {
   seed: string
   name: string
   type: $Enums.PlanetType
-  sector?: number
   totalCapacity: Prisma.JsonNullValueInput | runtime.InputJsonValue
   currentStock: Prisma.JsonNullValueInput | runtime.InputJsonValue
   scannedBy?: string | null
+  coordinates: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  rarity: $Enums.Rarity
+  depleted?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   planetResource?: Prisma.PlanetResourceUncheckedCreateNestedManyWithoutPlanetInput
@@ -619,10 +629,12 @@ export type PlanetUpdateWithoutPlanetVisitInput = {
   seed?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumPlanetTypeFieldUpdateOperationsInput | $Enums.PlanetType
-  sector?: Prisma.IntFieldUpdateOperationsInput | number
   totalCapacity?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   currentStock?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   scannedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coordinates?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  rarity?: Prisma.EnumRarityFieldUpdateOperationsInput | $Enums.Rarity
+  depleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   planetResource?: Prisma.PlanetResourceUpdateManyWithoutPlanetNestedInput
@@ -633,10 +645,12 @@ export type PlanetUncheckedUpdateWithoutPlanetVisitInput = {
   seed?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumPlanetTypeFieldUpdateOperationsInput | $Enums.PlanetType
-  sector?: Prisma.IntFieldUpdateOperationsInput | number
   totalCapacity?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   currentStock?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   scannedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coordinates?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  rarity?: Prisma.EnumRarityFieldUpdateOperationsInput | $Enums.Rarity
+  depleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   planetResource?: Prisma.PlanetResourceUncheckedUpdateManyWithoutPlanetNestedInput
@@ -687,10 +701,12 @@ export type PlanetSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   seed?: boolean
   name?: boolean
   type?: boolean
-  sector?: boolean
   totalCapacity?: boolean
   currentStock?: boolean
   scannedBy?: boolean
+  coordinates?: boolean
+  rarity?: boolean
+  depleted?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   planetResource?: boolean | Prisma.Planet$planetResourceArgs<ExtArgs>
@@ -703,10 +719,12 @@ export type PlanetSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   seed?: boolean
   name?: boolean
   type?: boolean
-  sector?: boolean
   totalCapacity?: boolean
   currentStock?: boolean
   scannedBy?: boolean
+  coordinates?: boolean
+  rarity?: boolean
+  depleted?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["planet"]>
@@ -716,10 +734,12 @@ export type PlanetSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   seed?: boolean
   name?: boolean
   type?: boolean
-  sector?: boolean
   totalCapacity?: boolean
   currentStock?: boolean
   scannedBy?: boolean
+  coordinates?: boolean
+  rarity?: boolean
+  depleted?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["planet"]>
@@ -729,15 +749,17 @@ export type PlanetSelectScalar = {
   seed?: boolean
   name?: boolean
   type?: boolean
-  sector?: boolean
   totalCapacity?: boolean
   currentStock?: boolean
   scannedBy?: boolean
+  coordinates?: boolean
+  rarity?: boolean
+  depleted?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type PlanetOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "seed" | "name" | "type" | "sector" | "totalCapacity" | "currentStock" | "scannedBy" | "createdAt" | "updatedAt", ExtArgs["result"]["planet"]>
+export type PlanetOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "seed" | "name" | "type" | "totalCapacity" | "currentStock" | "scannedBy" | "coordinates" | "rarity" | "depleted" | "createdAt" | "updatedAt", ExtArgs["result"]["planet"]>
 export type PlanetInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   planetResource?: boolean | Prisma.Planet$planetResourceArgs<ExtArgs>
   planetVisit?: boolean | Prisma.Planet$planetVisitArgs<ExtArgs>
@@ -757,10 +779,12 @@ export type $PlanetPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     seed: string
     name: string
     type: $Enums.PlanetType
-    sector: number
     totalCapacity: runtime.JsonValue
     currentStock: runtime.JsonValue
     scannedBy: string | null
+    coordinates: runtime.JsonValue
+    rarity: $Enums.Rarity
+    depleted: boolean
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["planet"]>
@@ -1192,10 +1216,12 @@ export interface PlanetFieldRefs {
   readonly seed: Prisma.FieldRef<"Planet", 'String'>
   readonly name: Prisma.FieldRef<"Planet", 'String'>
   readonly type: Prisma.FieldRef<"Planet", 'PlanetType'>
-  readonly sector: Prisma.FieldRef<"Planet", 'Int'>
   readonly totalCapacity: Prisma.FieldRef<"Planet", 'Json'>
   readonly currentStock: Prisma.FieldRef<"Planet", 'Json'>
   readonly scannedBy: Prisma.FieldRef<"Planet", 'String'>
+  readonly coordinates: Prisma.FieldRef<"Planet", 'Json'>
+  readonly rarity: Prisma.FieldRef<"Planet", 'Rarity'>
+  readonly depleted: Prisma.FieldRef<"Planet", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"Planet", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Planet", 'DateTime'>
 }

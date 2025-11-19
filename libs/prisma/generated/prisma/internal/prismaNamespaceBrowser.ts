@@ -55,11 +55,13 @@ export const ModelName = {
   GameData: 'GameData',
   Warehouse: 'Warehouse',
   Planet: 'Planet',
+  InventoryItem: 'InventoryItem',
   PlanetResource: 'PlanetResource',
   PlanetVisit: 'PlanetVisit',
   Cycle: 'Cycle',
   Currency: 'Currency',
-  Balance: 'Balance'
+  Balance: 'Balance',
+  MinigSession: 'MinigSession'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -86,8 +88,7 @@ export const UserScalarFieldEnum = {
   hashPassword: 'hashPassword',
   hashRefreshToken: 'hashRefreshToken',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  gameDataShipId: 'gameDataShipId'
+  updatedAt: 'updatedAt'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -98,6 +99,10 @@ export const ShipScalarFieldEnum = {
   uid: 'uid',
   level: 'level',
   type: 'type',
+  warpRange: 'warpRange',
+  warpSpeed: 'warpSpeed',
+  miningPower: 'miningPower',
+  cargoSize: 'cargoSize',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   gameDataShipId: 'gameDataShipId',
@@ -116,7 +121,9 @@ export const ShipComponentScalarFieldEnum = {
   upgradeCost: 'upgradeCost',
   level: 'level',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  shipId: 'shipId',
+  uid: 'uid'
 } as const
 
 export type ShipComponentScalarFieldEnum = (typeof ShipComponentScalarFieldEnum)[keyof typeof ShipComponentScalarFieldEnum]
@@ -125,7 +132,10 @@ export type ShipComponentScalarFieldEnum = (typeof ShipComponentScalarFieldEnum)
 export const GameDataScalarFieldEnum = {
   id: 'id',
   uid: 'uid',
-  shipId: 'shipId'
+  shipId: 'shipId',
+  x: 'x',
+  y: 'y',
+  z: 'z'
 } as const
 
 export type GameDataScalarFieldEnum = (typeof GameDataScalarFieldEnum)[keyof typeof GameDataScalarFieldEnum]
@@ -155,10 +165,12 @@ export const PlanetScalarFieldEnum = {
   seed: 'seed',
   name: 'name',
   type: 'type',
-  sector: 'sector',
   totalCapacity: 'totalCapacity',
   currentStock: 'currentStock',
   scannedBy: 'scannedBy',
+  coordinates: 'coordinates',
+  rarity: 'rarity',
+  depleted: 'depleted',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -166,12 +178,27 @@ export const PlanetScalarFieldEnum = {
 export type PlanetScalarFieldEnum = (typeof PlanetScalarFieldEnum)[keyof typeof PlanetScalarFieldEnum]
 
 
+export const InventoryItemScalarFieldEnum = {
+  id: 'id',
+  resource: 'resource',
+  amount: 'amount',
+  uid: 'uid',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type InventoryItemScalarFieldEnum = (typeof InventoryItemScalarFieldEnum)[keyof typeof InventoryItemScalarFieldEnum]
+
+
 export const PlanetResourceScalarFieldEnum = {
   id: 'id',
   planetId: 'planetId',
   typeResource: 'typeResource',
   totalAmount: 'totalAmount',
-  current: 'current'
+  current: 'current',
+  drillPowerRequired: 'drillPowerRequired',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type PlanetResourceScalarFieldEnum = (typeof PlanetResourceScalarFieldEnum)[keyof typeof PlanetResourceScalarFieldEnum]
@@ -183,7 +210,8 @@ export const PlanetVisitScalarFieldEnum = {
   planetId: 'planetId',
   mined: 'mined',
   exhausted: 'exhausted',
-  timestamp: 'timestamp'
+  timestamp: 'timestamp',
+  gameDataUid: 'gameDataUid'
 } as const
 
 export type PlanetVisitScalarFieldEnum = (typeof PlanetVisitScalarFieldEnum)[keyof typeof PlanetVisitScalarFieldEnum]
@@ -226,6 +254,21 @@ export const BalanceScalarFieldEnum = {
 } as const
 
 export type BalanceScalarFieldEnum = (typeof BalanceScalarFieldEnum)[keyof typeof BalanceScalarFieldEnum]
+
+
+export const MinigSessionScalarFieldEnum = {
+  id: 'id',
+  uid: 'uid',
+  resourceId: 'resourceId',
+  planetId: 'planetId',
+  planetSeed: 'planetSeed',
+  startedAt: 'startedAt',
+  status: 'status',
+  estimatedAmount: 'estimatedAmount',
+  finishedAt: 'finishedAt'
+} as const
+
+export type MinigSessionScalarFieldEnum = (typeof MinigSessionScalarFieldEnum)[keyof typeof MinigSessionScalarFieldEnum]
 
 
 export const SortOrder = {

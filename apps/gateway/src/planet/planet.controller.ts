@@ -1,5 +1,6 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { PlanetService } from './planet.service';
+import { PayloadScanPlanets } from '@app/contracts/planet/types';
 
 @Controller('planet')
 export class PlanetController {
@@ -14,5 +15,14 @@ export class PlanetController {
   handleGeneratePlanet(@Param('uid') uid: string, @Body() data) {
     console.log({ uid });
     return this.planetService.generatePlanet(data);
+  }
+
+  @Post('scan_planets/:uid')
+  handleScanPlanets(
+    @Param('uid') uid: string,
+    @Body() data: PayloadScanPlanets,
+  ) {
+    console.log({ uid });
+    return this.planetService.scanPlanets(data);
   }
 }

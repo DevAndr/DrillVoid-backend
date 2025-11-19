@@ -20,8 +20,14 @@ export const RESOURCE_PLANET_POOL: Record<
     ],
     RARE: ['COBALT', 'TUNGSTEN', 'MOLYBDENUM'],
     EPIC: ['GOLD', 'PLATINUM', 'RHODIUM', 'PALLADIUM'],
-    LEGENDARY: ['OSMIUM', 'RUTHENIUM', 'IRIDIUM', 'OBSIDIAN'],
-    MYTHICAL: ['EXOTICMATTER', 'ALPHACREDITS'],
+    LEGENDARY: [
+      'OSMIUM',
+      'RUTHENIUM',
+      'IRIDIUM',
+      'OBSIDIAN',
+      'EXOTICMATTER',
+      'ALPHACREDITS',
+    ],
   },
 
   LUSH: {
@@ -29,8 +35,13 @@ export const RESOURCE_PLANET_POOL: Record<
     UNCOMMON: ['ALUMINUM', 'LITHIUM', 'BORON', 'MAGNESIUM'],
     RARE: ['ZINC', 'MANGANESE', 'AMMONIA'],
     EPIC: ['GOLD', 'HELIUM3', 'DEUTERIUM'],
-    LEGENDARY: ['PLATINUM', 'GAMMARSHARDS', 'BETATOKENS'],
-    MYTHICAL: ['TRILLIUM', 'VERYNIUM'],
+    LEGENDARY: [
+      'PLATINUM',
+      'GAMMARSHARDS',
+      'BETATOKENS',
+      'TRILLIUM',
+      'VERYNIUM',
+    ],
   },
 
   FROZEN: {
@@ -38,8 +49,7 @@ export const RESOURCE_PLANET_POOL: Record<
     UNCOMMON: ['COBALT', 'NICKEL', 'SILICON'],
     RARE: ['HELIUM3', 'DEUTERIUM', 'TRITIUM'],
     EPIC: ['LITHIUM', 'BORON', 'METHANE'],
-    LEGENDARY: ['OBSIDIAN', 'NAQUADA'],
-    MYTHICAL: ['NEUTRONIUM', 'QUANTUMORE'],
+    LEGENDARY: ['OBSIDIAN', 'NAQUADA', 'NEUTRONIUM', 'QUANTUMORE'],
   },
 
   TOXIC: {
@@ -47,8 +57,7 @@ export const RESOURCE_PLANET_POOL: Record<
     UNCOMMON: ['NICKEL', 'COBALT', 'CHROMIUM'],
     RARE: ['URANIUM', 'MANGANESE', 'ZINC'],
     EPIC: ['GOLD', 'PLATINUM', 'TUNGSTEN'],
-    LEGENDARY: ['UNOBTANIUM', 'KYRIPTONITE'],
-    MYTHICAL: ['ADRA', 'STRYDIUM'],
+    LEGENDARY: ['UNOBTANIUM', 'KYRIPTONITE', 'ADRA', 'STRYDIUM'],
   },
 
   EXOTIC: {
@@ -56,8 +65,13 @@ export const RESOURCE_PLANET_POOL: Record<
     UNCOMMON: ['PLATINUM', 'IRIDIUM', 'GOLD'],
     RARE: ['NAQUADA', 'DILITHIUM', 'TRILLIUM'],
     EPIC: ['UNOBTANIUM', 'VERYNIUM', 'ADRA', 'STRYDIUM'],
-    LEGENDARY: ['KYRIPTONITE', 'NEUTRONIUM'],
-    MYTHICAL: ['QUANTUMORE', 'ALPHACREDITS', 'BETATOKENS'],
+    LEGENDARY: [
+      'KYRIPTONITE',
+      'NEUTRONIUM',
+      'QUANTUMORE',
+      'ALPHACREDITS',
+      'BETATOKENS',
+    ],
   },
 
   BLACKHOLE: {
@@ -65,8 +79,10 @@ export const RESOURCE_PLANET_POOL: Record<
     UNCOMMON: ['EXOTICMATTER', 'GAMMARSHARDS', 'NAQUADA'],
     RARE: ['UNOBTANIUM', 'DILITHIUM', 'KYRIPTONITE'],
     EPIC: ['TRILLIUM', 'VERYNIUM', 'ADRA', 'STRYDIUM'],
-    LEGENDARY: ['ALPHACREDITS', 'BETATOKENS', 'OBSIDIAN'],
-    MYTHICAL: [
+    LEGENDARY: [
+      'ALPHACREDITS',
+      'BETATOKENS',
+      'OBSIDIAN',
       'NEUTRONIUM',
       'QUANTUMORE',
       'NAQUADA',
@@ -80,59 +96,7 @@ export const RESOURCE_PLANET_POOL: Record<
       'EXOTICMATTER',
       'GAMMARSHARDS',
     ],
-    // MYTHICAL черная дыра — буквально всё самое ценное в игре
   },
-};
-
-export const BASE_AMOUNT_RESOURCE: Record<ResourceType, [number, number]> = {
-  ADRA: [0, 0],
-  ALPHACREDITS: [0, 0],
-  ALUMINUM: [0, 0],
-  AMMONIA: [0, 0],
-  BETATOKENS: [0, 0],
-  BORON: [0, 0],
-  CALCIUM: [0, 0],
-  CARBON: [0, 0],
-  CHROMIUM: [0, 0],
-  COAL: [0, 0],
-  COBALT: [0, 0],
-  COPPER: [0, 0],
-  DEUTERIUM: [0, 0],
-  DILITHIUM: [0, 0],
-  EXOTICMATTER: [0, 0],
-  GAMMARSHARDS: [0, 0],
-  GOLD: [0, 0],
-  HELIUM3: [0, 0],
-  IRIDIUM: [0, 0],
-  KYRIPTONITE: [0, 0],
-  LITHIUM: [0, 0],
-  MAGNESIUM: [0, 0],
-  MANGANESE: [0, 0],
-  METHANE: [0, 0],
-  MOLYBDENUM: [0, 0],
-  NAQUADA: [0, 0],
-  NEUTRONIUM: [0, 0],
-  NICKEL: [0, 0],
-  OBSIDIAN: [0, 0],
-  OSMIUM: [0, 0],
-  PALLADIUM: [0, 0],
-  PHOSPHORUS: [0, 0],
-  PLATINUM: [0, 0],
-  QUANTUMORE: [0, 0],
-  RHODIUM: [0, 0],
-  RUTHENIUM: [0, 0],
-  SILICON: [0, 0],
-  STRYDIUM: [0, 0],
-  SULFUR: [0, 0],
-  TITANIUM: [0, 0],
-  TRILLIUM: [0, 0],
-  TRITIUM: [0, 0],
-  TUNGSTEN: [0, 0],
-  UNOBTANIUM: [0, 0],
-  URANIUM: [0, 0],
-  VERYNIUM: [0, 0],
-  WATERICE: [0, 0],
-  ZINC: [0, 0],
 };
 
 export const RESOURCE_INFO: Record<
@@ -146,7 +110,6 @@ export const RESOURCE_INFO: Record<
     RARE: [40_000, 180_000],
     EPIC: [30_000, 120_000],
     LEGENDARY: [20_000, 80_000],
-    MYTHICAL: [15_000, 50_000],
   },
   CARBON: {
     COMMON: [100_000, 400_000],
@@ -154,7 +117,6 @@ export const RESOURCE_INFO: Record<
     RARE: [60_000, 240_000],
     EPIC: [40_000, 160_000],
     LEGENDARY: [25_000, 100_000],
-    MYTHICAL: [20_000, 70_000],
   },
   SILICON: {
     COMMON: [90_000, 350_000],
@@ -162,7 +124,6 @@ export const RESOURCE_INFO: Record<
     RARE: [50_000, 200_000],
     EPIC: [35_000, 140_000],
     LEGENDARY: [20_000, 90_000],
-    MYTHICAL: [15_000, 60_000],
   },
   ALUMINUM: {
     COMMON: [70_000, 280_000],
@@ -170,7 +131,6 @@ export const RESOURCE_INFO: Record<
     RARE: [45_000, 180_000],
     EPIC: [30_000, 120_000],
     LEGENDARY: [20_000, 80_000],
-    MYTHICAL: [12_000, 50_000],
   },
 
   // === СРЕДНИЕ МЕТАЛЛЫ ===
@@ -180,7 +140,6 @@ export const RESOURCE_INFO: Record<
     RARE: [25_000, 120_000],
     EPIC: [30_000, 140_000],
     LEGENDARY: [40_000, 180_000],
-    MYTHICAL: [50_000, 200_000],
   },
   NICKEL: {
     COMMON: [20_000, 100_000],
@@ -188,7 +147,6 @@ export const RESOURCE_INFO: Record<
     RARE: [30_000, 140_000],
     EPIC: [35_000, 160_000],
     LEGENDARY: [45_000, 200_000],
-    MYTHICAL: [60_000, 250_000],
   },
   COBALT: {
     COMMON: [10_000, 60_000],
@@ -196,7 +154,6 @@ export const RESOURCE_INFO: Record<
     RARE: [20_000, 100_000],
     EPIC: [25_000, 130_000],
     LEGENDARY: [35_000, 180_000],
-    MYTHICAL: [50_000, 220_000],
   },
 
   // === РЕДКИЕ И ДРАГОЦЕННЫЕ ===
@@ -206,7 +163,6 @@ export const RESOURCE_INFO: Record<
     RARE: [5_000, 25_000],
     EPIC: [10_000, 40_000],
     LEGENDARY: [20_000, 80_000],
-    MYTHICAL: [50_000, 150_000],
   },
   PLATINUM: {
     COMMON: [500, 4_000],
@@ -214,7 +170,6 @@ export const RESOURCE_INFO: Record<
     RARE: [3_000, 15_000],
     EPIC: [8_000, 30_000],
     LEGENDARY: [20_000, 70_000],
-    MYTHICAL: [40_000, 120_000],
   },
   IRIDIUM: {
     COMMON: [100, 1_000],
@@ -222,7 +177,6 @@ export const RESOURCE_INFO: Record<
     RARE: [2_000, 10_000],
     EPIC: [6_000, 25_000],
     LEGENDARY: [15_000, 60_000],
-    MYTHICAL: [30_000, 100_000],
   },
 
   // === СУПЕР-РЕДКИЕ И МИФИЧЕСКИЕ ===
@@ -232,7 +186,6 @@ export const RESOURCE_INFO: Record<
     RARE: [200, 2_000],
     EPIC: [1_000, 8_000],
     LEGENDARY: [5_000, 30_000],
-    MYTHICAL: [20_000, 80_000],
   },
   GAMMARSHARDS: {
     COMMON: [5, 50],
@@ -240,7 +193,6 @@ export const RESOURCE_INFO: Record<
     RARE: [150, 1_500],
     EPIC: [800, 6_000],
     LEGENDARY: [4_000, 25_000],
-    MYTHICAL: [15_000, 70_000],
   },
   NAQUADA: {
     COMMON: [1, 20],
@@ -248,7 +200,6 @@ export const RESOURCE_INFO: Record<
     RARE: [50, 500],
     EPIC: [300, 3_000],
     LEGENDARY: [2_000, 15_000],
-    MYTHICAL: [10_000, 50_000],
   },
   UNOBTANIUM: {
     COMMON: [1, 10],
@@ -256,7 +207,6 @@ export const RESOURCE_INFO: Record<
     RARE: [30, 300],
     EPIC: [200, 2_000],
     LEGENDARY: [1_500, 12_000],
-    MYTHICAL: [8_000, 40_000],
   },
   KYRIPTONITE: {
     COMMON: [1, 5],
@@ -264,7 +214,6 @@ export const RESOURCE_INFO: Record<
     RARE: [20, 200],
     EPIC: [150, 1_500],
     LEGENDARY: [1_000, 10_000],
-    MYTHICAL: [6_000, 35_000],
   },
   NEUTRONIUM: {
     COMMON: [1, 3],
@@ -272,7 +221,6 @@ export const RESOURCE_INFO: Record<
     RARE: [5, 50],
     EPIC: [50, 500],
     LEGENDARY: [500, 5_000],
-    MYTHICAL: [5_000, 30_000],
   },
   QUANTUMORE: {
     COMMON: [1, 2],
@@ -280,7 +228,6 @@ export const RESOURCE_INFO: Record<
     RARE: [3, 30],
     EPIC: [30, 300],
     LEGENDARY: [300, 3_000],
-    MYTHICAL: [3_000, 25_000],
   },
 
   // === ВОДОРОДНЫЕ И ЛЕДЯНЫЕ ===
@@ -290,7 +237,6 @@ export const RESOURCE_INFO: Record<
     RARE: [60_000, 300_000],
     EPIC: [40_000, 200_000],
     LEGENDARY: [25_000, 120_000],
-    MYTHICAL: [15_000, 80_000],
   },
   AMMONIA: {
     COMMON: [50_000, 300_000],
@@ -298,7 +244,6 @@ export const RESOURCE_INFO: Record<
     RARE: [30_000, 200_000],
     EPIC: [20_000, 150_000],
     LEGENDARY: [15_000, 100_000],
-    MYTHICAL: [10_000, 70_000],
   },
   METHANE: {
     COMMON: [60_000, 350_000],
@@ -306,7 +251,6 @@ export const RESOURCE_INFO: Record<
     RARE: [40_000, 250_000],
     EPIC: [30_000, 180_000],
     LEGENDARY: [20_000, 120_000],
-    MYTHICAL: [12_000, 80_000],
   },
 
   // === ЯДЕРНЫЕ ТОПЛИВА ===
@@ -316,7 +260,6 @@ export const RESOURCE_INFO: Record<
     RARE: [10_000, 50_000],
     EPIC: [20_000, 90_000],
     LEGENDARY: [40_000, 160_000],
-    MYTHICAL: [80_000, 300_000],
   },
   HELIUM3: {
     COMMON: [500, 5_000],
@@ -324,7 +267,6 @@ export const RESOURCE_INFO: Record<
     RARE: [6_000, 30_000],
     EPIC: [15_000, 70_000],
     LEGENDARY: [40_000, 150_000],
-    MYTHICAL: [100_000, 400_000],
   },
 
   // === ОСТАЛЬНЫЕ (по аналогии) ===
@@ -334,7 +276,6 @@ export const RESOURCE_INFO: Record<
     RARE: [40_000, 180_000],
     EPIC: [25_000, 120_000],
     LEGENDARY: [15_000, 80_000],
-    MYTHICAL: [10_000, 50_000],
   },
   CALCIUM: {
     COMMON: [70_000, 300_000],
@@ -342,7 +283,6 @@ export const RESOURCE_INFO: Record<
     RARE: [35_000, 160_000],
     EPIC: [20_000, 100_000],
     LEGENDARY: [12_000, 70_000],
-    MYTHICAL: [8_000, 40_000],
   },
   OBSIDIAN: {
     COMMON: [5_000, 40_000],
@@ -350,7 +290,6 @@ export const RESOURCE_INFO: Record<
     RARE: [20_000, 100_000],
     EPIC: [40_000, 180_000],
     LEGENDARY: [80_000, 300_000],
-    MYTHICAL: [150_000, 500_000],
   },
   COAL: {
     COMMON: [120_000, 500_000],
@@ -358,7 +297,6 @@ export const RESOURCE_INFO: Record<
     RARE: [60_000, 300_000],
     EPIC: [40_000, 200_000],
     LEGENDARY: [25_000, 120_000],
-    MYTHICAL: [15_000, 80_000],
   },
   MANGANESE: {
     COMMON: [30_000, 150_000],
@@ -366,7 +304,6 @@ export const RESOURCE_INFO: Record<
     RARE: [50_000, 220_000],
     EPIC: [60_000, 260_000],
     LEGENDARY: [80_000, 320_000],
-    MYTHICAL: [100_000, 400_000],
   },
   CHROMIUM: {
     COMMON: [25_000, 130_000],
@@ -374,7 +311,6 @@ export const RESOURCE_INFO: Record<
     RARE: [45_000, 200_000],
     EPIC: [60_000, 250_000],
     LEGENDARY: [80_000, 320_000],
-    MYTHICAL: [100_000, 380_000],
   },
   ZINC: {
     COMMON: [20_000, 120_000],
@@ -382,7 +318,6 @@ export const RESOURCE_INFO: Record<
     RARE: [40_000, 180_000],
     EPIC: [50_000, 220_000],
     LEGENDARY: [70_000, 280_000],
-    MYTHICAL: [90_000, 350_000],
   },
   TUNGSTEN: {
     COMMON: [3_000, 20_000],
@@ -390,7 +325,6 @@ export const RESOURCE_INFO: Record<
     RARE: [15_000, 70_000],
     EPIC: [30_000, 120_000],
     LEGENDARY: [60_000, 220_000],
-    MYTHICAL: [100_000, 380_000],
   },
   MOLYBDENUM: {
     COMMON: [2_000, 15_000],
@@ -398,7 +332,6 @@ export const RESOURCE_INFO: Record<
     RARE: [12_000, 60_000],
     EPIC: [25_000, 100_000],
     LEGENDARY: [50_000, 180_000],
-    MYTHICAL: [90_000, 320_000],
   },
   RHODIUM: {
     COMMON: [200, 2_000],
@@ -406,7 +339,6 @@ export const RESOURCE_INFO: Record<
     RARE: [3_000, 15_000],
     EPIC: [10_000, 40_000],
     LEGENDARY: [25_000, 90_000],
-    MYTHICAL: [60_000, 200_000],
   },
   PALLADIUM: {
     COMMON: [300, 3_000],
@@ -414,7 +346,6 @@ export const RESOURCE_INFO: Record<
     RARE: [4_000, 20_000],
     EPIC: [12_000, 50_000],
     LEGENDARY: [30_000, 120_000],
-    MYTHICAL: [70_000, 250_000],
   },
   OSMIUM: {
     COMMON: [100, 1_000],
@@ -422,7 +353,6 @@ export const RESOURCE_INFO: Record<
     RARE: [2_000, 12_000],
     EPIC: [8_000, 35_000],
     LEGENDARY: [20_000, 80_000],
-    MYTHICAL: [50_000, 180_000],
   },
   RUTHENIUM: {
     COMMON: [150, 1_500],
@@ -430,7 +360,6 @@ export const RESOURCE_INFO: Record<
     RARE: [2_500, 14_000],
     EPIC: [9_000, 40_000],
     LEGENDARY: [22_000, 90_000],
-    MYTHICAL: [55_000, 200_000],
   },
   TRITIUM: {
     COMMON: [100, 1_000],
@@ -438,7 +367,6 @@ export const RESOURCE_INFO: Record<
     RARE: [2_000, 12_000],
     EPIC: [8_000, 40_000],
     LEGENDARY: [25_000, 120_000],
-    MYTHICAL: [80_000, 350_000],
   },
   DEUTERIUM: {
     COMMON: [200, 2_000],
@@ -446,7 +374,6 @@ export const RESOURCE_INFO: Record<
     RARE: [4_000, 25_000],
     EPIC: [12_000, 60_000],
     LEGENDARY: [35_000, 150_000],
-    MYTHICAL: [100_000, 400_000],
   },
   LITHIUM: {
     COMMON: [10_000, 80_000],
@@ -454,7 +381,6 @@ export const RESOURCE_INFO: Record<
     RARE: [35_000, 180_000],
     EPIC: [60_000, 250_000],
     LEGENDARY: [100_000, 380_000],
-    MYTHICAL: [150_000, 500_000],
   },
   BORON: {
     COMMON: [8_000, 60_000],
@@ -462,7 +388,6 @@ export const RESOURCE_INFO: Record<
     RARE: [30_000, 160_000],
     EPIC: [50_000, 220_000],
     LEGENDARY: [90_000, 350_000],
-    MYTHICAL: [140_000, 480_000],
   },
   PHOSPHORUS: {
     COMMON: [40_000, 250_000],
@@ -470,7 +395,6 @@ export const RESOURCE_INFO: Record<
     RARE: [60_000, 350_000],
     EPIC: [70_000, 400_000],
     LEGENDARY: [80_000, 450_000],
-    MYTHICAL: [100_000, 500_000],
   },
   SULFUR: {
     COMMON: [50_000, 300_000],
@@ -478,7 +402,6 @@ export const RESOURCE_INFO: Record<
     RARE: [70_000, 400_000],
     EPIC: [80_000, 450_000],
     LEGENDARY: [90_000, 500_000],
-    MYTHICAL: [120_000, 600_000],
   },
 
   // === ВАЛЮТА / ТОКЕНЫ ===
@@ -488,7 +411,6 @@ export const RESOURCE_INFO: Record<
     RARE: [500, 5_000],
     EPIC: [3_000, 20_000],
     LEGENDARY: [15_000, 80_000],
-    MYTHICAL: [50_000, 300_000],
   },
   BETATOKENS: {
     COMMON: [5, 50],
@@ -496,7 +418,6 @@ export const RESOURCE_INFO: Record<
     RARE: [300, 3_000],
     EPIC: [2_000, 15_000],
     LEGENDARY: [10_000, 60_000],
-    MYTHICAL: [40_000, 250_000],
   },
 
   // === МИФИЧЕСКИЕ ФЭНТЕЗИ-РЕСУРСЫ ===
@@ -506,7 +427,6 @@ export const RESOURCE_INFO: Record<
     RARE: [100, 1_000],
     EPIC: [1_000, 8_000],
     LEGENDARY: [8_000, 40_000],
-    MYTHICAL: [30_000, 150_000],
   },
   TRILLIUM: {
     COMMON: [1, 8],
@@ -514,7 +434,6 @@ export const RESOURCE_INFO: Record<
     RARE: [80, 800],
     EPIC: [800, 6_000],
     LEGENDARY: [6_000, 35_000],
-    MYTHICAL: [25_000, 120_000],
   },
   VERYNIUM: {
     COMMON: [1, 5],
@@ -522,7 +441,6 @@ export const RESOURCE_INFO: Record<
     RARE: [50, 500],
     EPIC: [500, 5_000],
     LEGENDARY: [5_000, 30_000],
-    MYTHICAL: [20_000, 100_000],
   },
   ADRA: {
     COMMON: [1, 3],
@@ -530,7 +448,6 @@ export const RESOURCE_INFO: Record<
     RARE: [30, 300],
     EPIC: [300, 3_000],
     LEGENDARY: [3_000, 20_000],
-    MYTHICAL: [15_000, 80_000],
   },
   STRYDIUM: {
     COMMON: [1, 2],
@@ -538,6 +455,5 @@ export const RESOURCE_INFO: Record<
     RARE: [20, 200],
     EPIC: [200, 2_000],
     LEGENDARY: [2_000, 15_000],
-    MYTHICAL: [12_000, 70_000],
   },
 };

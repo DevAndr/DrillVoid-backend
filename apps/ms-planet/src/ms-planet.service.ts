@@ -1,18 +1,19 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { PrismaService } from '@app/prisma';
-import { GPSPoint } from './types';
-import { createNoise2D } from 'simplex-noise';
+import { createNoise3D } from 'simplex-noise';
 import {
   PlanetType,
   Rarity,
 } from '../../../libs/prisma/generated/prisma/enums';
 import { RESOURCE_INFO, RESOURCE_PLANET_POOL } from './constants';
 import { SciFiNameGenerator } from './utils/SciFiNameGenerator';
+import { Point3D, ScanOptions } from '@app/contracts/planet/types';
+import { xor4096 } from 'seedrandom';
 
 @Injectable()
 export class MsPlanetService {
   private readonly logger = new Logger(MsPlanetService.name);
-  private simplex = createNoise2D();
+  private simplex = createNoise3D();
   constructor(private readonly prisma: PrismaService) {}
 
   private mulberry32(a: number) {
@@ -25,11 +26,11 @@ export class MsPlanetService {
     };
   }
 
-  planetGenerate(point: GPSPoint) {
-    const seed = `${point.lat}${point.lon.toFixed(4)}`;
-    const rnd = this.mulberry32(+seed);
-    const rndValue = rnd();
-    this.logger.log({ seed, rndValue });
+  planetGenerate(point: Point3D) {
+    const seed = `${point.x}_${point.y}_${point.z}`;
+    // const rng = this.mulberry32(+seed);
+    const rng = xor4096(seed);
+
     // 1. Biome
     const biome = this.defineBiome(point);
 
@@ -42,25 +43,26 @@ export class MsPlanetService {
 
     // 3. Resources
     // Количество ресурсов
-    const resourceCount = Math.floor(rnd() * 3) + 2; // 2–4 ресурса
+    const resourceCount = Math.floor(rng() * 3) + 2; // 2–4 ресурса
     const resources = [];
 
     for (let i = 0; i < resourceCount; i++) {
-      const resource = this.generateResource(biome, rarity, rnd);
+      const resource = this.generateResource(biome, rarity, rng);
       resources.push(resource);
     }
 
     return {
-      name: this.generateName(rnd),
+      name: this.generateName(rng),
       biome,
       rarity,
       resources,
       seed,
+      position: point,
     };
   }
 
-  private defineBiome(point: GPSPoint) {
-    const noise = this.simplex(point.lat, point.lon);
+  private defineBiome(point: Point3D) {
+    const noise = this.simplex(point.x, point.y, point.z);
     const n = (noise + 1) / 2;
 
     if (n < 0.15) return PlanetType.ROCKY;
@@ -71,8 +73,8 @@ export class MsPlanetService {
     return PlanetType.BLACKHOLE;
   }
 
-  private defineRarity(point: GPSPoint) {
-    const noise = this.simplex(point.lat * 2, point.lon * 2);
+  private defineRarity(point: Point3D) {
+    const noise = this.simplex(point.x * 2, point.y * 2, point.z * 2);
     const n = (noise + 1) / 2;
 
     if (n < 0.6) return Rarity.COMMON;
@@ -82,8 +84,8 @@ export class MsPlanetService {
     return Rarity.LEGENDARY;
   }
 
-  private defineRarityResource(rnd: () => number) {
-    const rndValue = rnd();
+  private defineRarityResource(rng: () => number) {
+    const rndValue = rng();
     const n = (rndValue + 1) / 2;
 
     if (n < 0.6) return Rarity.COMMON;
@@ -93,21 +95,21 @@ export class MsPlanetService {
     return Rarity.LEGENDARY;
   }
 
-  private generateName(rnd: () => number) {
-    return SciFiNameGenerator.generate(rnd);
+  private generateName(rng: () => number) {
+    return SciFiNameGenerator.generate(rng);
   }
 
   private generateResource(
     biome: PlanetType,
     rarity: Rarity,
-    rnd: () => number,
+    rng: () => number,
   ) {
     const resources = RESOURCE_PLANET_POOL[biome][rarity];
-    const resource = resources[Math.floor(rnd() * resources.length)];
-    const rarityResource = this.defineRarityResource(rnd);
+    const resource = resources[Math.floor(rng() * resources.length)];
+    const rarityResource = this.defineRarityResource(rng);
 
     const [min, max] = RESOURCE_INFO[resource][rarityResource];
-    const amount = Math.floor(rnd() * (max - min) + min * 0.2); // +20% per sector
+    const amount = Math.floor(rng() * (max - min) + min * 0.2); // +20% per sector
 
     return {
       type: resource,
@@ -116,6 +118,34 @@ export class MsPlanetService {
       remainingAmount: null,
     };
   }
+
+  generateNearbyPlanets(currentPos: Point3D, options: ScanOptions) {
+    const { count, radius } = options;
+
+    const baseSeed = `${currentPos.x}${currentPos.y}${currentPos.z}`;
+    const rng = this.mulberry32(+baseSeed);
+
+    const planets: any[] = [];
+
+    for (let i = 0; i < count; i++) {
+      const dx = Math.floor((rng() - 0.5) * radius);
+      const dy = Math.floor((rng() - 0.5) * radius);
+      const dz = Math.floor((rng() - 0.5) * radius);
+
+      const x = currentPos.x + dx;
+      const y = currentPos.y + dy;
+      const z = currentPos.z + dz;
+
+      // // Seed планеты = координаты
+      // const planetSeed = `${x}_${y}_${z}`;
+
+      planets.push(this.planetGenerate({ x, y, z }));
+    }
+
+    return planets;
+  }
+
+  jumpToPlanet() {}
 }
 
 class RNG {

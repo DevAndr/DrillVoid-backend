@@ -22,11 +22,9 @@ model User {
   hashPassword     String
   hashRefreshToken String?
 
-  createdAt      DateTime      @default(now())
-  updatedAt      DateTime      @updatedAt
-  gameData       GameData?     @relation(fields: [gameDataShipId], references: [shipId])
-  planetVisit    PlanetVisit[]
-  gameDataShipId String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  gameData  GameData? @relation(fields: [uid], references: [uid])
 
   @@unique([telegramId, uid])
   @@index([uid, telegramId])
@@ -39,11 +37,16 @@ enum TypeShip {
 }
 
 model Ship {
-  id        String     @default(uuid())
-  uid       String
-  level     Int
-  type      TypeShip
-  warehouse Warehouse? @relation(fields: [warehouseId], references: [id])
+  id          String     @default(uuid())
+  uid         String
+  level       Int
+  type        TypeShip
+  // Характеристики корабля
+  warpRange   Float      @default(1000) // Макс расстояние прыжка
+  warpSpeed   Float      @default(1)
+  miningPower Float      @default(1) // Мощность бура
+  cargoSize   Float      @default(100) // Лимит ресурсов в трюме
+  warehouse   Warehouse? @relation(fields: [warehouseId], references: [id])
 
   createdAt      DateTime  @default(now())
   updatedAt      DateTime  @updatedAt
@@ -51,6 +54,8 @@ model Ship {
   gameDataShipId String?
   warehouseId    String?
   isSelected     Boolean   @default(false)
+
+  components ShipComponent[]
 
   @@id([id, uid])
   @@unique([id, uid])
@@ -74,6 +79,9 @@ model ShipComponent {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  Ship      Ship?    @relation(fields: [shipId, uid], references: [id, uid])
+  shipId    String?
+  uid       String?
 }
 
 model GameData {
@@ -81,9 +89,16 @@ model GameData {
   uid    String @unique
   shipId String @unique
 
-  User    User[]
-  balance Balance[]
-  ship    Ship[]
+  // Позиция игрока в галактике
+  x Float @default(0)
+  y Float @default(0)
+  z Float @default(0)
+
+  planetVisit   PlanetVisit[]
+  User          User[]
+  balance       Balance[]
+  ship          Ship[]
+  InventoryItem InventoryItem[]
 }
 
 enum Rarity {
@@ -138,6 +153,18 @@ model Planet {
   updatedAt      DateTime         @updatedAt
   planetResource PlanetResource[]
   planetVisit    PlanetVisit[]
+}
+
+model InventoryItem {
+  id    String   @id @default(cuid())
+  gamne GameData @relation(fields: [uid], references: [uid])
+
+  resource ResourceType // имя ресурса, например "XenonCrystal"
+  amount   Float        @default(0)
+  uid      String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 enum ResourceType {
@@ -201,6 +228,9 @@ model PlanetResource {
   drillPowerRequired Float
 
   planet Planet @relation(fields: [planetId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 // 10. История визитов (статистика, ачивки)
@@ -212,8 +242,9 @@ model PlanetVisit {
   exhausted Boolean  @default(false)
   timestamp DateTime @default(now())
 
-  user   User   @relation(fields: [uid], references: [uid], onDelete: Cascade)
-  planet Planet @relation(fields: [planetId], references: [id], onDelete: Cascade)
+  planet      Planet    @relation(fields: [planetId], references: [id], onDelete: Cascade)
+  GameData    GameData? @relation(fields: [gameDataUid], references: [uid])
+  gameDataUid String?
 }
 
 enum CurrencyType {
@@ -266,4 +297,23 @@ model Balance {
 
   @@unique([uid, currencyId])
   @@index([uid])
+}
+
+enum MiningStatus {
+  PENDING
+  IN_PROGRESS
+  FINISHED
+  CANCELLED
+}
+
+model MinigSession {
+  id              String       @id @default(uuid())
+  uid             String       @unique
+  resourceId      String       @unique
+  planetId        String       @unique
+  planetSeed      String       @unique
+  startedAt       DateTime
+  status          MiningStatus @default(PENDING)
+  estimatedAmount Float
+  finishedAt      DateTime?
 }

@@ -48,6 +48,11 @@ export type Warehouse = Prisma.WarehouseModel
  */
 export type Planet = Prisma.PlanetModel
 /**
+ * Model InventoryItem
+ * 
+ */
+export type InventoryItem = Prisma.InventoryItemModel
+/**
  * Model PlanetResource
  * 
  */
@@ -72,3 +77,8 @@ export type Currency = Prisma.CurrencyModel
  * 
  */
 export type Balance = Prisma.BalanceModel
+/**
+ * Model MinigSession
+ * 
+ */
+export type MinigSession = Prisma.MinigSessionModel
