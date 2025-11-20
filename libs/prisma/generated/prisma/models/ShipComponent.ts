@@ -329,6 +329,7 @@ export type ShipComponentCreateInput = {
   level: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  uid?: string | null
   Ship?: Prisma.ShipCreateNestedOneWithoutComponentsInput
 }
 
@@ -354,6 +355,7 @@ export type ShipComponentUpdateInput = {
   level?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  uid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   Ship?: Prisma.ShipUpdateOneWithoutComponentsNestedInput
 }
 
@@ -392,6 +394,7 @@ export type ShipComponentUpdateManyMutationInput = {
   level?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  uid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type ShipComponentUncheckedUpdateManyInput = {
@@ -517,6 +520,7 @@ export type ShipComponentCreateWithoutShipInput = {
   level: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  uid?: string | null
 }
 
 export type ShipComponentUncheckedCreateWithoutShipInput = {
@@ -528,6 +532,7 @@ export type ShipComponentUncheckedCreateWithoutShipInput = {
   level: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  uid?: string | null
 }
 
 export type ShipComponentCreateOrConnectWithoutShipInput = {
@@ -581,6 +586,7 @@ export type ShipComponentCreateManyShipInput = {
   level: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  uid?: string | null
 }
 
 export type ShipComponentUpdateWithoutShipInput = {
@@ -592,6 +598,7 @@ export type ShipComponentUpdateWithoutShipInput = {
   level?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  uid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type ShipComponentUncheckedUpdateWithoutShipInput = {
@@ -603,6 +610,7 @@ export type ShipComponentUncheckedUpdateWithoutShipInput = {
   level?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  uid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type ShipComponentUncheckedUpdateManyWithoutShipInput = {
@@ -614,6 +622,7 @@ export type ShipComponentUncheckedUpdateManyWithoutShipInput = {
   level?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  uid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 

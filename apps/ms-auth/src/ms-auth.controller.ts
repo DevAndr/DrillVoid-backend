@@ -6,15 +6,21 @@ import {
   Payload,
   RmqContext,
 } from '@nestjs/microservices';
-import { MS_AUTH_PATTERNS, PayloadScanPlanets } from '@app/contracts';
+import { MS_AUTH_PATTERNS } from '@app/contracts';
 
 @Controller()
 export class MsAuthController {
   constructor(private readonly msAuthService: MsAuthService) {}
 
   @MessagePattern(MS_AUTH_PATTERNS.TEST)
-  handleScanPlanets(@Payload() uid: string, @Ctx() context: RmqContext) {
+  handleTest(@Payload() uid: string, @Ctx() context: RmqContext) {
     console.log(`Pattern: ${context.getPattern()}`, uid);
     return this.msAuthService.test(uid);
+  }
+
+  @MessagePattern(MS_AUTH_PATTERNS.AUTH_WITH_TELEGRAM)
+  handleAuthWithTelegram(@Payload() data: string, @Ctx() context: RmqContext) {
+    console.log(`Pattern: ${context.getPattern()}`, data);
+    return this.msAuthService.authWitchTelegram(data);
   }
 }

@@ -1,6 +1,9 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { PlanetService } from './planet.service';
-import { PayloadScanPlanets } from '@app/contracts/planet/types';
+import {
+  PayloadJumpToPlanet,
+  PayloadScanPlanets,
+} from '@app/contracts/planet/types';
 
 @Controller('planet')
 export class PlanetController {
@@ -24,5 +27,10 @@ export class PlanetController {
   ) {
     console.log({ uid });
     return this.planetService.scanPlanets(data);
+  }
+
+  @Post('jump_to_planet')
+  handleJumpToPlanet(@Body() data: PayloadJumpToPlanet) {
+    return this.planetService.jumpToPlanet(data);
   }
 }

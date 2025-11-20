@@ -27,32 +27,32 @@ export type AggregateGameData = {
 }
 
 export type GameDataAvgAggregateOutputType = {
-  id: number | null
   x: number | null
   y: number | null
   z: number | null
 }
 
 export type GameDataSumAggregateOutputType = {
-  id: number | null
   x: number | null
   y: number | null
   z: number | null
 }
 
 export type GameDataMinAggregateOutputType = {
-  id: number | null
+  id: string | null
   uid: string | null
   shipId: string | null
+  currentPlanetId: string | null
   x: number | null
   y: number | null
   z: number | null
 }
 
 export type GameDataMaxAggregateOutputType = {
-  id: number | null
+  id: string | null
   uid: string | null
   shipId: string | null
+  currentPlanetId: string | null
   x: number | null
   y: number | null
   z: number | null
@@ -62,6 +62,7 @@ export type GameDataCountAggregateOutputType = {
   id: number
   uid: number
   shipId: number
+  currentPlanetId: number
   x: number
   y: number
   z: number
@@ -70,14 +71,12 @@ export type GameDataCountAggregateOutputType = {
 
 
 export type GameDataAvgAggregateInputType = {
-  id?: true
   x?: true
   y?: true
   z?: true
 }
 
 export type GameDataSumAggregateInputType = {
-  id?: true
   x?: true
   y?: true
   z?: true
@@ -87,6 +86,7 @@ export type GameDataMinAggregateInputType = {
   id?: true
   uid?: true
   shipId?: true
+  currentPlanetId?: true
   x?: true
   y?: true
   z?: true
@@ -96,6 +96,7 @@ export type GameDataMaxAggregateInputType = {
   id?: true
   uid?: true
   shipId?: true
+  currentPlanetId?: true
   x?: true
   y?: true
   z?: true
@@ -105,6 +106,7 @@ export type GameDataCountAggregateInputType = {
   id?: true
   uid?: true
   shipId?: true
+  currentPlanetId?: true
   x?: true
   y?: true
   z?: true
@@ -198,9 +200,10 @@ export type GameDataGroupByArgs<ExtArgs extends runtime.Types.Extensions.Interna
 }
 
 export type GameDataGroupByOutputType = {
-  id: number
+  id: string
   uid: string
   shipId: string
+  currentPlanetId: string | null
   x: number
   y: number
   z: number
@@ -230,14 +233,15 @@ export type GameDataWhereInput = {
   AND?: Prisma.GameDataWhereInput | Prisma.GameDataWhereInput[]
   OR?: Prisma.GameDataWhereInput[]
   NOT?: Prisma.GameDataWhereInput | Prisma.GameDataWhereInput[]
-  id?: Prisma.IntFilter<"GameData"> | number
+  id?: Prisma.StringFilter<"GameData"> | string
   uid?: Prisma.StringFilter<"GameData"> | string
   shipId?: Prisma.StringFilter<"GameData"> | string
+  currentPlanetId?: Prisma.StringNullableFilter<"GameData"> | string | null
   x?: Prisma.FloatFilter<"GameData"> | number
   y?: Prisma.FloatFilter<"GameData"> | number
   z?: Prisma.FloatFilter<"GameData"> | number
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   planetVisit?: Prisma.PlanetVisitListRelationFilter
-  User?: Prisma.UserListRelationFilter
   balance?: Prisma.BalanceListRelationFilter
   ship?: Prisma.ShipListRelationFilter
   InventoryItem?: Prisma.InventoryItemListRelationFilter
@@ -247,11 +251,12 @@ export type GameDataOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   uid?: Prisma.SortOrder
   shipId?: Prisma.SortOrder
+  currentPlanetId?: Prisma.SortOrderInput | Prisma.SortOrder
   x?: Prisma.SortOrder
   y?: Prisma.SortOrder
   z?: Prisma.SortOrder
+  user?: Prisma.UserOrderByWithRelationInput
   planetVisit?: Prisma.PlanetVisitOrderByRelationAggregateInput
-  User?: Prisma.UserOrderByRelationAggregateInput
   balance?: Prisma.BalanceOrderByRelationAggregateInput
   ship?: Prisma.ShipOrderByRelationAggregateInput
   InventoryItem?: Prisma.InventoryItemOrderByRelationAggregateInput
@@ -260,24 +265,27 @@ export type GameDataOrderByWithRelationInput = {
 export type GameDataWhereUniqueInput = Prisma.AtLeast<{
   uid?: string
   shipId?: string
+  id_uid?: Prisma.GameDataIdUidCompoundUniqueInput
   AND?: Prisma.GameDataWhereInput | Prisma.GameDataWhereInput[]
   OR?: Prisma.GameDataWhereInput[]
   NOT?: Prisma.GameDataWhereInput | Prisma.GameDataWhereInput[]
-  id?: Prisma.IntFilter<"GameData"> | number
+  id?: Prisma.StringFilter<"GameData"> | string
+  currentPlanetId?: Prisma.StringNullableFilter<"GameData"> | string | null
   x?: Prisma.FloatFilter<"GameData"> | number
   y?: Prisma.FloatFilter<"GameData"> | number
   z?: Prisma.FloatFilter<"GameData"> | number
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   planetVisit?: Prisma.PlanetVisitListRelationFilter
-  User?: Prisma.UserListRelationFilter
   balance?: Prisma.BalanceListRelationFilter
   ship?: Prisma.ShipListRelationFilter
   InventoryItem?: Prisma.InventoryItemListRelationFilter
-}, "uid" | "shipId">
+}, "id_uid" | "shipId" | "id_uid" | "uid">
 
 export type GameDataOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   uid?: Prisma.SortOrder
   shipId?: Prisma.SortOrder
+  currentPlanetId?: Prisma.SortOrderInput | Prisma.SortOrder
   x?: Prisma.SortOrder
   y?: Prisma.SortOrder
   z?: Prisma.SortOrder
@@ -292,113 +300,126 @@ export type GameDataScalarWhereWithAggregatesInput = {
   AND?: Prisma.GameDataScalarWhereWithAggregatesInput | Prisma.GameDataScalarWhereWithAggregatesInput[]
   OR?: Prisma.GameDataScalarWhereWithAggregatesInput[]
   NOT?: Prisma.GameDataScalarWhereWithAggregatesInput | Prisma.GameDataScalarWhereWithAggregatesInput[]
-  id?: Prisma.IntWithAggregatesFilter<"GameData"> | number
+  id?: Prisma.StringWithAggregatesFilter<"GameData"> | string
   uid?: Prisma.StringWithAggregatesFilter<"GameData"> | string
   shipId?: Prisma.StringWithAggregatesFilter<"GameData"> | string
+  currentPlanetId?: Prisma.StringNullableWithAggregatesFilter<"GameData"> | string | null
   x?: Prisma.FloatWithAggregatesFilter<"GameData"> | number
   y?: Prisma.FloatWithAggregatesFilter<"GameData"> | number
   z?: Prisma.FloatWithAggregatesFilter<"GameData"> | number
 }
 
 export type GameDataCreateInput = {
-  id?: number
-  uid: string
+  id?: string
   shipId: string
+  currentPlanetId?: string | null
   x?: number
   y?: number
   z?: number
+  user: Prisma.UserCreateNestedOneWithoutGameDataInput
   planetVisit?: Prisma.PlanetVisitCreateNestedManyWithoutGameDataInput
-  User?: Prisma.UserCreateNestedManyWithoutGameDataInput
   balance?: Prisma.BalanceCreateNestedManyWithoutGameDataInput
   ship?: Prisma.ShipCreateNestedManyWithoutGameDataInput
   InventoryItem?: Prisma.InventoryItemCreateNestedManyWithoutGamneInput
 }
 
 export type GameDataUncheckedCreateInput = {
-  id?: number
+  id?: string
   uid: string
   shipId: string
+  currentPlanetId?: string | null
   x?: number
   y?: number
   z?: number
   planetVisit?: Prisma.PlanetVisitUncheckedCreateNestedManyWithoutGameDataInput
-  User?: Prisma.UserUncheckedCreateNestedManyWithoutGameDataInput
   balance?: Prisma.BalanceUncheckedCreateNestedManyWithoutGameDataInput
   ship?: Prisma.ShipUncheckedCreateNestedManyWithoutGameDataInput
   InventoryItem?: Prisma.InventoryItemUncheckedCreateNestedManyWithoutGamneInput
 }
 
 export type GameDataUpdateInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  uid?: Prisma.StringFieldUpdateOperationsInput | string
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   shipId?: Prisma.StringFieldUpdateOperationsInput | string
+  currentPlanetId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   x?: Prisma.FloatFieldUpdateOperationsInput | number
   y?: Prisma.FloatFieldUpdateOperationsInput | number
   z?: Prisma.FloatFieldUpdateOperationsInput | number
+  user?: Prisma.UserUpdateOneRequiredWithoutGameDataNestedInput
   planetVisit?: Prisma.PlanetVisitUpdateManyWithoutGameDataNestedInput
-  User?: Prisma.UserUpdateManyWithoutGameDataNestedInput
   balance?: Prisma.BalanceUpdateManyWithoutGameDataNestedInput
   ship?: Prisma.ShipUpdateManyWithoutGameDataNestedInput
   InventoryItem?: Prisma.InventoryItemUpdateManyWithoutGamneNestedInput
 }
 
 export type GameDataUncheckedUpdateInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   uid?: Prisma.StringFieldUpdateOperationsInput | string
   shipId?: Prisma.StringFieldUpdateOperationsInput | string
+  currentPlanetId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   x?: Prisma.FloatFieldUpdateOperationsInput | number
   y?: Prisma.FloatFieldUpdateOperationsInput | number
   z?: Prisma.FloatFieldUpdateOperationsInput | number
   planetVisit?: Prisma.PlanetVisitUncheckedUpdateManyWithoutGameDataNestedInput
-  User?: Prisma.UserUncheckedUpdateManyWithoutGameDataNestedInput
   balance?: Prisma.BalanceUncheckedUpdateManyWithoutGameDataNestedInput
   ship?: Prisma.ShipUncheckedUpdateManyWithoutGameDataNestedInput
   InventoryItem?: Prisma.InventoryItemUncheckedUpdateManyWithoutGamneNestedInput
 }
 
 export type GameDataCreateManyInput = {
-  id?: number
+  id?: string
   uid: string
   shipId: string
+  currentPlanetId?: string | null
   x?: number
   y?: number
   z?: number
 }
 
 export type GameDataUpdateManyMutationInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  uid?: Prisma.StringFieldUpdateOperationsInput | string
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   shipId?: Prisma.StringFieldUpdateOperationsInput | string
+  currentPlanetId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   x?: Prisma.FloatFieldUpdateOperationsInput | number
   y?: Prisma.FloatFieldUpdateOperationsInput | number
   z?: Prisma.FloatFieldUpdateOperationsInput | number
 }
 
 export type GameDataUncheckedUpdateManyInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   uid?: Prisma.StringFieldUpdateOperationsInput | string
   shipId?: Prisma.StringFieldUpdateOperationsInput | string
+  currentPlanetId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   x?: Prisma.FloatFieldUpdateOperationsInput | number
   y?: Prisma.FloatFieldUpdateOperationsInput | number
   z?: Prisma.FloatFieldUpdateOperationsInput | number
 }
 
-export type GameDataNullableScalarRelationFilter = {
-  is?: Prisma.GameDataWhereInput | null
-  isNot?: Prisma.GameDataWhereInput | null
+export type GameDataListRelationFilter = {
+  every?: Prisma.GameDataWhereInput
+  some?: Prisma.GameDataWhereInput
+  none?: Prisma.GameDataWhereInput
+}
+
+export type GameDataOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
+}
+
+export type GameDataIdUidCompoundUniqueInput = {
+  id: string
+  uid: string
 }
 
 export type GameDataCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   uid?: Prisma.SortOrder
   shipId?: Prisma.SortOrder
+  currentPlanetId?: Prisma.SortOrder
   x?: Prisma.SortOrder
   y?: Prisma.SortOrder
   z?: Prisma.SortOrder
 }
 
 export type GameDataAvgOrderByAggregateInput = {
-  id?: Prisma.SortOrder
   x?: Prisma.SortOrder
   y?: Prisma.SortOrder
   z?: Prisma.SortOrder
@@ -408,6 +429,7 @@ export type GameDataMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   uid?: Prisma.SortOrder
   shipId?: Prisma.SortOrder
+  currentPlanetId?: Prisma.SortOrder
   x?: Prisma.SortOrder
   y?: Prisma.SortOrder
   z?: Prisma.SortOrder
@@ -417,16 +439,21 @@ export type GameDataMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   uid?: Prisma.SortOrder
   shipId?: Prisma.SortOrder
+  currentPlanetId?: Prisma.SortOrder
   x?: Prisma.SortOrder
   y?: Prisma.SortOrder
   z?: Prisma.SortOrder
 }
 
 export type GameDataSumOrderByAggregateInput = {
-  id?: Prisma.SortOrder
   x?: Prisma.SortOrder
   y?: Prisma.SortOrder
   z?: Prisma.SortOrder
+}
+
+export type GameDataNullableScalarRelationFilter = {
+  is?: Prisma.GameDataWhereInput | null
+  isNot?: Prisma.GameDataWhereInput | null
 }
 
 export type GameDataScalarRelationFilter = {
@@ -434,20 +461,54 @@ export type GameDataScalarRelationFilter = {
   isNot?: Prisma.GameDataWhereInput
 }
 
-export type GameDataCreateNestedOneWithoutUserInput = {
-  create?: Prisma.XOR<Prisma.GameDataCreateWithoutUserInput, Prisma.GameDataUncheckedCreateWithoutUserInput>
-  connectOrCreate?: Prisma.GameDataCreateOrConnectWithoutUserInput
-  connect?: Prisma.GameDataWhereUniqueInput
+export type GameDataCreateNestedManyWithoutUserInput = {
+  create?: Prisma.XOR<Prisma.GameDataCreateWithoutUserInput, Prisma.GameDataUncheckedCreateWithoutUserInput> | Prisma.GameDataCreateWithoutUserInput[] | Prisma.GameDataUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.GameDataCreateOrConnectWithoutUserInput | Prisma.GameDataCreateOrConnectWithoutUserInput[]
+  createMany?: Prisma.GameDataCreateManyUserInputEnvelope
+  connect?: Prisma.GameDataWhereUniqueInput | Prisma.GameDataWhereUniqueInput[]
 }
 
-export type GameDataUpdateOneWithoutUserNestedInput = {
-  create?: Prisma.XOR<Prisma.GameDataCreateWithoutUserInput, Prisma.GameDataUncheckedCreateWithoutUserInput>
-  connectOrCreate?: Prisma.GameDataCreateOrConnectWithoutUserInput
-  upsert?: Prisma.GameDataUpsertWithoutUserInput
-  disconnect?: Prisma.GameDataWhereInput | boolean
-  delete?: Prisma.GameDataWhereInput | boolean
-  connect?: Prisma.GameDataWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.GameDataUpdateToOneWithWhereWithoutUserInput, Prisma.GameDataUpdateWithoutUserInput>, Prisma.GameDataUncheckedUpdateWithoutUserInput>
+export type GameDataUncheckedCreateNestedManyWithoutUserInput = {
+  create?: Prisma.XOR<Prisma.GameDataCreateWithoutUserInput, Prisma.GameDataUncheckedCreateWithoutUserInput> | Prisma.GameDataCreateWithoutUserInput[] | Prisma.GameDataUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.GameDataCreateOrConnectWithoutUserInput | Prisma.GameDataCreateOrConnectWithoutUserInput[]
+  createMany?: Prisma.GameDataCreateManyUserInputEnvelope
+  connect?: Prisma.GameDataWhereUniqueInput | Prisma.GameDataWhereUniqueInput[]
+}
+
+export type GameDataUpdateManyWithoutUserNestedInput = {
+  create?: Prisma.XOR<Prisma.GameDataCreateWithoutUserInput, Prisma.GameDataUncheckedCreateWithoutUserInput> | Prisma.GameDataCreateWithoutUserInput[] | Prisma.GameDataUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.GameDataCreateOrConnectWithoutUserInput | Prisma.GameDataCreateOrConnectWithoutUserInput[]
+  upsert?: Prisma.GameDataUpsertWithWhereUniqueWithoutUserInput | Prisma.GameDataUpsertWithWhereUniqueWithoutUserInput[]
+  createMany?: Prisma.GameDataCreateManyUserInputEnvelope
+  set?: Prisma.GameDataWhereUniqueInput | Prisma.GameDataWhereUniqueInput[]
+  disconnect?: Prisma.GameDataWhereUniqueInput | Prisma.GameDataWhereUniqueInput[]
+  delete?: Prisma.GameDataWhereUniqueInput | Prisma.GameDataWhereUniqueInput[]
+  connect?: Prisma.GameDataWhereUniqueInput | Prisma.GameDataWhereUniqueInput[]
+  update?: Prisma.GameDataUpdateWithWhereUniqueWithoutUserInput | Prisma.GameDataUpdateWithWhereUniqueWithoutUserInput[]
+  updateMany?: Prisma.GameDataUpdateManyWithWhereWithoutUserInput | Prisma.GameDataUpdateManyWithWhereWithoutUserInput[]
+  deleteMany?: Prisma.GameDataScalarWhereInput | Prisma.GameDataScalarWhereInput[]
+}
+
+export type GameDataUncheckedUpdateManyWithoutUserNestedInput = {
+  create?: Prisma.XOR<Prisma.GameDataCreateWithoutUserInput, Prisma.GameDataUncheckedCreateWithoutUserInput> | Prisma.GameDataCreateWithoutUserInput[] | Prisma.GameDataUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.GameDataCreateOrConnectWithoutUserInput | Prisma.GameDataCreateOrConnectWithoutUserInput[]
+  upsert?: Prisma.GameDataUpsertWithWhereUniqueWithoutUserInput | Prisma.GameDataUpsertWithWhereUniqueWithoutUserInput[]
+  createMany?: Prisma.GameDataCreateManyUserInputEnvelope
+  set?: Prisma.GameDataWhereUniqueInput | Prisma.GameDataWhereUniqueInput[]
+  disconnect?: Prisma.GameDataWhereUniqueInput | Prisma.GameDataWhereUniqueInput[]
+  delete?: Prisma.GameDataWhereUniqueInput | Prisma.GameDataWhereUniqueInput[]
+  connect?: Prisma.GameDataWhereUniqueInput | Prisma.GameDataWhereUniqueInput[]
+  update?: Prisma.GameDataUpdateWithWhereUniqueWithoutUserInput | Prisma.GameDataUpdateWithWhereUniqueWithoutUserInput[]
+  updateMany?: Prisma.GameDataUpdateManyWithWhereWithoutUserInput | Prisma.GameDataUpdateManyWithWhereWithoutUserInput[]
+  deleteMany?: Prisma.GameDataScalarWhereInput | Prisma.GameDataScalarWhereInput[]
+}
+
+export type FloatFieldUpdateOperationsInput = {
+  set?: number
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
 }
 
 export type GameDataCreateNestedOneWithoutShipInput = {
@@ -513,9 +574,9 @@ export type GameDataUpdateOneWithoutBalanceNestedInput = {
 }
 
 export type GameDataCreateWithoutUserInput = {
-  id?: number
-  uid: string
+  id?: string
   shipId: string
+  currentPlanetId?: string | null
   x?: number
   y?: number
   z?: number
@@ -526,9 +587,9 @@ export type GameDataCreateWithoutUserInput = {
 }
 
 export type GameDataUncheckedCreateWithoutUserInput = {
-  id?: number
-  uid: string
+  id?: string
   shipId: string
+  currentPlanetId?: string | null
   x?: number
   y?: number
   z?: number
@@ -543,65 +604,62 @@ export type GameDataCreateOrConnectWithoutUserInput = {
   create: Prisma.XOR<Prisma.GameDataCreateWithoutUserInput, Prisma.GameDataUncheckedCreateWithoutUserInput>
 }
 
-export type GameDataUpsertWithoutUserInput = {
-  update: Prisma.XOR<Prisma.GameDataUpdateWithoutUserInput, Prisma.GameDataUncheckedUpdateWithoutUserInput>
-  create: Prisma.XOR<Prisma.GameDataCreateWithoutUserInput, Prisma.GameDataUncheckedCreateWithoutUserInput>
-  where?: Prisma.GameDataWhereInput
+export type GameDataCreateManyUserInputEnvelope = {
+  data: Prisma.GameDataCreateManyUserInput | Prisma.GameDataCreateManyUserInput[]
+  skipDuplicates?: boolean
 }
 
-export type GameDataUpdateToOneWithWhereWithoutUserInput = {
-  where?: Prisma.GameDataWhereInput
+export type GameDataUpsertWithWhereUniqueWithoutUserInput = {
+  where: Prisma.GameDataWhereUniqueInput
+  update: Prisma.XOR<Prisma.GameDataUpdateWithoutUserInput, Prisma.GameDataUncheckedUpdateWithoutUserInput>
+  create: Prisma.XOR<Prisma.GameDataCreateWithoutUserInput, Prisma.GameDataUncheckedCreateWithoutUserInput>
+}
+
+export type GameDataUpdateWithWhereUniqueWithoutUserInput = {
+  where: Prisma.GameDataWhereUniqueInput
   data: Prisma.XOR<Prisma.GameDataUpdateWithoutUserInput, Prisma.GameDataUncheckedUpdateWithoutUserInput>
 }
 
-export type GameDataUpdateWithoutUserInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  uid?: Prisma.StringFieldUpdateOperationsInput | string
-  shipId?: Prisma.StringFieldUpdateOperationsInput | string
-  x?: Prisma.FloatFieldUpdateOperationsInput | number
-  y?: Prisma.FloatFieldUpdateOperationsInput | number
-  z?: Prisma.FloatFieldUpdateOperationsInput | number
-  planetVisit?: Prisma.PlanetVisitUpdateManyWithoutGameDataNestedInput
-  balance?: Prisma.BalanceUpdateManyWithoutGameDataNestedInput
-  ship?: Prisma.ShipUpdateManyWithoutGameDataNestedInput
-  InventoryItem?: Prisma.InventoryItemUpdateManyWithoutGamneNestedInput
+export type GameDataUpdateManyWithWhereWithoutUserInput = {
+  where: Prisma.GameDataScalarWhereInput
+  data: Prisma.XOR<Prisma.GameDataUpdateManyMutationInput, Prisma.GameDataUncheckedUpdateManyWithoutUserInput>
 }
 
-export type GameDataUncheckedUpdateWithoutUserInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  uid?: Prisma.StringFieldUpdateOperationsInput | string
-  shipId?: Prisma.StringFieldUpdateOperationsInput | string
-  x?: Prisma.FloatFieldUpdateOperationsInput | number
-  y?: Prisma.FloatFieldUpdateOperationsInput | number
-  z?: Prisma.FloatFieldUpdateOperationsInput | number
-  planetVisit?: Prisma.PlanetVisitUncheckedUpdateManyWithoutGameDataNestedInput
-  balance?: Prisma.BalanceUncheckedUpdateManyWithoutGameDataNestedInput
-  ship?: Prisma.ShipUncheckedUpdateManyWithoutGameDataNestedInput
-  InventoryItem?: Prisma.InventoryItemUncheckedUpdateManyWithoutGamneNestedInput
+export type GameDataScalarWhereInput = {
+  AND?: Prisma.GameDataScalarWhereInput | Prisma.GameDataScalarWhereInput[]
+  OR?: Prisma.GameDataScalarWhereInput[]
+  NOT?: Prisma.GameDataScalarWhereInput | Prisma.GameDataScalarWhereInput[]
+  id?: Prisma.StringFilter<"GameData"> | string
+  uid?: Prisma.StringFilter<"GameData"> | string
+  shipId?: Prisma.StringFilter<"GameData"> | string
+  currentPlanetId?: Prisma.StringNullableFilter<"GameData"> | string | null
+  x?: Prisma.FloatFilter<"GameData"> | number
+  y?: Prisma.FloatFilter<"GameData"> | number
+  z?: Prisma.FloatFilter<"GameData"> | number
 }
 
 export type GameDataCreateWithoutShipInput = {
-  id?: number
-  uid: string
+  id?: string
   shipId: string
+  currentPlanetId?: string | null
   x?: number
   y?: number
   z?: number
+  user: Prisma.UserCreateNestedOneWithoutGameDataInput
   planetVisit?: Prisma.PlanetVisitCreateNestedManyWithoutGameDataInput
-  User?: Prisma.UserCreateNestedManyWithoutGameDataInput
   balance?: Prisma.BalanceCreateNestedManyWithoutGameDataInput
   InventoryItem?: Prisma.InventoryItemCreateNestedManyWithoutGamneInput
 }
 
 export type GameDataUncheckedCreateWithoutShipInput = {
-  id?: number
+  id?: string
   uid: string
   shipId: string
+  currentPlanetId?: string | null
   x?: number
   y?: number
   z?: number
   planetVisit?: Prisma.PlanetVisitUncheckedCreateNestedManyWithoutGameDataInput
-  User?: Prisma.UserUncheckedCreateNestedManyWithoutGameDataInput
   balance?: Prisma.BalanceUncheckedCreateNestedManyWithoutGameDataInput
   InventoryItem?: Prisma.InventoryItemUncheckedCreateNestedManyWithoutGamneInput
 }
@@ -623,53 +681,53 @@ export type GameDataUpdateToOneWithWhereWithoutShipInput = {
 }
 
 export type GameDataUpdateWithoutShipInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  uid?: Prisma.StringFieldUpdateOperationsInput | string
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   shipId?: Prisma.StringFieldUpdateOperationsInput | string
+  currentPlanetId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   x?: Prisma.FloatFieldUpdateOperationsInput | number
   y?: Prisma.FloatFieldUpdateOperationsInput | number
   z?: Prisma.FloatFieldUpdateOperationsInput | number
+  user?: Prisma.UserUpdateOneRequiredWithoutGameDataNestedInput
   planetVisit?: Prisma.PlanetVisitUpdateManyWithoutGameDataNestedInput
-  User?: Prisma.UserUpdateManyWithoutGameDataNestedInput
   balance?: Prisma.BalanceUpdateManyWithoutGameDataNestedInput
   InventoryItem?: Prisma.InventoryItemUpdateManyWithoutGamneNestedInput
 }
 
 export type GameDataUncheckedUpdateWithoutShipInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   uid?: Prisma.StringFieldUpdateOperationsInput | string
   shipId?: Prisma.StringFieldUpdateOperationsInput | string
+  currentPlanetId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   x?: Prisma.FloatFieldUpdateOperationsInput | number
   y?: Prisma.FloatFieldUpdateOperationsInput | number
   z?: Prisma.FloatFieldUpdateOperationsInput | number
   planetVisit?: Prisma.PlanetVisitUncheckedUpdateManyWithoutGameDataNestedInput
-  User?: Prisma.UserUncheckedUpdateManyWithoutGameDataNestedInput
   balance?: Prisma.BalanceUncheckedUpdateManyWithoutGameDataNestedInput
   InventoryItem?: Prisma.InventoryItemUncheckedUpdateManyWithoutGamneNestedInput
 }
 
 export type GameDataCreateWithoutInventoryItemInput = {
-  id?: number
-  uid: string
+  id?: string
   shipId: string
+  currentPlanetId?: string | null
   x?: number
   y?: number
   z?: number
+  user: Prisma.UserCreateNestedOneWithoutGameDataInput
   planetVisit?: Prisma.PlanetVisitCreateNestedManyWithoutGameDataInput
-  User?: Prisma.UserCreateNestedManyWithoutGameDataInput
   balance?: Prisma.BalanceCreateNestedManyWithoutGameDataInput
   ship?: Prisma.ShipCreateNestedManyWithoutGameDataInput
 }
 
 export type GameDataUncheckedCreateWithoutInventoryItemInput = {
-  id?: number
+  id?: string
   uid: string
   shipId: string
+  currentPlanetId?: string | null
   x?: number
   y?: number
   z?: number
   planetVisit?: Prisma.PlanetVisitUncheckedCreateNestedManyWithoutGameDataInput
-  User?: Prisma.UserUncheckedCreateNestedManyWithoutGameDataInput
   balance?: Prisma.BalanceUncheckedCreateNestedManyWithoutGameDataInput
   ship?: Prisma.ShipUncheckedCreateNestedManyWithoutGameDataInput
 }
@@ -691,52 +749,52 @@ export type GameDataUpdateToOneWithWhereWithoutInventoryItemInput = {
 }
 
 export type GameDataUpdateWithoutInventoryItemInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  uid?: Prisma.StringFieldUpdateOperationsInput | string
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   shipId?: Prisma.StringFieldUpdateOperationsInput | string
+  currentPlanetId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   x?: Prisma.FloatFieldUpdateOperationsInput | number
   y?: Prisma.FloatFieldUpdateOperationsInput | number
   z?: Prisma.FloatFieldUpdateOperationsInput | number
+  user?: Prisma.UserUpdateOneRequiredWithoutGameDataNestedInput
   planetVisit?: Prisma.PlanetVisitUpdateManyWithoutGameDataNestedInput
-  User?: Prisma.UserUpdateManyWithoutGameDataNestedInput
   balance?: Prisma.BalanceUpdateManyWithoutGameDataNestedInput
   ship?: Prisma.ShipUpdateManyWithoutGameDataNestedInput
 }
 
 export type GameDataUncheckedUpdateWithoutInventoryItemInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   uid?: Prisma.StringFieldUpdateOperationsInput | string
   shipId?: Prisma.StringFieldUpdateOperationsInput | string
+  currentPlanetId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   x?: Prisma.FloatFieldUpdateOperationsInput | number
   y?: Prisma.FloatFieldUpdateOperationsInput | number
   z?: Prisma.FloatFieldUpdateOperationsInput | number
   planetVisit?: Prisma.PlanetVisitUncheckedUpdateManyWithoutGameDataNestedInput
-  User?: Prisma.UserUncheckedUpdateManyWithoutGameDataNestedInput
   balance?: Prisma.BalanceUncheckedUpdateManyWithoutGameDataNestedInput
   ship?: Prisma.ShipUncheckedUpdateManyWithoutGameDataNestedInput
 }
 
 export type GameDataCreateWithoutPlanetVisitInput = {
-  id?: number
-  uid: string
+  id?: string
   shipId: string
+  currentPlanetId?: string | null
   x?: number
   y?: number
   z?: number
-  User?: Prisma.UserCreateNestedManyWithoutGameDataInput
+  user: Prisma.UserCreateNestedOneWithoutGameDataInput
   balance?: Prisma.BalanceCreateNestedManyWithoutGameDataInput
   ship?: Prisma.ShipCreateNestedManyWithoutGameDataInput
   InventoryItem?: Prisma.InventoryItemCreateNestedManyWithoutGamneInput
 }
 
 export type GameDataUncheckedCreateWithoutPlanetVisitInput = {
-  id?: number
+  id?: string
   uid: string
   shipId: string
+  currentPlanetId?: string | null
   x?: number
   y?: number
   z?: number
-  User?: Prisma.UserUncheckedCreateNestedManyWithoutGameDataInput
   balance?: Prisma.BalanceUncheckedCreateNestedManyWithoutGameDataInput
   ship?: Prisma.ShipUncheckedCreateNestedManyWithoutGameDataInput
   InventoryItem?: Prisma.InventoryItemUncheckedCreateNestedManyWithoutGamneInput
@@ -759,53 +817,53 @@ export type GameDataUpdateToOneWithWhereWithoutPlanetVisitInput = {
 }
 
 export type GameDataUpdateWithoutPlanetVisitInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  uid?: Prisma.StringFieldUpdateOperationsInput | string
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   shipId?: Prisma.StringFieldUpdateOperationsInput | string
+  currentPlanetId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   x?: Prisma.FloatFieldUpdateOperationsInput | number
   y?: Prisma.FloatFieldUpdateOperationsInput | number
   z?: Prisma.FloatFieldUpdateOperationsInput | number
-  User?: Prisma.UserUpdateManyWithoutGameDataNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutGameDataNestedInput
   balance?: Prisma.BalanceUpdateManyWithoutGameDataNestedInput
   ship?: Prisma.ShipUpdateManyWithoutGameDataNestedInput
   InventoryItem?: Prisma.InventoryItemUpdateManyWithoutGamneNestedInput
 }
 
 export type GameDataUncheckedUpdateWithoutPlanetVisitInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   uid?: Prisma.StringFieldUpdateOperationsInput | string
   shipId?: Prisma.StringFieldUpdateOperationsInput | string
+  currentPlanetId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   x?: Prisma.FloatFieldUpdateOperationsInput | number
   y?: Prisma.FloatFieldUpdateOperationsInput | number
   z?: Prisma.FloatFieldUpdateOperationsInput | number
-  User?: Prisma.UserUncheckedUpdateManyWithoutGameDataNestedInput
   balance?: Prisma.BalanceUncheckedUpdateManyWithoutGameDataNestedInput
   ship?: Prisma.ShipUncheckedUpdateManyWithoutGameDataNestedInput
   InventoryItem?: Prisma.InventoryItemUncheckedUpdateManyWithoutGamneNestedInput
 }
 
 export type GameDataCreateWithoutBalanceInput = {
-  id?: number
-  uid: string
+  id?: string
   shipId: string
+  currentPlanetId?: string | null
   x?: number
   y?: number
   z?: number
+  user: Prisma.UserCreateNestedOneWithoutGameDataInput
   planetVisit?: Prisma.PlanetVisitCreateNestedManyWithoutGameDataInput
-  User?: Prisma.UserCreateNestedManyWithoutGameDataInput
   ship?: Prisma.ShipCreateNestedManyWithoutGameDataInput
   InventoryItem?: Prisma.InventoryItemCreateNestedManyWithoutGamneInput
 }
 
 export type GameDataUncheckedCreateWithoutBalanceInput = {
-  id?: number
+  id?: string
   uid: string
   shipId: string
+  currentPlanetId?: string | null
   x?: number
   y?: number
   z?: number
   planetVisit?: Prisma.PlanetVisitUncheckedCreateNestedManyWithoutGameDataInput
-  User?: Prisma.UserUncheckedCreateNestedManyWithoutGameDataInput
   ship?: Prisma.ShipUncheckedCreateNestedManyWithoutGameDataInput
   InventoryItem?: Prisma.InventoryItemUncheckedCreateNestedManyWithoutGamneInput
 }
@@ -827,29 +885,73 @@ export type GameDataUpdateToOneWithWhereWithoutBalanceInput = {
 }
 
 export type GameDataUpdateWithoutBalanceInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  uid?: Prisma.StringFieldUpdateOperationsInput | string
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   shipId?: Prisma.StringFieldUpdateOperationsInput | string
+  currentPlanetId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   x?: Prisma.FloatFieldUpdateOperationsInput | number
   y?: Prisma.FloatFieldUpdateOperationsInput | number
   z?: Prisma.FloatFieldUpdateOperationsInput | number
+  user?: Prisma.UserUpdateOneRequiredWithoutGameDataNestedInput
   planetVisit?: Prisma.PlanetVisitUpdateManyWithoutGameDataNestedInput
-  User?: Prisma.UserUpdateManyWithoutGameDataNestedInput
   ship?: Prisma.ShipUpdateManyWithoutGameDataNestedInput
   InventoryItem?: Prisma.InventoryItemUpdateManyWithoutGamneNestedInput
 }
 
 export type GameDataUncheckedUpdateWithoutBalanceInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   uid?: Prisma.StringFieldUpdateOperationsInput | string
   shipId?: Prisma.StringFieldUpdateOperationsInput | string
+  currentPlanetId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   x?: Prisma.FloatFieldUpdateOperationsInput | number
   y?: Prisma.FloatFieldUpdateOperationsInput | number
   z?: Prisma.FloatFieldUpdateOperationsInput | number
   planetVisit?: Prisma.PlanetVisitUncheckedUpdateManyWithoutGameDataNestedInput
-  User?: Prisma.UserUncheckedUpdateManyWithoutGameDataNestedInput
   ship?: Prisma.ShipUncheckedUpdateManyWithoutGameDataNestedInput
   InventoryItem?: Prisma.InventoryItemUncheckedUpdateManyWithoutGamneNestedInput
+}
+
+export type GameDataCreateManyUserInput = {
+  id?: string
+  shipId: string
+  currentPlanetId?: string | null
+  x?: number
+  y?: number
+  z?: number
+}
+
+export type GameDataUpdateWithoutUserInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  shipId?: Prisma.StringFieldUpdateOperationsInput | string
+  currentPlanetId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  x?: Prisma.FloatFieldUpdateOperationsInput | number
+  y?: Prisma.FloatFieldUpdateOperationsInput | number
+  z?: Prisma.FloatFieldUpdateOperationsInput | number
+  planetVisit?: Prisma.PlanetVisitUpdateManyWithoutGameDataNestedInput
+  balance?: Prisma.BalanceUpdateManyWithoutGameDataNestedInput
+  ship?: Prisma.ShipUpdateManyWithoutGameDataNestedInput
+  InventoryItem?: Prisma.InventoryItemUpdateManyWithoutGamneNestedInput
+}
+
+export type GameDataUncheckedUpdateWithoutUserInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  shipId?: Prisma.StringFieldUpdateOperationsInput | string
+  currentPlanetId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  x?: Prisma.FloatFieldUpdateOperationsInput | number
+  y?: Prisma.FloatFieldUpdateOperationsInput | number
+  z?: Prisma.FloatFieldUpdateOperationsInput | number
+  planetVisit?: Prisma.PlanetVisitUncheckedUpdateManyWithoutGameDataNestedInput
+  balance?: Prisma.BalanceUncheckedUpdateManyWithoutGameDataNestedInput
+  ship?: Prisma.ShipUncheckedUpdateManyWithoutGameDataNestedInput
+  InventoryItem?: Prisma.InventoryItemUncheckedUpdateManyWithoutGamneNestedInput
+}
+
+export type GameDataUncheckedUpdateManyWithoutUserInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  shipId?: Prisma.StringFieldUpdateOperationsInput | string
+  currentPlanetId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  x?: Prisma.FloatFieldUpdateOperationsInput | number
+  y?: Prisma.FloatFieldUpdateOperationsInput | number
+  z?: Prisma.FloatFieldUpdateOperationsInput | number
 }
 
 
@@ -859,7 +961,6 @@ export type GameDataUncheckedUpdateWithoutBalanceInput = {
 
 export type GameDataCountOutputType = {
   planetVisit: number
-  User: number
   balance: number
   ship: number
   InventoryItem: number
@@ -867,7 +968,6 @@ export type GameDataCountOutputType = {
 
 export type GameDataCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   planetVisit?: boolean | GameDataCountOutputTypeCountPlanetVisitArgs
-  User?: boolean | GameDataCountOutputTypeCountUserArgs
   balance?: boolean | GameDataCountOutputTypeCountBalanceArgs
   ship?: boolean | GameDataCountOutputTypeCountShipArgs
   InventoryItem?: boolean | GameDataCountOutputTypeCountInventoryItemArgs
@@ -888,13 +988,6 @@ export type GameDataCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Ext
  */
 export type GameDataCountOutputTypeCountPlanetVisitArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.PlanetVisitWhereInput
-}
-
-/**
- * GameDataCountOutputType without action
- */
-export type GameDataCountOutputTypeCountUserArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.UserWhereInput
 }
 
 /**
@@ -923,11 +1016,12 @@ export type GameDataSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   id?: boolean
   uid?: boolean
   shipId?: boolean
+  currentPlanetId?: boolean
   x?: boolean
   y?: boolean
   z?: boolean
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   planetVisit?: boolean | Prisma.GameData$planetVisitArgs<ExtArgs>
-  User?: boolean | Prisma.GameData$UserArgs<ExtArgs>
   balance?: boolean | Prisma.GameData$balanceArgs<ExtArgs>
   ship?: boolean | Prisma.GameData$shipArgs<ExtArgs>
   InventoryItem?: boolean | Prisma.GameData$InventoryItemArgs<ExtArgs>
@@ -938,54 +1032,64 @@ export type GameDataSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   id?: boolean
   uid?: boolean
   shipId?: boolean
+  currentPlanetId?: boolean
   x?: boolean
   y?: boolean
   z?: boolean
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["gameData"]>
 
 export type GameDataSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   uid?: boolean
   shipId?: boolean
+  currentPlanetId?: boolean
   x?: boolean
   y?: boolean
   z?: boolean
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["gameData"]>
 
 export type GameDataSelectScalar = {
   id?: boolean
   uid?: boolean
   shipId?: boolean
+  currentPlanetId?: boolean
   x?: boolean
   y?: boolean
   z?: boolean
 }
 
-export type GameDataOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "uid" | "shipId" | "x" | "y" | "z", ExtArgs["result"]["gameData"]>
+export type GameDataOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "uid" | "shipId" | "currentPlanetId" | "x" | "y" | "z", ExtArgs["result"]["gameData"]>
 export type GameDataInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   planetVisit?: boolean | Prisma.GameData$planetVisitArgs<ExtArgs>
-  User?: boolean | Prisma.GameData$UserArgs<ExtArgs>
   balance?: boolean | Prisma.GameData$balanceArgs<ExtArgs>
   ship?: boolean | Prisma.GameData$shipArgs<ExtArgs>
   InventoryItem?: boolean | Prisma.GameData$InventoryItemArgs<ExtArgs>
   _count?: boolean | Prisma.GameDataCountOutputTypeDefaultArgs<ExtArgs>
 }
-export type GameDataIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
-export type GameDataIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type GameDataIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+}
+export type GameDataIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+}
 
 export type $GameDataPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "GameData"
   objects: {
+    user: Prisma.$UserPayload<ExtArgs>
     planetVisit: Prisma.$PlanetVisitPayload<ExtArgs>[]
-    User: Prisma.$UserPayload<ExtArgs>[]
     balance: Prisma.$BalancePayload<ExtArgs>[]
     ship: Prisma.$ShipPayload<ExtArgs>[]
     InventoryItem: Prisma.$InventoryItemPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    id: number
+    id: string
     uid: string
     shipId: string
+    currentPlanetId: string | null
     x: number
     y: number
     z: number
@@ -1383,8 +1487,8 @@ readonly fields: GameDataFieldRefs;
  */
 export interface Prisma__GameDataClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   planetVisit<T extends Prisma.GameData$planetVisitArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.GameData$planetVisitArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PlanetVisitPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  User<T extends Prisma.GameData$UserArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.GameData$UserArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   balance<T extends Prisma.GameData$balanceArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.GameData$balanceArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BalancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   ship<T extends Prisma.GameData$shipArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.GameData$shipArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ShipPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   InventoryItem<T extends Prisma.GameData$InventoryItemArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.GameData$InventoryItemArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InventoryItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -1417,9 +1521,10 @@ export interface Prisma__GameDataClient<T, Null = never, ExtArgs extends runtime
  * Fields of the GameData model
  */
 export interface GameDataFieldRefs {
-  readonly id: Prisma.FieldRef<"GameData", 'Int'>
+  readonly id: Prisma.FieldRef<"GameData", 'String'>
   readonly uid: Prisma.FieldRef<"GameData", 'String'>
   readonly shipId: Prisma.FieldRef<"GameData", 'String'>
+  readonly currentPlanetId: Prisma.FieldRef<"GameData", 'String'>
   readonly x: Prisma.FieldRef<"GameData", 'Float'>
   readonly y: Prisma.FieldRef<"GameData", 'Float'>
   readonly z: Prisma.FieldRef<"GameData", 'Float'>
@@ -1672,6 +1777,10 @@ export type GameDataCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extens
    */
   data: Prisma.GameDataCreateManyInput | Prisma.GameDataCreateManyInput[]
   skipDuplicates?: boolean
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.GameDataIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1742,6 +1851,10 @@ export type GameDataUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extens
    * Limit how many GameData to update.
    */
   limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.GameDataIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1832,30 +1945,6 @@ export type GameData$planetVisitArgs<ExtArgs extends runtime.Types.Extensions.In
   take?: number
   skip?: number
   distinct?: Prisma.PlanetVisitScalarFieldEnum | Prisma.PlanetVisitScalarFieldEnum[]
-}
-
-/**
- * GameData.User
- */
-export type GameData$UserArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the User
-   */
-  select?: Prisma.UserSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the User
-   */
-  omit?: Prisma.UserOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.UserInclude<ExtArgs> | null
-  where?: Prisma.UserWhereInput
-  orderBy?: Prisma.UserOrderByWithRelationInput | Prisma.UserOrderByWithRelationInput[]
-  cursor?: Prisma.UserWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.UserScalarFieldEnum | Prisma.UserScalarFieldEnum[]
 }
 
 /**

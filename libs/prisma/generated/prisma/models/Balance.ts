@@ -41,7 +41,7 @@ export type BalanceMinAggregateOutputType = {
   amount: number | null
   createdAt: Date | null
   updatedAt: Date | null
-  gameDataShipId: string | null
+  gameDataId: string | null
 }
 
 export type BalanceMaxAggregateOutputType = {
@@ -51,7 +51,7 @@ export type BalanceMaxAggregateOutputType = {
   amount: number | null
   createdAt: Date | null
   updatedAt: Date | null
-  gameDataShipId: string | null
+  gameDataId: string | null
 }
 
 export type BalanceCountAggregateOutputType = {
@@ -61,7 +61,7 @@ export type BalanceCountAggregateOutputType = {
   amount: number
   createdAt: number
   updatedAt: number
-  gameDataShipId: number
+  gameDataId: number
   _all: number
 }
 
@@ -81,7 +81,7 @@ export type BalanceMinAggregateInputType = {
   amount?: true
   createdAt?: true
   updatedAt?: true
-  gameDataShipId?: true
+  gameDataId?: true
 }
 
 export type BalanceMaxAggregateInputType = {
@@ -91,7 +91,7 @@ export type BalanceMaxAggregateInputType = {
   amount?: true
   createdAt?: true
   updatedAt?: true
-  gameDataShipId?: true
+  gameDataId?: true
 }
 
 export type BalanceCountAggregateInputType = {
@@ -101,7 +101,7 @@ export type BalanceCountAggregateInputType = {
   amount?: true
   createdAt?: true
   updatedAt?: true
-  gameDataShipId?: true
+  gameDataId?: true
   _all?: true
 }
 
@@ -198,7 +198,7 @@ export type BalanceGroupByOutputType = {
   amount: number
   createdAt: Date
   updatedAt: Date
-  gameDataShipId: string | null
+  gameDataId: string
   _count: BalanceCountAggregateOutputType | null
   _avg: BalanceAvgAggregateOutputType | null
   _sum: BalanceSumAggregateOutputType | null
@@ -231,7 +231,7 @@ export type BalanceWhereInput = {
   amount?: Prisma.IntFilter<"Balance"> | number
   createdAt?: Prisma.DateTimeFilter<"Balance"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Balance"> | Date | string
-  gameDataShipId?: Prisma.StringNullableFilter<"Balance"> | string | null
+  gameDataId?: Prisma.StringFilter<"Balance"> | string
   currency?: Prisma.XOR<Prisma.CurrencyScalarRelationFilter, Prisma.CurrencyWhereInput>
   gameData?: Prisma.XOR<Prisma.GameDataNullableScalarRelationFilter, Prisma.GameDataWhereInput> | null
 }
@@ -243,7 +243,7 @@ export type BalanceOrderByWithRelationInput = {
   amount?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  gameDataShipId?: Prisma.SortOrderInput | Prisma.SortOrder
+  gameDataId?: Prisma.SortOrder
   currency?: Prisma.CurrencyOrderByWithRelationInput
   gameData?: Prisma.GameDataOrderByWithRelationInput
 }
@@ -259,7 +259,7 @@ export type BalanceWhereUniqueInput = Prisma.AtLeast<{
   amount?: Prisma.IntFilter<"Balance"> | number
   createdAt?: Prisma.DateTimeFilter<"Balance"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Balance"> | Date | string
-  gameDataShipId?: Prisma.StringNullableFilter<"Balance"> | string | null
+  gameDataId?: Prisma.StringFilter<"Balance"> | string
   currency?: Prisma.XOR<Prisma.CurrencyScalarRelationFilter, Prisma.CurrencyWhereInput>
   gameData?: Prisma.XOR<Prisma.GameDataNullableScalarRelationFilter, Prisma.GameDataWhereInput> | null
 }, "id" | "currencyId" | "uid_currencyId">
@@ -271,7 +271,7 @@ export type BalanceOrderByWithAggregationInput = {
   amount?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  gameDataShipId?: Prisma.SortOrderInput | Prisma.SortOrder
+  gameDataId?: Prisma.SortOrder
   _count?: Prisma.BalanceCountOrderByAggregateInput
   _avg?: Prisma.BalanceAvgOrderByAggregateInput
   _max?: Prisma.BalanceMaxOrderByAggregateInput
@@ -289,12 +289,11 @@ export type BalanceScalarWhereWithAggregatesInput = {
   amount?: Prisma.IntWithAggregatesFilter<"Balance"> | number
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Balance"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Balance"> | Date | string
-  gameDataShipId?: Prisma.StringNullableWithAggregatesFilter<"Balance"> | string | null
+  gameDataId?: Prisma.StringWithAggregatesFilter<"Balance"> | string
 }
 
 export type BalanceCreateInput = {
   id?: string
-  uid: string
   amount: number
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -309,12 +308,11 @@ export type BalanceUncheckedCreateInput = {
   amount: number
   createdAt?: Date | string
   updatedAt?: Date | string
-  gameDataShipId?: string | null
+  gameDataId: string
 }
 
 export type BalanceUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  uid?: Prisma.StringFieldUpdateOperationsInput | string
   amount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -329,7 +327,7 @@ export type BalanceUncheckedUpdateInput = {
   amount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  gameDataShipId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gameDataId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type BalanceCreateManyInput = {
@@ -339,12 +337,11 @@ export type BalanceCreateManyInput = {
   amount: number
   createdAt?: Date | string
   updatedAt?: Date | string
-  gameDataShipId?: string | null
+  gameDataId: string
 }
 
 export type BalanceUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  uid?: Prisma.StringFieldUpdateOperationsInput | string
   amount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -357,7 +354,7 @@ export type BalanceUncheckedUpdateManyInput = {
   amount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  gameDataShipId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gameDataId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type BalanceListRelationFilter = {
@@ -382,7 +379,7 @@ export type BalanceCountOrderByAggregateInput = {
   amount?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  gameDataShipId?: Prisma.SortOrder
+  gameDataId?: Prisma.SortOrder
 }
 
 export type BalanceAvgOrderByAggregateInput = {
@@ -396,7 +393,7 @@ export type BalanceMaxOrderByAggregateInput = {
   amount?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  gameDataShipId?: Prisma.SortOrder
+  gameDataId?: Prisma.SortOrder
 }
 
 export type BalanceMinOrderByAggregateInput = {
@@ -406,7 +403,7 @@ export type BalanceMinOrderByAggregateInput = {
   amount?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  gameDataShipId?: Prisma.SortOrder
+  gameDataId?: Prisma.SortOrder
 }
 
 export type BalanceSumOrderByAggregateInput = {
@@ -499,7 +496,6 @@ export type BalanceUncheckedUpdateManyWithoutCurrencyNestedInput = {
 
 export type BalanceCreateWithoutGameDataInput = {
   id?: string
-  uid: string
   amount: number
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -508,7 +504,6 @@ export type BalanceCreateWithoutGameDataInput = {
 
 export type BalanceUncheckedCreateWithoutGameDataInput = {
   id?: string
-  uid: string
   currencyId: string
   amount: number
   createdAt?: Date | string
@@ -551,12 +546,11 @@ export type BalanceScalarWhereInput = {
   amount?: Prisma.IntFilter<"Balance"> | number
   createdAt?: Prisma.DateTimeFilter<"Balance"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Balance"> | Date | string
-  gameDataShipId?: Prisma.StringNullableFilter<"Balance"> | string | null
+  gameDataId?: Prisma.StringFilter<"Balance"> | string
 }
 
 export type BalanceCreateWithoutCurrencyInput = {
   id?: string
-  uid: string
   amount: number
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -569,7 +563,7 @@ export type BalanceUncheckedCreateWithoutCurrencyInput = {
   amount: number
   createdAt?: Date | string
   updatedAt?: Date | string
-  gameDataShipId?: string | null
+  gameDataId: string
 }
 
 export type BalanceCreateOrConnectWithoutCurrencyInput = {
@@ -600,7 +594,6 @@ export type BalanceUpdateManyWithWhereWithoutCurrencyInput = {
 
 export type BalanceCreateManyGameDataInput = {
   id?: string
-  uid: string
   currencyId: string
   amount: number
   createdAt?: Date | string
@@ -609,7 +602,6 @@ export type BalanceCreateManyGameDataInput = {
 
 export type BalanceUpdateWithoutGameDataInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  uid?: Prisma.StringFieldUpdateOperationsInput | string
   amount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -618,7 +610,6 @@ export type BalanceUpdateWithoutGameDataInput = {
 
 export type BalanceUncheckedUpdateWithoutGameDataInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  uid?: Prisma.StringFieldUpdateOperationsInput | string
   currencyId?: Prisma.StringFieldUpdateOperationsInput | string
   amount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -627,7 +618,6 @@ export type BalanceUncheckedUpdateWithoutGameDataInput = {
 
 export type BalanceUncheckedUpdateManyWithoutGameDataInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  uid?: Prisma.StringFieldUpdateOperationsInput | string
   currencyId?: Prisma.StringFieldUpdateOperationsInput | string
   amount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -640,12 +630,11 @@ export type BalanceCreateManyCurrencyInput = {
   amount: number
   createdAt?: Date | string
   updatedAt?: Date | string
-  gameDataShipId?: string | null
+  gameDataId: string
 }
 
 export type BalanceUpdateWithoutCurrencyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  uid?: Prisma.StringFieldUpdateOperationsInput | string
   amount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -658,7 +647,7 @@ export type BalanceUncheckedUpdateWithoutCurrencyInput = {
   amount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  gameDataShipId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gameDataId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type BalanceUncheckedUpdateManyWithoutCurrencyInput = {
@@ -667,7 +656,7 @@ export type BalanceUncheckedUpdateManyWithoutCurrencyInput = {
   amount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  gameDataShipId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gameDataId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
@@ -679,7 +668,7 @@ export type BalanceSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   amount?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  gameDataShipId?: boolean
+  gameDataId?: boolean
   currency?: boolean | Prisma.CurrencyDefaultArgs<ExtArgs>
   gameData?: boolean | Prisma.Balance$gameDataArgs<ExtArgs>
 }, ExtArgs["result"]["balance"]>
@@ -691,7 +680,7 @@ export type BalanceSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   amount?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  gameDataShipId?: boolean
+  gameDataId?: boolean
   currency?: boolean | Prisma.CurrencyDefaultArgs<ExtArgs>
   gameData?: boolean | Prisma.Balance$gameDataArgs<ExtArgs>
 }, ExtArgs["result"]["balance"]>
@@ -703,7 +692,7 @@ export type BalanceSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   amount?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  gameDataShipId?: boolean
+  gameDataId?: boolean
   currency?: boolean | Prisma.CurrencyDefaultArgs<ExtArgs>
   gameData?: boolean | Prisma.Balance$gameDataArgs<ExtArgs>
 }, ExtArgs["result"]["balance"]>
@@ -715,10 +704,10 @@ export type BalanceSelectScalar = {
   amount?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  gameDataShipId?: boolean
+  gameDataId?: boolean
 }
 
-export type BalanceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "uid" | "currencyId" | "amount" | "createdAt" | "updatedAt" | "gameDataShipId", ExtArgs["result"]["balance"]>
+export type BalanceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "uid" | "currencyId" | "amount" | "createdAt" | "updatedAt" | "gameDataId", ExtArgs["result"]["balance"]>
 export type BalanceInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   currency?: boolean | Prisma.CurrencyDefaultArgs<ExtArgs>
   gameData?: boolean | Prisma.Balance$gameDataArgs<ExtArgs>
@@ -745,7 +734,7 @@ export type $BalancePayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     amount: number
     createdAt: Date
     updatedAt: Date
-    gameDataShipId: string | null
+    gameDataId: string
   }, ExtArgs["result"]["balance"]>
   composites: {}
 }
@@ -1177,7 +1166,7 @@ export interface BalanceFieldRefs {
   readonly amount: Prisma.FieldRef<"Balance", 'Int'>
   readonly createdAt: Prisma.FieldRef<"Balance", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Balance", 'DateTime'>
-  readonly gameDataShipId: Prisma.FieldRef<"Balance", 'String'>
+  readonly gameDataId: Prisma.FieldRef<"Balance", 'String'>
 }
     
 

@@ -27,10 +27,14 @@ export type AggregateMinigSession = {
 }
 
 export type MinigSessionAvgAggregateOutputType = {
+  maxAmount: number | null
+  mined: number | null
   estimatedAmount: number | null
 }
 
 export type MinigSessionSumAggregateOutputType = {
+  maxAmount: number | null
+  mined: number | null
   estimatedAmount: number | null
 }
 
@@ -42,6 +46,9 @@ export type MinigSessionMinAggregateOutputType = {
   planetSeed: string | null
   startedAt: Date | null
   status: $Enums.MiningStatus | null
+  lastClaimAt: Date | null
+  maxAmount: number | null
+  mined: number | null
   estimatedAmount: number | null
   finishedAt: Date | null
 }
@@ -54,6 +61,9 @@ export type MinigSessionMaxAggregateOutputType = {
   planetSeed: string | null
   startedAt: Date | null
   status: $Enums.MiningStatus | null
+  lastClaimAt: Date | null
+  maxAmount: number | null
+  mined: number | null
   estimatedAmount: number | null
   finishedAt: Date | null
 }
@@ -66,6 +76,9 @@ export type MinigSessionCountAggregateOutputType = {
   planetSeed: number
   startedAt: number
   status: number
+  lastClaimAt: number
+  maxAmount: number
+  mined: number
   estimatedAmount: number
   finishedAt: number
   _all: number
@@ -73,10 +86,14 @@ export type MinigSessionCountAggregateOutputType = {
 
 
 export type MinigSessionAvgAggregateInputType = {
+  maxAmount?: true
+  mined?: true
   estimatedAmount?: true
 }
 
 export type MinigSessionSumAggregateInputType = {
+  maxAmount?: true
+  mined?: true
   estimatedAmount?: true
 }
 
@@ -88,6 +105,9 @@ export type MinigSessionMinAggregateInputType = {
   planetSeed?: true
   startedAt?: true
   status?: true
+  lastClaimAt?: true
+  maxAmount?: true
+  mined?: true
   estimatedAmount?: true
   finishedAt?: true
 }
@@ -100,6 +120,9 @@ export type MinigSessionMaxAggregateInputType = {
   planetSeed?: true
   startedAt?: true
   status?: true
+  lastClaimAt?: true
+  maxAmount?: true
+  mined?: true
   estimatedAmount?: true
   finishedAt?: true
 }
@@ -112,6 +135,9 @@ export type MinigSessionCountAggregateInputType = {
   planetSeed?: true
   startedAt?: true
   status?: true
+  lastClaimAt?: true
+  maxAmount?: true
+  mined?: true
   estimatedAmount?: true
   finishedAt?: true
   _all?: true
@@ -211,6 +237,9 @@ export type MinigSessionGroupByOutputType = {
   planetSeed: string
   startedAt: Date
   status: $Enums.MiningStatus
+  lastClaimAt: Date
+  maxAmount: number
+  mined: number
   estimatedAmount: number
   finishedAt: Date | null
   _count: MinigSessionCountAggregateOutputType | null
@@ -246,6 +275,9 @@ export type MinigSessionWhereInput = {
   planetSeed?: Prisma.StringFilter<"MinigSession"> | string
   startedAt?: Prisma.DateTimeFilter<"MinigSession"> | Date | string
   status?: Prisma.EnumMiningStatusFilter<"MinigSession"> | $Enums.MiningStatus
+  lastClaimAt?: Prisma.DateTimeFilter<"MinigSession"> | Date | string
+  maxAmount?: Prisma.FloatFilter<"MinigSession"> | number
+  mined?: Prisma.FloatFilter<"MinigSession"> | number
   estimatedAmount?: Prisma.FloatFilter<"MinigSession"> | number
   finishedAt?: Prisma.DateTimeNullableFilter<"MinigSession"> | Date | string | null
 }
@@ -258,6 +290,9 @@ export type MinigSessionOrderByWithRelationInput = {
   planetSeed?: Prisma.SortOrder
   startedAt?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  lastClaimAt?: Prisma.SortOrder
+  maxAmount?: Prisma.SortOrder
+  mined?: Prisma.SortOrder
   estimatedAmount?: Prisma.SortOrder
   finishedAt?: Prisma.SortOrderInput | Prisma.SortOrder
 }
@@ -273,6 +308,9 @@ export type MinigSessionWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.MinigSessionWhereInput | Prisma.MinigSessionWhereInput[]
   startedAt?: Prisma.DateTimeFilter<"MinigSession"> | Date | string
   status?: Prisma.EnumMiningStatusFilter<"MinigSession"> | $Enums.MiningStatus
+  lastClaimAt?: Prisma.DateTimeFilter<"MinigSession"> | Date | string
+  maxAmount?: Prisma.FloatFilter<"MinigSession"> | number
+  mined?: Prisma.FloatFilter<"MinigSession"> | number
   estimatedAmount?: Prisma.FloatFilter<"MinigSession"> | number
   finishedAt?: Prisma.DateTimeNullableFilter<"MinigSession"> | Date | string | null
 }, "id" | "uid" | "resourceId" | "planetId" | "planetSeed">
@@ -285,6 +323,9 @@ export type MinigSessionOrderByWithAggregationInput = {
   planetSeed?: Prisma.SortOrder
   startedAt?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  lastClaimAt?: Prisma.SortOrder
+  maxAmount?: Prisma.SortOrder
+  mined?: Prisma.SortOrder
   estimatedAmount?: Prisma.SortOrder
   finishedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.MinigSessionCountOrderByAggregateInput
@@ -305,6 +346,9 @@ export type MinigSessionScalarWhereWithAggregatesInput = {
   planetSeed?: Prisma.StringWithAggregatesFilter<"MinigSession"> | string
   startedAt?: Prisma.DateTimeWithAggregatesFilter<"MinigSession"> | Date | string
   status?: Prisma.EnumMiningStatusWithAggregatesFilter<"MinigSession"> | $Enums.MiningStatus
+  lastClaimAt?: Prisma.DateTimeWithAggregatesFilter<"MinigSession"> | Date | string
+  maxAmount?: Prisma.FloatWithAggregatesFilter<"MinigSession"> | number
+  mined?: Prisma.FloatWithAggregatesFilter<"MinigSession"> | number
   estimatedAmount?: Prisma.FloatWithAggregatesFilter<"MinigSession"> | number
   finishedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"MinigSession"> | Date | string | null
 }
@@ -317,6 +361,9 @@ export type MinigSessionCreateInput = {
   planetSeed: string
   startedAt: Date | string
   status?: $Enums.MiningStatus
+  lastClaimAt?: Date | string
+  maxAmount: number
+  mined?: number
   estimatedAmount: number
   finishedAt?: Date | string | null
 }
@@ -329,6 +376,9 @@ export type MinigSessionUncheckedCreateInput = {
   planetSeed: string
   startedAt: Date | string
   status?: $Enums.MiningStatus
+  lastClaimAt?: Date | string
+  maxAmount: number
+  mined?: number
   estimatedAmount: number
   finishedAt?: Date | string | null
 }
@@ -341,6 +391,9 @@ export type MinigSessionUpdateInput = {
   planetSeed?: Prisma.StringFieldUpdateOperationsInput | string
   startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumMiningStatusFieldUpdateOperationsInput | $Enums.MiningStatus
+  lastClaimAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  maxAmount?: Prisma.FloatFieldUpdateOperationsInput | number
+  mined?: Prisma.FloatFieldUpdateOperationsInput | number
   estimatedAmount?: Prisma.FloatFieldUpdateOperationsInput | number
   finishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
@@ -353,6 +406,9 @@ export type MinigSessionUncheckedUpdateInput = {
   planetSeed?: Prisma.StringFieldUpdateOperationsInput | string
   startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumMiningStatusFieldUpdateOperationsInput | $Enums.MiningStatus
+  lastClaimAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  maxAmount?: Prisma.FloatFieldUpdateOperationsInput | number
+  mined?: Prisma.FloatFieldUpdateOperationsInput | number
   estimatedAmount?: Prisma.FloatFieldUpdateOperationsInput | number
   finishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
@@ -365,6 +421,9 @@ export type MinigSessionCreateManyInput = {
   planetSeed: string
   startedAt: Date | string
   status?: $Enums.MiningStatus
+  lastClaimAt?: Date | string
+  maxAmount: number
+  mined?: number
   estimatedAmount: number
   finishedAt?: Date | string | null
 }
@@ -377,6 +436,9 @@ export type MinigSessionUpdateManyMutationInput = {
   planetSeed?: Prisma.StringFieldUpdateOperationsInput | string
   startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumMiningStatusFieldUpdateOperationsInput | $Enums.MiningStatus
+  lastClaimAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  maxAmount?: Prisma.FloatFieldUpdateOperationsInput | number
+  mined?: Prisma.FloatFieldUpdateOperationsInput | number
   estimatedAmount?: Prisma.FloatFieldUpdateOperationsInput | number
   finishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
@@ -389,6 +451,9 @@ export type MinigSessionUncheckedUpdateManyInput = {
   planetSeed?: Prisma.StringFieldUpdateOperationsInput | string
   startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumMiningStatusFieldUpdateOperationsInput | $Enums.MiningStatus
+  lastClaimAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  maxAmount?: Prisma.FloatFieldUpdateOperationsInput | number
+  mined?: Prisma.FloatFieldUpdateOperationsInput | number
   estimatedAmount?: Prisma.FloatFieldUpdateOperationsInput | number
   finishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
@@ -401,11 +466,16 @@ export type MinigSessionCountOrderByAggregateInput = {
   planetSeed?: Prisma.SortOrder
   startedAt?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  lastClaimAt?: Prisma.SortOrder
+  maxAmount?: Prisma.SortOrder
+  mined?: Prisma.SortOrder
   estimatedAmount?: Prisma.SortOrder
   finishedAt?: Prisma.SortOrder
 }
 
 export type MinigSessionAvgOrderByAggregateInput = {
+  maxAmount?: Prisma.SortOrder
+  mined?: Prisma.SortOrder
   estimatedAmount?: Prisma.SortOrder
 }
 
@@ -417,6 +487,9 @@ export type MinigSessionMaxOrderByAggregateInput = {
   planetSeed?: Prisma.SortOrder
   startedAt?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  lastClaimAt?: Prisma.SortOrder
+  maxAmount?: Prisma.SortOrder
+  mined?: Prisma.SortOrder
   estimatedAmount?: Prisma.SortOrder
   finishedAt?: Prisma.SortOrder
 }
@@ -429,11 +502,16 @@ export type MinigSessionMinOrderByAggregateInput = {
   planetSeed?: Prisma.SortOrder
   startedAt?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  lastClaimAt?: Prisma.SortOrder
+  maxAmount?: Prisma.SortOrder
+  mined?: Prisma.SortOrder
   estimatedAmount?: Prisma.SortOrder
   finishedAt?: Prisma.SortOrder
 }
 
 export type MinigSessionSumOrderByAggregateInput = {
+  maxAmount?: Prisma.SortOrder
+  mined?: Prisma.SortOrder
   estimatedAmount?: Prisma.SortOrder
 }
 
@@ -455,6 +533,9 @@ export type MinigSessionSelect<ExtArgs extends runtime.Types.Extensions.Internal
   planetSeed?: boolean
   startedAt?: boolean
   status?: boolean
+  lastClaimAt?: boolean
+  maxAmount?: boolean
+  mined?: boolean
   estimatedAmount?: boolean
   finishedAt?: boolean
 }, ExtArgs["result"]["minigSession"]>
@@ -467,6 +548,9 @@ export type MinigSessionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
   planetSeed?: boolean
   startedAt?: boolean
   status?: boolean
+  lastClaimAt?: boolean
+  maxAmount?: boolean
+  mined?: boolean
   estimatedAmount?: boolean
   finishedAt?: boolean
 }, ExtArgs["result"]["minigSession"]>
@@ -479,6 +563,9 @@ export type MinigSessionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
   planetSeed?: boolean
   startedAt?: boolean
   status?: boolean
+  lastClaimAt?: boolean
+  maxAmount?: boolean
+  mined?: boolean
   estimatedAmount?: boolean
   finishedAt?: boolean
 }, ExtArgs["result"]["minigSession"]>
@@ -491,11 +578,14 @@ export type MinigSessionSelectScalar = {
   planetSeed?: boolean
   startedAt?: boolean
   status?: boolean
+  lastClaimAt?: boolean
+  maxAmount?: boolean
+  mined?: boolean
   estimatedAmount?: boolean
   finishedAt?: boolean
 }
 
-export type MinigSessionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "uid" | "resourceId" | "planetId" | "planetSeed" | "startedAt" | "status" | "estimatedAmount" | "finishedAt", ExtArgs["result"]["minigSession"]>
+export type MinigSessionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "uid" | "resourceId" | "planetId" | "planetSeed" | "startedAt" | "status" | "lastClaimAt" | "maxAmount" | "mined" | "estimatedAmount" | "finishedAt", ExtArgs["result"]["minigSession"]>
 
 export type $MinigSessionPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "MinigSession"
@@ -508,6 +598,9 @@ export type $MinigSessionPayload<ExtArgs extends runtime.Types.Extensions.Intern
     planetSeed: string
     startedAt: Date
     status: $Enums.MiningStatus
+    lastClaimAt: Date
+    maxAmount: number
+    mined: number
     estimatedAmount: number
     finishedAt: Date | null
   }, ExtArgs["result"]["minigSession"]>
@@ -940,6 +1033,9 @@ export interface MinigSessionFieldRefs {
   readonly planetSeed: Prisma.FieldRef<"MinigSession", 'String'>
   readonly startedAt: Prisma.FieldRef<"MinigSession", 'DateTime'>
   readonly status: Prisma.FieldRef<"MinigSession", 'MiningStatus'>
+  readonly lastClaimAt: Prisma.FieldRef<"MinigSession", 'DateTime'>
+  readonly maxAmount: Prisma.FieldRef<"MinigSession", 'Float'>
+  readonly mined: Prisma.FieldRef<"MinigSession", 'Float'>
   readonly estimatedAmount: Prisma.FieldRef<"MinigSession", 'Float'>
   readonly finishedAt: Prisma.FieldRef<"MinigSession", 'DateTime'>
 }

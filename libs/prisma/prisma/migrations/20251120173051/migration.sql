@@ -37,6 +37,18 @@ CREATE TABLE "User" (
 );
 
 -- CreateTable
+CREATE TABLE "GameData" (
+    "id" TEXT NOT NULL,
+    "uid" TEXT NOT NULL,
+    "shipId" TEXT NOT NULL,
+    "x" DOUBLE PRECISION NOT NULL DEFAULT 0,
+    "y" DOUBLE PRECISION NOT NULL DEFAULT 0,
+    "z" DOUBLE PRECISION NOT NULL DEFAULT 0,
+
+    CONSTRAINT "GameData_pkey" PRIMARY KEY ("id","uid")
+);
+
+-- CreateTable
 CREATE TABLE "Ship" (
     "id" TEXT NOT NULL,
     "uid" TEXT NOT NULL,
@@ -48,11 +60,9 @@ CREATE TABLE "Ship" (
     "cargoSize" DOUBLE PRECISION NOT NULL DEFAULT 100,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
-    "gameDataShipId" TEXT,
-    "warehouseId" TEXT,
     "isSelected" BOOLEAN NOT NULL DEFAULT false,
 
-    CONSTRAINT "Ship_pkey" PRIMARY KEY ("id","uid")
+    CONSTRAINT "Ship_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -69,35 +79,6 @@ CREATE TABLE "ShipComponent" (
     "uid" TEXT,
 
     CONSTRAINT "ShipComponent_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
-CREATE TABLE "GameData" (
-    "id" SERIAL NOT NULL,
-    "uid" TEXT NOT NULL,
-    "shipId" TEXT NOT NULL,
-    "x" DOUBLE PRECISION NOT NULL DEFAULT 0,
-    "y" DOUBLE PRECISION NOT NULL DEFAULT 0,
-    "z" DOUBLE PRECISION NOT NULL DEFAULT 0
-);
-
--- CreateTable
-CREATE TABLE "Warehouse" (
-    "id" TEXT NOT NULL,
-    "uid" TEXT NOT NULL,
-    "level" INTEGER NOT NULL DEFAULT 1,
-    "type" "ShipComponentType" NOT NULL DEFAULT 'WAREHOUSE',
-    "shipId" TEXT NOT NULL,
-    "foodQuantity" INTEGER NOT NULL DEFAULT 0,
-    "coalQuantity" INTEGER NOT NULL DEFAULT 0,
-    "waterQuantity" INTEGER NOT NULL DEFAULT 0,
-    "herbsQuantity" INTEGER NOT NULL DEFAULT 0,
-    "paperQuantity" INTEGER NOT NULL DEFAULT 0,
-    "upgradeCost" JSONB NOT NULL,
-    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL,
-
-    CONSTRAINT "Warehouse_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -191,7 +172,7 @@ CREATE TABLE "Balance" (
     "amount" INTEGER NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
-    "gameDataShipId" TEXT,
+    "gameDataId" TEXT NOT NULL,
 
     CONSTRAINT "Balance_pkey" PRIMARY KEY ("id")
 );
@@ -218,28 +199,16 @@ CREATE UNIQUE INDEX "User_telegramId_key" ON "User"("telegramId");
 CREATE UNIQUE INDEX "User_username_key" ON "User"("username");
 
 -- CreateIndex
-CREATE INDEX "User_uid_telegramId_idx" ON "User"("uid", "telegramId");
+CREATE UNIQUE INDEX "GameData_shipId_key" ON "GameData"("shipId");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "User_telegramId_uid_key" ON "User"("telegramId", "uid");
-
--- CreateIndex
-CREATE UNIQUE INDEX "Ship_id_uid_key" ON "Ship"("id", "uid");
-
--- CreateIndex
-CREATE UNIQUE INDEX "Ship_uid_key" ON "Ship"("uid");
+CREATE UNIQUE INDEX "GameData_id_uid_key" ON "GameData"("id", "uid");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "GameData_uid_key" ON "GameData"("uid");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "GameData_shipId_key" ON "GameData"("shipId");
-
--- CreateIndex
-CREATE UNIQUE INDEX "Warehouse_uid_key" ON "Warehouse"("uid");
-
--- CreateIndex
-CREATE UNIQUE INDEX "Warehouse_shipId_key" ON "Warehouse"("shipId");
+CREATE UNIQUE INDEX "Ship_uid_key" ON "Ship"("uid");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Planet_seed_key" ON "Planet"("seed");
@@ -272,16 +241,13 @@ CREATE UNIQUE INDEX "MinigSession_planetId_key" ON "MinigSession"("planetId");
 CREATE UNIQUE INDEX "MinigSession_planetSeed_key" ON "MinigSession"("planetSeed");
 
 -- AddForeignKey
-ALTER TABLE "User" ADD CONSTRAINT "User_uid_fkey" FOREIGN KEY ("uid") REFERENCES "GameData"("uid") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "GameData" ADD CONSTRAINT "GameData_uid_fkey" FOREIGN KEY ("uid") REFERENCES "User"("uid") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Ship" ADD CONSTRAINT "Ship_warehouseId_fkey" FOREIGN KEY ("warehouseId") REFERENCES "Warehouse"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE "Ship" ADD CONSTRAINT "Ship_uid_fkey" FOREIGN KEY ("uid") REFERENCES "GameData"("uid") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Ship" ADD CONSTRAINT "Ship_gameDataShipId_fkey" FOREIGN KEY ("gameDataShipId") REFERENCES "GameData"("shipId") ON DELETE SET NULL ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "ShipComponent" ADD CONSTRAINT "ShipComponent_shipId_uid_fkey" FOREIGN KEY ("shipId", "uid") REFERENCES "Ship"("id", "uid") ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE "ShipComponent" ADD CONSTRAINT "ShipComponent_shipId_fkey" FOREIGN KEY ("shipId") REFERENCES "Ship"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "InventoryItem" ADD CONSTRAINT "InventoryItem_uid_fkey" FOREIGN KEY ("uid") REFERENCES "GameData"("uid") ON DELETE RESTRICT ON UPDATE CASCADE;
@@ -299,4 +265,4 @@ ALTER TABLE "PlanetVisit" ADD CONSTRAINT "PlanetVisit_gameDataUid_fkey" FOREIGN 
 ALTER TABLE "Balance" ADD CONSTRAINT "Balance_currencyId_fkey" FOREIGN KEY ("currencyId") REFERENCES "Currency"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Balance" ADD CONSTRAINT "Balance_gameDataShipId_fkey" FOREIGN KEY ("gameDataShipId") REFERENCES "GameData"("shipId") ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE "Balance" ADD CONSTRAINT "Balance_gameDataId_uid_fkey" FOREIGN KEY ("gameDataId", "uid") REFERENCES "GameData"("id", "uid") ON DELETE RESTRICT ON UPDATE CASCADE;

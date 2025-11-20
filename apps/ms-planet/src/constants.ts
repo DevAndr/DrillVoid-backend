@@ -29,7 +29,6 @@ export const RESOURCE_PLANET_POOL: Record<
       'ALPHACREDITS',
     ],
   },
-
   LUSH: {
     COMMON: ['CARBON', 'WATERICE', 'PHOSPHORUS', 'SULFUR', 'CALCIUM'],
     UNCOMMON: ['ALUMINUM', 'LITHIUM', 'BORON', 'MAGNESIUM'],
@@ -43,7 +42,6 @@ export const RESOURCE_PLANET_POOL: Record<
       'VERYNIUM',
     ],
   },
-
   FROZEN: {
     COMMON: ['WATERICE', 'AMMONIA', 'METHANE', 'CARBON'],
     UNCOMMON: ['COBALT', 'NICKEL', 'SILICON'],
@@ -51,7 +49,6 @@ export const RESOURCE_PLANET_POOL: Record<
     EPIC: ['LITHIUM', 'BORON', 'METHANE'],
     LEGENDARY: ['OBSIDIAN', 'NAQUADA', 'NEUTRONIUM', 'QUANTUMORE'],
   },
-
   TOXIC: {
     COMMON: ['SULFUR', 'CARBON', 'OBSIDIAN', 'PHOSPHORUS'],
     UNCOMMON: ['NICKEL', 'COBALT', 'CHROMIUM'],
@@ -59,7 +56,6 @@ export const RESOURCE_PLANET_POOL: Record<
     EPIC: ['GOLD', 'PLATINUM', 'TUNGSTEN'],
     LEGENDARY: ['UNOBTANIUM', 'KYRIPTONITE', 'ADRA', 'STRYDIUM'],
   },
-
   EXOTIC: {
     COMMON: ['EXOTICMATTER', 'GAMMARSHARDS'], // даже "обычные" на экзотике — уже редкость
     UNCOMMON: ['PLATINUM', 'IRIDIUM', 'GOLD'],
@@ -73,7 +69,6 @@ export const RESOURCE_PLANET_POOL: Record<
       'BETATOKENS',
     ],
   },
-
   BLACKHOLE: {
     COMMON: ['NEUTRONIUM', 'QUANTUMORE'], // на чёрной дыре нет "обычных" ресурсов
     UNCOMMON: ['EXOTICMATTER', 'GAMMARSHARDS', 'NAQUADA'],
@@ -455,5 +450,53 @@ export const RESOURCE_INFO: Record<
     RARE: [20, 200],
     EPIC: [200, 2_000],
     LEGENDARY: [2_000, 15_000],
+  },
+};
+
+export const RARITY_DISTRIBUTION_RESOURCE: Record<
+  PlanetType,
+  Record<Rarity, number>
+> = {
+  ROCKY: {
+    COMMON: 0.8,
+    UNCOMMON: 0.15,
+    RARE: 0.025,
+    EPIC: 0.005,
+    LEGENDARY: 0.001,
+  },
+  LUSH: {
+    COMMON: 0.8,
+    UNCOMMON: 0.15,
+    RARE: 0.025,
+    EPIC: 0.005,
+    LEGENDARY: 0.001,
+  },
+  FROZEN: {
+    COMMON: 0.8,
+    UNCOMMON: 0.15,
+    RARE: 0.025,
+    EPIC: 0.005,
+    LEGENDARY: 0.001,
+  },
+  TOXIC: {
+    COMMON: 0.8,
+    UNCOMMON: 0.15,
+    RARE: 0.025,
+    EPIC: 0.005,
+    LEGENDARY: 0.001,
+  },
+  EXOTIC: {
+    COMMON: 0.8,
+    UNCOMMON: 0.15,
+    RARE: 0.025,
+    EPIC: 0.005,
+    LEGENDARY: 0.001,
+  },
+  BLACKHOLE: {
+    COMMON: 0.8,
+    UNCOMMON: 0.15,
+    RARE: 0.025,
+    EPIC: 0.005,
+    LEGENDARY: 0.001,
   },
 };

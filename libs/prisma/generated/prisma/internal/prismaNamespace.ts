@@ -391,10 +391,9 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 export const ModelName = {
   User: 'User',
+  GameData: 'GameData',
   Ship: 'Ship',
   ShipComponent: 'ShipComponent',
-  GameData: 'GameData',
-  Warehouse: 'Warehouse',
   Planet: 'Planet',
   InventoryItem: 'InventoryItem',
   PlanetResource: 'PlanetResource',
@@ -418,7 +417,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "ship" | "shipComponent" | "gameData" | "warehouse" | "planet" | "inventoryItem" | "planetResource" | "planetVisit" | "cycle" | "currency" | "balance" | "minigSession"
+    modelProps: "user" | "gameData" | "ship" | "shipComponent" | "planet" | "inventoryItem" | "planetResource" | "planetVisit" | "cycle" | "currency" | "balance" | "minigSession"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -493,6 +492,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.UserCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.UserCountAggregateOutputType> | number
+        }
+      }
+    }
+    GameData: {
+      payload: Prisma.$GameDataPayload<ExtArgs>
+      fields: Prisma.GameDataFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.GameDataFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GameDataPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.GameDataFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GameDataPayload>
+        }
+        findFirst: {
+          args: Prisma.GameDataFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GameDataPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.GameDataFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GameDataPayload>
+        }
+        findMany: {
+          args: Prisma.GameDataFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GameDataPayload>[]
+        }
+        create: {
+          args: Prisma.GameDataCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GameDataPayload>
+        }
+        createMany: {
+          args: Prisma.GameDataCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.GameDataCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GameDataPayload>[]
+        }
+        delete: {
+          args: Prisma.GameDataDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GameDataPayload>
+        }
+        update: {
+          args: Prisma.GameDataUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GameDataPayload>
+        }
+        deleteMany: {
+          args: Prisma.GameDataDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.GameDataUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.GameDataUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GameDataPayload>[]
+        }
+        upsert: {
+          args: Prisma.GameDataUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GameDataPayload>
+        }
+        aggregate: {
+          args: Prisma.GameDataAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateGameData>
+        }
+        groupBy: {
+          args: Prisma.GameDataGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.GameDataGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.GameDataCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.GameDataCountAggregateOutputType> | number
         }
       }
     }
@@ -641,154 +714,6 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.ShipComponentCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.ShipComponentCountAggregateOutputType> | number
-        }
-      }
-    }
-    GameData: {
-      payload: Prisma.$GameDataPayload<ExtArgs>
-      fields: Prisma.GameDataFieldRefs
-      operations: {
-        findUnique: {
-          args: Prisma.GameDataFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$GameDataPayload> | null
-        }
-        findUniqueOrThrow: {
-          args: Prisma.GameDataFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$GameDataPayload>
-        }
-        findFirst: {
-          args: Prisma.GameDataFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$GameDataPayload> | null
-        }
-        findFirstOrThrow: {
-          args: Prisma.GameDataFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$GameDataPayload>
-        }
-        findMany: {
-          args: Prisma.GameDataFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$GameDataPayload>[]
-        }
-        create: {
-          args: Prisma.GameDataCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$GameDataPayload>
-        }
-        createMany: {
-          args: Prisma.GameDataCreateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        createManyAndReturn: {
-          args: Prisma.GameDataCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$GameDataPayload>[]
-        }
-        delete: {
-          args: Prisma.GameDataDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$GameDataPayload>
-        }
-        update: {
-          args: Prisma.GameDataUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$GameDataPayload>
-        }
-        deleteMany: {
-          args: Prisma.GameDataDeleteManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateMany: {
-          args: Prisma.GameDataUpdateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateManyAndReturn: {
-          args: Prisma.GameDataUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$GameDataPayload>[]
-        }
-        upsert: {
-          args: Prisma.GameDataUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$GameDataPayload>
-        }
-        aggregate: {
-          args: Prisma.GameDataAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateGameData>
-        }
-        groupBy: {
-          args: Prisma.GameDataGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.GameDataGroupByOutputType>[]
-        }
-        count: {
-          args: Prisma.GameDataCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.GameDataCountAggregateOutputType> | number
-        }
-      }
-    }
-    Warehouse: {
-      payload: Prisma.$WarehousePayload<ExtArgs>
-      fields: Prisma.WarehouseFieldRefs
-      operations: {
-        findUnique: {
-          args: Prisma.WarehouseFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$WarehousePayload> | null
-        }
-        findUniqueOrThrow: {
-          args: Prisma.WarehouseFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$WarehousePayload>
-        }
-        findFirst: {
-          args: Prisma.WarehouseFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$WarehousePayload> | null
-        }
-        findFirstOrThrow: {
-          args: Prisma.WarehouseFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$WarehousePayload>
-        }
-        findMany: {
-          args: Prisma.WarehouseFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$WarehousePayload>[]
-        }
-        create: {
-          args: Prisma.WarehouseCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$WarehousePayload>
-        }
-        createMany: {
-          args: Prisma.WarehouseCreateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        createManyAndReturn: {
-          args: Prisma.WarehouseCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$WarehousePayload>[]
-        }
-        delete: {
-          args: Prisma.WarehouseDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$WarehousePayload>
-        }
-        update: {
-          args: Prisma.WarehouseUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$WarehousePayload>
-        }
-        deleteMany: {
-          args: Prisma.WarehouseDeleteManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateMany: {
-          args: Prisma.WarehouseUpdateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateManyAndReturn: {
-          args: Prisma.WarehouseUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$WarehousePayload>[]
-        }
-        upsert: {
-          args: Prisma.WarehouseUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$WarehousePayload>
-        }
-        aggregate: {
-          args: Prisma.WarehouseAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateWarehouse>
-        }
-        groupBy: {
-          args: Prisma.WarehouseGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.WarehouseGroupByOutputType>[]
-        }
-        count: {
-          args: Prisma.WarehouseCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.WarehouseCountAggregateOutputType> | number
         }
       }
     }
@@ -1437,20 +1362,33 @@ export const UserScalarFieldEnum = {
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
-export const ShipScalarFieldEnum = {
+export const GameDataScalarFieldEnum = {
   id: 'id',
   uid: 'uid',
+  shipId: 'shipId',
+  currentPlanetId: 'currentPlanetId',
+  x: 'x',
+  y: 'y',
+  z: 'z'
+} as const
+
+export type GameDataScalarFieldEnum = (typeof GameDataScalarFieldEnum)[keyof typeof GameDataScalarFieldEnum]
+
+
+export const ShipScalarFieldEnum = {
+  id: 'id',
   level: 'level',
   type: 'type',
   warpRange: 'warpRange',
   warpSpeed: 'warpSpeed',
   miningPower: 'miningPower',
   cargoSize: 'cargoSize',
+  locator: 'locator',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  gameDataShipId: 'gameDataShipId',
-  warehouseId: 'warehouseId',
-  isSelected: 'isSelected'
+  isSelected: 'isSelected',
+  gameDataId: 'gameDataId',
+  uid: 'uid'
 } as const
 
 export type ShipScalarFieldEnum = (typeof ShipScalarFieldEnum)[keyof typeof ShipScalarFieldEnum]
@@ -1472,46 +1410,15 @@ export const ShipComponentScalarFieldEnum = {
 export type ShipComponentScalarFieldEnum = (typeof ShipComponentScalarFieldEnum)[keyof typeof ShipComponentScalarFieldEnum]
 
 
-export const GameDataScalarFieldEnum = {
-  id: 'id',
-  uid: 'uid',
-  shipId: 'shipId',
-  x: 'x',
-  y: 'y',
-  z: 'z'
-} as const
-
-export type GameDataScalarFieldEnum = (typeof GameDataScalarFieldEnum)[keyof typeof GameDataScalarFieldEnum]
-
-
-export const WarehouseScalarFieldEnum = {
-  id: 'id',
-  uid: 'uid',
-  level: 'level',
-  type: 'type',
-  shipId: 'shipId',
-  foodQuantity: 'foodQuantity',
-  coalQuantity: 'coalQuantity',
-  waterQuantity: 'waterQuantity',
-  herbsQuantity: 'herbsQuantity',
-  paperQuantity: 'paperQuantity',
-  upgradeCost: 'upgradeCost',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type WarehouseScalarFieldEnum = (typeof WarehouseScalarFieldEnum)[keyof typeof WarehouseScalarFieldEnum]
-
-
 export const PlanetScalarFieldEnum = {
   id: 'id',
   seed: 'seed',
   name: 'name',
   type: 'type',
-  totalCapacity: 'totalCapacity',
-  currentStock: 'currentStock',
-  scannedBy: 'scannedBy',
-  coordinates: 'coordinates',
+  ownerBy: 'ownerBy',
+  x: 'x',
+  y: 'y',
+  z: 'z',
   rarity: 'rarity',
   depleted: 'depleted',
   createdAt: 'createdAt',
@@ -1536,7 +1443,7 @@ export type InventoryItemScalarFieldEnum = (typeof InventoryItemScalarFieldEnum)
 export const PlanetResourceScalarFieldEnum = {
   id: 'id',
   planetId: 'planetId',
-  typeResource: 'typeResource',
+  type: 'type',
   totalAmount: 'totalAmount',
   current: 'current',
   drillPowerRequired: 'drillPowerRequired',
@@ -1593,7 +1500,7 @@ export const BalanceScalarFieldEnum = {
   amount: 'amount',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  gameDataShipId: 'gameDataShipId'
+  gameDataId: 'gameDataId'
 } as const
 
 export type BalanceScalarFieldEnum = (typeof BalanceScalarFieldEnum)[keyof typeof BalanceScalarFieldEnum]
@@ -1607,6 +1514,9 @@ export const MinigSessionScalarFieldEnum = {
   planetSeed: 'planetSeed',
   startedAt: 'startedAt',
   status: 'status',
+  lastClaimAt: 'lastClaimAt',
+  maxAmount: 'maxAmount',
+  mined: 'mined',
   estimatedAmount: 'estimatedAmount',
   finishedAt: 'finishedAt'
 } as const
@@ -1703,20 +1613,6 @@ export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaM
 
 
 /**
- * Reference to a field of type 'TypeShip'
- */
-export type EnumTypeShipFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TypeShip'>
-    
-
-
-/**
- * Reference to a field of type 'TypeShip[]'
- */
-export type ListEnumTypeShipFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TypeShip[]'>
-    
-
-
-/**
  * Reference to a field of type 'Float'
  */
 export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -1727,6 +1623,20 @@ export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, '
  * Reference to a field of type 'Float[]'
  */
 export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+    
+
+
+/**
+ * Reference to a field of type 'TypeShip'
+ */
+export type EnumTypeShipFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TypeShip'>
+    
+
+
+/**
+ * Reference to a field of type 'TypeShip[]'
+ */
+export type ListEnumTypeShipFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TypeShip[]'>
     
 
 
@@ -1936,10 +1846,9 @@ export interface PrismaClientOptions {
 }
 export type GlobalOmitConfig = {
   user?: Prisma.UserOmit
+  gameData?: Prisma.GameDataOmit
   ship?: Prisma.ShipOmit
   shipComponent?: Prisma.ShipComponentOmit
-  gameData?: Prisma.GameDataOmit
-  warehouse?: Prisma.WarehouseOmit
   planet?: Prisma.PlanetOmit
   inventoryItem?: Prisma.InventoryItemOmit
   planetResource?: Prisma.PlanetResourceOmit

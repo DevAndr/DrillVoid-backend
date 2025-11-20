@@ -48,6 +48,11 @@ path.join(process.cwd(), "libs/prisma/generated/prisma/query_engine-windows.dll.
  */
 export type User = Prisma.UserModel
 /**
+ * Model GameData
+ * 
+ */
+export type GameData = Prisma.GameDataModel
+/**
  * Model Ship
  * 
  */
@@ -57,16 +62,6 @@ export type Ship = Prisma.ShipModel
  * 
  */
 export type ShipComponent = Prisma.ShipComponentModel
-/**
- * Model GameData
- * 
- */
-export type GameData = Prisma.GameDataModel
-/**
- * Model Warehouse
- * 
- */
-export type Warehouse = Prisma.WarehouseModel
 /**
  * Model Planet
  * 

@@ -23,6 +23,11 @@ export * from './enums';
  */
 export type User = Prisma.UserModel
 /**
+ * Model GameData
+ * 
+ */
+export type GameData = Prisma.GameDataModel
+/**
  * Model Ship
  * 
  */
@@ -32,16 +37,6 @@ export type Ship = Prisma.ShipModel
  * 
  */
 export type ShipComponent = Prisma.ShipComponentModel
-/**
- * Model GameData
- * 
- */
-export type GameData = Prisma.GameDataModel
-/**
- * Model Warehouse
- * 
- */
-export type Warehouse = Prisma.WarehouseModel
 /**
  * Model Planet
  * 

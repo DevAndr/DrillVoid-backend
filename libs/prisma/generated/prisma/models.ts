@@ -9,10 +9,9 @@
  * 🟢 You can import this file directly.
  */
 export type * from './models/User'
+export type * from './models/GameData'
 export type * from './models/Ship'
 export type * from './models/ShipComponent'
-export type * from './models/GameData'
-export type * from './models/Warehouse'
 export type * from './models/Planet'
 export type * from './models/InventoryItem'
 export type * from './models/PlanetResource'

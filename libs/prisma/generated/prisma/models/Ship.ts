@@ -32,6 +32,7 @@ export type ShipAvgAggregateOutputType = {
   warpSpeed: number | null
   miningPower: number | null
   cargoSize: number | null
+  locator: number | null
 }
 
 export type ShipSumAggregateOutputType = {
@@ -40,54 +41,55 @@ export type ShipSumAggregateOutputType = {
   warpSpeed: number | null
   miningPower: number | null
   cargoSize: number | null
+  locator: number | null
 }
 
 export type ShipMinAggregateOutputType = {
   id: string | null
-  uid: string | null
   level: number | null
   type: $Enums.TypeShip | null
   warpRange: number | null
   warpSpeed: number | null
   miningPower: number | null
   cargoSize: number | null
+  locator: number | null
   createdAt: Date | null
   updatedAt: Date | null
-  gameDataShipId: string | null
-  warehouseId: string | null
   isSelected: boolean | null
+  gameDataId: string | null
+  uid: string | null
 }
 
 export type ShipMaxAggregateOutputType = {
   id: string | null
-  uid: string | null
   level: number | null
   type: $Enums.TypeShip | null
   warpRange: number | null
   warpSpeed: number | null
   miningPower: number | null
   cargoSize: number | null
+  locator: number | null
   createdAt: Date | null
   updatedAt: Date | null
-  gameDataShipId: string | null
-  warehouseId: string | null
   isSelected: boolean | null
+  gameDataId: string | null
+  uid: string | null
 }
 
 export type ShipCountAggregateOutputType = {
   id: number
-  uid: number
   level: number
   type: number
   warpRange: number
   warpSpeed: number
   miningPower: number
   cargoSize: number
+  locator: number
   createdAt: number
   updatedAt: number
-  gameDataShipId: number
-  warehouseId: number
   isSelected: number
+  gameDataId: number
+  uid: number
   _all: number
 }
 
@@ -98,6 +100,7 @@ export type ShipAvgAggregateInputType = {
   warpSpeed?: true
   miningPower?: true
   cargoSize?: true
+  locator?: true
 }
 
 export type ShipSumAggregateInputType = {
@@ -106,54 +109,55 @@ export type ShipSumAggregateInputType = {
   warpSpeed?: true
   miningPower?: true
   cargoSize?: true
+  locator?: true
 }
 
 export type ShipMinAggregateInputType = {
   id?: true
-  uid?: true
   level?: true
   type?: true
   warpRange?: true
   warpSpeed?: true
   miningPower?: true
   cargoSize?: true
+  locator?: true
   createdAt?: true
   updatedAt?: true
-  gameDataShipId?: true
-  warehouseId?: true
   isSelected?: true
+  gameDataId?: true
+  uid?: true
 }
 
 export type ShipMaxAggregateInputType = {
   id?: true
-  uid?: true
   level?: true
   type?: true
   warpRange?: true
   warpSpeed?: true
   miningPower?: true
   cargoSize?: true
+  locator?: true
   createdAt?: true
   updatedAt?: true
-  gameDataShipId?: true
-  warehouseId?: true
   isSelected?: true
+  gameDataId?: true
+  uid?: true
 }
 
 export type ShipCountAggregateInputType = {
   id?: true
-  uid?: true
   level?: true
   type?: true
   warpRange?: true
   warpSpeed?: true
   miningPower?: true
   cargoSize?: true
+  locator?: true
   createdAt?: true
   updatedAt?: true
-  gameDataShipId?: true
-  warehouseId?: true
   isSelected?: true
+  gameDataId?: true
+  uid?: true
   _all?: true
 }
 
@@ -245,18 +249,18 @@ export type ShipGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
 
 export type ShipGroupByOutputType = {
   id: string
-  uid: string
   level: number
   type: $Enums.TypeShip
   warpRange: number
   warpSpeed: number
   miningPower: number
   cargoSize: number
+  locator: number
   createdAt: Date
   updatedAt: Date
-  gameDataShipId: string | null
-  warehouseId: string | null
   isSelected: boolean
+  gameDataId: string | null
+  uid: string | null
   _count: ShipCountAggregateOutputType | null
   _avg: ShipAvgAggregateOutputType | null
   _sum: ShipSumAggregateOutputType | null
@@ -284,79 +288,75 @@ export type ShipWhereInput = {
   OR?: Prisma.ShipWhereInput[]
   NOT?: Prisma.ShipWhereInput | Prisma.ShipWhereInput[]
   id?: Prisma.StringFilter<"Ship"> | string
-  uid?: Prisma.StringFilter<"Ship"> | string
   level?: Prisma.IntFilter<"Ship"> | number
   type?: Prisma.EnumTypeShipFilter<"Ship"> | $Enums.TypeShip
   warpRange?: Prisma.FloatFilter<"Ship"> | number
   warpSpeed?: Prisma.FloatFilter<"Ship"> | number
   miningPower?: Prisma.FloatFilter<"Ship"> | number
   cargoSize?: Prisma.FloatFilter<"Ship"> | number
+  locator?: Prisma.FloatFilter<"Ship"> | number
   createdAt?: Prisma.DateTimeFilter<"Ship"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Ship"> | Date | string
-  gameDataShipId?: Prisma.StringNullableFilter<"Ship"> | string | null
-  warehouseId?: Prisma.StringNullableFilter<"Ship"> | string | null
   isSelected?: Prisma.BoolFilter<"Ship"> | boolean
-  warehouse?: Prisma.XOR<Prisma.WarehouseNullableScalarRelationFilter, Prisma.WarehouseWhereInput> | null
-  gameData?: Prisma.XOR<Prisma.GameDataNullableScalarRelationFilter, Prisma.GameDataWhereInput> | null
+  gameDataId?: Prisma.StringNullableFilter<"Ship"> | string | null
+  uid?: Prisma.StringNullableFilter<"Ship"> | string | null
+  GameData?: Prisma.XOR<Prisma.GameDataNullableScalarRelationFilter, Prisma.GameDataWhereInput> | null
   components?: Prisma.ShipComponentListRelationFilter
 }
 
 export type ShipOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  uid?: Prisma.SortOrder
   level?: Prisma.SortOrder
   type?: Prisma.SortOrder
   warpRange?: Prisma.SortOrder
   warpSpeed?: Prisma.SortOrder
   miningPower?: Prisma.SortOrder
   cargoSize?: Prisma.SortOrder
+  locator?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  gameDataShipId?: Prisma.SortOrderInput | Prisma.SortOrder
-  warehouseId?: Prisma.SortOrderInput | Prisma.SortOrder
   isSelected?: Prisma.SortOrder
-  warehouse?: Prisma.WarehouseOrderByWithRelationInput
-  gameData?: Prisma.GameDataOrderByWithRelationInput
+  gameDataId?: Prisma.SortOrderInput | Prisma.SortOrder
+  uid?: Prisma.SortOrderInput | Prisma.SortOrder
+  GameData?: Prisma.GameDataOrderByWithRelationInput
   components?: Prisma.ShipComponentOrderByRelationAggregateInput
 }
 
 export type ShipWhereUniqueInput = Prisma.AtLeast<{
-  uid?: string
-  id_uid?: Prisma.ShipIdUidCompoundUniqueInput
+  id?: string
   AND?: Prisma.ShipWhereInput | Prisma.ShipWhereInput[]
   OR?: Prisma.ShipWhereInput[]
   NOT?: Prisma.ShipWhereInput | Prisma.ShipWhereInput[]
-  id?: Prisma.StringFilter<"Ship"> | string
   level?: Prisma.IntFilter<"Ship"> | number
   type?: Prisma.EnumTypeShipFilter<"Ship"> | $Enums.TypeShip
   warpRange?: Prisma.FloatFilter<"Ship"> | number
   warpSpeed?: Prisma.FloatFilter<"Ship"> | number
   miningPower?: Prisma.FloatFilter<"Ship"> | number
   cargoSize?: Prisma.FloatFilter<"Ship"> | number
+  locator?: Prisma.FloatFilter<"Ship"> | number
   createdAt?: Prisma.DateTimeFilter<"Ship"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Ship"> | Date | string
-  gameDataShipId?: Prisma.StringNullableFilter<"Ship"> | string | null
-  warehouseId?: Prisma.StringNullableFilter<"Ship"> | string | null
   isSelected?: Prisma.BoolFilter<"Ship"> | boolean
-  warehouse?: Prisma.XOR<Prisma.WarehouseNullableScalarRelationFilter, Prisma.WarehouseWhereInput> | null
-  gameData?: Prisma.XOR<Prisma.GameDataNullableScalarRelationFilter, Prisma.GameDataWhereInput> | null
+  gameDataId?: Prisma.StringNullableFilter<"Ship"> | string | null
+  uid?: Prisma.StringNullableFilter<"Ship"> | string | null
+  GameData?: Prisma.XOR<Prisma.GameDataNullableScalarRelationFilter, Prisma.GameDataWhereInput> | null
   components?: Prisma.ShipComponentListRelationFilter
-}, "id_uid" | "id_uid" | "uid">
+}, "id">
 
 export type ShipOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  uid?: Prisma.SortOrder
   level?: Prisma.SortOrder
   type?: Prisma.SortOrder
   warpRange?: Prisma.SortOrder
   warpSpeed?: Prisma.SortOrder
   miningPower?: Prisma.SortOrder
   cargoSize?: Prisma.SortOrder
+  locator?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  gameDataShipId?: Prisma.SortOrderInput | Prisma.SortOrder
-  warehouseId?: Prisma.SortOrderInput | Prisma.SortOrder
   isSelected?: Prisma.SortOrder
+  gameDataId?: Prisma.SortOrderInput | Prisma.SortOrder
+  uid?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.ShipCountOrderByAggregateInput
   _avg?: Prisma.ShipAvgOrderByAggregateInput
   _max?: Prisma.ShipMaxOrderByAggregateInput
@@ -369,113 +369,111 @@ export type ShipScalarWhereWithAggregatesInput = {
   OR?: Prisma.ShipScalarWhereWithAggregatesInput[]
   NOT?: Prisma.ShipScalarWhereWithAggregatesInput | Prisma.ShipScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Ship"> | string
-  uid?: Prisma.StringWithAggregatesFilter<"Ship"> | string
   level?: Prisma.IntWithAggregatesFilter<"Ship"> | number
   type?: Prisma.EnumTypeShipWithAggregatesFilter<"Ship"> | $Enums.TypeShip
   warpRange?: Prisma.FloatWithAggregatesFilter<"Ship"> | number
   warpSpeed?: Prisma.FloatWithAggregatesFilter<"Ship"> | number
   miningPower?: Prisma.FloatWithAggregatesFilter<"Ship"> | number
   cargoSize?: Prisma.FloatWithAggregatesFilter<"Ship"> | number
+  locator?: Prisma.FloatWithAggregatesFilter<"Ship"> | number
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Ship"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Ship"> | Date | string
-  gameDataShipId?: Prisma.StringNullableWithAggregatesFilter<"Ship"> | string | null
-  warehouseId?: Prisma.StringNullableWithAggregatesFilter<"Ship"> | string | null
   isSelected?: Prisma.BoolWithAggregatesFilter<"Ship"> | boolean
+  gameDataId?: Prisma.StringNullableWithAggregatesFilter<"Ship"> | string | null
+  uid?: Prisma.StringNullableWithAggregatesFilter<"Ship"> | string | null
 }
 
 export type ShipCreateInput = {
   id?: string
-  uid: string
   level: number
   type: $Enums.TypeShip
   warpRange?: number
   warpSpeed?: number
   miningPower?: number
   cargoSize?: number
+  locator?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   isSelected?: boolean
-  warehouse?: Prisma.WarehouseCreateNestedOneWithoutShipInput
-  gameData?: Prisma.GameDataCreateNestedOneWithoutShipInput
+  GameData?: Prisma.GameDataCreateNestedOneWithoutShipInput
   components?: Prisma.ShipComponentCreateNestedManyWithoutShipInput
 }
 
 export type ShipUncheckedCreateInput = {
   id?: string
-  uid: string
   level: number
   type: $Enums.TypeShip
   warpRange?: number
   warpSpeed?: number
   miningPower?: number
   cargoSize?: number
+  locator?: number
   createdAt?: Date | string
   updatedAt?: Date | string
-  gameDataShipId?: string | null
-  warehouseId?: string | null
   isSelected?: boolean
+  gameDataId?: string | null
+  uid?: string | null
   components?: Prisma.ShipComponentUncheckedCreateNestedManyWithoutShipInput
 }
 
 export type ShipUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  uid?: Prisma.StringFieldUpdateOperationsInput | string
   level?: Prisma.IntFieldUpdateOperationsInput | number
   type?: Prisma.EnumTypeShipFieldUpdateOperationsInput | $Enums.TypeShip
   warpRange?: Prisma.FloatFieldUpdateOperationsInput | number
   warpSpeed?: Prisma.FloatFieldUpdateOperationsInput | number
   miningPower?: Prisma.FloatFieldUpdateOperationsInput | number
   cargoSize?: Prisma.FloatFieldUpdateOperationsInput | number
+  locator?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isSelected?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  warehouse?: Prisma.WarehouseUpdateOneWithoutShipNestedInput
-  gameData?: Prisma.GameDataUpdateOneWithoutShipNestedInput
+  GameData?: Prisma.GameDataUpdateOneWithoutShipNestedInput
   components?: Prisma.ShipComponentUpdateManyWithoutShipNestedInput
 }
 
 export type ShipUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  uid?: Prisma.StringFieldUpdateOperationsInput | string
   level?: Prisma.IntFieldUpdateOperationsInput | number
   type?: Prisma.EnumTypeShipFieldUpdateOperationsInput | $Enums.TypeShip
   warpRange?: Prisma.FloatFieldUpdateOperationsInput | number
   warpSpeed?: Prisma.FloatFieldUpdateOperationsInput | number
   miningPower?: Prisma.FloatFieldUpdateOperationsInput | number
   cargoSize?: Prisma.FloatFieldUpdateOperationsInput | number
+  locator?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  gameDataShipId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  warehouseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isSelected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gameDataId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   components?: Prisma.ShipComponentUncheckedUpdateManyWithoutShipNestedInput
 }
 
 export type ShipCreateManyInput = {
   id?: string
-  uid: string
   level: number
   type: $Enums.TypeShip
   warpRange?: number
   warpSpeed?: number
   miningPower?: number
   cargoSize?: number
+  locator?: number
   createdAt?: Date | string
   updatedAt?: Date | string
-  gameDataShipId?: string | null
-  warehouseId?: string | null
   isSelected?: boolean
+  gameDataId?: string | null
+  uid?: string | null
 }
 
 export type ShipUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  uid?: Prisma.StringFieldUpdateOperationsInput | string
   level?: Prisma.IntFieldUpdateOperationsInput | number
   type?: Prisma.EnumTypeShipFieldUpdateOperationsInput | $Enums.TypeShip
   warpRange?: Prisma.FloatFieldUpdateOperationsInput | number
   warpSpeed?: Prisma.FloatFieldUpdateOperationsInput | number
   miningPower?: Prisma.FloatFieldUpdateOperationsInput | number
   cargoSize?: Prisma.FloatFieldUpdateOperationsInput | number
+  locator?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isSelected?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -483,92 +481,18 @@ export type ShipUpdateManyMutationInput = {
 
 export type ShipUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  uid?: Prisma.StringFieldUpdateOperationsInput | string
   level?: Prisma.IntFieldUpdateOperationsInput | number
   type?: Prisma.EnumTypeShipFieldUpdateOperationsInput | $Enums.TypeShip
   warpRange?: Prisma.FloatFieldUpdateOperationsInput | number
   warpSpeed?: Prisma.FloatFieldUpdateOperationsInput | number
   miningPower?: Prisma.FloatFieldUpdateOperationsInput | number
   cargoSize?: Prisma.FloatFieldUpdateOperationsInput | number
+  locator?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  gameDataShipId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  warehouseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isSelected?: Prisma.BoolFieldUpdateOperationsInput | boolean
-}
-
-export type ShipIdUidCompoundUniqueInput = {
-  id: string
-  uid: string
-}
-
-export type ShipCountOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  uid?: Prisma.SortOrder
-  level?: Prisma.SortOrder
-  type?: Prisma.SortOrder
-  warpRange?: Prisma.SortOrder
-  warpSpeed?: Prisma.SortOrder
-  miningPower?: Prisma.SortOrder
-  cargoSize?: Prisma.SortOrder
-  createdAt?: Prisma.SortOrder
-  updatedAt?: Prisma.SortOrder
-  gameDataShipId?: Prisma.SortOrder
-  warehouseId?: Prisma.SortOrder
-  isSelected?: Prisma.SortOrder
-}
-
-export type ShipAvgOrderByAggregateInput = {
-  level?: Prisma.SortOrder
-  warpRange?: Prisma.SortOrder
-  warpSpeed?: Prisma.SortOrder
-  miningPower?: Prisma.SortOrder
-  cargoSize?: Prisma.SortOrder
-}
-
-export type ShipMaxOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  uid?: Prisma.SortOrder
-  level?: Prisma.SortOrder
-  type?: Prisma.SortOrder
-  warpRange?: Prisma.SortOrder
-  warpSpeed?: Prisma.SortOrder
-  miningPower?: Prisma.SortOrder
-  cargoSize?: Prisma.SortOrder
-  createdAt?: Prisma.SortOrder
-  updatedAt?: Prisma.SortOrder
-  gameDataShipId?: Prisma.SortOrder
-  warehouseId?: Prisma.SortOrder
-  isSelected?: Prisma.SortOrder
-}
-
-export type ShipMinOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  uid?: Prisma.SortOrder
-  level?: Prisma.SortOrder
-  type?: Prisma.SortOrder
-  warpRange?: Prisma.SortOrder
-  warpSpeed?: Prisma.SortOrder
-  miningPower?: Prisma.SortOrder
-  cargoSize?: Prisma.SortOrder
-  createdAt?: Prisma.SortOrder
-  updatedAt?: Prisma.SortOrder
-  gameDataShipId?: Prisma.SortOrder
-  warehouseId?: Prisma.SortOrder
-  isSelected?: Prisma.SortOrder
-}
-
-export type ShipSumOrderByAggregateInput = {
-  level?: Prisma.SortOrder
-  warpRange?: Prisma.SortOrder
-  warpSpeed?: Prisma.SortOrder
-  miningPower?: Prisma.SortOrder
-  cargoSize?: Prisma.SortOrder
-}
-
-export type ShipNullableScalarRelationFilter = {
-  is?: Prisma.ShipWhereInput | null
-  isNot?: Prisma.ShipWhereInput | null
+  gameDataId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type ShipListRelationFilter = {
@@ -581,36 +505,75 @@ export type ShipOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
-export type EnumTypeShipFieldUpdateOperationsInput = {
-  set?: $Enums.TypeShip
+export type ShipCountOrderByAggregateInput = {
+  id?: Prisma.SortOrder
+  level?: Prisma.SortOrder
+  type?: Prisma.SortOrder
+  warpRange?: Prisma.SortOrder
+  warpSpeed?: Prisma.SortOrder
+  miningPower?: Prisma.SortOrder
+  cargoSize?: Prisma.SortOrder
+  locator?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  isSelected?: Prisma.SortOrder
+  gameDataId?: Prisma.SortOrder
+  uid?: Prisma.SortOrder
 }
 
-export type FloatFieldUpdateOperationsInput = {
-  set?: number
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
+export type ShipAvgOrderByAggregateInput = {
+  level?: Prisma.SortOrder
+  warpRange?: Prisma.SortOrder
+  warpSpeed?: Prisma.SortOrder
+  miningPower?: Prisma.SortOrder
+  cargoSize?: Prisma.SortOrder
+  locator?: Prisma.SortOrder
 }
 
-export type BoolFieldUpdateOperationsInput = {
-  set?: boolean
+export type ShipMaxOrderByAggregateInput = {
+  id?: Prisma.SortOrder
+  level?: Prisma.SortOrder
+  type?: Prisma.SortOrder
+  warpRange?: Prisma.SortOrder
+  warpSpeed?: Prisma.SortOrder
+  miningPower?: Prisma.SortOrder
+  cargoSize?: Prisma.SortOrder
+  locator?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  isSelected?: Prisma.SortOrder
+  gameDataId?: Prisma.SortOrder
+  uid?: Prisma.SortOrder
 }
 
-export type ShipCreateNestedOneWithoutComponentsInput = {
-  create?: Prisma.XOR<Prisma.ShipCreateWithoutComponentsInput, Prisma.ShipUncheckedCreateWithoutComponentsInput>
-  connectOrCreate?: Prisma.ShipCreateOrConnectWithoutComponentsInput
-  connect?: Prisma.ShipWhereUniqueInput
+export type ShipMinOrderByAggregateInput = {
+  id?: Prisma.SortOrder
+  level?: Prisma.SortOrder
+  type?: Prisma.SortOrder
+  warpRange?: Prisma.SortOrder
+  warpSpeed?: Prisma.SortOrder
+  miningPower?: Prisma.SortOrder
+  cargoSize?: Prisma.SortOrder
+  locator?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  isSelected?: Prisma.SortOrder
+  gameDataId?: Prisma.SortOrder
+  uid?: Prisma.SortOrder
 }
 
-export type ShipUpdateOneWithoutComponentsNestedInput = {
-  create?: Prisma.XOR<Prisma.ShipCreateWithoutComponentsInput, Prisma.ShipUncheckedCreateWithoutComponentsInput>
-  connectOrCreate?: Prisma.ShipCreateOrConnectWithoutComponentsInput
-  upsert?: Prisma.ShipUpsertWithoutComponentsInput
-  disconnect?: Prisma.ShipWhereInput | boolean
-  delete?: Prisma.ShipWhereInput | boolean
-  connect?: Prisma.ShipWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.ShipUpdateToOneWithWhereWithoutComponentsInput, Prisma.ShipUpdateWithoutComponentsInput>, Prisma.ShipUncheckedUpdateWithoutComponentsInput>
+export type ShipSumOrderByAggregateInput = {
+  level?: Prisma.SortOrder
+  warpRange?: Prisma.SortOrder
+  warpSpeed?: Prisma.SortOrder
+  miningPower?: Prisma.SortOrder
+  cargoSize?: Prisma.SortOrder
+  locator?: Prisma.SortOrder
+}
+
+export type ShipNullableScalarRelationFilter = {
+  is?: Prisma.ShipWhereInput | null
+  isNot?: Prisma.ShipWhereInput | null
 }
 
 export type ShipCreateNestedManyWithoutGameDataInput = {
@@ -655,156 +618,56 @@ export type ShipUncheckedUpdateManyWithoutGameDataNestedInput = {
   deleteMany?: Prisma.ShipScalarWhereInput | Prisma.ShipScalarWhereInput[]
 }
 
-export type ShipCreateNestedManyWithoutWarehouseInput = {
-  create?: Prisma.XOR<Prisma.ShipCreateWithoutWarehouseInput, Prisma.ShipUncheckedCreateWithoutWarehouseInput> | Prisma.ShipCreateWithoutWarehouseInput[] | Prisma.ShipUncheckedCreateWithoutWarehouseInput[]
-  connectOrCreate?: Prisma.ShipCreateOrConnectWithoutWarehouseInput | Prisma.ShipCreateOrConnectWithoutWarehouseInput[]
-  createMany?: Prisma.ShipCreateManyWarehouseInputEnvelope
-  connect?: Prisma.ShipWhereUniqueInput | Prisma.ShipWhereUniqueInput[]
+export type EnumTypeShipFieldUpdateOperationsInput = {
+  set?: $Enums.TypeShip
 }
 
-export type ShipUncheckedCreateNestedManyWithoutWarehouseInput = {
-  create?: Prisma.XOR<Prisma.ShipCreateWithoutWarehouseInput, Prisma.ShipUncheckedCreateWithoutWarehouseInput> | Prisma.ShipCreateWithoutWarehouseInput[] | Prisma.ShipUncheckedCreateWithoutWarehouseInput[]
-  connectOrCreate?: Prisma.ShipCreateOrConnectWithoutWarehouseInput | Prisma.ShipCreateOrConnectWithoutWarehouseInput[]
-  createMany?: Prisma.ShipCreateManyWarehouseInputEnvelope
-  connect?: Prisma.ShipWhereUniqueInput | Prisma.ShipWhereUniqueInput[]
+export type BoolFieldUpdateOperationsInput = {
+  set?: boolean
 }
 
-export type ShipUpdateManyWithoutWarehouseNestedInput = {
-  create?: Prisma.XOR<Prisma.ShipCreateWithoutWarehouseInput, Prisma.ShipUncheckedCreateWithoutWarehouseInput> | Prisma.ShipCreateWithoutWarehouseInput[] | Prisma.ShipUncheckedCreateWithoutWarehouseInput[]
-  connectOrCreate?: Prisma.ShipCreateOrConnectWithoutWarehouseInput | Prisma.ShipCreateOrConnectWithoutWarehouseInput[]
-  upsert?: Prisma.ShipUpsertWithWhereUniqueWithoutWarehouseInput | Prisma.ShipUpsertWithWhereUniqueWithoutWarehouseInput[]
-  createMany?: Prisma.ShipCreateManyWarehouseInputEnvelope
-  set?: Prisma.ShipWhereUniqueInput | Prisma.ShipWhereUniqueInput[]
-  disconnect?: Prisma.ShipWhereUniqueInput | Prisma.ShipWhereUniqueInput[]
-  delete?: Prisma.ShipWhereUniqueInput | Prisma.ShipWhereUniqueInput[]
-  connect?: Prisma.ShipWhereUniqueInput | Prisma.ShipWhereUniqueInput[]
-  update?: Prisma.ShipUpdateWithWhereUniqueWithoutWarehouseInput | Prisma.ShipUpdateWithWhereUniqueWithoutWarehouseInput[]
-  updateMany?: Prisma.ShipUpdateManyWithWhereWithoutWarehouseInput | Prisma.ShipUpdateManyWithWhereWithoutWarehouseInput[]
-  deleteMany?: Prisma.ShipScalarWhereInput | Prisma.ShipScalarWhereInput[]
+export type ShipCreateNestedOneWithoutComponentsInput = {
+  create?: Prisma.XOR<Prisma.ShipCreateWithoutComponentsInput, Prisma.ShipUncheckedCreateWithoutComponentsInput>
+  connectOrCreate?: Prisma.ShipCreateOrConnectWithoutComponentsInput
+  connect?: Prisma.ShipWhereUniqueInput
 }
 
-export type ShipUncheckedUpdateManyWithoutWarehouseNestedInput = {
-  create?: Prisma.XOR<Prisma.ShipCreateWithoutWarehouseInput, Prisma.ShipUncheckedCreateWithoutWarehouseInput> | Prisma.ShipCreateWithoutWarehouseInput[] | Prisma.ShipUncheckedCreateWithoutWarehouseInput[]
-  connectOrCreate?: Prisma.ShipCreateOrConnectWithoutWarehouseInput | Prisma.ShipCreateOrConnectWithoutWarehouseInput[]
-  upsert?: Prisma.ShipUpsertWithWhereUniqueWithoutWarehouseInput | Prisma.ShipUpsertWithWhereUniqueWithoutWarehouseInput[]
-  createMany?: Prisma.ShipCreateManyWarehouseInputEnvelope
-  set?: Prisma.ShipWhereUniqueInput | Prisma.ShipWhereUniqueInput[]
-  disconnect?: Prisma.ShipWhereUniqueInput | Prisma.ShipWhereUniqueInput[]
-  delete?: Prisma.ShipWhereUniqueInput | Prisma.ShipWhereUniqueInput[]
-  connect?: Prisma.ShipWhereUniqueInput | Prisma.ShipWhereUniqueInput[]
-  update?: Prisma.ShipUpdateWithWhereUniqueWithoutWarehouseInput | Prisma.ShipUpdateWithWhereUniqueWithoutWarehouseInput[]
-  updateMany?: Prisma.ShipUpdateManyWithWhereWithoutWarehouseInput | Prisma.ShipUpdateManyWithWhereWithoutWarehouseInput[]
-  deleteMany?: Prisma.ShipScalarWhereInput | Prisma.ShipScalarWhereInput[]
-}
-
-export type ShipCreateWithoutComponentsInput = {
-  id?: string
-  uid: string
-  level: number
-  type: $Enums.TypeShip
-  warpRange?: number
-  warpSpeed?: number
-  miningPower?: number
-  cargoSize?: number
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  isSelected?: boolean
-  warehouse?: Prisma.WarehouseCreateNestedOneWithoutShipInput
-  gameData?: Prisma.GameDataCreateNestedOneWithoutShipInput
-}
-
-export type ShipUncheckedCreateWithoutComponentsInput = {
-  id?: string
-  uid: string
-  level: number
-  type: $Enums.TypeShip
-  warpRange?: number
-  warpSpeed?: number
-  miningPower?: number
-  cargoSize?: number
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  gameDataShipId?: string | null
-  warehouseId?: string | null
-  isSelected?: boolean
-}
-
-export type ShipCreateOrConnectWithoutComponentsInput = {
-  where: Prisma.ShipWhereUniqueInput
-  create: Prisma.XOR<Prisma.ShipCreateWithoutComponentsInput, Prisma.ShipUncheckedCreateWithoutComponentsInput>
-}
-
-export type ShipUpsertWithoutComponentsInput = {
-  update: Prisma.XOR<Prisma.ShipUpdateWithoutComponentsInput, Prisma.ShipUncheckedUpdateWithoutComponentsInput>
-  create: Prisma.XOR<Prisma.ShipCreateWithoutComponentsInput, Prisma.ShipUncheckedCreateWithoutComponentsInput>
-  where?: Prisma.ShipWhereInput
-}
-
-export type ShipUpdateToOneWithWhereWithoutComponentsInput = {
-  where?: Prisma.ShipWhereInput
-  data: Prisma.XOR<Prisma.ShipUpdateWithoutComponentsInput, Prisma.ShipUncheckedUpdateWithoutComponentsInput>
-}
-
-export type ShipUpdateWithoutComponentsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  uid?: Prisma.StringFieldUpdateOperationsInput | string
-  level?: Prisma.IntFieldUpdateOperationsInput | number
-  type?: Prisma.EnumTypeShipFieldUpdateOperationsInput | $Enums.TypeShip
-  warpRange?: Prisma.FloatFieldUpdateOperationsInput | number
-  warpSpeed?: Prisma.FloatFieldUpdateOperationsInput | number
-  miningPower?: Prisma.FloatFieldUpdateOperationsInput | number
-  cargoSize?: Prisma.FloatFieldUpdateOperationsInput | number
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  isSelected?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  warehouse?: Prisma.WarehouseUpdateOneWithoutShipNestedInput
-  gameData?: Prisma.GameDataUpdateOneWithoutShipNestedInput
-}
-
-export type ShipUncheckedUpdateWithoutComponentsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  uid?: Prisma.StringFieldUpdateOperationsInput | string
-  level?: Prisma.IntFieldUpdateOperationsInput | number
-  type?: Prisma.EnumTypeShipFieldUpdateOperationsInput | $Enums.TypeShip
-  warpRange?: Prisma.FloatFieldUpdateOperationsInput | number
-  warpSpeed?: Prisma.FloatFieldUpdateOperationsInput | number
-  miningPower?: Prisma.FloatFieldUpdateOperationsInput | number
-  cargoSize?: Prisma.FloatFieldUpdateOperationsInput | number
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  gameDataShipId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  warehouseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isSelected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+export type ShipUpdateOneWithoutComponentsNestedInput = {
+  create?: Prisma.XOR<Prisma.ShipCreateWithoutComponentsInput, Prisma.ShipUncheckedCreateWithoutComponentsInput>
+  connectOrCreate?: Prisma.ShipCreateOrConnectWithoutComponentsInput
+  upsert?: Prisma.ShipUpsertWithoutComponentsInput
+  disconnect?: Prisma.ShipWhereInput | boolean
+  delete?: Prisma.ShipWhereInput | boolean
+  connect?: Prisma.ShipWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ShipUpdateToOneWithWhereWithoutComponentsInput, Prisma.ShipUpdateWithoutComponentsInput>, Prisma.ShipUncheckedUpdateWithoutComponentsInput>
 }
 
 export type ShipCreateWithoutGameDataInput = {
   id?: string
-  uid: string
   level: number
   type: $Enums.TypeShip
   warpRange?: number
   warpSpeed?: number
   miningPower?: number
   cargoSize?: number
+  locator?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   isSelected?: boolean
-  warehouse?: Prisma.WarehouseCreateNestedOneWithoutShipInput
   components?: Prisma.ShipComponentCreateNestedManyWithoutShipInput
 }
 
 export type ShipUncheckedCreateWithoutGameDataInput = {
   id?: string
-  uid: string
   level: number
   type: $Enums.TypeShip
   warpRange?: number
   warpSpeed?: number
   miningPower?: number
   cargoSize?: number
+  locator?: number
   createdAt?: Date | string
   updatedAt?: Date | string
-  warehouseId?: string | null
   isSelected?: boolean
   components?: Prisma.ShipComponentUncheckedCreateNestedManyWithoutShipInput
 }
@@ -840,199 +703,153 @@ export type ShipScalarWhereInput = {
   OR?: Prisma.ShipScalarWhereInput[]
   NOT?: Prisma.ShipScalarWhereInput | Prisma.ShipScalarWhereInput[]
   id?: Prisma.StringFilter<"Ship"> | string
-  uid?: Prisma.StringFilter<"Ship"> | string
   level?: Prisma.IntFilter<"Ship"> | number
   type?: Prisma.EnumTypeShipFilter<"Ship"> | $Enums.TypeShip
   warpRange?: Prisma.FloatFilter<"Ship"> | number
   warpSpeed?: Prisma.FloatFilter<"Ship"> | number
   miningPower?: Prisma.FloatFilter<"Ship"> | number
   cargoSize?: Prisma.FloatFilter<"Ship"> | number
+  locator?: Prisma.FloatFilter<"Ship"> | number
   createdAt?: Prisma.DateTimeFilter<"Ship"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Ship"> | Date | string
-  gameDataShipId?: Prisma.StringNullableFilter<"Ship"> | string | null
-  warehouseId?: Prisma.StringNullableFilter<"Ship"> | string | null
   isSelected?: Prisma.BoolFilter<"Ship"> | boolean
+  gameDataId?: Prisma.StringNullableFilter<"Ship"> | string | null
+  uid?: Prisma.StringNullableFilter<"Ship"> | string | null
 }
 
-export type ShipCreateWithoutWarehouseInput = {
+export type ShipCreateWithoutComponentsInput = {
   id?: string
-  uid: string
   level: number
   type: $Enums.TypeShip
   warpRange?: number
   warpSpeed?: number
   miningPower?: number
   cargoSize?: number
+  locator?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   isSelected?: boolean
-  gameData?: Prisma.GameDataCreateNestedOneWithoutShipInput
-  components?: Prisma.ShipComponentCreateNestedManyWithoutShipInput
+  GameData?: Prisma.GameDataCreateNestedOneWithoutShipInput
 }
 
-export type ShipUncheckedCreateWithoutWarehouseInput = {
+export type ShipUncheckedCreateWithoutComponentsInput = {
   id?: string
-  uid: string
   level: number
   type: $Enums.TypeShip
   warpRange?: number
   warpSpeed?: number
   miningPower?: number
   cargoSize?: number
+  locator?: number
   createdAt?: Date | string
   updatedAt?: Date | string
-  gameDataShipId?: string | null
   isSelected?: boolean
-  components?: Prisma.ShipComponentUncheckedCreateNestedManyWithoutShipInput
+  gameDataId?: string | null
+  uid?: string | null
 }
 
-export type ShipCreateOrConnectWithoutWarehouseInput = {
+export type ShipCreateOrConnectWithoutComponentsInput = {
   where: Prisma.ShipWhereUniqueInput
-  create: Prisma.XOR<Prisma.ShipCreateWithoutWarehouseInput, Prisma.ShipUncheckedCreateWithoutWarehouseInput>
+  create: Prisma.XOR<Prisma.ShipCreateWithoutComponentsInput, Prisma.ShipUncheckedCreateWithoutComponentsInput>
 }
 
-export type ShipCreateManyWarehouseInputEnvelope = {
-  data: Prisma.ShipCreateManyWarehouseInput | Prisma.ShipCreateManyWarehouseInput[]
-  skipDuplicates?: boolean
+export type ShipUpsertWithoutComponentsInput = {
+  update: Prisma.XOR<Prisma.ShipUpdateWithoutComponentsInput, Prisma.ShipUncheckedUpdateWithoutComponentsInput>
+  create: Prisma.XOR<Prisma.ShipCreateWithoutComponentsInput, Prisma.ShipUncheckedCreateWithoutComponentsInput>
+  where?: Prisma.ShipWhereInput
 }
 
-export type ShipUpsertWithWhereUniqueWithoutWarehouseInput = {
-  where: Prisma.ShipWhereUniqueInput
-  update: Prisma.XOR<Prisma.ShipUpdateWithoutWarehouseInput, Prisma.ShipUncheckedUpdateWithoutWarehouseInput>
-  create: Prisma.XOR<Prisma.ShipCreateWithoutWarehouseInput, Prisma.ShipUncheckedCreateWithoutWarehouseInput>
+export type ShipUpdateToOneWithWhereWithoutComponentsInput = {
+  where?: Prisma.ShipWhereInput
+  data: Prisma.XOR<Prisma.ShipUpdateWithoutComponentsInput, Prisma.ShipUncheckedUpdateWithoutComponentsInput>
 }
 
-export type ShipUpdateWithWhereUniqueWithoutWarehouseInput = {
-  where: Prisma.ShipWhereUniqueInput
-  data: Prisma.XOR<Prisma.ShipUpdateWithoutWarehouseInput, Prisma.ShipUncheckedUpdateWithoutWarehouseInput>
+export type ShipUpdateWithoutComponentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  level?: Prisma.IntFieldUpdateOperationsInput | number
+  type?: Prisma.EnumTypeShipFieldUpdateOperationsInput | $Enums.TypeShip
+  warpRange?: Prisma.FloatFieldUpdateOperationsInput | number
+  warpSpeed?: Prisma.FloatFieldUpdateOperationsInput | number
+  miningPower?: Prisma.FloatFieldUpdateOperationsInput | number
+  cargoSize?: Prisma.FloatFieldUpdateOperationsInput | number
+  locator?: Prisma.FloatFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isSelected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  GameData?: Prisma.GameDataUpdateOneWithoutShipNestedInput
 }
 
-export type ShipUpdateManyWithWhereWithoutWarehouseInput = {
-  where: Prisma.ShipScalarWhereInput
-  data: Prisma.XOR<Prisma.ShipUpdateManyMutationInput, Prisma.ShipUncheckedUpdateManyWithoutWarehouseInput>
+export type ShipUncheckedUpdateWithoutComponentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  level?: Prisma.IntFieldUpdateOperationsInput | number
+  type?: Prisma.EnumTypeShipFieldUpdateOperationsInput | $Enums.TypeShip
+  warpRange?: Prisma.FloatFieldUpdateOperationsInput | number
+  warpSpeed?: Prisma.FloatFieldUpdateOperationsInput | number
+  miningPower?: Prisma.FloatFieldUpdateOperationsInput | number
+  cargoSize?: Prisma.FloatFieldUpdateOperationsInput | number
+  locator?: Prisma.FloatFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isSelected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  gameDataId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type ShipCreateManyGameDataInput = {
   id?: string
-  uid: string
   level: number
   type: $Enums.TypeShip
   warpRange?: number
   warpSpeed?: number
   miningPower?: number
   cargoSize?: number
+  locator?: number
   createdAt?: Date | string
   updatedAt?: Date | string
-  warehouseId?: string | null
   isSelected?: boolean
 }
 
 export type ShipUpdateWithoutGameDataInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  uid?: Prisma.StringFieldUpdateOperationsInput | string
   level?: Prisma.IntFieldUpdateOperationsInput | number
   type?: Prisma.EnumTypeShipFieldUpdateOperationsInput | $Enums.TypeShip
   warpRange?: Prisma.FloatFieldUpdateOperationsInput | number
   warpSpeed?: Prisma.FloatFieldUpdateOperationsInput | number
   miningPower?: Prisma.FloatFieldUpdateOperationsInput | number
   cargoSize?: Prisma.FloatFieldUpdateOperationsInput | number
+  locator?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isSelected?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  warehouse?: Prisma.WarehouseUpdateOneWithoutShipNestedInput
   components?: Prisma.ShipComponentUpdateManyWithoutShipNestedInput
 }
 
 export type ShipUncheckedUpdateWithoutGameDataInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  uid?: Prisma.StringFieldUpdateOperationsInput | string
   level?: Prisma.IntFieldUpdateOperationsInput | number
   type?: Prisma.EnumTypeShipFieldUpdateOperationsInput | $Enums.TypeShip
   warpRange?: Prisma.FloatFieldUpdateOperationsInput | number
   warpSpeed?: Prisma.FloatFieldUpdateOperationsInput | number
   miningPower?: Prisma.FloatFieldUpdateOperationsInput | number
   cargoSize?: Prisma.FloatFieldUpdateOperationsInput | number
+  locator?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  warehouseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isSelected?: Prisma.BoolFieldUpdateOperationsInput | boolean
   components?: Prisma.ShipComponentUncheckedUpdateManyWithoutShipNestedInput
 }
 
 export type ShipUncheckedUpdateManyWithoutGameDataInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  uid?: Prisma.StringFieldUpdateOperationsInput | string
   level?: Prisma.IntFieldUpdateOperationsInput | number
   type?: Prisma.EnumTypeShipFieldUpdateOperationsInput | $Enums.TypeShip
   warpRange?: Prisma.FloatFieldUpdateOperationsInput | number
   warpSpeed?: Prisma.FloatFieldUpdateOperationsInput | number
   miningPower?: Prisma.FloatFieldUpdateOperationsInput | number
   cargoSize?: Prisma.FloatFieldUpdateOperationsInput | number
+  locator?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  warehouseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isSelected?: Prisma.BoolFieldUpdateOperationsInput | boolean
-}
-
-export type ShipCreateManyWarehouseInput = {
-  id?: string
-  uid: string
-  level: number
-  type: $Enums.TypeShip
-  warpRange?: number
-  warpSpeed?: number
-  miningPower?: number
-  cargoSize?: number
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  gameDataShipId?: string | null
-  isSelected?: boolean
-}
-
-export type ShipUpdateWithoutWarehouseInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  uid?: Prisma.StringFieldUpdateOperationsInput | string
-  level?: Prisma.IntFieldUpdateOperationsInput | number
-  type?: Prisma.EnumTypeShipFieldUpdateOperationsInput | $Enums.TypeShip
-  warpRange?: Prisma.FloatFieldUpdateOperationsInput | number
-  warpSpeed?: Prisma.FloatFieldUpdateOperationsInput | number
-  miningPower?: Prisma.FloatFieldUpdateOperationsInput | number
-  cargoSize?: Prisma.FloatFieldUpdateOperationsInput | number
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  isSelected?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  gameData?: Prisma.GameDataUpdateOneWithoutShipNestedInput
-  components?: Prisma.ShipComponentUpdateManyWithoutShipNestedInput
-}
-
-export type ShipUncheckedUpdateWithoutWarehouseInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  uid?: Prisma.StringFieldUpdateOperationsInput | string
-  level?: Prisma.IntFieldUpdateOperationsInput | number
-  type?: Prisma.EnumTypeShipFieldUpdateOperationsInput | $Enums.TypeShip
-  warpRange?: Prisma.FloatFieldUpdateOperationsInput | number
-  warpSpeed?: Prisma.FloatFieldUpdateOperationsInput | number
-  miningPower?: Prisma.FloatFieldUpdateOperationsInput | number
-  cargoSize?: Prisma.FloatFieldUpdateOperationsInput | number
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  gameDataShipId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isSelected?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  components?: Prisma.ShipComponentUncheckedUpdateManyWithoutShipNestedInput
-}
-
-export type ShipUncheckedUpdateManyWithoutWarehouseInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  uid?: Prisma.StringFieldUpdateOperationsInput | string
-  level?: Prisma.IntFieldUpdateOperationsInput | number
-  type?: Prisma.EnumTypeShipFieldUpdateOperationsInput | $Enums.TypeShip
-  warpRange?: Prisma.FloatFieldUpdateOperationsInput | number
-  warpSpeed?: Prisma.FloatFieldUpdateOperationsInput | number
-  miningPower?: Prisma.FloatFieldUpdateOperationsInput | number
-  cargoSize?: Prisma.FloatFieldUpdateOperationsInput | number
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  gameDataShipId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isSelected?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
@@ -1069,113 +886,106 @@ export type ShipCountOutputTypeCountComponentsArgs<ExtArgs extends runtime.Types
 
 export type ShipSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  uid?: boolean
   level?: boolean
   type?: boolean
   warpRange?: boolean
   warpSpeed?: boolean
   miningPower?: boolean
   cargoSize?: boolean
+  locator?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  gameDataShipId?: boolean
-  warehouseId?: boolean
   isSelected?: boolean
-  warehouse?: boolean | Prisma.Ship$warehouseArgs<ExtArgs>
-  gameData?: boolean | Prisma.Ship$gameDataArgs<ExtArgs>
+  gameDataId?: boolean
+  uid?: boolean
+  GameData?: boolean | Prisma.Ship$GameDataArgs<ExtArgs>
   components?: boolean | Prisma.Ship$componentsArgs<ExtArgs>
   _count?: boolean | Prisma.ShipCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["ship"]>
 
 export type ShipSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  uid?: boolean
   level?: boolean
   type?: boolean
   warpRange?: boolean
   warpSpeed?: boolean
   miningPower?: boolean
   cargoSize?: boolean
+  locator?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  gameDataShipId?: boolean
-  warehouseId?: boolean
   isSelected?: boolean
-  warehouse?: boolean | Prisma.Ship$warehouseArgs<ExtArgs>
-  gameData?: boolean | Prisma.Ship$gameDataArgs<ExtArgs>
+  gameDataId?: boolean
+  uid?: boolean
+  GameData?: boolean | Prisma.Ship$GameDataArgs<ExtArgs>
 }, ExtArgs["result"]["ship"]>
 
 export type ShipSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  uid?: boolean
   level?: boolean
   type?: boolean
   warpRange?: boolean
   warpSpeed?: boolean
   miningPower?: boolean
   cargoSize?: boolean
+  locator?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  gameDataShipId?: boolean
-  warehouseId?: boolean
   isSelected?: boolean
-  warehouse?: boolean | Prisma.Ship$warehouseArgs<ExtArgs>
-  gameData?: boolean | Prisma.Ship$gameDataArgs<ExtArgs>
+  gameDataId?: boolean
+  uid?: boolean
+  GameData?: boolean | Prisma.Ship$GameDataArgs<ExtArgs>
 }, ExtArgs["result"]["ship"]>
 
 export type ShipSelectScalar = {
   id?: boolean
-  uid?: boolean
   level?: boolean
   type?: boolean
   warpRange?: boolean
   warpSpeed?: boolean
   miningPower?: boolean
   cargoSize?: boolean
+  locator?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  gameDataShipId?: boolean
-  warehouseId?: boolean
   isSelected?: boolean
+  gameDataId?: boolean
+  uid?: boolean
 }
 
-export type ShipOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "uid" | "level" | "type" | "warpRange" | "warpSpeed" | "miningPower" | "cargoSize" | "createdAt" | "updatedAt" | "gameDataShipId" | "warehouseId" | "isSelected", ExtArgs["result"]["ship"]>
+export type ShipOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "level" | "type" | "warpRange" | "warpSpeed" | "miningPower" | "cargoSize" | "locator" | "createdAt" | "updatedAt" | "isSelected" | "gameDataId" | "uid", ExtArgs["result"]["ship"]>
 export type ShipInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  warehouse?: boolean | Prisma.Ship$warehouseArgs<ExtArgs>
-  gameData?: boolean | Prisma.Ship$gameDataArgs<ExtArgs>
+  GameData?: boolean | Prisma.Ship$GameDataArgs<ExtArgs>
   components?: boolean | Prisma.Ship$componentsArgs<ExtArgs>
   _count?: boolean | Prisma.ShipCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ShipIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  warehouse?: boolean | Prisma.Ship$warehouseArgs<ExtArgs>
-  gameData?: boolean | Prisma.Ship$gameDataArgs<ExtArgs>
+  GameData?: boolean | Prisma.Ship$GameDataArgs<ExtArgs>
 }
 export type ShipIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  warehouse?: boolean | Prisma.Ship$warehouseArgs<ExtArgs>
-  gameData?: boolean | Prisma.Ship$gameDataArgs<ExtArgs>
+  GameData?: boolean | Prisma.Ship$GameDataArgs<ExtArgs>
 }
 
 export type $ShipPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Ship"
   objects: {
-    warehouse: Prisma.$WarehousePayload<ExtArgs> | null
-    gameData: Prisma.$GameDataPayload<ExtArgs> | null
+    GameData: Prisma.$GameDataPayload<ExtArgs> | null
     components: Prisma.$ShipComponentPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    uid: string
     level: number
     type: $Enums.TypeShip
     warpRange: number
     warpSpeed: number
     miningPower: number
     cargoSize: number
+    locator: number
     createdAt: Date
     updatedAt: Date
-    gameDataShipId: string | null
-    warehouseId: string | null
     isSelected: boolean
+    gameDataId: string | null
+    uid: string | null
   }, ExtArgs["result"]["ship"]>
   composites: {}
 }
@@ -1570,8 +1380,7 @@ readonly fields: ShipFieldRefs;
  */
 export interface Prisma__ShipClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  warehouse<T extends Prisma.Ship$warehouseArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Ship$warehouseArgs<ExtArgs>>): Prisma.Prisma__WarehouseClient<runtime.Types.Result.GetResult<Prisma.$WarehousePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  gameData<T extends Prisma.Ship$gameDataArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Ship$gameDataArgs<ExtArgs>>): Prisma.Prisma__GameDataClient<runtime.Types.Result.GetResult<Prisma.$GameDataPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  GameData<T extends Prisma.Ship$GameDataArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Ship$GameDataArgs<ExtArgs>>): Prisma.Prisma__GameDataClient<runtime.Types.Result.GetResult<Prisma.$GameDataPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   components<T extends Prisma.Ship$componentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Ship$componentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ShipComponentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1603,18 +1412,18 @@ export interface Prisma__ShipClient<T, Null = never, ExtArgs extends runtime.Typ
  */
 export interface ShipFieldRefs {
   readonly id: Prisma.FieldRef<"Ship", 'String'>
-  readonly uid: Prisma.FieldRef<"Ship", 'String'>
   readonly level: Prisma.FieldRef<"Ship", 'Int'>
   readonly type: Prisma.FieldRef<"Ship", 'TypeShip'>
   readonly warpRange: Prisma.FieldRef<"Ship", 'Float'>
   readonly warpSpeed: Prisma.FieldRef<"Ship", 'Float'>
   readonly miningPower: Prisma.FieldRef<"Ship", 'Float'>
   readonly cargoSize: Prisma.FieldRef<"Ship", 'Float'>
+  readonly locator: Prisma.FieldRef<"Ship", 'Float'>
   readonly createdAt: Prisma.FieldRef<"Ship", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Ship", 'DateTime'>
-  readonly gameDataShipId: Prisma.FieldRef<"Ship", 'String'>
-  readonly warehouseId: Prisma.FieldRef<"Ship", 'String'>
   readonly isSelected: Prisma.FieldRef<"Ship", 'Boolean'>
+  readonly gameDataId: Prisma.FieldRef<"Ship", 'String'>
+  readonly uid: Prisma.FieldRef<"Ship", 'String'>
 }
     
 
@@ -2011,28 +1820,9 @@ export type ShipDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
- * Ship.warehouse
+ * Ship.GameData
  */
-export type Ship$warehouseArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Warehouse
-   */
-  select?: Prisma.WarehouseSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Warehouse
-   */
-  omit?: Prisma.WarehouseOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.WarehouseInclude<ExtArgs> | null
-  where?: Prisma.WarehouseWhereInput
-}
-
-/**
- * Ship.gameData
- */
-export type Ship$gameDataArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Ship$GameDataArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the GameData
    */

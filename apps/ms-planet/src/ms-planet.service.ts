@@ -1,4 +1,4 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { BadRequestException, Injectable, Logger } from '@nestjs/common';
 import { PrismaService } from '@app/prisma';
 import { createNoise3D } from 'simplex-noise';
 import {
@@ -7,8 +7,18 @@ import {
 } from '../../../libs/prisma/generated/prisma/enums';
 import { RESOURCE_INFO, RESOURCE_PLANET_POOL } from './constants';
 import { SciFiNameGenerator } from './utils/SciFiNameGenerator';
-import { Point3D, ScanOptions } from '@app/contracts/planet/types';
+import {
+  Point3D,
+  ResourcePlanet,
+  ScanOptions,
+} from '@app/contracts/planet/types';
 import { xor4096 } from 'seedrandom';
+import { isDefined } from '@app/core/utils';
+import { PlanetResource } from '../../../libs/prisma/generated/prisma/client';
+import {
+  PlanetResourceCreateInput,
+  PlanetResourceCreateManyInput,
+} from '../../../libs/prisma/generated/prisma/models/PlanetResource';
 
 @Injectable()
 export class MsPlanetService {
@@ -26,8 +36,12 @@ export class MsPlanetService {
     };
   }
 
+  makeSeedByPoint(point: Point3D) {
+    return `${point.x}_${point.y}_${point.z}`;
+  }
+
   planetGenerate(point: Point3D) {
-    const seed = `${point.x}_${point.y}_${point.z}`;
+    const seed = this.makeSeedByPoint(point);
     // const rng = this.mulberry32(+seed);
     const rng = xor4096(seed);
 
@@ -44,7 +58,7 @@ export class MsPlanetService {
     // 3. Resources
     // Количество ресурсов
     const resourceCount = Math.floor(rng() * 3) + 2; // 2–4 ресурса
-    const resources = [];
+    const resources: ResourcePlanet[] = [];
 
     for (let i = 0; i < resourceCount; i++) {
       const resource = this.generateResource(biome, rarity, rng);
@@ -103,7 +117,7 @@ export class MsPlanetService {
     biome: PlanetType,
     rarity: Rarity,
     rng: () => number,
-  ) {
+  ): ResourcePlanet {
     const resources = RESOURCE_PLANET_POOL[biome][rarity];
     const resource = resources[Math.floor(rng() * resources.length)];
     const rarityResource = this.defineRarityResource(rng);
@@ -115,7 +129,7 @@ export class MsPlanetService {
       type: resource,
       rarity: rarityResource,
       totalAmount: amount,
-      remainingAmount: null,
+      remainingAmount: amount,
     };
   }
 
@@ -145,7 +159,97 @@ export class MsPlanetService {
     return planets;
   }
 
-  jumpToPlanet() {}
+  async jumpToPlanet(uid: string, target: Point3D) {
+    const gameData = await this.prisma.gameData.findUnique({
+      where: {
+        uid,
+      },
+    });
+
+    if (!gameData) {
+      throw new BadRequestException('Game data not found');
+    }
+
+    const currentShip = await this.prisma.ship.findUnique({
+      where: { id: gameData.shipId },
+    });
+
+    //TODO: на будущее
+    // const fuelRequired = distance * ship.fuelPerUnit;
+    //
+    // if (ship.fuel < fuelRequired) {
+    //   throw new Error("Недостаточно топлива");
+    // }
+    //
+    // // списываем топливо
+    // await this.shipService.updateFuel(userId, ship.fuel - fuelRequired);
+
+    const seed = this.makeSeedByPoint(target);
+    let planet = await this.prisma.planet.findUnique({ where: { seed } });
+
+    if (!isDefined(planet)) {
+      const generatedPlanet = this.planetGenerate(target);
+
+      await this.prisma.$transaction(async (tx) => {
+        planet = await tx.planet.create({
+          data: {
+            name: generatedPlanet.name,
+            seed: generatedPlanet.seed,
+            rarity: generatedPlanet.rarity,
+            type: generatedPlanet.biome,
+            x: generatedPlanet.position.x,
+            y: generatedPlanet.position.y,
+            z: generatedPlanet.position.z,
+            ownerBy: uid,
+          },
+        });
+
+        const createResources: PlanetResourceCreateManyInput[] = [];
+
+        for (const resource of generatedPlanet.resources) {
+          createResources.push({
+            planetId: planet.id,
+            type: resource.type,
+            totalAmount: resource.totalAmount,
+            current: resource.remainingAmount,
+            drillPowerRequired: 1, //TODO: сделать потом случайным в зависимости от rarity
+          });
+
+          // this.prisma.planetResource.create({
+          //   data: {
+          //     planetId: planet.id,
+          //     type: resource.type,
+          //     totalAmount: resource.totalAmount,
+          //     current: resource.remainingAmount,
+          //     drillPowerRequired: 1, //TODO: сделать потом случайным в зависимости от rarity
+          //   },
+          // });
+        }
+
+        await tx.planetResource.createMany({ data: createResources });
+      });
+    }
+
+    gameData.x = target.x;
+    gameData.y = target.y;
+    gameData.z = target.z;
+
+    await this.prisma.gameData.update({
+      where: {
+        uid,
+      },
+      data: { ...gameData, currentPlanetId: planet.id },
+    });
+
+    await this.prisma.planetVisit.create({
+      data: { planetId: planet.id, uid, exhausted: false, mined: {} },
+    });
+
+    return this.prisma.planet.findUnique({
+      where: { id: planet.id },
+      include: { planetResource: true },
+    });
+  }
 }
 
 class RNG {

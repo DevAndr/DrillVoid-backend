@@ -50,10 +50,9 @@ export const AnyNull = runtime.objectEnumValues.instances.AnyNull
 
 export const ModelName = {
   User: 'User',
+  GameData: 'GameData',
   Ship: 'Ship',
   ShipComponent: 'ShipComponent',
-  GameData: 'GameData',
-  Warehouse: 'Warehouse',
   Planet: 'Planet',
   InventoryItem: 'InventoryItem',
   PlanetResource: 'PlanetResource',
@@ -94,20 +93,33 @@ export const UserScalarFieldEnum = {
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
-export const ShipScalarFieldEnum = {
+export const GameDataScalarFieldEnum = {
   id: 'id',
   uid: 'uid',
+  shipId: 'shipId',
+  currentPlanetId: 'currentPlanetId',
+  x: 'x',
+  y: 'y',
+  z: 'z'
+} as const
+
+export type GameDataScalarFieldEnum = (typeof GameDataScalarFieldEnum)[keyof typeof GameDataScalarFieldEnum]
+
+
+export const ShipScalarFieldEnum = {
+  id: 'id',
   level: 'level',
   type: 'type',
   warpRange: 'warpRange',
   warpSpeed: 'warpSpeed',
   miningPower: 'miningPower',
   cargoSize: 'cargoSize',
+  locator: 'locator',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  gameDataShipId: 'gameDataShipId',
-  warehouseId: 'warehouseId',
-  isSelected: 'isSelected'
+  isSelected: 'isSelected',
+  gameDataId: 'gameDataId',
+  uid: 'uid'
 } as const
 
 export type ShipScalarFieldEnum = (typeof ShipScalarFieldEnum)[keyof typeof ShipScalarFieldEnum]
@@ -129,46 +141,15 @@ export const ShipComponentScalarFieldEnum = {
 export type ShipComponentScalarFieldEnum = (typeof ShipComponentScalarFieldEnum)[keyof typeof ShipComponentScalarFieldEnum]
 
 
-export const GameDataScalarFieldEnum = {
-  id: 'id',
-  uid: 'uid',
-  shipId: 'shipId',
-  x: 'x',
-  y: 'y',
-  z: 'z'
-} as const
-
-export type GameDataScalarFieldEnum = (typeof GameDataScalarFieldEnum)[keyof typeof GameDataScalarFieldEnum]
-
-
-export const WarehouseScalarFieldEnum = {
-  id: 'id',
-  uid: 'uid',
-  level: 'level',
-  type: 'type',
-  shipId: 'shipId',
-  foodQuantity: 'foodQuantity',
-  coalQuantity: 'coalQuantity',
-  waterQuantity: 'waterQuantity',
-  herbsQuantity: 'herbsQuantity',
-  paperQuantity: 'paperQuantity',
-  upgradeCost: 'upgradeCost',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type WarehouseScalarFieldEnum = (typeof WarehouseScalarFieldEnum)[keyof typeof WarehouseScalarFieldEnum]
-
-
 export const PlanetScalarFieldEnum = {
   id: 'id',
   seed: 'seed',
   name: 'name',
   type: 'type',
-  totalCapacity: 'totalCapacity',
-  currentStock: 'currentStock',
-  scannedBy: 'scannedBy',
-  coordinates: 'coordinates',
+  ownerBy: 'ownerBy',
+  x: 'x',
+  y: 'y',
+  z: 'z',
   rarity: 'rarity',
   depleted: 'depleted',
   createdAt: 'createdAt',
@@ -193,7 +174,7 @@ export type InventoryItemScalarFieldEnum = (typeof InventoryItemScalarFieldEnum)
 export const PlanetResourceScalarFieldEnum = {
   id: 'id',
   planetId: 'planetId',
-  typeResource: 'typeResource',
+  type: 'type',
   totalAmount: 'totalAmount',
   current: 'current',
   drillPowerRequired: 'drillPowerRequired',
@@ -250,7 +231,7 @@ export const BalanceScalarFieldEnum = {
   amount: 'amount',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  gameDataShipId: 'gameDataShipId'
+  gameDataId: 'gameDataId'
 } as const
 
 export type BalanceScalarFieldEnum = (typeof BalanceScalarFieldEnum)[keyof typeof BalanceScalarFieldEnum]
@@ -264,6 +245,9 @@ export const MinigSessionScalarFieldEnum = {
   planetSeed: 'planetSeed',
   startedAt: 'startedAt',
   status: 'status',
+  lastClaimAt: 'lastClaimAt',
+  maxAmount: 'maxAmount',
+  mined: 'mined',
   estimatedAmount: 'estimatedAmount',
   finishedAt: 'finishedAt'
 } as const

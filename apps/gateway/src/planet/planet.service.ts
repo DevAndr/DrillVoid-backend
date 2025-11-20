@@ -5,6 +5,7 @@ import {
   MS_PLANET_PATTERNS,
 } from '@app/contracts/planet/constants';
 import { firstValueFrom } from 'rxjs';
+import { PayloadJumpToPlanet } from '@app/contracts';
 
 @Injectable()
 export class PlanetService {
@@ -21,6 +22,12 @@ export class PlanetService {
   scanPlanets(data) {
     return firstValueFrom(
       this.planetClient.send(MS_PLANET_PATTERNS.SCAN, data),
+    );
+  }
+
+  jumpToPlanet(data: PayloadJumpToPlanet) {
+    return firstValueFrom(
+      this.planetClient.send(MS_PLANET_PATTERNS.JUMP_TO_PLANET, data),
     );
   }
 }

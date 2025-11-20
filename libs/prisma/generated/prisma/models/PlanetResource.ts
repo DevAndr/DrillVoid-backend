@@ -41,7 +41,7 @@ export type PlanetResourceSumAggregateOutputType = {
 export type PlanetResourceMinAggregateOutputType = {
   id: string | null
   planetId: string | null
-  typeResource: $Enums.ResourceType | null
+  type: $Enums.ResourceType | null
   totalAmount: number | null
   current: number | null
   drillPowerRequired: number | null
@@ -52,7 +52,7 @@ export type PlanetResourceMinAggregateOutputType = {
 export type PlanetResourceMaxAggregateOutputType = {
   id: string | null
   planetId: string | null
-  typeResource: $Enums.ResourceType | null
+  type: $Enums.ResourceType | null
   totalAmount: number | null
   current: number | null
   drillPowerRequired: number | null
@@ -63,7 +63,7 @@ export type PlanetResourceMaxAggregateOutputType = {
 export type PlanetResourceCountAggregateOutputType = {
   id: number
   planetId: number
-  typeResource: number
+  type: number
   totalAmount: number
   current: number
   drillPowerRequired: number
@@ -88,7 +88,7 @@ export type PlanetResourceSumAggregateInputType = {
 export type PlanetResourceMinAggregateInputType = {
   id?: true
   planetId?: true
-  typeResource?: true
+  type?: true
   totalAmount?: true
   current?: true
   drillPowerRequired?: true
@@ -99,7 +99,7 @@ export type PlanetResourceMinAggregateInputType = {
 export type PlanetResourceMaxAggregateInputType = {
   id?: true
   planetId?: true
-  typeResource?: true
+  type?: true
   totalAmount?: true
   current?: true
   drillPowerRequired?: true
@@ -110,7 +110,7 @@ export type PlanetResourceMaxAggregateInputType = {
 export type PlanetResourceCountAggregateInputType = {
   id?: true
   planetId?: true
-  typeResource?: true
+  type?: true
   totalAmount?: true
   current?: true
   drillPowerRequired?: true
@@ -208,7 +208,7 @@ export type PlanetResourceGroupByArgs<ExtArgs extends runtime.Types.Extensions.I
 export type PlanetResourceGroupByOutputType = {
   id: string
   planetId: string
-  typeResource: $Enums.ResourceType
+  type: $Enums.ResourceType
   totalAmount: number
   current: number
   drillPowerRequired: number
@@ -242,7 +242,7 @@ export type PlanetResourceWhereInput = {
   NOT?: Prisma.PlanetResourceWhereInput | Prisma.PlanetResourceWhereInput[]
   id?: Prisma.StringFilter<"PlanetResource"> | string
   planetId?: Prisma.StringFilter<"PlanetResource"> | string
-  typeResource?: Prisma.EnumResourceTypeFilter<"PlanetResource"> | $Enums.ResourceType
+  type?: Prisma.EnumResourceTypeFilter<"PlanetResource"> | $Enums.ResourceType
   totalAmount?: Prisma.FloatFilter<"PlanetResource"> | number
   current?: Prisma.FloatFilter<"PlanetResource"> | number
   drillPowerRequired?: Prisma.FloatFilter<"PlanetResource"> | number
@@ -254,7 +254,7 @@ export type PlanetResourceWhereInput = {
 export type PlanetResourceOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   planetId?: Prisma.SortOrder
-  typeResource?: Prisma.SortOrder
+  type?: Prisma.SortOrder
   totalAmount?: Prisma.SortOrder
   current?: Prisma.SortOrder
   drillPowerRequired?: Prisma.SortOrder
@@ -269,7 +269,7 @@ export type PlanetResourceWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.PlanetResourceWhereInput[]
   NOT?: Prisma.PlanetResourceWhereInput | Prisma.PlanetResourceWhereInput[]
   planetId?: Prisma.StringFilter<"PlanetResource"> | string
-  typeResource?: Prisma.EnumResourceTypeFilter<"PlanetResource"> | $Enums.ResourceType
+  type?: Prisma.EnumResourceTypeFilter<"PlanetResource"> | $Enums.ResourceType
   totalAmount?: Prisma.FloatFilter<"PlanetResource"> | number
   current?: Prisma.FloatFilter<"PlanetResource"> | number
   drillPowerRequired?: Prisma.FloatFilter<"PlanetResource"> | number
@@ -281,7 +281,7 @@ export type PlanetResourceWhereUniqueInput = Prisma.AtLeast<{
 export type PlanetResourceOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   planetId?: Prisma.SortOrder
-  typeResource?: Prisma.SortOrder
+  type?: Prisma.SortOrder
   totalAmount?: Prisma.SortOrder
   current?: Prisma.SortOrder
   drillPowerRequired?: Prisma.SortOrder
@@ -300,7 +300,7 @@ export type PlanetResourceScalarWhereWithAggregatesInput = {
   NOT?: Prisma.PlanetResourceScalarWhereWithAggregatesInput | Prisma.PlanetResourceScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"PlanetResource"> | string
   planetId?: Prisma.StringWithAggregatesFilter<"PlanetResource"> | string
-  typeResource?: Prisma.EnumResourceTypeWithAggregatesFilter<"PlanetResource"> | $Enums.ResourceType
+  type?: Prisma.EnumResourceTypeWithAggregatesFilter<"PlanetResource"> | $Enums.ResourceType
   totalAmount?: Prisma.FloatWithAggregatesFilter<"PlanetResource"> | number
   current?: Prisma.FloatWithAggregatesFilter<"PlanetResource"> | number
   drillPowerRequired?: Prisma.FloatWithAggregatesFilter<"PlanetResource"> | number
@@ -310,7 +310,7 @@ export type PlanetResourceScalarWhereWithAggregatesInput = {
 
 export type PlanetResourceCreateInput = {
   id?: string
-  typeResource: $Enums.ResourceType
+  type: $Enums.ResourceType
   totalAmount: number
   current: number
   drillPowerRequired: number
@@ -322,7 +322,7 @@ export type PlanetResourceCreateInput = {
 export type PlanetResourceUncheckedCreateInput = {
   id?: string
   planetId: string
-  typeResource: $Enums.ResourceType
+  type: $Enums.ResourceType
   totalAmount: number
   current: number
   drillPowerRequired: number
@@ -332,7 +332,7 @@ export type PlanetResourceUncheckedCreateInput = {
 
 export type PlanetResourceUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  typeResource?: Prisma.EnumResourceTypeFieldUpdateOperationsInput | $Enums.ResourceType
+  type?: Prisma.EnumResourceTypeFieldUpdateOperationsInput | $Enums.ResourceType
   totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
   current?: Prisma.FloatFieldUpdateOperationsInput | number
   drillPowerRequired?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -344,7 +344,7 @@ export type PlanetResourceUpdateInput = {
 export type PlanetResourceUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   planetId?: Prisma.StringFieldUpdateOperationsInput | string
-  typeResource?: Prisma.EnumResourceTypeFieldUpdateOperationsInput | $Enums.ResourceType
+  type?: Prisma.EnumResourceTypeFieldUpdateOperationsInput | $Enums.ResourceType
   totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
   current?: Prisma.FloatFieldUpdateOperationsInput | number
   drillPowerRequired?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -355,7 +355,7 @@ export type PlanetResourceUncheckedUpdateInput = {
 export type PlanetResourceCreateManyInput = {
   id?: string
   planetId: string
-  typeResource: $Enums.ResourceType
+  type: $Enums.ResourceType
   totalAmount: number
   current: number
   drillPowerRequired: number
@@ -365,7 +365,7 @@ export type PlanetResourceCreateManyInput = {
 
 export type PlanetResourceUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  typeResource?: Prisma.EnumResourceTypeFieldUpdateOperationsInput | $Enums.ResourceType
+  type?: Prisma.EnumResourceTypeFieldUpdateOperationsInput | $Enums.ResourceType
   totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
   current?: Prisma.FloatFieldUpdateOperationsInput | number
   drillPowerRequired?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -376,7 +376,7 @@ export type PlanetResourceUpdateManyMutationInput = {
 export type PlanetResourceUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   planetId?: Prisma.StringFieldUpdateOperationsInput | string
-  typeResource?: Prisma.EnumResourceTypeFieldUpdateOperationsInput | $Enums.ResourceType
+  type?: Prisma.EnumResourceTypeFieldUpdateOperationsInput | $Enums.ResourceType
   totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
   current?: Prisma.FloatFieldUpdateOperationsInput | number
   drillPowerRequired?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -397,7 +397,7 @@ export type PlanetResourceOrderByRelationAggregateInput = {
 export type PlanetResourceCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   planetId?: Prisma.SortOrder
-  typeResource?: Prisma.SortOrder
+  type?: Prisma.SortOrder
   totalAmount?: Prisma.SortOrder
   current?: Prisma.SortOrder
   drillPowerRequired?: Prisma.SortOrder
@@ -414,7 +414,7 @@ export type PlanetResourceAvgOrderByAggregateInput = {
 export type PlanetResourceMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   planetId?: Prisma.SortOrder
-  typeResource?: Prisma.SortOrder
+  type?: Prisma.SortOrder
   totalAmount?: Prisma.SortOrder
   current?: Prisma.SortOrder
   drillPowerRequired?: Prisma.SortOrder
@@ -425,7 +425,7 @@ export type PlanetResourceMaxOrderByAggregateInput = {
 export type PlanetResourceMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   planetId?: Prisma.SortOrder
-  typeResource?: Prisma.SortOrder
+  type?: Prisma.SortOrder
   totalAmount?: Prisma.SortOrder
   current?: Prisma.SortOrder
   drillPowerRequired?: Prisma.SortOrder
@@ -483,7 +483,7 @@ export type PlanetResourceUncheckedUpdateManyWithoutPlanetNestedInput = {
 
 export type PlanetResourceCreateWithoutPlanetInput = {
   id?: string
-  typeResource: $Enums.ResourceType
+  type: $Enums.ResourceType
   totalAmount: number
   current: number
   drillPowerRequired: number
@@ -493,7 +493,7 @@ export type PlanetResourceCreateWithoutPlanetInput = {
 
 export type PlanetResourceUncheckedCreateWithoutPlanetInput = {
   id?: string
-  typeResource: $Enums.ResourceType
+  type: $Enums.ResourceType
   totalAmount: number
   current: number
   drillPowerRequired: number
@@ -533,7 +533,7 @@ export type PlanetResourceScalarWhereInput = {
   NOT?: Prisma.PlanetResourceScalarWhereInput | Prisma.PlanetResourceScalarWhereInput[]
   id?: Prisma.StringFilter<"PlanetResource"> | string
   planetId?: Prisma.StringFilter<"PlanetResource"> | string
-  typeResource?: Prisma.EnumResourceTypeFilter<"PlanetResource"> | $Enums.ResourceType
+  type?: Prisma.EnumResourceTypeFilter<"PlanetResource"> | $Enums.ResourceType
   totalAmount?: Prisma.FloatFilter<"PlanetResource"> | number
   current?: Prisma.FloatFilter<"PlanetResource"> | number
   drillPowerRequired?: Prisma.FloatFilter<"PlanetResource"> | number
@@ -543,7 +543,7 @@ export type PlanetResourceScalarWhereInput = {
 
 export type PlanetResourceCreateManyPlanetInput = {
   id?: string
-  typeResource: $Enums.ResourceType
+  type: $Enums.ResourceType
   totalAmount: number
   current: number
   drillPowerRequired: number
@@ -553,7 +553,7 @@ export type PlanetResourceCreateManyPlanetInput = {
 
 export type PlanetResourceUpdateWithoutPlanetInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  typeResource?: Prisma.EnumResourceTypeFieldUpdateOperationsInput | $Enums.ResourceType
+  type?: Prisma.EnumResourceTypeFieldUpdateOperationsInput | $Enums.ResourceType
   totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
   current?: Prisma.FloatFieldUpdateOperationsInput | number
   drillPowerRequired?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -563,7 +563,7 @@ export type PlanetResourceUpdateWithoutPlanetInput = {
 
 export type PlanetResourceUncheckedUpdateWithoutPlanetInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  typeResource?: Prisma.EnumResourceTypeFieldUpdateOperationsInput | $Enums.ResourceType
+  type?: Prisma.EnumResourceTypeFieldUpdateOperationsInput | $Enums.ResourceType
   totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
   current?: Prisma.FloatFieldUpdateOperationsInput | number
   drillPowerRequired?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -573,7 +573,7 @@ export type PlanetResourceUncheckedUpdateWithoutPlanetInput = {
 
 export type PlanetResourceUncheckedUpdateManyWithoutPlanetInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  typeResource?: Prisma.EnumResourceTypeFieldUpdateOperationsInput | $Enums.ResourceType
+  type?: Prisma.EnumResourceTypeFieldUpdateOperationsInput | $Enums.ResourceType
   totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
   current?: Prisma.FloatFieldUpdateOperationsInput | number
   drillPowerRequired?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -586,7 +586,7 @@ export type PlanetResourceUncheckedUpdateManyWithoutPlanetInput = {
 export type PlanetResourceSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   planetId?: boolean
-  typeResource?: boolean
+  type?: boolean
   totalAmount?: boolean
   current?: boolean
   drillPowerRequired?: boolean
@@ -598,7 +598,7 @@ export type PlanetResourceSelect<ExtArgs extends runtime.Types.Extensions.Intern
 export type PlanetResourceSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   planetId?: boolean
-  typeResource?: boolean
+  type?: boolean
   totalAmount?: boolean
   current?: boolean
   drillPowerRequired?: boolean
@@ -610,7 +610,7 @@ export type PlanetResourceSelectCreateManyAndReturn<ExtArgs extends runtime.Type
 export type PlanetResourceSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   planetId?: boolean
-  typeResource?: boolean
+  type?: boolean
   totalAmount?: boolean
   current?: boolean
   drillPowerRequired?: boolean
@@ -622,7 +622,7 @@ export type PlanetResourceSelectUpdateManyAndReturn<ExtArgs extends runtime.Type
 export type PlanetResourceSelectScalar = {
   id?: boolean
   planetId?: boolean
-  typeResource?: boolean
+  type?: boolean
   totalAmount?: boolean
   current?: boolean
   drillPowerRequired?: boolean
@@ -630,7 +630,7 @@ export type PlanetResourceSelectScalar = {
   updatedAt?: boolean
 }
 
-export type PlanetResourceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "planetId" | "typeResource" | "totalAmount" | "current" | "drillPowerRequired" | "createdAt" | "updatedAt", ExtArgs["result"]["planetResource"]>
+export type PlanetResourceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "planetId" | "type" | "totalAmount" | "current" | "drillPowerRequired" | "createdAt" | "updatedAt", ExtArgs["result"]["planetResource"]>
 export type PlanetResourceInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   planet?: boolean | Prisma.PlanetDefaultArgs<ExtArgs>
 }
@@ -649,7 +649,7 @@ export type $PlanetResourcePayload<ExtArgs extends runtime.Types.Extensions.Inte
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     planetId: string
-    typeResource: $Enums.ResourceType
+    type: $Enums.ResourceType
     totalAmount: number
     current: number
     drillPowerRequired: number
@@ -1081,7 +1081,7 @@ export interface Prisma__PlanetResourceClient<T, Null = never, ExtArgs extends r
 export interface PlanetResourceFieldRefs {
   readonly id: Prisma.FieldRef<"PlanetResource", 'String'>
   readonly planetId: Prisma.FieldRef<"PlanetResource", 'String'>
-  readonly typeResource: Prisma.FieldRef<"PlanetResource", 'ResourceType'>
+  readonly type: Prisma.FieldRef<"PlanetResource", 'ResourceType'>
   readonly totalAmount: Prisma.FieldRef<"PlanetResource", 'Float'>
   readonly current: Prisma.FieldRef<"PlanetResource", 'Float'>
   readonly drillPowerRequired: Prisma.FieldRef<"PlanetResource", 'Float'>

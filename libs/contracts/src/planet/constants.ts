@@ -4,4 +4,5 @@ export const MS_PLANET_PATTERNS = {
   MINING: 'planet.mining',
   SCAN: 'planet.scan',
   GENERATE_PLANET: 'planet.generate_planet',
+  JUMP_TO_PLANET: 'planet.jump_to_planet',
 };
