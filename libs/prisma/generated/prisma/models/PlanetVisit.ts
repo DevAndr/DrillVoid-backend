@@ -30,7 +30,6 @@ export type PlanetVisitMinAggregateOutputType = {
   planetId: string | null
   exhausted: boolean | null
   timestamp: Date | null
-  gameDataUid: string | null
 }
 
 export type PlanetVisitMaxAggregateOutputType = {
@@ -39,7 +38,6 @@ export type PlanetVisitMaxAggregateOutputType = {
   planetId: string | null
   exhausted: boolean | null
   timestamp: Date | null
-  gameDataUid: string | null
 }
 
 export type PlanetVisitCountAggregateOutputType = {
@@ -49,7 +47,6 @@ export type PlanetVisitCountAggregateOutputType = {
   mined: number
   exhausted: number
   timestamp: number
-  gameDataUid: number
   _all: number
 }
 
@@ -60,7 +57,6 @@ export type PlanetVisitMinAggregateInputType = {
   planetId?: true
   exhausted?: true
   timestamp?: true
-  gameDataUid?: true
 }
 
 export type PlanetVisitMaxAggregateInputType = {
@@ -69,7 +65,6 @@ export type PlanetVisitMaxAggregateInputType = {
   planetId?: true
   exhausted?: true
   timestamp?: true
-  gameDataUid?: true
 }
 
 export type PlanetVisitCountAggregateInputType = {
@@ -79,7 +74,6 @@ export type PlanetVisitCountAggregateInputType = {
   mined?: true
   exhausted?: true
   timestamp?: true
-  gameDataUid?: true
   _all?: true
 }
 
@@ -162,7 +156,6 @@ export type PlanetVisitGroupByOutputType = {
   mined: runtime.JsonValue
   exhausted: boolean
   timestamp: Date
-  gameDataUid: string | null
   _count: PlanetVisitCountAggregateOutputType | null
   _min: PlanetVisitMinAggregateOutputType | null
   _max: PlanetVisitMaxAggregateOutputType | null
@@ -193,7 +186,6 @@ export type PlanetVisitWhereInput = {
   mined?: Prisma.JsonFilter<"PlanetVisit">
   exhausted?: Prisma.BoolFilter<"PlanetVisit"> | boolean
   timestamp?: Prisma.DateTimeFilter<"PlanetVisit"> | Date | string
-  gameDataUid?: Prisma.StringNullableFilter<"PlanetVisit"> | string | null
   planet?: Prisma.XOR<Prisma.PlanetScalarRelationFilter, Prisma.PlanetWhereInput>
   GameData?: Prisma.XOR<Prisma.GameDataNullableScalarRelationFilter, Prisma.GameDataWhereInput> | null
 }
@@ -205,7 +197,6 @@ export type PlanetVisitOrderByWithRelationInput = {
   mined?: Prisma.SortOrder
   exhausted?: Prisma.SortOrder
   timestamp?: Prisma.SortOrder
-  gameDataUid?: Prisma.SortOrderInput | Prisma.SortOrder
   planet?: Prisma.PlanetOrderByWithRelationInput
   GameData?: Prisma.GameDataOrderByWithRelationInput
 }
@@ -220,7 +211,6 @@ export type PlanetVisitWhereUniqueInput = Prisma.AtLeast<{
   mined?: Prisma.JsonFilter<"PlanetVisit">
   exhausted?: Prisma.BoolFilter<"PlanetVisit"> | boolean
   timestamp?: Prisma.DateTimeFilter<"PlanetVisit"> | Date | string
-  gameDataUid?: Prisma.StringNullableFilter<"PlanetVisit"> | string | null
   planet?: Prisma.XOR<Prisma.PlanetScalarRelationFilter, Prisma.PlanetWhereInput>
   GameData?: Prisma.XOR<Prisma.GameDataNullableScalarRelationFilter, Prisma.GameDataWhereInput> | null
 }, "id">
@@ -232,7 +222,6 @@ export type PlanetVisitOrderByWithAggregationInput = {
   mined?: Prisma.SortOrder
   exhausted?: Prisma.SortOrder
   timestamp?: Prisma.SortOrder
-  gameDataUid?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.PlanetVisitCountOrderByAggregateInput
   _max?: Prisma.PlanetVisitMaxOrderByAggregateInput
   _min?: Prisma.PlanetVisitMinOrderByAggregateInput
@@ -248,12 +237,10 @@ export type PlanetVisitScalarWhereWithAggregatesInput = {
   mined?: Prisma.JsonWithAggregatesFilter<"PlanetVisit">
   exhausted?: Prisma.BoolWithAggregatesFilter<"PlanetVisit"> | boolean
   timestamp?: Prisma.DateTimeWithAggregatesFilter<"PlanetVisit"> | Date | string
-  gameDataUid?: Prisma.StringNullableWithAggregatesFilter<"PlanetVisit"> | string | null
 }
 
 export type PlanetVisitCreateInput = {
   id?: string
-  uid: string
   mined: Prisma.JsonNullValueInput | runtime.InputJsonValue
   exhausted?: boolean
   timestamp?: Date | string
@@ -268,12 +255,10 @@ export type PlanetVisitUncheckedCreateInput = {
   mined: Prisma.JsonNullValueInput | runtime.InputJsonValue
   exhausted?: boolean
   timestamp?: Date | string
-  gameDataUid?: string | null
 }
 
 export type PlanetVisitUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  uid?: Prisma.StringFieldUpdateOperationsInput | string
   mined?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   exhausted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   timestamp?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -288,7 +273,6 @@ export type PlanetVisitUncheckedUpdateInput = {
   mined?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   exhausted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   timestamp?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  gameDataUid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type PlanetVisitCreateManyInput = {
@@ -298,12 +282,10 @@ export type PlanetVisitCreateManyInput = {
   mined: Prisma.JsonNullValueInput | runtime.InputJsonValue
   exhausted?: boolean
   timestamp?: Date | string
-  gameDataUid?: string | null
 }
 
 export type PlanetVisitUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  uid?: Prisma.StringFieldUpdateOperationsInput | string
   mined?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   exhausted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   timestamp?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -316,7 +298,6 @@ export type PlanetVisitUncheckedUpdateManyInput = {
   mined?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   exhausted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   timestamp?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  gameDataUid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type PlanetVisitListRelationFilter = {
@@ -336,7 +317,6 @@ export type PlanetVisitCountOrderByAggregateInput = {
   mined?: Prisma.SortOrder
   exhausted?: Prisma.SortOrder
   timestamp?: Prisma.SortOrder
-  gameDataUid?: Prisma.SortOrder
 }
 
 export type PlanetVisitMaxOrderByAggregateInput = {
@@ -345,7 +325,6 @@ export type PlanetVisitMaxOrderByAggregateInput = {
   planetId?: Prisma.SortOrder
   exhausted?: Prisma.SortOrder
   timestamp?: Prisma.SortOrder
-  gameDataUid?: Prisma.SortOrder
 }
 
 export type PlanetVisitMinOrderByAggregateInput = {
@@ -354,7 +333,6 @@ export type PlanetVisitMinOrderByAggregateInput = {
   planetId?: Prisma.SortOrder
   exhausted?: Prisma.SortOrder
   timestamp?: Prisma.SortOrder
-  gameDataUid?: Prisma.SortOrder
 }
 
 export type PlanetVisitCreateNestedManyWithoutGameDataInput = {
@@ -443,7 +421,6 @@ export type PlanetVisitUncheckedUpdateManyWithoutPlanetNestedInput = {
 
 export type PlanetVisitCreateWithoutGameDataInput = {
   id?: string
-  uid: string
   mined: Prisma.JsonNullValueInput | runtime.InputJsonValue
   exhausted?: boolean
   timestamp?: Date | string
@@ -452,7 +429,6 @@ export type PlanetVisitCreateWithoutGameDataInput = {
 
 export type PlanetVisitUncheckedCreateWithoutGameDataInput = {
   id?: string
-  uid: string
   planetId: string
   mined: Prisma.JsonNullValueInput | runtime.InputJsonValue
   exhausted?: boolean
@@ -495,12 +471,10 @@ export type PlanetVisitScalarWhereInput = {
   mined?: Prisma.JsonFilter<"PlanetVisit">
   exhausted?: Prisma.BoolFilter<"PlanetVisit"> | boolean
   timestamp?: Prisma.DateTimeFilter<"PlanetVisit"> | Date | string
-  gameDataUid?: Prisma.StringNullableFilter<"PlanetVisit"> | string | null
 }
 
 export type PlanetVisitCreateWithoutPlanetInput = {
   id?: string
-  uid: string
   mined: Prisma.JsonNullValueInput | runtime.InputJsonValue
   exhausted?: boolean
   timestamp?: Date | string
@@ -513,7 +487,6 @@ export type PlanetVisitUncheckedCreateWithoutPlanetInput = {
   mined: Prisma.JsonNullValueInput | runtime.InputJsonValue
   exhausted?: boolean
   timestamp?: Date | string
-  gameDataUid?: string | null
 }
 
 export type PlanetVisitCreateOrConnectWithoutPlanetInput = {
@@ -544,7 +517,6 @@ export type PlanetVisitUpdateManyWithWhereWithoutPlanetInput = {
 
 export type PlanetVisitCreateManyGameDataInput = {
   id?: string
-  uid: string
   planetId: string
   mined: Prisma.JsonNullValueInput | runtime.InputJsonValue
   exhausted?: boolean
@@ -553,7 +525,6 @@ export type PlanetVisitCreateManyGameDataInput = {
 
 export type PlanetVisitUpdateWithoutGameDataInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  uid?: Prisma.StringFieldUpdateOperationsInput | string
   mined?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   exhausted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   timestamp?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -562,7 +533,6 @@ export type PlanetVisitUpdateWithoutGameDataInput = {
 
 export type PlanetVisitUncheckedUpdateWithoutGameDataInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  uid?: Prisma.StringFieldUpdateOperationsInput | string
   planetId?: Prisma.StringFieldUpdateOperationsInput | string
   mined?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   exhausted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -571,7 +541,6 @@ export type PlanetVisitUncheckedUpdateWithoutGameDataInput = {
 
 export type PlanetVisitUncheckedUpdateManyWithoutGameDataInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  uid?: Prisma.StringFieldUpdateOperationsInput | string
   planetId?: Prisma.StringFieldUpdateOperationsInput | string
   mined?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   exhausted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -584,12 +553,10 @@ export type PlanetVisitCreateManyPlanetInput = {
   mined: Prisma.JsonNullValueInput | runtime.InputJsonValue
   exhausted?: boolean
   timestamp?: Date | string
-  gameDataUid?: string | null
 }
 
 export type PlanetVisitUpdateWithoutPlanetInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  uid?: Prisma.StringFieldUpdateOperationsInput | string
   mined?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   exhausted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   timestamp?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -602,7 +569,6 @@ export type PlanetVisitUncheckedUpdateWithoutPlanetInput = {
   mined?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   exhausted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   timestamp?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  gameDataUid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type PlanetVisitUncheckedUpdateManyWithoutPlanetInput = {
@@ -611,7 +577,6 @@ export type PlanetVisitUncheckedUpdateManyWithoutPlanetInput = {
   mined?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   exhausted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   timestamp?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  gameDataUid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -623,7 +588,6 @@ export type PlanetVisitSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   mined?: boolean
   exhausted?: boolean
   timestamp?: boolean
-  gameDataUid?: boolean
   planet?: boolean | Prisma.PlanetDefaultArgs<ExtArgs>
   GameData?: boolean | Prisma.PlanetVisit$GameDataArgs<ExtArgs>
 }, ExtArgs["result"]["planetVisit"]>
@@ -635,7 +599,6 @@ export type PlanetVisitSelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
   mined?: boolean
   exhausted?: boolean
   timestamp?: boolean
-  gameDataUid?: boolean
   planet?: boolean | Prisma.PlanetDefaultArgs<ExtArgs>
   GameData?: boolean | Prisma.PlanetVisit$GameDataArgs<ExtArgs>
 }, ExtArgs["result"]["planetVisit"]>
@@ -647,7 +610,6 @@ export type PlanetVisitSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.E
   mined?: boolean
   exhausted?: boolean
   timestamp?: boolean
-  gameDataUid?: boolean
   planet?: boolean | Prisma.PlanetDefaultArgs<ExtArgs>
   GameData?: boolean | Prisma.PlanetVisit$GameDataArgs<ExtArgs>
 }, ExtArgs["result"]["planetVisit"]>
@@ -659,10 +621,9 @@ export type PlanetVisitSelectScalar = {
   mined?: boolean
   exhausted?: boolean
   timestamp?: boolean
-  gameDataUid?: boolean
 }
 
-export type PlanetVisitOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "uid" | "planetId" | "mined" | "exhausted" | "timestamp" | "gameDataUid", ExtArgs["result"]["planetVisit"]>
+export type PlanetVisitOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "uid" | "planetId" | "mined" | "exhausted" | "timestamp", ExtArgs["result"]["planetVisit"]>
 export type PlanetVisitInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   planet?: boolean | Prisma.PlanetDefaultArgs<ExtArgs>
   GameData?: boolean | Prisma.PlanetVisit$GameDataArgs<ExtArgs>
@@ -689,7 +650,6 @@ export type $PlanetVisitPayload<ExtArgs extends runtime.Types.Extensions.Interna
     mined: runtime.JsonValue
     exhausted: boolean
     timestamp: Date
-    gameDataUid: string | null
   }, ExtArgs["result"]["planetVisit"]>
   composites: {}
 }
@@ -1121,7 +1081,6 @@ export interface PlanetVisitFieldRefs {
   readonly mined: Prisma.FieldRef<"PlanetVisit", 'Json'>
   readonly exhausted: Prisma.FieldRef<"PlanetVisit", 'Boolean'>
   readonly timestamp: Prisma.FieldRef<"PlanetVisit", 'DateTime'>
-  readonly gameDataUid: Prisma.FieldRef<"PlanetVisit", 'String'>
 }
     
 

@@ -3,6 +3,9 @@ import { GatewayModule } from './gateway.module';
 import { ValidationPipe } from '@nestjs/common';
 import * as cookieParser from 'cookie-parser';
 import { ConfigService } from '@nestjs/config';
+import { ResponseInterceptor } from './interceptors/response.interceptor';
+import { AllExceptionsFilter } from './interceptors/AllExceptionsFilter';
+import { AllRpcExceptionsFilter } from '@app/core';
 
 async function bootstrap() {
   const app = await NestFactory.create(GatewayModule);
@@ -10,8 +13,8 @@ async function bootstrap() {
   app.use(cookieParser());
   app.enableCors();
 
-  // app.useGlobalInterceptors(new ResponseInterceptor());
-  // app.useGlobalFilters(new AllExceptionsFilter());
+  app.useGlobalInterceptors(new ResponseInterceptor());
+  app.useGlobalFilters(new AllExceptionsFilter());
 
   const configService = app.get(ConfigService);
   const port = configService.get<number>('getaway.PORT', 3030);

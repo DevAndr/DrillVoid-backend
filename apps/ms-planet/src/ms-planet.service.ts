@@ -1,4 +1,9 @@
-import { BadRequestException, Injectable, Logger } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  Logger,
+  NotFoundException,
+} from '@nestjs/common';
 import { PrismaService } from '@app/prisma';
 import { createNoise3D } from 'simplex-noise';
 import {
@@ -19,6 +24,8 @@ import {
   PlanetResourceCreateInput,
   PlanetResourceCreateManyInput,
 } from '../../../libs/prisma/generated/prisma/models/PlanetResource';
+import { distanceBetweenCoord } from '../../gateway/src/planet/utils';
+import { RpcException } from '@nestjs/microservices';
 
 @Injectable()
 export class MsPlanetService {
@@ -167,12 +174,39 @@ export class MsPlanetService {
     });
 
     if (!gameData) {
-      throw new BadRequestException('Game data not found');
+      throw new RpcException(new BadRequestException('Game data not found'));
     }
 
     const currentShip = await this.prisma.ship.findUnique({
       where: { id: gameData.shipId },
     });
+
+    if (!isDefined(currentShip)) {
+      throw new RpcException(new BadRequestException('Current ship not found'));
+    }
+
+    if (
+      gameData.x === target.x &&
+      gameData.y === target.y &&
+      gameData.z === target.z
+    ) {
+      //TODO: пуш уведомление по вебсокету
+      throw new RpcException(new BadRequestException('Вы уже на этой планете'));
+    }
+
+    const pointUser: Point3D = { x: gameData.x, y: gameData.y, z: gameData.z };
+    const distance = distanceBetweenCoord(pointUser, target);
+
+    if (distance > currentShip.warpRange) {
+      throw new BadRequestException('Недостаточная дальность прыжка');
+    }
+
+    const fuelPerUnit = Number(currentShip.fuelPerUnit ?? 0.01);
+    const fuelNeeded = distance * fuelPerUnit;
+
+    if ((currentShip.fuel ?? 0) < fuelNeeded) {
+      throw new BadRequestException('Недостаточно топлива');
+    }
 
     //TODO: на будущее
     // const fuelRequired = distance * ship.fuelPerUnit;
@@ -234,21 +268,38 @@ export class MsPlanetService {
     gameData.y = target.y;
     gameData.z = target.z;
 
-    await this.prisma.gameData.update({
-      where: {
-        uid,
-      },
-      data: { ...gameData, currentPlanetId: planet.id },
-    });
+    await this.prisma.$transaction([
+      this.prisma.ship.update({
+        where: { id: currentShip.id },
+        data: { fuel: { decrement: fuelNeeded } },
+      }),
+      this.prisma.gameData.update({
+        where: {
+          uid,
+        },
+        data: { ...gameData, currentPlanetId: planet.id },
+      }),
+      this.prisma.planetVisit.create({
+        data: {
+          planetId: planet.id,
+          uid,
+          exhausted: false,
+          mined: {},
+        },
+      }),
+    ]);
 
-    await this.prisma.planetVisit.create({
-      data: { planetId: planet.id, uid, exhausted: false, mined: {} },
-    });
-
-    return this.prisma.planet.findUnique({
+    const currentPlanet = await this.prisma.planet.findUnique({
       where: { id: planet.id },
       include: { planetResource: true },
     });
+
+    return {
+      planet: currentPlanet,
+      message: 'Прыжок выполнен',
+      distance: distance,
+      fuelUsed: fuelNeeded,
+    };
   }
 }
 

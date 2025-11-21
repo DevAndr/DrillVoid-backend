@@ -1384,6 +1384,9 @@ export const ShipScalarFieldEnum = {
   miningPower: 'miningPower',
   cargoSize: 'cargoSize',
   locator: 'locator',
+  fuel: 'fuel',
+  fuelCapacity: 'fuelCapacity',
+  fuelPerUnit: 'fuelPerUnit',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   isSelected: 'isSelected',
@@ -1460,8 +1463,7 @@ export const PlanetVisitScalarFieldEnum = {
   planetId: 'planetId',
   mined: 'mined',
   exhausted: 'exhausted',
-  timestamp: 'timestamp',
-  gameDataUid: 'gameDataUid'
+  timestamp: 'timestamp'
 } as const
 
 export type PlanetVisitScalarFieldEnum = (typeof PlanetVisitScalarFieldEnum)[keyof typeof PlanetVisitScalarFieldEnum]

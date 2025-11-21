@@ -55,15 +55,18 @@ enum TypeShip {
 }
 
 model Ship {
-  id          String   @id @default(uuid())
-  level       Int
-  type        TypeShip
+  id           String   @id @default(uuid())
+  level        Int
+  type         TypeShip
   // Характеристики корабля
-  warpRange   Float    @default(1000) // Макс расстояние прыжка
-  warpSpeed   Float    @default(1)
-  miningPower Float    @default(1) // Мощность бура
-  cargoSize   Float    @default(100) // Лимит ресурсов в трюме
-  locator     Float    @default(3) // Макс сканирование планет
+  warpRange    Float    @default(1000) // Макс расстояние прыжка
+  warpSpeed    Float    @default(1)
+  miningPower  Float    @default(1) // Мощность бура
+  cargoSize    Float    @default(100) // Лимит ресурсов в трюме
+  locator      Float    @default(3) // Макс сканирование планет
+  fuel         Float    @default(100) // текущий запас топлива
+  fuelCapacity Float    @default(100) // максимальный запас топлива
+  fuelPerUnit  Float    @default(0.01) // расход топлива на 1 единицу расстояния
 
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
@@ -220,9 +223,8 @@ model PlanetVisit {
   exhausted Boolean  @default(false)
   timestamp DateTime @default(now())
 
-  planet      Planet    @relation(fields: [planetId], references: [id], onDelete: Cascade)
-  GameData    GameData? @relation(fields: [gameDataUid], references: [uid])
-  gameDataUid String?
+  planet   Planet    @relation(fields: [planetId], references: [id], onDelete: Cascade)
+  GameData GameData? @relation(fields: [uid], references: [uid])
 }
 
 enum CurrencyType {

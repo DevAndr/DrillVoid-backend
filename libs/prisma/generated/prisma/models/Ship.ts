@@ -33,6 +33,9 @@ export type ShipAvgAggregateOutputType = {
   miningPower: number | null
   cargoSize: number | null
   locator: number | null
+  fuel: number | null
+  fuelCapacity: number | null
+  fuelPerUnit: number | null
 }
 
 export type ShipSumAggregateOutputType = {
@@ -42,6 +45,9 @@ export type ShipSumAggregateOutputType = {
   miningPower: number | null
   cargoSize: number | null
   locator: number | null
+  fuel: number | null
+  fuelCapacity: number | null
+  fuelPerUnit: number | null
 }
 
 export type ShipMinAggregateOutputType = {
@@ -53,6 +59,9 @@ export type ShipMinAggregateOutputType = {
   miningPower: number | null
   cargoSize: number | null
   locator: number | null
+  fuel: number | null
+  fuelCapacity: number | null
+  fuelPerUnit: number | null
   createdAt: Date | null
   updatedAt: Date | null
   isSelected: boolean | null
@@ -69,6 +78,9 @@ export type ShipMaxAggregateOutputType = {
   miningPower: number | null
   cargoSize: number | null
   locator: number | null
+  fuel: number | null
+  fuelCapacity: number | null
+  fuelPerUnit: number | null
   createdAt: Date | null
   updatedAt: Date | null
   isSelected: boolean | null
@@ -85,6 +97,9 @@ export type ShipCountAggregateOutputType = {
   miningPower: number
   cargoSize: number
   locator: number
+  fuel: number
+  fuelCapacity: number
+  fuelPerUnit: number
   createdAt: number
   updatedAt: number
   isSelected: number
@@ -101,6 +116,9 @@ export type ShipAvgAggregateInputType = {
   miningPower?: true
   cargoSize?: true
   locator?: true
+  fuel?: true
+  fuelCapacity?: true
+  fuelPerUnit?: true
 }
 
 export type ShipSumAggregateInputType = {
@@ -110,6 +128,9 @@ export type ShipSumAggregateInputType = {
   miningPower?: true
   cargoSize?: true
   locator?: true
+  fuel?: true
+  fuelCapacity?: true
+  fuelPerUnit?: true
 }
 
 export type ShipMinAggregateInputType = {
@@ -121,6 +142,9 @@ export type ShipMinAggregateInputType = {
   miningPower?: true
   cargoSize?: true
   locator?: true
+  fuel?: true
+  fuelCapacity?: true
+  fuelPerUnit?: true
   createdAt?: true
   updatedAt?: true
   isSelected?: true
@@ -137,6 +161,9 @@ export type ShipMaxAggregateInputType = {
   miningPower?: true
   cargoSize?: true
   locator?: true
+  fuel?: true
+  fuelCapacity?: true
+  fuelPerUnit?: true
   createdAt?: true
   updatedAt?: true
   isSelected?: true
@@ -153,6 +180,9 @@ export type ShipCountAggregateInputType = {
   miningPower?: true
   cargoSize?: true
   locator?: true
+  fuel?: true
+  fuelCapacity?: true
+  fuelPerUnit?: true
   createdAt?: true
   updatedAt?: true
   isSelected?: true
@@ -256,6 +286,9 @@ export type ShipGroupByOutputType = {
   miningPower: number
   cargoSize: number
   locator: number
+  fuel: number
+  fuelCapacity: number
+  fuelPerUnit: number
   createdAt: Date
   updatedAt: Date
   isSelected: boolean
@@ -295,6 +328,9 @@ export type ShipWhereInput = {
   miningPower?: Prisma.FloatFilter<"Ship"> | number
   cargoSize?: Prisma.FloatFilter<"Ship"> | number
   locator?: Prisma.FloatFilter<"Ship"> | number
+  fuel?: Prisma.FloatFilter<"Ship"> | number
+  fuelCapacity?: Prisma.FloatFilter<"Ship"> | number
+  fuelPerUnit?: Prisma.FloatFilter<"Ship"> | number
   createdAt?: Prisma.DateTimeFilter<"Ship"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Ship"> | Date | string
   isSelected?: Prisma.BoolFilter<"Ship"> | boolean
@@ -313,6 +349,9 @@ export type ShipOrderByWithRelationInput = {
   miningPower?: Prisma.SortOrder
   cargoSize?: Prisma.SortOrder
   locator?: Prisma.SortOrder
+  fuel?: Prisma.SortOrder
+  fuelCapacity?: Prisma.SortOrder
+  fuelPerUnit?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   isSelected?: Prisma.SortOrder
@@ -334,6 +373,9 @@ export type ShipWhereUniqueInput = Prisma.AtLeast<{
   miningPower?: Prisma.FloatFilter<"Ship"> | number
   cargoSize?: Prisma.FloatFilter<"Ship"> | number
   locator?: Prisma.FloatFilter<"Ship"> | number
+  fuel?: Prisma.FloatFilter<"Ship"> | number
+  fuelCapacity?: Prisma.FloatFilter<"Ship"> | number
+  fuelPerUnit?: Prisma.FloatFilter<"Ship"> | number
   createdAt?: Prisma.DateTimeFilter<"Ship"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Ship"> | Date | string
   isSelected?: Prisma.BoolFilter<"Ship"> | boolean
@@ -352,6 +394,9 @@ export type ShipOrderByWithAggregationInput = {
   miningPower?: Prisma.SortOrder
   cargoSize?: Prisma.SortOrder
   locator?: Prisma.SortOrder
+  fuel?: Prisma.SortOrder
+  fuelCapacity?: Prisma.SortOrder
+  fuelPerUnit?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   isSelected?: Prisma.SortOrder
@@ -376,6 +421,9 @@ export type ShipScalarWhereWithAggregatesInput = {
   miningPower?: Prisma.FloatWithAggregatesFilter<"Ship"> | number
   cargoSize?: Prisma.FloatWithAggregatesFilter<"Ship"> | number
   locator?: Prisma.FloatWithAggregatesFilter<"Ship"> | number
+  fuel?: Prisma.FloatWithAggregatesFilter<"Ship"> | number
+  fuelCapacity?: Prisma.FloatWithAggregatesFilter<"Ship"> | number
+  fuelPerUnit?: Prisma.FloatWithAggregatesFilter<"Ship"> | number
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Ship"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Ship"> | Date | string
   isSelected?: Prisma.BoolWithAggregatesFilter<"Ship"> | boolean
@@ -392,6 +440,9 @@ export type ShipCreateInput = {
   miningPower?: number
   cargoSize?: number
   locator?: number
+  fuel?: number
+  fuelCapacity?: number
+  fuelPerUnit?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   isSelected?: boolean
@@ -408,6 +459,9 @@ export type ShipUncheckedCreateInput = {
   miningPower?: number
   cargoSize?: number
   locator?: number
+  fuel?: number
+  fuelCapacity?: number
+  fuelPerUnit?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   isSelected?: boolean
@@ -425,6 +479,9 @@ export type ShipUpdateInput = {
   miningPower?: Prisma.FloatFieldUpdateOperationsInput | number
   cargoSize?: Prisma.FloatFieldUpdateOperationsInput | number
   locator?: Prisma.FloatFieldUpdateOperationsInput | number
+  fuel?: Prisma.FloatFieldUpdateOperationsInput | number
+  fuelCapacity?: Prisma.FloatFieldUpdateOperationsInput | number
+  fuelPerUnit?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isSelected?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -441,6 +498,9 @@ export type ShipUncheckedUpdateInput = {
   miningPower?: Prisma.FloatFieldUpdateOperationsInput | number
   cargoSize?: Prisma.FloatFieldUpdateOperationsInput | number
   locator?: Prisma.FloatFieldUpdateOperationsInput | number
+  fuel?: Prisma.FloatFieldUpdateOperationsInput | number
+  fuelCapacity?: Prisma.FloatFieldUpdateOperationsInput | number
+  fuelPerUnit?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isSelected?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -458,6 +518,9 @@ export type ShipCreateManyInput = {
   miningPower?: number
   cargoSize?: number
   locator?: number
+  fuel?: number
+  fuelCapacity?: number
+  fuelPerUnit?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   isSelected?: boolean
@@ -474,6 +537,9 @@ export type ShipUpdateManyMutationInput = {
   miningPower?: Prisma.FloatFieldUpdateOperationsInput | number
   cargoSize?: Prisma.FloatFieldUpdateOperationsInput | number
   locator?: Prisma.FloatFieldUpdateOperationsInput | number
+  fuel?: Prisma.FloatFieldUpdateOperationsInput | number
+  fuelCapacity?: Prisma.FloatFieldUpdateOperationsInput | number
+  fuelPerUnit?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isSelected?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -488,6 +554,9 @@ export type ShipUncheckedUpdateManyInput = {
   miningPower?: Prisma.FloatFieldUpdateOperationsInput | number
   cargoSize?: Prisma.FloatFieldUpdateOperationsInput | number
   locator?: Prisma.FloatFieldUpdateOperationsInput | number
+  fuel?: Prisma.FloatFieldUpdateOperationsInput | number
+  fuelCapacity?: Prisma.FloatFieldUpdateOperationsInput | number
+  fuelPerUnit?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isSelected?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -514,6 +583,9 @@ export type ShipCountOrderByAggregateInput = {
   miningPower?: Prisma.SortOrder
   cargoSize?: Prisma.SortOrder
   locator?: Prisma.SortOrder
+  fuel?: Prisma.SortOrder
+  fuelCapacity?: Prisma.SortOrder
+  fuelPerUnit?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   isSelected?: Prisma.SortOrder
@@ -528,6 +600,9 @@ export type ShipAvgOrderByAggregateInput = {
   miningPower?: Prisma.SortOrder
   cargoSize?: Prisma.SortOrder
   locator?: Prisma.SortOrder
+  fuel?: Prisma.SortOrder
+  fuelCapacity?: Prisma.SortOrder
+  fuelPerUnit?: Prisma.SortOrder
 }
 
 export type ShipMaxOrderByAggregateInput = {
@@ -539,6 +614,9 @@ export type ShipMaxOrderByAggregateInput = {
   miningPower?: Prisma.SortOrder
   cargoSize?: Prisma.SortOrder
   locator?: Prisma.SortOrder
+  fuel?: Prisma.SortOrder
+  fuelCapacity?: Prisma.SortOrder
+  fuelPerUnit?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   isSelected?: Prisma.SortOrder
@@ -555,6 +633,9 @@ export type ShipMinOrderByAggregateInput = {
   miningPower?: Prisma.SortOrder
   cargoSize?: Prisma.SortOrder
   locator?: Prisma.SortOrder
+  fuel?: Prisma.SortOrder
+  fuelCapacity?: Prisma.SortOrder
+  fuelPerUnit?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   isSelected?: Prisma.SortOrder
@@ -569,6 +650,9 @@ export type ShipSumOrderByAggregateInput = {
   miningPower?: Prisma.SortOrder
   cargoSize?: Prisma.SortOrder
   locator?: Prisma.SortOrder
+  fuel?: Prisma.SortOrder
+  fuelCapacity?: Prisma.SortOrder
+  fuelPerUnit?: Prisma.SortOrder
 }
 
 export type ShipNullableScalarRelationFilter = {
@@ -651,6 +735,9 @@ export type ShipCreateWithoutGameDataInput = {
   miningPower?: number
   cargoSize?: number
   locator?: number
+  fuel?: number
+  fuelCapacity?: number
+  fuelPerUnit?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   isSelected?: boolean
@@ -666,6 +753,9 @@ export type ShipUncheckedCreateWithoutGameDataInput = {
   miningPower?: number
   cargoSize?: number
   locator?: number
+  fuel?: number
+  fuelCapacity?: number
+  fuelPerUnit?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   isSelected?: boolean
@@ -710,6 +800,9 @@ export type ShipScalarWhereInput = {
   miningPower?: Prisma.FloatFilter<"Ship"> | number
   cargoSize?: Prisma.FloatFilter<"Ship"> | number
   locator?: Prisma.FloatFilter<"Ship"> | number
+  fuel?: Prisma.FloatFilter<"Ship"> | number
+  fuelCapacity?: Prisma.FloatFilter<"Ship"> | number
+  fuelPerUnit?: Prisma.FloatFilter<"Ship"> | number
   createdAt?: Prisma.DateTimeFilter<"Ship"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Ship"> | Date | string
   isSelected?: Prisma.BoolFilter<"Ship"> | boolean
@@ -726,6 +819,9 @@ export type ShipCreateWithoutComponentsInput = {
   miningPower?: number
   cargoSize?: number
   locator?: number
+  fuel?: number
+  fuelCapacity?: number
+  fuelPerUnit?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   isSelected?: boolean
@@ -741,6 +837,9 @@ export type ShipUncheckedCreateWithoutComponentsInput = {
   miningPower?: number
   cargoSize?: number
   locator?: number
+  fuel?: number
+  fuelCapacity?: number
+  fuelPerUnit?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   isSelected?: boolean
@@ -773,6 +872,9 @@ export type ShipUpdateWithoutComponentsInput = {
   miningPower?: Prisma.FloatFieldUpdateOperationsInput | number
   cargoSize?: Prisma.FloatFieldUpdateOperationsInput | number
   locator?: Prisma.FloatFieldUpdateOperationsInput | number
+  fuel?: Prisma.FloatFieldUpdateOperationsInput | number
+  fuelCapacity?: Prisma.FloatFieldUpdateOperationsInput | number
+  fuelPerUnit?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isSelected?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -788,6 +890,9 @@ export type ShipUncheckedUpdateWithoutComponentsInput = {
   miningPower?: Prisma.FloatFieldUpdateOperationsInput | number
   cargoSize?: Prisma.FloatFieldUpdateOperationsInput | number
   locator?: Prisma.FloatFieldUpdateOperationsInput | number
+  fuel?: Prisma.FloatFieldUpdateOperationsInput | number
+  fuelCapacity?: Prisma.FloatFieldUpdateOperationsInput | number
+  fuelPerUnit?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isSelected?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -804,6 +909,9 @@ export type ShipCreateManyGameDataInput = {
   miningPower?: number
   cargoSize?: number
   locator?: number
+  fuel?: number
+  fuelCapacity?: number
+  fuelPerUnit?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   isSelected?: boolean
@@ -818,6 +926,9 @@ export type ShipUpdateWithoutGameDataInput = {
   miningPower?: Prisma.FloatFieldUpdateOperationsInput | number
   cargoSize?: Prisma.FloatFieldUpdateOperationsInput | number
   locator?: Prisma.FloatFieldUpdateOperationsInput | number
+  fuel?: Prisma.FloatFieldUpdateOperationsInput | number
+  fuelCapacity?: Prisma.FloatFieldUpdateOperationsInput | number
+  fuelPerUnit?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isSelected?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -833,6 +944,9 @@ export type ShipUncheckedUpdateWithoutGameDataInput = {
   miningPower?: Prisma.FloatFieldUpdateOperationsInput | number
   cargoSize?: Prisma.FloatFieldUpdateOperationsInput | number
   locator?: Prisma.FloatFieldUpdateOperationsInput | number
+  fuel?: Prisma.FloatFieldUpdateOperationsInput | number
+  fuelCapacity?: Prisma.FloatFieldUpdateOperationsInput | number
+  fuelPerUnit?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isSelected?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -848,6 +962,9 @@ export type ShipUncheckedUpdateManyWithoutGameDataInput = {
   miningPower?: Prisma.FloatFieldUpdateOperationsInput | number
   cargoSize?: Prisma.FloatFieldUpdateOperationsInput | number
   locator?: Prisma.FloatFieldUpdateOperationsInput | number
+  fuel?: Prisma.FloatFieldUpdateOperationsInput | number
+  fuelCapacity?: Prisma.FloatFieldUpdateOperationsInput | number
+  fuelPerUnit?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isSelected?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -893,6 +1010,9 @@ export type ShipSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   miningPower?: boolean
   cargoSize?: boolean
   locator?: boolean
+  fuel?: boolean
+  fuelCapacity?: boolean
+  fuelPerUnit?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   isSelected?: boolean
@@ -912,6 +1032,9 @@ export type ShipSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   miningPower?: boolean
   cargoSize?: boolean
   locator?: boolean
+  fuel?: boolean
+  fuelCapacity?: boolean
+  fuelPerUnit?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   isSelected?: boolean
@@ -929,6 +1052,9 @@ export type ShipSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   miningPower?: boolean
   cargoSize?: boolean
   locator?: boolean
+  fuel?: boolean
+  fuelCapacity?: boolean
+  fuelPerUnit?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   isSelected?: boolean
@@ -946,6 +1072,9 @@ export type ShipSelectScalar = {
   miningPower?: boolean
   cargoSize?: boolean
   locator?: boolean
+  fuel?: boolean
+  fuelCapacity?: boolean
+  fuelPerUnit?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   isSelected?: boolean
@@ -953,7 +1082,7 @@ export type ShipSelectScalar = {
   uid?: boolean
 }
 
-export type ShipOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "level" | "type" | "warpRange" | "warpSpeed" | "miningPower" | "cargoSize" | "locator" | "createdAt" | "updatedAt" | "isSelected" | "gameDataId" | "uid", ExtArgs["result"]["ship"]>
+export type ShipOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "level" | "type" | "warpRange" | "warpSpeed" | "miningPower" | "cargoSize" | "locator" | "fuel" | "fuelCapacity" | "fuelPerUnit" | "createdAt" | "updatedAt" | "isSelected" | "gameDataId" | "uid", ExtArgs["result"]["ship"]>
 export type ShipInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   GameData?: boolean | Prisma.Ship$GameDataArgs<ExtArgs>
   components?: boolean | Prisma.Ship$componentsArgs<ExtArgs>
@@ -981,6 +1110,9 @@ export type $ShipPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     miningPower: number
     cargoSize: number
     locator: number
+    fuel: number
+    fuelCapacity: number
+    fuelPerUnit: number
     createdAt: Date
     updatedAt: Date
     isSelected: boolean
@@ -1419,6 +1551,9 @@ export interface ShipFieldRefs {
   readonly miningPower: Prisma.FieldRef<"Ship", 'Float'>
   readonly cargoSize: Prisma.FieldRef<"Ship", 'Float'>
   readonly locator: Prisma.FieldRef<"Ship", 'Float'>
+  readonly fuel: Prisma.FieldRef<"Ship", 'Float'>
+  readonly fuelCapacity: Prisma.FieldRef<"Ship", 'Float'>
+  readonly fuelPerUnit: Prisma.FieldRef<"Ship", 'Float'>
   readonly createdAt: Prisma.FieldRef<"Ship", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Ship", 'DateTime'>
   readonly isSelected: Prisma.FieldRef<"Ship", 'Boolean'>
