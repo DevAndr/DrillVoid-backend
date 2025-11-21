@@ -45,6 +45,7 @@ export type PlanetResourceMinAggregateOutputType = {
   totalAmount: number | null
   current: number | null
   drillPowerRequired: number | null
+  rarity: $Enums.Rarity | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -56,6 +57,7 @@ export type PlanetResourceMaxAggregateOutputType = {
   totalAmount: number | null
   current: number | null
   drillPowerRequired: number | null
+  rarity: $Enums.Rarity | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -67,6 +69,7 @@ export type PlanetResourceCountAggregateOutputType = {
   totalAmount: number
   current: number
   drillPowerRequired: number
+  rarity: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -92,6 +95,7 @@ export type PlanetResourceMinAggregateInputType = {
   totalAmount?: true
   current?: true
   drillPowerRequired?: true
+  rarity?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -103,6 +107,7 @@ export type PlanetResourceMaxAggregateInputType = {
   totalAmount?: true
   current?: true
   drillPowerRequired?: true
+  rarity?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -114,6 +119,7 @@ export type PlanetResourceCountAggregateInputType = {
   totalAmount?: true
   current?: true
   drillPowerRequired?: true
+  rarity?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -212,6 +218,7 @@ export type PlanetResourceGroupByOutputType = {
   totalAmount: number
   current: number
   drillPowerRequired: number
+  rarity: $Enums.Rarity
   createdAt: Date
   updatedAt: Date
   _count: PlanetResourceCountAggregateOutputType | null
@@ -246,6 +253,7 @@ export type PlanetResourceWhereInput = {
   totalAmount?: Prisma.FloatFilter<"PlanetResource"> | number
   current?: Prisma.FloatFilter<"PlanetResource"> | number
   drillPowerRequired?: Prisma.FloatFilter<"PlanetResource"> | number
+  rarity?: Prisma.EnumRarityFilter<"PlanetResource"> | $Enums.Rarity
   createdAt?: Prisma.DateTimeFilter<"PlanetResource"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"PlanetResource"> | Date | string
   planet?: Prisma.XOR<Prisma.PlanetScalarRelationFilter, Prisma.PlanetWhereInput>
@@ -258,6 +266,7 @@ export type PlanetResourceOrderByWithRelationInput = {
   totalAmount?: Prisma.SortOrder
   current?: Prisma.SortOrder
   drillPowerRequired?: Prisma.SortOrder
+  rarity?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   planet?: Prisma.PlanetOrderByWithRelationInput
@@ -273,6 +282,7 @@ export type PlanetResourceWhereUniqueInput = Prisma.AtLeast<{
   totalAmount?: Prisma.FloatFilter<"PlanetResource"> | number
   current?: Prisma.FloatFilter<"PlanetResource"> | number
   drillPowerRequired?: Prisma.FloatFilter<"PlanetResource"> | number
+  rarity?: Prisma.EnumRarityFilter<"PlanetResource"> | $Enums.Rarity
   createdAt?: Prisma.DateTimeFilter<"PlanetResource"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"PlanetResource"> | Date | string
   planet?: Prisma.XOR<Prisma.PlanetScalarRelationFilter, Prisma.PlanetWhereInput>
@@ -285,6 +295,7 @@ export type PlanetResourceOrderByWithAggregationInput = {
   totalAmount?: Prisma.SortOrder
   current?: Prisma.SortOrder
   drillPowerRequired?: Prisma.SortOrder
+  rarity?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.PlanetResourceCountOrderByAggregateInput
@@ -304,6 +315,7 @@ export type PlanetResourceScalarWhereWithAggregatesInput = {
   totalAmount?: Prisma.FloatWithAggregatesFilter<"PlanetResource"> | number
   current?: Prisma.FloatWithAggregatesFilter<"PlanetResource"> | number
   drillPowerRequired?: Prisma.FloatWithAggregatesFilter<"PlanetResource"> | number
+  rarity?: Prisma.EnumRarityWithAggregatesFilter<"PlanetResource"> | $Enums.Rarity
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"PlanetResource"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"PlanetResource"> | Date | string
 }
@@ -314,6 +326,7 @@ export type PlanetResourceCreateInput = {
   totalAmount: number
   current: number
   drillPowerRequired: number
+  rarity: $Enums.Rarity
   createdAt?: Date | string
   updatedAt?: Date | string
   planet: Prisma.PlanetCreateNestedOneWithoutPlanetResourceInput
@@ -326,6 +339,7 @@ export type PlanetResourceUncheckedCreateInput = {
   totalAmount: number
   current: number
   drillPowerRequired: number
+  rarity: $Enums.Rarity
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -336,6 +350,7 @@ export type PlanetResourceUpdateInput = {
   totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
   current?: Prisma.FloatFieldUpdateOperationsInput | number
   drillPowerRequired?: Prisma.FloatFieldUpdateOperationsInput | number
+  rarity?: Prisma.EnumRarityFieldUpdateOperationsInput | $Enums.Rarity
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   planet?: Prisma.PlanetUpdateOneRequiredWithoutPlanetResourceNestedInput
@@ -348,6 +363,7 @@ export type PlanetResourceUncheckedUpdateInput = {
   totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
   current?: Prisma.FloatFieldUpdateOperationsInput | number
   drillPowerRequired?: Prisma.FloatFieldUpdateOperationsInput | number
+  rarity?: Prisma.EnumRarityFieldUpdateOperationsInput | $Enums.Rarity
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -359,6 +375,7 @@ export type PlanetResourceCreateManyInput = {
   totalAmount: number
   current: number
   drillPowerRequired: number
+  rarity: $Enums.Rarity
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -369,6 +386,7 @@ export type PlanetResourceUpdateManyMutationInput = {
   totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
   current?: Prisma.FloatFieldUpdateOperationsInput | number
   drillPowerRequired?: Prisma.FloatFieldUpdateOperationsInput | number
+  rarity?: Prisma.EnumRarityFieldUpdateOperationsInput | $Enums.Rarity
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -380,6 +398,7 @@ export type PlanetResourceUncheckedUpdateManyInput = {
   totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
   current?: Prisma.FloatFieldUpdateOperationsInput | number
   drillPowerRequired?: Prisma.FloatFieldUpdateOperationsInput | number
+  rarity?: Prisma.EnumRarityFieldUpdateOperationsInput | $Enums.Rarity
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -401,6 +420,7 @@ export type PlanetResourceCountOrderByAggregateInput = {
   totalAmount?: Prisma.SortOrder
   current?: Prisma.SortOrder
   drillPowerRequired?: Prisma.SortOrder
+  rarity?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -418,6 +438,7 @@ export type PlanetResourceMaxOrderByAggregateInput = {
   totalAmount?: Prisma.SortOrder
   current?: Prisma.SortOrder
   drillPowerRequired?: Prisma.SortOrder
+  rarity?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -429,6 +450,7 @@ export type PlanetResourceMinOrderByAggregateInput = {
   totalAmount?: Prisma.SortOrder
   current?: Prisma.SortOrder
   drillPowerRequired?: Prisma.SortOrder
+  rarity?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -487,6 +509,7 @@ export type PlanetResourceCreateWithoutPlanetInput = {
   totalAmount: number
   current: number
   drillPowerRequired: number
+  rarity: $Enums.Rarity
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -497,6 +520,7 @@ export type PlanetResourceUncheckedCreateWithoutPlanetInput = {
   totalAmount: number
   current: number
   drillPowerRequired: number
+  rarity: $Enums.Rarity
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -537,6 +561,7 @@ export type PlanetResourceScalarWhereInput = {
   totalAmount?: Prisma.FloatFilter<"PlanetResource"> | number
   current?: Prisma.FloatFilter<"PlanetResource"> | number
   drillPowerRequired?: Prisma.FloatFilter<"PlanetResource"> | number
+  rarity?: Prisma.EnumRarityFilter<"PlanetResource"> | $Enums.Rarity
   createdAt?: Prisma.DateTimeFilter<"PlanetResource"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"PlanetResource"> | Date | string
 }
@@ -547,6 +572,7 @@ export type PlanetResourceCreateManyPlanetInput = {
   totalAmount: number
   current: number
   drillPowerRequired: number
+  rarity: $Enums.Rarity
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -557,6 +583,7 @@ export type PlanetResourceUpdateWithoutPlanetInput = {
   totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
   current?: Prisma.FloatFieldUpdateOperationsInput | number
   drillPowerRequired?: Prisma.FloatFieldUpdateOperationsInput | number
+  rarity?: Prisma.EnumRarityFieldUpdateOperationsInput | $Enums.Rarity
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -567,6 +594,7 @@ export type PlanetResourceUncheckedUpdateWithoutPlanetInput = {
   totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
   current?: Prisma.FloatFieldUpdateOperationsInput | number
   drillPowerRequired?: Prisma.FloatFieldUpdateOperationsInput | number
+  rarity?: Prisma.EnumRarityFieldUpdateOperationsInput | $Enums.Rarity
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -577,6 +605,7 @@ export type PlanetResourceUncheckedUpdateManyWithoutPlanetInput = {
   totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
   current?: Prisma.FloatFieldUpdateOperationsInput | number
   drillPowerRequired?: Prisma.FloatFieldUpdateOperationsInput | number
+  rarity?: Prisma.EnumRarityFieldUpdateOperationsInput | $Enums.Rarity
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -590,6 +619,7 @@ export type PlanetResourceSelect<ExtArgs extends runtime.Types.Extensions.Intern
   totalAmount?: boolean
   current?: boolean
   drillPowerRequired?: boolean
+  rarity?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   planet?: boolean | Prisma.PlanetDefaultArgs<ExtArgs>
@@ -602,6 +632,7 @@ export type PlanetResourceSelectCreateManyAndReturn<ExtArgs extends runtime.Type
   totalAmount?: boolean
   current?: boolean
   drillPowerRequired?: boolean
+  rarity?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   planet?: boolean | Prisma.PlanetDefaultArgs<ExtArgs>
@@ -614,6 +645,7 @@ export type PlanetResourceSelectUpdateManyAndReturn<ExtArgs extends runtime.Type
   totalAmount?: boolean
   current?: boolean
   drillPowerRequired?: boolean
+  rarity?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   planet?: boolean | Prisma.PlanetDefaultArgs<ExtArgs>
@@ -626,11 +658,12 @@ export type PlanetResourceSelectScalar = {
   totalAmount?: boolean
   current?: boolean
   drillPowerRequired?: boolean
+  rarity?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type PlanetResourceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "planetId" | "type" | "totalAmount" | "current" | "drillPowerRequired" | "createdAt" | "updatedAt", ExtArgs["result"]["planetResource"]>
+export type PlanetResourceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "planetId" | "type" | "totalAmount" | "current" | "drillPowerRequired" | "rarity" | "createdAt" | "updatedAt", ExtArgs["result"]["planetResource"]>
 export type PlanetResourceInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   planet?: boolean | Prisma.PlanetDefaultArgs<ExtArgs>
 }
@@ -653,6 +686,7 @@ export type $PlanetResourcePayload<ExtArgs extends runtime.Types.Extensions.Inte
     totalAmount: number
     current: number
     drillPowerRequired: number
+    rarity: $Enums.Rarity
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["planetResource"]>
@@ -1085,6 +1119,7 @@ export interface PlanetResourceFieldRefs {
   readonly totalAmount: Prisma.FieldRef<"PlanetResource", 'Float'>
   readonly current: Prisma.FieldRef<"PlanetResource", 'Float'>
   readonly drillPowerRequired: Prisma.FieldRef<"PlanetResource", 'Float'>
+  readonly rarity: Prisma.FieldRef<"PlanetResource", 'Rarity'>
   readonly createdAt: Prisma.FieldRef<"PlanetResource", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"PlanetResource", 'DateTime'>
 }

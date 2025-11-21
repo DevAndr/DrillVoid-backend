@@ -181,6 +181,7 @@ export const PlanetResourceScalarFieldEnum = {
   totalAmount: 'totalAmount',
   current: 'current',
   drillPowerRequired: 'drillPowerRequired',
+  rarity: 'rarity',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const

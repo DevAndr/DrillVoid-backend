@@ -446,7 +446,7 @@ export type ShipCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   isSelected?: boolean
-  GameData?: Prisma.GameDataCreateNestedOneWithoutShipInput
+  GameData?: Prisma.GameDataCreateNestedOneWithoutShipsInput
   components?: Prisma.ShipComponentCreateNestedManyWithoutShipInput
 }
 
@@ -485,7 +485,7 @@ export type ShipUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isSelected?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  GameData?: Prisma.GameDataUpdateOneWithoutShipNestedInput
+  GameData?: Prisma.GameDataUpdateOneWithoutShipsNestedInput
   components?: Prisma.ShipComponentUpdateManyWithoutShipNestedInput
 }
 
@@ -825,7 +825,7 @@ export type ShipCreateWithoutComponentsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   isSelected?: boolean
-  GameData?: Prisma.GameDataCreateNestedOneWithoutShipInput
+  GameData?: Prisma.GameDataCreateNestedOneWithoutShipsInput
 }
 
 export type ShipUncheckedCreateWithoutComponentsInput = {
@@ -878,7 +878,7 @@ export type ShipUpdateWithoutComponentsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isSelected?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  GameData?: Prisma.GameDataUpdateOneWithoutShipNestedInput
+  GameData?: Prisma.GameDataUpdateOneWithoutShipsNestedInput
 }
 
 export type ShipUncheckedUpdateWithoutComponentsInput = {

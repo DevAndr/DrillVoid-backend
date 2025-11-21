@@ -1,9 +1,4 @@
-import {
-  BadRequestException,
-  Injectable,
-  Logger,
-  NotFoundException,
-} from '@nestjs/common';
+import { BadRequestException, Injectable, Logger } from '@nestjs/common';
 import { PrismaService } from '@app/prisma';
 import { createNoise3D } from 'simplex-noise';
 import {
@@ -19,11 +14,7 @@ import {
 } from '@app/contracts/planet/types';
 import { xor4096 } from 'seedrandom';
 import { isDefined } from '@app/core/utils';
-import { PlanetResource } from '../../../libs/prisma/generated/prisma/client';
-import {
-  PlanetResourceCreateInput,
-  PlanetResourceCreateManyInput,
-} from '../../../libs/prisma/generated/prisma/models/PlanetResource';
+import { PlanetResourceCreateManyInput } from '../../../libs/prisma/generated/prisma/models/PlanetResource';
 import { distanceBetweenCoord } from '../../gateway/src/planet/utils';
 import { RpcException } from '@nestjs/microservices';
 
@@ -79,64 +70,6 @@ export class MsPlanetService {
       resources,
       seed,
       position: point,
-    };
-  }
-
-  private defineBiome(point: Point3D) {
-    const noise = this.simplex(point.x, point.y, point.z);
-    const n = (noise + 1) / 2;
-
-    if (n < 0.15) return PlanetType.ROCKY;
-    if (n < 0.3) return PlanetType.LUSH;
-    if (n < 0.5) return PlanetType.FROZEN;
-    if (n < 0.7) return PlanetType.TOXIC;
-    if (n < 0.85) return PlanetType.EXOTIC;
-    return PlanetType.BLACKHOLE;
-  }
-
-  private defineRarity(point: Point3D) {
-    const noise = this.simplex(point.x * 2, point.y * 2, point.z * 2);
-    const n = (noise + 1) / 2;
-
-    if (n < 0.6) return Rarity.COMMON;
-    if (n < 0.85) return Rarity.UNCOMMON;
-    if (n < 0.94) return Rarity.RARE;
-    if (n < 0.99) return Rarity.EPIC;
-    return Rarity.LEGENDARY;
-  }
-
-  private defineRarityResource(rng: () => number) {
-    const rndValue = rng();
-    const n = (rndValue + 1) / 2;
-
-    if (n < 0.6) return Rarity.COMMON;
-    if (n < 0.85) return Rarity.UNCOMMON;
-    if (n < 0.94) return Rarity.RARE;
-    if (n < 0.99) return Rarity.EPIC;
-    return Rarity.LEGENDARY;
-  }
-
-  private generateName(rng: () => number) {
-    return SciFiNameGenerator.generate(rng);
-  }
-
-  private generateResource(
-    biome: PlanetType,
-    rarity: Rarity,
-    rng: () => number,
-  ): ResourcePlanet {
-    const resources = RESOURCE_PLANET_POOL[biome][rarity];
-    const resource = resources[Math.floor(rng() * resources.length)];
-    const rarityResource = this.defineRarityResource(rng);
-
-    const [min, max] = RESOURCE_INFO[resource][rarityResource];
-    const amount = Math.floor(rng() * (max - min) + min * 0.2); // +20% per sector
-
-    return {
-      type: resource,
-      rarity: rarityResource,
-      totalAmount: amount,
-      remainingAmount: amount,
     };
   }
 
@@ -299,6 +232,71 @@ export class MsPlanetService {
       message: 'Прыжок выполнен',
       distance: distance,
       fuelUsed: fuelNeeded,
+    };
+  }
+
+  getPlanetBySeed(seed: string) {
+    return this.prisma.planet.findUnique({
+      where: { seed },
+      include: { planetResource: true },
+    });
+  }
+
+  private defineBiome(point: Point3D) {
+    const noise = this.simplex(point.x, point.y, point.z);
+    const n = (noise + 1) / 2;
+
+    if (n < 0.15) return PlanetType.ROCKY;
+    if (n < 0.3) return PlanetType.LUSH;
+    if (n < 0.5) return PlanetType.FROZEN;
+    if (n < 0.7) return PlanetType.TOXIC;
+    if (n < 0.85) return PlanetType.EXOTIC;
+    return PlanetType.BLACKHOLE;
+  }
+
+  private defineRarity(point: Point3D) {
+    const noise = this.simplex(point.x * 2, point.y * 2, point.z * 2);
+    const n = (noise + 1) / 2;
+
+    if (n < 0.6) return Rarity.COMMON;
+    if (n < 0.85) return Rarity.UNCOMMON;
+    if (n < 0.94) return Rarity.RARE;
+    if (n < 0.99) return Rarity.EPIC;
+    return Rarity.LEGENDARY;
+  }
+
+  private defineRarityResource(rng: () => number) {
+    const rndValue = rng();
+    const n = (rndValue + 1) / 2;
+
+    if (n < 0.6) return Rarity.COMMON;
+    if (n < 0.85) return Rarity.UNCOMMON;
+    if (n < 0.94) return Rarity.RARE;
+    if (n < 0.99) return Rarity.EPIC;
+    return Rarity.LEGENDARY;
+  }
+
+  private generateName(rng: () => number) {
+    return SciFiNameGenerator.generate(rng);
+  }
+
+  private generateResource(
+    biome: PlanetType,
+    rarity: Rarity,
+    rng: () => number,
+  ): ResourcePlanet {
+    const resources = RESOURCE_PLANET_POOL[biome][rarity];
+    const resource = resources[Math.floor(rng() * resources.length)];
+    const rarityResource = this.defineRarityResource(rng);
+
+    const [min, max] = RESOURCE_INFO[resource][rarityResource];
+    const amount = Math.floor(rng() * (max - min) + min * 0.2); // +20% per sector
+
+    return {
+      type: resource,
+      rarity: rarityResource,
+      totalAmount: amount,
+      remainingAmount: amount,
     };
   }
 }
