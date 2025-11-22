@@ -148,6 +148,8 @@ export class MsShipService {
 
     const mined = Math.floor(session.estimatedAmount * completedFraction);
 
+    console.log({ mined, completedFraction });
+
     await this.prisma.$transaction(async (tx) => {
       await tx.minigSession.update({
         where: { id: session.id },
@@ -167,6 +169,13 @@ export class MsShipService {
         update: {
           amount: { increment: mined },
         },
+      });
+
+      await tx.planetResource.update({
+        where: {
+          id: session.resourceId,
+        },
+        data: { current: { decrement: mined } },
       });
     });
 
