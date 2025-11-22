@@ -1,23 +1,26 @@
 import { Module } from '@nestjs/common';
 import { ShipService } from './ship.service';
 import { ShipController } from './ship.controller';
-import { ClientsModule, Transport } from '@nestjs/microservices';
+import { ClientsModule } from '@nestjs/microservices';
+import { MS_SHIP_NAME, RABBIT_MQ_QUEUE_SHIP } from '@app/contracts';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { configRabbitMq } from '@app/core/rabbitmq/config';
 
 @Module({
   imports: [
-    ClientsModule.register([
+    ClientsModule.registerAsync([
       {
-        name: 'ShipService',
-        transport: Transport.RMQ,
-        options: {
-          urls: ['amqp://guest:guest@localhost:5672'],
-          queue: 'ship-queue',
-          queueOptions: {
-            durable: false,
-          },
-          noAck: true,
-          persistent: true,
+        name: MS_SHIP_NAME,
+        imports: [ConfigModule],
+        useFactory: (configService: ConfigService) => {
+          return configRabbitMq(
+            RABBIT_MQ_QUEUE_SHIP,
+            configService,
+            true,
+            true,
+          );
         },
+        inject: [ConfigService],
       },
     ]),
   ],

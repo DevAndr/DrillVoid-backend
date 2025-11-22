@@ -245,7 +245,7 @@ export type PlanetVisitCreateInput = {
   exhausted?: boolean
   timestamp?: Date | string
   planet: Prisma.PlanetCreateNestedOneWithoutPlanetVisitInput
-  GameData?: Prisma.GameDataCreateNestedOneWithoutPlanetVisitInput
+  GameData?: Prisma.GameDataCreateNestedOneWithoutPlanetVisitsInput
 }
 
 export type PlanetVisitUncheckedCreateInput = {
@@ -263,7 +263,7 @@ export type PlanetVisitUpdateInput = {
   exhausted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   timestamp?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   planet?: Prisma.PlanetUpdateOneRequiredWithoutPlanetVisitNestedInput
-  GameData?: Prisma.GameDataUpdateOneWithoutPlanetVisitNestedInput
+  GameData?: Prisma.GameDataUpdateOneWithoutPlanetVisitsNestedInput
 }
 
 export type PlanetVisitUncheckedUpdateInput = {
@@ -478,7 +478,7 @@ export type PlanetVisitCreateWithoutPlanetInput = {
   mined: Prisma.JsonNullValueInput | runtime.InputJsonValue
   exhausted?: boolean
   timestamp?: Date | string
-  GameData?: Prisma.GameDataCreateNestedOneWithoutPlanetVisitInput
+  GameData?: Prisma.GameDataCreateNestedOneWithoutPlanetVisitsInput
 }
 
 export type PlanetVisitUncheckedCreateWithoutPlanetInput = {
@@ -560,7 +560,7 @@ export type PlanetVisitUpdateWithoutPlanetInput = {
   mined?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   exhausted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   timestamp?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  GameData?: Prisma.GameDataUpdateOneWithoutPlanetVisitNestedInput
+  GameData?: Prisma.GameDataUpdateOneWithoutPlanetVisitsNestedInput
 }
 
 export type PlanetVisitUncheckedUpdateWithoutPlanetInput = {

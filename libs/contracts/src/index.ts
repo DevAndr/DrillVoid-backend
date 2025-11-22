@@ -6,3 +6,4 @@ export * from './game-data/constants';
 export * from './planet/constants';
 export * from './planet/types';
 export * from './ship/types';
+export * from './ship/constsnts';

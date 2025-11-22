@@ -180,6 +180,7 @@ export class MsPlanetService {
             totalAmount: resource.totalAmount,
             current: resource.remainingAmount,
             drillPowerRequired: 1, //TODO: сделать потом случайным в зависимости от rarity
+            rarity: resource.rarity,
           });
 
           // this.prisma.planetResource.create({

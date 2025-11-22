@@ -8,14 +8,13 @@ import { StartMiningData } from '@app/contracts';
 import { isDefined } from '@app/core/utils';
 import { RpcException } from '@nestjs/microservices';
 import { Rarity } from 'libs/prisma/generated/prisma/enums';
-import moment from 'moment';
 
-const rarityMultiplier: Record<Rarity, number> = {
-  COMMON: 1,
-  UNCOMMON: 1.5,
+const RARITY_MULTIPLIER: Record<Rarity, number> = {
+  COMMON: 5,
+  UNCOMMON: 3.5,
   RARE: 2.2,
-  EPIC: 3.5,
-  LEGENDARY: 5,
+  EPIC: 1.5,
+  LEGENDARY: 1,
 };
 
 @Injectable()
@@ -23,6 +22,15 @@ export class MsShipService {
   constructor(private readonly prisma: PrismaService) {}
 
   async startMining(data: StartMiningData) {
+    const sessionFound = await this.prisma.minigSession.findUnique({
+      where: { uid: data.uid },
+    });
+
+    if (isDefined(sessionFound)) {
+      if (sessionFound.status === 'IN_PROGRESS')
+        throw new RpcException(new BadRequestException('Майнинг уже запущен'));
+    }
+
     const planet = await this.prisma.planet.findUnique({
       where: { id: data.planetId },
       include: { planetResource: true },
@@ -46,7 +54,7 @@ export class MsShipService {
 
     const gameData = await this.prisma.gameData.findUnique({
       where: { uid: data.uid },
-      include: { ship: true },
+      include: { ships: true },
     });
 
     if (!isDefined(gameData))
@@ -54,7 +62,7 @@ export class MsShipService {
         new NotFoundException('Не найдены игровые данные'),
       );
 
-    const ship = gameData.ship.find((ship) => ship.id === gameData.shipId);
+    const ship = gameData.ships.find((ship) => ship.id === gameData.shipId);
 
     if (!isDefined(ship))
       throw new RpcException(
@@ -63,42 +71,142 @@ export class MsShipService {
 
     // Рассчитываем добычу, но НЕ списываем ресурсы сейчас
     const miningSpeed = ship.miningPower;
-    // const estimated = Math.min(resource.totalAmount, miningSpeed * 100);
-    // const baseTime = estimated / miningSpeed;
-    // const durationSeconds = baseTime * rarityMultiplier[resource.rarity];
-
-    const miningRate = miningSpeed * rarityMultiplier[resource.rarity];
+    const miningRate = miningSpeed * RARITY_MULTIPLIER[resource.rarity];
     const maxByRemaining = resource.current;
     const amountToMine = Math.min(maxByRemaining, maxByRemaining);
-    const timeMinutes = amountToMine / miningRate;
+    const timeMinutes = Math.floor(amountToMine / miningRate);
     const timeMs = timeMinutes * 60 * 1000;
 
-    // const session = this.prisma.minigSession.create({
-    //   data: {
-    //     uid: data.uid,
-    //     resourceId: data.resourceId,
-    //     planetId: data.planetId,
-    //     planetSeed: planet.seed,
-    //     startedAt: new Date(),
-    //     status: 'IN_PROGRESS',
-    //     maxAmount: resource.totalAmount,
-    //     mined: 0,
-    //     estimatedAmount: amountToMine,
-    //     finishedAt: new Date(Date.now() + timeMs),
-    //   },
-    // });
-
-    // return session;
+    const session = await this.prisma.minigSession.upsert({
+      where: { uid: data.uid },
+      create: {
+        uid: data.uid,
+        resourceId: data.resourceId,
+        planetId: data.planetId,
+        planetSeed: planet.seed,
+        startedAt: new Date(),
+        status: 'IN_PROGRESS',
+        maxAmount: resource.totalAmount,
+        mined: 0,
+        estimatedAmount: amountToMine,
+        miningRate,
+        finishedAt: new Date(Date.now() + timeMs),
+      },
+      update: {
+        resourceId: data.resourceId,
+        planetId: data.planetId,
+        planetSeed: planet.seed,
+        startedAt: new Date(),
+        status: 'IN_PROGRESS',
+        maxAmount: resource.totalAmount,
+        mined: 0,
+        estimatedAmount: amountToMine,
+        miningRate,
+        finishedAt: new Date(Date.now() + timeMs),
+      },
+    });
 
     return {
       miningRate,
       amountToMine,
       timeMinutes,
       timeMs,
+      session,
     };
   }
 
-  claimMining() {}
+  async claimMining(uid: string) {
+    const session = await this.prisma.minigSession.findUnique({
+      where: { uid },
+    });
+
+    if (!isDefined(session))
+      throw new RpcException(new NotFoundException('Session not found'));
+
+    if (session.status !== 'IN_PROGRESS' && session.status !== 'FINISHED')
+      throw new BadRequestException('Cannot collect');
+
+    const resource = await this.prisma.planetResource.findUnique({
+      where: {
+        id: session.resourceId,
+      },
+    });
+
+    if (!isDefined(resource))
+      throw new RpcException(
+        new NotFoundException('Planet resource not found'),
+      );
+
+    const now = Date.now();
+    const finishTime = session.finishedAt.getTime();
+
+    const completedFraction = Math.min(
+      1,
+      (now - session.startedAt.getTime()) /
+        (finishTime - session.startedAt.getTime()),
+    );
+
+    const mined = Math.floor(session.estimatedAmount * completedFraction);
+
+    await this.prisma.$transaction(async (tx) => {
+      await tx.minigSession.update({
+        where: { id: session.id },
+        data: {
+          mined,
+          status: 'FINISHED',
+        },
+      });
+
+      await tx.inventoryItem.upsert({
+        where: { uid, resource: resource.type },
+        create: {
+          uid,
+          resource: resource.type,
+          amount: mined,
+        },
+        update: {
+          amount: { increment: mined },
+        },
+      });
+    });
+
+    return { claim: mined };
+  }
+
+  async getCurrentProcessMining(uid: string) {
+    const session = await this.prisma.minigSession.findFirst({
+      where: {
+        uid,
+        status: 'IN_PROGRESS',
+      },
+    });
+
+    if (!isDefined(session))
+      throw new RpcException(new NotFoundException('Session not found'));
+
+    const now = Date.now();
+    const start = session.startedAt.getTime();
+    const finish = session.finishedAt.getTime();
+
+    const totalDuration = finish - start;
+    const elapsed = now - start;
+    const remaining = Math.max(0, finish - now);
+
+    const progress = Math.min(1, elapsed / totalDuration);
+
+    const mined = Math.floor(session.estimatedAmount * progress);
+
+    return {
+      ...session,
+      mined,
+      remainingToMine: session.estimatedAmount - mined,
+      elapsedMs: elapsed,
+      remainingMs: remaining,
+      totalMs: totalDuration,
+      progressPercent: +(progress * 100).toFixed(2),
+      status: remaining === 0 ? 'READY_TO_COLLECT' : 'IN_PROGRESS',
+    };
+  }
 
   stopMining() {}
 }

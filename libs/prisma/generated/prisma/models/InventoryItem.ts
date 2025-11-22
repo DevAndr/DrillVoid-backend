@@ -239,16 +239,16 @@ export type InventoryItemOrderByWithRelationInput = {
 
 export type InventoryItemWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  resource?: $Enums.ResourceType
   AND?: Prisma.InventoryItemWhereInput | Prisma.InventoryItemWhereInput[]
   OR?: Prisma.InventoryItemWhereInput[]
   NOT?: Prisma.InventoryItemWhereInput | Prisma.InventoryItemWhereInput[]
-  resource?: Prisma.EnumResourceTypeFilter<"InventoryItem"> | $Enums.ResourceType
   amount?: Prisma.FloatFilter<"InventoryItem"> | number
   uid?: Prisma.StringFilter<"InventoryItem"> | string
   createdAt?: Prisma.DateTimeFilter<"InventoryItem"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"InventoryItem"> | Date | string
   gamne?: Prisma.XOR<Prisma.GameDataScalarRelationFilter, Prisma.GameDataWhereInput>
-}, "id">
+}, "id" | "resource">
 
 export type InventoryItemOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -282,7 +282,7 @@ export type InventoryItemCreateInput = {
   amount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
-  gamne: Prisma.GameDataCreateNestedOneWithoutInventoryItemInput
+  gamne: Prisma.GameDataCreateNestedOneWithoutInventoryItemsInput
 }
 
 export type InventoryItemUncheckedCreateInput = {
@@ -300,7 +300,7 @@ export type InventoryItemUpdateInput = {
   amount?: Prisma.FloatFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  gamne?: Prisma.GameDataUpdateOneRequiredWithoutInventoryItemNestedInput
+  gamne?: Prisma.GameDataUpdateOneRequiredWithoutInventoryItemsNestedInput
 }
 
 export type InventoryItemUncheckedUpdateInput = {

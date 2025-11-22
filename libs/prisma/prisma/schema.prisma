@@ -38,10 +38,10 @@ model GameData {
   z    Float @default(0)
   user User  @relation(fields: [uid], references: [uid])
 
-  planetVisit   PlanetVisit[]
-  balance       Balance[]
-  ships         Ship[]
-  InventoryItem InventoryItem[]
+  planetVisits   PlanetVisit[]
+  balances       Balance[]
+  ships          Ship[]
+  InventoryItems InventoryItem[]
 
   @@id([id, uid]) // Составной первичный ключ
   @@unique([id, uid]) // uid остается уникальным
@@ -61,7 +61,7 @@ model Ship {
   // Характеристики корабля
   warpRange    Float    @default(1000) // Макс расстояние прыжка
   warpSpeed    Float    @default(1)
-  miningPower  Float    @default(1) // Мощность бура
+  miningPower  Float    @default(100) // Мощность бура
   cargoSize    Float    @default(100) // Лимит ресурсов в трюме
   locator      Float    @default(3) // Макс сканирование планет
   fuel         Float    @default(100) // текущий запас топлива
@@ -140,7 +140,7 @@ model InventoryItem {
   id    String   @id @default(cuid())
   gamne GameData @relation(fields: [uid], references: [uid])
 
-  resource ResourceType // имя ресурса, например "XenonCrystal"
+  resource ResourceType @unique // имя ресурса, например "XenonCrystal"
   amount   Float        @default(0)
   uid      String
 
@@ -299,5 +299,6 @@ model MinigSession {
   maxAmount       Float // сколько можно добыть максимум
   mined           Float        @default(0) // сколько уже начислено
   estimatedAmount Float
-  finishedAt      DateTime?
+  miningRate      Float
+  finishedAt      DateTime
 }

@@ -30,12 +30,14 @@ export type MinigSessionAvgAggregateOutputType = {
   maxAmount: number | null
   mined: number | null
   estimatedAmount: number | null
+  miningRate: number | null
 }
 
 export type MinigSessionSumAggregateOutputType = {
   maxAmount: number | null
   mined: number | null
   estimatedAmount: number | null
+  miningRate: number | null
 }
 
 export type MinigSessionMinAggregateOutputType = {
@@ -50,6 +52,7 @@ export type MinigSessionMinAggregateOutputType = {
   maxAmount: number | null
   mined: number | null
   estimatedAmount: number | null
+  miningRate: number | null
   finishedAt: Date | null
 }
 
@@ -65,6 +68,7 @@ export type MinigSessionMaxAggregateOutputType = {
   maxAmount: number | null
   mined: number | null
   estimatedAmount: number | null
+  miningRate: number | null
   finishedAt: Date | null
 }
 
@@ -80,6 +84,7 @@ export type MinigSessionCountAggregateOutputType = {
   maxAmount: number
   mined: number
   estimatedAmount: number
+  miningRate: number
   finishedAt: number
   _all: number
 }
@@ -89,12 +94,14 @@ export type MinigSessionAvgAggregateInputType = {
   maxAmount?: true
   mined?: true
   estimatedAmount?: true
+  miningRate?: true
 }
 
 export type MinigSessionSumAggregateInputType = {
   maxAmount?: true
   mined?: true
   estimatedAmount?: true
+  miningRate?: true
 }
 
 export type MinigSessionMinAggregateInputType = {
@@ -109,6 +116,7 @@ export type MinigSessionMinAggregateInputType = {
   maxAmount?: true
   mined?: true
   estimatedAmount?: true
+  miningRate?: true
   finishedAt?: true
 }
 
@@ -124,6 +132,7 @@ export type MinigSessionMaxAggregateInputType = {
   maxAmount?: true
   mined?: true
   estimatedAmount?: true
+  miningRate?: true
   finishedAt?: true
 }
 
@@ -139,6 +148,7 @@ export type MinigSessionCountAggregateInputType = {
   maxAmount?: true
   mined?: true
   estimatedAmount?: true
+  miningRate?: true
   finishedAt?: true
   _all?: true
 }
@@ -241,7 +251,8 @@ export type MinigSessionGroupByOutputType = {
   maxAmount: number
   mined: number
   estimatedAmount: number
-  finishedAt: Date | null
+  miningRate: number
+  finishedAt: Date
   _count: MinigSessionCountAggregateOutputType | null
   _avg: MinigSessionAvgAggregateOutputType | null
   _sum: MinigSessionSumAggregateOutputType | null
@@ -279,7 +290,8 @@ export type MinigSessionWhereInput = {
   maxAmount?: Prisma.FloatFilter<"MinigSession"> | number
   mined?: Prisma.FloatFilter<"MinigSession"> | number
   estimatedAmount?: Prisma.FloatFilter<"MinigSession"> | number
-  finishedAt?: Prisma.DateTimeNullableFilter<"MinigSession"> | Date | string | null
+  miningRate?: Prisma.FloatFilter<"MinigSession"> | number
+  finishedAt?: Prisma.DateTimeFilter<"MinigSession"> | Date | string
 }
 
 export type MinigSessionOrderByWithRelationInput = {
@@ -294,7 +306,8 @@ export type MinigSessionOrderByWithRelationInput = {
   maxAmount?: Prisma.SortOrder
   mined?: Prisma.SortOrder
   estimatedAmount?: Prisma.SortOrder
-  finishedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  miningRate?: Prisma.SortOrder
+  finishedAt?: Prisma.SortOrder
 }
 
 export type MinigSessionWhereUniqueInput = Prisma.AtLeast<{
@@ -312,7 +325,8 @@ export type MinigSessionWhereUniqueInput = Prisma.AtLeast<{
   maxAmount?: Prisma.FloatFilter<"MinigSession"> | number
   mined?: Prisma.FloatFilter<"MinigSession"> | number
   estimatedAmount?: Prisma.FloatFilter<"MinigSession"> | number
-  finishedAt?: Prisma.DateTimeNullableFilter<"MinigSession"> | Date | string | null
+  miningRate?: Prisma.FloatFilter<"MinigSession"> | number
+  finishedAt?: Prisma.DateTimeFilter<"MinigSession"> | Date | string
 }, "id" | "uid" | "resourceId" | "planetId" | "planetSeed">
 
 export type MinigSessionOrderByWithAggregationInput = {
@@ -327,7 +341,8 @@ export type MinigSessionOrderByWithAggregationInput = {
   maxAmount?: Prisma.SortOrder
   mined?: Prisma.SortOrder
   estimatedAmount?: Prisma.SortOrder
-  finishedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  miningRate?: Prisma.SortOrder
+  finishedAt?: Prisma.SortOrder
   _count?: Prisma.MinigSessionCountOrderByAggregateInput
   _avg?: Prisma.MinigSessionAvgOrderByAggregateInput
   _max?: Prisma.MinigSessionMaxOrderByAggregateInput
@@ -350,7 +365,8 @@ export type MinigSessionScalarWhereWithAggregatesInput = {
   maxAmount?: Prisma.FloatWithAggregatesFilter<"MinigSession"> | number
   mined?: Prisma.FloatWithAggregatesFilter<"MinigSession"> | number
   estimatedAmount?: Prisma.FloatWithAggregatesFilter<"MinigSession"> | number
-  finishedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"MinigSession"> | Date | string | null
+  miningRate?: Prisma.FloatWithAggregatesFilter<"MinigSession"> | number
+  finishedAt?: Prisma.DateTimeWithAggregatesFilter<"MinigSession"> | Date | string
 }
 
 export type MinigSessionCreateInput = {
@@ -365,7 +381,8 @@ export type MinigSessionCreateInput = {
   maxAmount: number
   mined?: number
   estimatedAmount: number
-  finishedAt?: Date | string | null
+  miningRate: number
+  finishedAt: Date | string
 }
 
 export type MinigSessionUncheckedCreateInput = {
@@ -380,7 +397,8 @@ export type MinigSessionUncheckedCreateInput = {
   maxAmount: number
   mined?: number
   estimatedAmount: number
-  finishedAt?: Date | string | null
+  miningRate: number
+  finishedAt: Date | string
 }
 
 export type MinigSessionUpdateInput = {
@@ -395,7 +413,8 @@ export type MinigSessionUpdateInput = {
   maxAmount?: Prisma.FloatFieldUpdateOperationsInput | number
   mined?: Prisma.FloatFieldUpdateOperationsInput | number
   estimatedAmount?: Prisma.FloatFieldUpdateOperationsInput | number
-  finishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  miningRate?: Prisma.FloatFieldUpdateOperationsInput | number
+  finishedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type MinigSessionUncheckedUpdateInput = {
@@ -410,7 +429,8 @@ export type MinigSessionUncheckedUpdateInput = {
   maxAmount?: Prisma.FloatFieldUpdateOperationsInput | number
   mined?: Prisma.FloatFieldUpdateOperationsInput | number
   estimatedAmount?: Prisma.FloatFieldUpdateOperationsInput | number
-  finishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  miningRate?: Prisma.FloatFieldUpdateOperationsInput | number
+  finishedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type MinigSessionCreateManyInput = {
@@ -425,7 +445,8 @@ export type MinigSessionCreateManyInput = {
   maxAmount: number
   mined?: number
   estimatedAmount: number
-  finishedAt?: Date | string | null
+  miningRate: number
+  finishedAt: Date | string
 }
 
 export type MinigSessionUpdateManyMutationInput = {
@@ -440,7 +461,8 @@ export type MinigSessionUpdateManyMutationInput = {
   maxAmount?: Prisma.FloatFieldUpdateOperationsInput | number
   mined?: Prisma.FloatFieldUpdateOperationsInput | number
   estimatedAmount?: Prisma.FloatFieldUpdateOperationsInput | number
-  finishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  miningRate?: Prisma.FloatFieldUpdateOperationsInput | number
+  finishedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type MinigSessionUncheckedUpdateManyInput = {
@@ -455,7 +477,8 @@ export type MinigSessionUncheckedUpdateManyInput = {
   maxAmount?: Prisma.FloatFieldUpdateOperationsInput | number
   mined?: Prisma.FloatFieldUpdateOperationsInput | number
   estimatedAmount?: Prisma.FloatFieldUpdateOperationsInput | number
-  finishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  miningRate?: Prisma.FloatFieldUpdateOperationsInput | number
+  finishedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type MinigSessionCountOrderByAggregateInput = {
@@ -470,6 +493,7 @@ export type MinigSessionCountOrderByAggregateInput = {
   maxAmount?: Prisma.SortOrder
   mined?: Prisma.SortOrder
   estimatedAmount?: Prisma.SortOrder
+  miningRate?: Prisma.SortOrder
   finishedAt?: Prisma.SortOrder
 }
 
@@ -477,6 +501,7 @@ export type MinigSessionAvgOrderByAggregateInput = {
   maxAmount?: Prisma.SortOrder
   mined?: Prisma.SortOrder
   estimatedAmount?: Prisma.SortOrder
+  miningRate?: Prisma.SortOrder
 }
 
 export type MinigSessionMaxOrderByAggregateInput = {
@@ -491,6 +516,7 @@ export type MinigSessionMaxOrderByAggregateInput = {
   maxAmount?: Prisma.SortOrder
   mined?: Prisma.SortOrder
   estimatedAmount?: Prisma.SortOrder
+  miningRate?: Prisma.SortOrder
   finishedAt?: Prisma.SortOrder
 }
 
@@ -506,6 +532,7 @@ export type MinigSessionMinOrderByAggregateInput = {
   maxAmount?: Prisma.SortOrder
   mined?: Prisma.SortOrder
   estimatedAmount?: Prisma.SortOrder
+  miningRate?: Prisma.SortOrder
   finishedAt?: Prisma.SortOrder
 }
 
@@ -513,14 +540,11 @@ export type MinigSessionSumOrderByAggregateInput = {
   maxAmount?: Prisma.SortOrder
   mined?: Prisma.SortOrder
   estimatedAmount?: Prisma.SortOrder
+  miningRate?: Prisma.SortOrder
 }
 
 export type EnumMiningStatusFieldUpdateOperationsInput = {
   set?: $Enums.MiningStatus
-}
-
-export type NullableDateTimeFieldUpdateOperationsInput = {
-  set?: Date | string | null
 }
 
 
@@ -537,6 +561,7 @@ export type MinigSessionSelect<ExtArgs extends runtime.Types.Extensions.Internal
   maxAmount?: boolean
   mined?: boolean
   estimatedAmount?: boolean
+  miningRate?: boolean
   finishedAt?: boolean
 }, ExtArgs["result"]["minigSession"]>
 
@@ -552,6 +577,7 @@ export type MinigSessionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
   maxAmount?: boolean
   mined?: boolean
   estimatedAmount?: boolean
+  miningRate?: boolean
   finishedAt?: boolean
 }, ExtArgs["result"]["minigSession"]>
 
@@ -567,6 +593,7 @@ export type MinigSessionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
   maxAmount?: boolean
   mined?: boolean
   estimatedAmount?: boolean
+  miningRate?: boolean
   finishedAt?: boolean
 }, ExtArgs["result"]["minigSession"]>
 
@@ -582,10 +609,11 @@ export type MinigSessionSelectScalar = {
   maxAmount?: boolean
   mined?: boolean
   estimatedAmount?: boolean
+  miningRate?: boolean
   finishedAt?: boolean
 }
 
-export type MinigSessionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "uid" | "resourceId" | "planetId" | "planetSeed" | "startedAt" | "status" | "lastClaimAt" | "maxAmount" | "mined" | "estimatedAmount" | "finishedAt", ExtArgs["result"]["minigSession"]>
+export type MinigSessionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "uid" | "resourceId" | "planetId" | "planetSeed" | "startedAt" | "status" | "lastClaimAt" | "maxAmount" | "mined" | "estimatedAmount" | "miningRate" | "finishedAt", ExtArgs["result"]["minigSession"]>
 
 export type $MinigSessionPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "MinigSession"
@@ -602,7 +630,8 @@ export type $MinigSessionPayload<ExtArgs extends runtime.Types.Extensions.Intern
     maxAmount: number
     mined: number
     estimatedAmount: number
-    finishedAt: Date | null
+    miningRate: number
+    finishedAt: Date
   }, ExtArgs["result"]["minigSession"]>
   composites: {}
 }
@@ -1037,6 +1066,7 @@ export interface MinigSessionFieldRefs {
   readonly maxAmount: Prisma.FieldRef<"MinigSession", 'Float'>
   readonly mined: Prisma.FieldRef<"MinigSession", 'Float'>
   readonly estimatedAmount: Prisma.FieldRef<"MinigSession", 'Float'>
+  readonly miningRate: Prisma.FieldRef<"MinigSession", 'Float'>
   readonly finishedAt: Prisma.FieldRef<"MinigSession", 'DateTime'>
 }
     

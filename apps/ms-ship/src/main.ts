@@ -1,30 +1,16 @@
 import { NestFactory } from '@nestjs/core';
 import { ConfigService } from '@nestjs/config';
-import { MicroserviceOptions, Transport } from '@nestjs/microservices';
+import { MicroserviceOptions } from '@nestjs/microservices';
 import { MsShipModule } from './ms-ship.module';
+import { configRabbitMq } from '@app/core/rabbitmq/config';
+import { RABBIT_MQ_QUEUE_SHIP } from '@app/contracts/ship/constsnts';
 
 async function bootstrap() {
   const appContext = await NestFactory.createApplicationContext(MsShipModule);
   const configService = appContext.get(ConfigService);
-  const url = configService.get<string>(
-    'rabbitmq.url',
-    'amqp://guest:guest@localhost:5672',
-  );
-
   const app = await NestFactory.createMicroservice<MicroserviceOptions>(
     MsShipModule,
-    {
-      transport: Transport.RMQ,
-      options: {
-        urls: [url],
-        queue: 'ship-queue',
-        queueOptions: {
-          durable: false,
-        },
-        noAck: false,
-        persistent: true,
-      },
-    },
+    configRabbitMq(RABBIT_MQ_QUEUE_SHIP, configService, true, true),
   );
 
   console.log('🚀 Ship Microservice is running');

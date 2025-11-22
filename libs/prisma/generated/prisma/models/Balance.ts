@@ -298,7 +298,7 @@ export type BalanceCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   currency: Prisma.CurrencyCreateNestedOneWithoutBalanceInput
-  gameData?: Prisma.GameDataCreateNestedOneWithoutBalanceInput
+  gameData?: Prisma.GameDataCreateNestedOneWithoutBalancesInput
 }
 
 export type BalanceUncheckedCreateInput = {
@@ -317,7 +317,7 @@ export type BalanceUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   currency?: Prisma.CurrencyUpdateOneRequiredWithoutBalanceNestedInput
-  gameData?: Prisma.GameDataUpdateOneWithoutBalanceNestedInput
+  gameData?: Prisma.GameDataUpdateOneWithoutBalancesNestedInput
 }
 
 export type BalanceUncheckedUpdateInput = {
@@ -554,7 +554,7 @@ export type BalanceCreateWithoutCurrencyInput = {
   amount: number
   createdAt?: Date | string
   updatedAt?: Date | string
-  gameData?: Prisma.GameDataCreateNestedOneWithoutBalanceInput
+  gameData?: Prisma.GameDataCreateNestedOneWithoutBalancesInput
 }
 
 export type BalanceUncheckedCreateWithoutCurrencyInput = {
@@ -638,7 +638,7 @@ export type BalanceUpdateWithoutCurrencyInput = {
   amount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  gameData?: Prisma.GameDataUpdateOneWithoutBalanceNestedInput
+  gameData?: Prisma.GameDataUpdateOneWithoutBalancesNestedInput
 }
 
 export type BalanceUncheckedUpdateWithoutCurrencyInput = {

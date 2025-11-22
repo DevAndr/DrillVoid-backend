@@ -1521,6 +1521,7 @@ export const MinigSessionScalarFieldEnum = {
   maxAmount: 'maxAmount',
   mined: 'mined',
   estimatedAmount: 'estimatedAmount',
+  miningRate: 'miningRate',
   finishedAt: 'finishedAt'
 } as const
 
