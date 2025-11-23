@@ -5,4 +5,6 @@ export const MS_PLANET_PATTERNS = {
   SCAN: 'planet.scan',
   GENERATE_PLANET: 'planet.generate_planet',
   JUMP_TO_PLANET: 'planet.jump_to_planet',
+  GET_PLANET_BY_SEED: 'planet.get_planet_by_seed',
+  GENERATE_PLANET_BY_SEED: 'planet.generate_planet_by_seed',
 };

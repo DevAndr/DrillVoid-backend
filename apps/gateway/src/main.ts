@@ -5,7 +5,6 @@ import * as cookieParser from 'cookie-parser';
 import { ConfigService } from '@nestjs/config';
 import { ResponseInterceptor } from './interceptors/response.interceptor';
 import { AllExceptionsFilter } from './interceptors/AllExceptionsFilter';
-import { AllRpcExceptionsFilter } from '@app/core';
 
 async function bootstrap() {
   const app = await NestFactory.create(GatewayModule);

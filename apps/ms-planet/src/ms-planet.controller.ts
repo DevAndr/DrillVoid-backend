@@ -47,4 +47,19 @@ export class MsPlanetController {
     console.log(`Pattern: ${context.getPattern()}`, data);
     return this.msPlanetService.jumpToPlanet(data.uid, data.target);
   }
+
+  @MessagePattern(MS_PLANET_PATTERNS.GET_PLANET_BY_SEED)
+  handleGetPlanetBySeed(@Payload() data: string, @Ctx() context: RmqContext) {
+    console.log(`Pattern: ${context.getPattern()}`, data);
+    return this.msPlanetService.getPlanetBySeed(data);
+  }
+
+  @MessagePattern(MS_PLANET_PATTERNS.GENERATE_PLANET_BY_SEED)
+  handleGeneratePlanetBySeed(
+    @Payload() data: string,
+    @Ctx() context: RmqContext,
+  ) {
+    console.log(`Pattern: ${context.getPattern()}`, data);
+    return this.msPlanetService.generatePlanetBySeed(data);
+  }
 }

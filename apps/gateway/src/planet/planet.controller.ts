@@ -20,17 +20,18 @@ export class PlanetController {
     return this.planetService.generatePlanet(data);
   }
 
-  @Post('scan_planets/:uid')
-  handleScanPlanets(
-    @Param('uid') uid: string,
-    @Body() data: PayloadScanPlanets,
-  ) {
-    console.log({ uid });
+  @Post('scan_planets')
+  handleScanPlanets(@Body() data: PayloadScanPlanets) {
     return this.planetService.scanPlanets(data);
   }
 
   @Post('jump_to_planet')
   handleJumpToPlanet(@Body() data: PayloadJumpToPlanet) {
     return this.planetService.jumpToPlanet(data);
+  }
+
+  @Get('generate_planet_by_seed/:seed')
+  handleGeneratePlanetBySeed(@Param('seed') seed: string) {
+    return this.planetService.generatePlanetBySeed(seed);
   }
 }

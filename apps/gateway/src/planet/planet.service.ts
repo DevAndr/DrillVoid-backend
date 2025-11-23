@@ -30,4 +30,16 @@ export class PlanetService {
       this.planetClient.send(MS_PLANET_PATTERNS.JUMP_TO_PLANET, data),
     );
   }
+
+  getPlanetBySeed(seed: string) {
+    return firstValueFrom(
+      this.planetClient.send(MS_PLANET_PATTERNS.GET_PLANET_BY_SEED, seed),
+    );
+  }
+
+  generatePlanetBySeed(seed: string) {
+    return firstValueFrom(
+      this.planetClient.send(MS_PLANET_PATTERNS.GENERATE_PLANET_BY_SEED, seed),
+    );
+  }
 }

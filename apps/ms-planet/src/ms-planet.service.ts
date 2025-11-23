@@ -300,6 +300,11 @@ export class MsPlanetService {
       remainingAmount: amount,
     };
   }
+
+  generatePlanetBySeed(seed: string) {
+    const [x, y, z] = seed.split('_');
+    return this.planetGenerate({ x: Number(x), y: Number(y), z: Number(z) });
+  }
 }
 
 class RNG {
