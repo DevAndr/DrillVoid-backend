@@ -1,4 +1,9 @@
-import { BadRequestException, Injectable, Logger } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  Logger,
+  NotFoundException,
+} from '@nestjs/common';
 import { PrismaService } from '@app/prisma';
 import { createNoise3D } from 'simplex-noise';
 import {
@@ -8,15 +13,18 @@ import {
 import { RESOURCE_INFO, RESOURCE_PLANET_POOL } from './constants';
 import { SciFiNameGenerator } from './utils/SciFiNameGenerator';
 import {
+  PayloadTimePlanet,
   Point3D,
   ResourcePlanet,
   ScanOptions,
 } from '@app/contracts/planet/types';
-import { xor4096 } from 'seedrandom';
 import { isDefined } from '@app/core/utils';
 import { PlanetResourceCreateManyInput } from '../../../libs/prisma/generated/prisma/models/PlanetResource';
 import { distanceBetweenCoord } from '../../gateway/src/planet/utils';
 import { RpcException } from '@nestjs/microservices';
+import { RARITY_MINING_MULTIPLIER } from '@app/contracts';
+import { createXor4096 } from './utils';
+import seedrandom from 'seedrandom';
 
 @Injectable()
 export class MsPlanetService {
@@ -24,32 +32,21 @@ export class MsPlanetService {
   private simplex = createNoise3D();
   constructor(private readonly prisma: PrismaService) {}
 
-  private mulberry32(a: number) {
-    return function () {
-      a |= 0;
-      a = (a + 0x6d2b79f5) | 0;
-      let t = Math.imul(a ^ (a >>> 15), 1 | a);
-      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
-      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-    };
-  }
-
   makeSeedByPoint(point: Point3D) {
     return `${point.x}_${point.y}_${point.z}`;
   }
 
   planetGenerate(point: Point3D) {
     const seed = this.makeSeedByPoint(point);
-    // const rng = this.mulberry32(+seed);
-    const rng = xor4096(seed);
+    const rng = createXor4096(seed);
 
     // 1. Biome
-    const biome = this.defineBiome(point);
+    const biome = this.defineBiome(rng);
 
     this.logger.log({ biome });
 
     // 2. Rarity
-    const rarity = this.defineRarity(point);
+    const rarity = this.defineRarity(rng);
 
     this.logger.log({ rarity });
 
@@ -76,8 +73,8 @@ export class MsPlanetService {
   generateNearbyPlanets(currentPos: Point3D, options: ScanOptions) {
     const { count, radius } = options;
 
-    const baseSeed = `${currentPos.x}${currentPos.y}${currentPos.z}`;
-    const rng = this.mulberry32(+baseSeed);
+    const seed = this.makeSeedByPoint(currentPos);
+    const rng = createXor4096(seed);
 
     const planets: any[] = [];
 
@@ -225,7 +222,7 @@ export class MsPlanetService {
 
     const currentPlanet = await this.prisma.planet.findUnique({
       where: { id: planet.id },
-      include: { planetResource: true },
+      include: { resources: true },
     });
 
     return {
@@ -239,13 +236,12 @@ export class MsPlanetService {
   getPlanetBySeed(seed: string) {
     return this.prisma.planet.findUnique({
       where: { seed },
-      include: { planetResource: true },
+      include: { resources: true },
     });
   }
 
-  private defineBiome(point: Point3D) {
-    const noise = this.simplex(point.x, point.y, point.z);
-    const n = (noise + 1) / 2;
+  private defineBiome(rng: () => number) {
+    const n = (rng() + 1) / 2;
 
     if (n < 0.15) return PlanetType.ROCKY;
     if (n < 0.3) return PlanetType.LUSH;
@@ -255,9 +251,8 @@ export class MsPlanetService {
     return PlanetType.BLACKHOLE;
   }
 
-  private defineRarity(point: Point3D) {
-    const noise = this.simplex(point.x * 2, point.y * 2, point.z * 2);
-    const n = (noise + 1) / 2;
+  private defineRarity(rng: () => number) {
+    const n = (rng() + 1) / 2;
 
     if (n < 0.6) return Rarity.COMMON;
     if (n < 0.85) return Rarity.UNCOMMON;
@@ -301,9 +296,80 @@ export class MsPlanetService {
     };
   }
 
-  generatePlanetBySeed(seed: string) {
+  async generatePlanetBySeed(seed: string) {
+    const foundPlanet = await this.prisma.planet.findUnique({
+      where: { seed },
+      include: { resources: true },
+    });
+
+    if (isDefined(foundPlanet)) {
+      return { ...foundPlanet, isCreated: true };
+    }
+
     const [x, y, z] = seed.split('_');
-    return this.planetGenerate({ x: Number(x), y: Number(y), z: Number(z) });
+
+    const genPlanet = this.planetGenerate({
+      x: Number(x),
+      y: Number(y),
+      z: Number(z),
+    });
+    return { ...genPlanet, isCreated: false };
+  }
+
+  //получение времени майнинга всей планеты в часах
+  async getTotalTimeMiningPlanet(data: PayloadTimePlanet) {
+    const { uid, seed } = data;
+
+    let planet = await this.prisma.planet.findUnique({
+      where: { seed },
+      include: { resources: true },
+    });
+
+    if (!isDefined(planet)) {
+      planet = await this.generatePlanetBySeed(seed);
+    }
+
+    if (!isDefined(planet))
+      throw new RpcException(new NotFoundException('Не найдена планета'));
+
+    const gameData = await this.prisma.gameData.findUnique({
+      where: { uid },
+      include: { ships: true },
+    });
+
+    if (!isDefined(gameData))
+      throw new RpcException(
+        new NotFoundException('Не найдены игровые данные'),
+      );
+
+    const ship = gameData.ships.find((ship) => ship.id === gameData.shipId);
+
+    if (!isDefined(ship))
+      throw new RpcException(
+        new NotFoundException('Не найден текущий корабль'),
+      );
+
+    const miningSpeed = ship.miningPower;
+    let totalMinutes = 0;
+
+    for (const resource of planet.resources) {
+      const miningRate =
+        miningSpeed * RARITY_MINING_MULTIPLIER[resource.rarity];
+      let maxByRemaining = resource.current;
+
+      if ('remainingAmount' in resource)
+        maxByRemaining = resource.remainingAmount as number;
+
+      const amountToMine = Math.min(maxByRemaining, maxByRemaining);
+      const timeMinutes = Math.floor(amountToMine / miningRate);
+      totalMinutes += timeMinutes;
+    }
+
+    console.log({ totalMinutes });
+
+    return {
+      totalTimeMining: (totalMinutes / 60).toFixed(1),
+    };
   }
 }
 
