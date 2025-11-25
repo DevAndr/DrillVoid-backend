@@ -329,7 +329,7 @@ export type PlanetResourceCreateInput = {
   rarity: $Enums.Rarity
   createdAt?: Date | string
   updatedAt?: Date | string
-  planet: Prisma.PlanetCreateNestedOneWithoutPlanetResourceInput
+  planet: Prisma.PlanetCreateNestedOneWithoutResourcesInput
 }
 
 export type PlanetResourceUncheckedCreateInput = {
@@ -353,7 +353,7 @@ export type PlanetResourceUpdateInput = {
   rarity?: Prisma.EnumRarityFieldUpdateOperationsInput | $Enums.Rarity
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  planet?: Prisma.PlanetUpdateOneRequiredWithoutPlanetResourceNestedInput
+  planet?: Prisma.PlanetUpdateOneRequiredWithoutResourcesNestedInput
 }
 
 export type PlanetResourceUncheckedUpdateInput = {

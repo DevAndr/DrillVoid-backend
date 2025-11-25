@@ -25,12 +25,15 @@ import { RpcException } from '@nestjs/microservices';
 import { RARITY_MINING_MULTIPLIER } from '@app/contracts';
 import { createXor4096 } from './utils';
 import seedrandom from 'seedrandom';
+import { xor4096 } from 'seedrandom';
 
 @Injectable()
 export class MsPlanetService {
   private readonly logger = new Logger(MsPlanetService.name);
   private simplex = createNoise3D();
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(private readonly prisma: PrismaService) {
+    this.simplex = createNoise3D();
+  }
 
   makeSeedByPoint(point: Point3D) {
     return `${point.x}_${point.y}_${point.z}`;
@@ -38,7 +41,7 @@ export class MsPlanetService {
 
   planetGenerate(point: Point3D) {
     const seed = this.makeSeedByPoint(point);
-    const rng = createXor4096(seed);
+    const rng = xor4096(seed);
 
     // 1. Biome
     const biome = this.defineBiome(rng);
@@ -73,27 +76,57 @@ export class MsPlanetService {
   generateNearbyPlanets(currentPos: Point3D, options: ScanOptions) {
     const { count, radius } = options;
 
-    const seed = this.makeSeedByPoint(currentPos);
-    const rng = createXor4096(seed);
+    const offsets = this.getDeterministicOffsets(count, radius, currentPos);
 
     const planets: any[] = [];
 
-    for (let i = 0; i < count; i++) {
-      const dx = Math.floor((rng() - 0.5) * radius);
-      const dy = Math.floor((rng() - 0.5) * radius);
-      const dz = Math.floor((rng() - 0.5) * radius);
+    for (const { x, y, z } of offsets) {
+      if (x === currentPos.x && y === currentPos.y && z === currentPos.z)
+        continue;
 
-      const x = currentPos.x + dx;
-      const y = currentPos.y + dy;
-      const z = currentPos.z + dz;
-
-      // // Seed планеты = координаты
-      // const planetSeed = `${x}_${y}_${z}`;
-
-      planets.push(this.planetGenerate({ x, y, z }));
+      const point = {
+        x: currentPos.x + x,
+        y: currentPos.y + y,
+        z: currentPos.z + z,
+      };
+      planets.push(this.planetGenerate(point)); // ← только от координат!
     }
 
     return planets;
+  }
+
+  private getDeterministicOffsets(
+    count: number,
+    radius: number,
+    center: Point3D,
+  ): Point3D[] {
+    const offsets: Point3D[] = [];
+    const seed = this.makeSeedByPoint(center) + `_scan_${radius}_${count}`;
+    const rng = createXor4096(seed);
+    const seen = new Set<string>();
+
+    for (let i = 0; i < count * 3; i++) {
+      // *3 чтобы точно набрать count уникальных
+      const dx = Math.floor((rng() - 0.5) * radius * 2);
+      const dy = Math.floor((rng() - 0.5) * radius * 2);
+      const dz = Math.floor((rng() - 0.5) * radius * 2);
+
+      if (dx === 0 && dy === 0 && dz === 0) continue;
+
+      const dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
+      if (dist > radius) continue;
+
+      // Проверка на дубли
+      const key = `${dx}_${dy}_${dz}`;
+      if (seen.has(key)) continue;
+
+      seen.add(key);
+      offsets.push({ x: dx, y: dy, z: dz });
+
+      if (offsets.length >= count) break;
+    }
+
+    return offsets;
   }
 
   async jumpToPlanet(uid: string, target: Point3D) {

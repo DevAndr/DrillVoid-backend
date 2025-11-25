@@ -401,7 +401,7 @@ export const ModelName = {
   Cycle: 'Cycle',
   Currency: 'Currency',
   Balance: 'Balance',
-  MinigSession: 'MinigSession'
+  MiningSession: 'MiningSession'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -417,7 +417,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "gameData" | "ship" | "shipComponent" | "planet" | "inventoryItem" | "planetResource" | "planetVisit" | "cycle" | "currency" | "balance" | "minigSession"
+    modelProps: "user" | "gameData" | "ship" | "shipComponent" | "planet" | "inventoryItem" | "planetResource" | "planetVisit" | "cycle" | "currency" | "balance" | "miningSession"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1235,77 +1235,77 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
-    MinigSession: {
-      payload: Prisma.$MinigSessionPayload<ExtArgs>
-      fields: Prisma.MinigSessionFieldRefs
+    MiningSession: {
+      payload: Prisma.$MiningSessionPayload<ExtArgs>
+      fields: Prisma.MiningSessionFieldRefs
       operations: {
         findUnique: {
-          args: Prisma.MinigSessionFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$MinigSessionPayload> | null
+          args: Prisma.MiningSessionFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MiningSessionPayload> | null
         }
         findUniqueOrThrow: {
-          args: Prisma.MinigSessionFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$MinigSessionPayload>
+          args: Prisma.MiningSessionFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MiningSessionPayload>
         }
         findFirst: {
-          args: Prisma.MinigSessionFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$MinigSessionPayload> | null
+          args: Prisma.MiningSessionFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MiningSessionPayload> | null
         }
         findFirstOrThrow: {
-          args: Prisma.MinigSessionFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$MinigSessionPayload>
+          args: Prisma.MiningSessionFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MiningSessionPayload>
         }
         findMany: {
-          args: Prisma.MinigSessionFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$MinigSessionPayload>[]
+          args: Prisma.MiningSessionFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MiningSessionPayload>[]
         }
         create: {
-          args: Prisma.MinigSessionCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$MinigSessionPayload>
+          args: Prisma.MiningSessionCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MiningSessionPayload>
         }
         createMany: {
-          args: Prisma.MinigSessionCreateManyArgs<ExtArgs>
+          args: Prisma.MiningSessionCreateManyArgs<ExtArgs>
           result: BatchPayload
         }
         createManyAndReturn: {
-          args: Prisma.MinigSessionCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$MinigSessionPayload>[]
+          args: Prisma.MiningSessionCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MiningSessionPayload>[]
         }
         delete: {
-          args: Prisma.MinigSessionDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$MinigSessionPayload>
+          args: Prisma.MiningSessionDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MiningSessionPayload>
         }
         update: {
-          args: Prisma.MinigSessionUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$MinigSessionPayload>
+          args: Prisma.MiningSessionUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MiningSessionPayload>
         }
         deleteMany: {
-          args: Prisma.MinigSessionDeleteManyArgs<ExtArgs>
+          args: Prisma.MiningSessionDeleteManyArgs<ExtArgs>
           result: BatchPayload
         }
         updateMany: {
-          args: Prisma.MinigSessionUpdateManyArgs<ExtArgs>
+          args: Prisma.MiningSessionUpdateManyArgs<ExtArgs>
           result: BatchPayload
         }
         updateManyAndReturn: {
-          args: Prisma.MinigSessionUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$MinigSessionPayload>[]
+          args: Prisma.MiningSessionUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MiningSessionPayload>[]
         }
         upsert: {
-          args: Prisma.MinigSessionUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$MinigSessionPayload>
+          args: Prisma.MiningSessionUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MiningSessionPayload>
         }
         aggregate: {
-          args: Prisma.MinigSessionAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateMinigSession>
+          args: Prisma.MiningSessionAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateMiningSession>
         }
         groupBy: {
-          args: Prisma.MinigSessionGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.MinigSessionGroupByOutputType>[]
+          args: Prisma.MiningSessionGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.MiningSessionGroupByOutputType>[]
         }
         count: {
-          args: Prisma.MinigSessionCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.MinigSessionCountAggregateOutputType> | number
+          args: Prisma.MiningSessionCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.MiningSessionCountAggregateOutputType> | number
         }
       }
     }
@@ -1509,7 +1509,7 @@ export const BalanceScalarFieldEnum = {
 export type BalanceScalarFieldEnum = (typeof BalanceScalarFieldEnum)[keyof typeof BalanceScalarFieldEnum]
 
 
-export const MinigSessionScalarFieldEnum = {
+export const MiningSessionScalarFieldEnum = {
   id: 'id',
   uid: 'uid',
   resourceId: 'resourceId',
@@ -1525,7 +1525,7 @@ export const MinigSessionScalarFieldEnum = {
   finishedAt: 'finishedAt'
 } as const
 
-export type MinigSessionScalarFieldEnum = (typeof MinigSessionScalarFieldEnum)[keyof typeof MinigSessionScalarFieldEnum]
+export type MiningSessionScalarFieldEnum = (typeof MiningSessionScalarFieldEnum)[keyof typeof MiningSessionScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1860,7 +1860,7 @@ export type GlobalOmitConfig = {
   cycle?: Prisma.CycleOmit
   currency?: Prisma.CurrencyOmit
   balance?: Prisma.BalanceOmit
-  minigSession?: Prisma.MinigSessionOmit
+  miningSession?: Prisma.MiningSessionOmit
 }
 
 /* Types for Logging */

@@ -60,7 +60,7 @@ export const ModelName = {
   Cycle: 'Cycle',
   Currency: 'Currency',
   Balance: 'Balance',
-  MinigSession: 'MinigSession'
+  MiningSession: 'MiningSession'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -240,7 +240,7 @@ export const BalanceScalarFieldEnum = {
 export type BalanceScalarFieldEnum = (typeof BalanceScalarFieldEnum)[keyof typeof BalanceScalarFieldEnum]
 
 
-export const MinigSessionScalarFieldEnum = {
+export const MiningSessionScalarFieldEnum = {
   id: 'id',
   uid: 'uid',
   resourceId: 'resourceId',
@@ -256,7 +256,7 @@ export const MinigSessionScalarFieldEnum = {
   finishedAt: 'finishedAt'
 } as const
 
-export type MinigSessionScalarFieldEnum = (typeof MinigSessionScalarFieldEnum)[keyof typeof MinigSessionScalarFieldEnum]
+export type MiningSessionScalarFieldEnum = (typeof MiningSessionScalarFieldEnum)[keyof typeof MiningSessionScalarFieldEnum]
 
 
 export const SortOrder = {

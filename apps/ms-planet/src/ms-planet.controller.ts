@@ -11,6 +11,7 @@ import { MsPlanetService } from './ms-planet.service';
 import {
   PayloadJumpToPlanet,
   PayloadScanPlanets,
+  PayloadTimePlanet,
   Point3D,
 } from '@app/contracts/planet/types';
 
@@ -18,11 +19,11 @@ import {
 export class MsPlanetController {
   constructor(private readonly msPlanetService: MsPlanetService) {}
 
-  @EventPattern(MS_PLANET_PATTERNS.GENERATE_PLANET)
-  handleGeneratePlanet(@Payload() uid: string) {
-    console.log({ uid });
-    return { name: 'earth', biome: 'rocky', rarity: 'common', resources: {} };
-  }
+  // @EventPattern(MS_PLANET_PATTERNS.GENERATE_PLANET)
+  // handleGeneratePlanet(@Payload() uid: string) {
+  //   console.log({ uid });
+  //   return { name: 'earth', biome: 'rocky', rarity: 'common', resources: {} };
+  // }
 
   @MessagePattern(MS_PLANET_PATTERNS.GENERATE_PLANET)
   handleGeneratePlanetV2(@Payload() data: Point3D, @Ctx() context: RmqContext) {
@@ -61,5 +62,16 @@ export class MsPlanetController {
   ) {
     console.log(`Pattern: ${context.getPattern()}`, data);
     return this.msPlanetService.generatePlanetBySeed(data);
+  }
+
+  @MessagePattern(MS_PLANET_PATTERNS.TIME_MINING_PLANET)
+  async handleTimeMiningPlanet(
+    @Payload() data: PayloadTimePlanet,
+    @Ctx() context: RmqContext,
+  ) {
+    console.log(`Pattern: ${context.getPattern()}`, data);
+    const time = await this.msPlanetService.getTotalTimeMiningPlanet(data);
+    console.log({ time });
+    return time;
   }
 }

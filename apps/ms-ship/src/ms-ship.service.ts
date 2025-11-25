@@ -4,18 +4,9 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { PrismaService } from '@app/prisma';
-import { StartMiningData } from '@app/contracts';
+import { RARITY_MINING_MULTIPLIER, StartMiningData } from '@app/contracts';
 import { isDefined } from '@app/core/utils';
 import { RpcException } from '@nestjs/microservices';
-import { Rarity } from 'libs/prisma/generated/prisma/enums';
-
-const RARITY_MULTIPLIER: Record<Rarity, number> = {
-  COMMON: 5,
-  UNCOMMON: 3.5,
-  RARE: 2.2,
-  EPIC: 1.5,
-  LEGENDARY: 1,
-};
 
 @Injectable()
 export class MsShipService {
@@ -71,7 +62,7 @@ export class MsShipService {
 
     // Рассчитываем добычу, но НЕ списываем ресурсы сейчас
     const miningSpeed = ship.miningPower;
-    const miningRate = miningSpeed * RARITY_MULTIPLIER[resource.rarity];
+    const miningRate = miningSpeed * RARITY_MINING_MULTIPLIER[resource.rarity];
     const maxByRemaining = resource.current;
     const amountToMine = Math.min(maxByRemaining, maxByRemaining);
     const timeMinutes = Math.floor(amountToMine / miningRate);

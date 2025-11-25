@@ -7,4 +7,5 @@ export const MS_PLANET_PATTERNS = {
   JUMP_TO_PLANET: 'planet.jump_to_planet',
   GET_PLANET_BY_SEED: 'planet.get_planet_by_seed',
   GENERATE_PLANET_BY_SEED: 'planet.generate_planet_by_seed',
+  TIME_MINING_PLANET: 'planet.get_time_mining_planet',
 };

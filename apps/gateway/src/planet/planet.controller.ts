@@ -34,4 +34,9 @@ export class PlanetController {
   handleGeneratePlanetBySeed(@Param('seed') seed: string) {
     return this.planetService.generatePlanetBySeed(seed);
   }
+
+  @Post('time_mining_planet')
+  handleTimeMiningPlanet(@Body() data: PayloadJumpToPlanet) {
+    return this.planetService.timeMiningPlanet(data);
+  }
 }

@@ -130,10 +130,10 @@ model Planet {
   rarity   Rarity
   depleted Boolean    @default(false)
 
-  createdAt      DateTime         @default(now())
-  updatedAt      DateTime         @updatedAt
-  planetResource PlanetResource[]
-  planetVisit    PlanetVisit[]
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+  resources   PlanetResource[]
+  planetVisit PlanetVisit[]
 }
 
 model InventoryItem {

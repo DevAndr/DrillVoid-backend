@@ -27,3 +27,8 @@ export type PayloadJumpToPlanet = {
   uid: string;
   target: Point3D;
 };
+
+export type PayloadTimePlanet = {
+  uid: string;
+  seed: string;
+};

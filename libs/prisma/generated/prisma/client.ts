@@ -98,7 +98,7 @@ export type Currency = Prisma.CurrencyModel
  */
 export type Balance = Prisma.BalanceModel
 /**
- * Model MinigSession
+ * Model MiningSession
  * 
  */
-export type MinigSession = Prisma.MinigSessionModel
+export type MiningSession = Prisma.MiningSessionModel
