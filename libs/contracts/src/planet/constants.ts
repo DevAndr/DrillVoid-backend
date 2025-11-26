@@ -8,4 +8,5 @@ export const MS_PLANET_PATTERNS = {
   GET_PLANET_BY_SEED: 'planet.get_planet_by_seed',
   GENERATE_PLANET_BY_SEED: 'planet.generate_planet_by_seed',
   TIME_MINING_PLANET: 'planet.get_time_mining_planet',
+  TEST: 'planet.test',
 };

@@ -65,13 +65,19 @@ export class MsPlanetController {
   }
 
   @MessagePattern(MS_PLANET_PATTERNS.TIME_MINING_PLANET)
-  async handleTimeMiningPlanet(
+  handleTimeMiningPlanet(
     @Payload() data: PayloadTimePlanet,
     @Ctx() context: RmqContext,
   ) {
     console.log(`Pattern: ${context.getPattern()}`, data);
-    const time = await this.msPlanetService.getTotalTimeMiningPlanet(data);
-    console.log({ time });
-    return time;
+    return this.msPlanetService.getTotalTimeMiningPlanet(data);
+  }
+
+  @MessagePattern(MS_PLANET_PATTERNS.TEST)
+  handleTest(@Payload() data: string, @Ctx() context: RmqContext) {
+    console.log(`Pattern: ${context.getPattern()}`, data);
+    this.msPlanetService.test(data);
+
+    return { data: 'test' };
   }
 }

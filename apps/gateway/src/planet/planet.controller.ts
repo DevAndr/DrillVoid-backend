@@ -39,4 +39,9 @@ export class PlanetController {
   handleTimeMiningPlanet(@Body() data: PayloadJumpToPlanet) {
     return this.planetService.timeMiningPlanet(data);
   }
+
+  @Get('test')
+  handleTest() {
+    return this.planetService.test();
+  }
 }

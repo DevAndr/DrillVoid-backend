@@ -404,6 +404,15 @@ export class MsPlanetService {
       totalTimeMining: (totalMinutes / 60).toFixed(1),
     };
   }
+
+  test(data: string) {
+    const point: Point3D = { x: 41, y: 53, z: 90 };
+    const noise1 = this.simplex(point.x, point.y, point.z);
+    const noise2 = this.simplex(point.x, point.y, point.z);
+    const noise3 = this.simplex(point.x, point.y, point.z);
+
+    console.log({ noise1, noise2, noise3 });
+  }
 }
 
 class RNG {

@@ -48,4 +48,8 @@ export class PlanetService {
       this.planetClient.send(MS_PLANET_PATTERNS.TIME_MINING_PLANET, data),
     );
   }
+
+  test() {
+    return firstValueFrom(this.planetClient.send(MS_PLANET_PATTERNS.TEST, ''));
+  }
 }
