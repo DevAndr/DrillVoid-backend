@@ -13,7 +13,7 @@ export class MsShipService {
   constructor(private readonly prisma: PrismaService) {}
 
   async startMining(data: StartMiningData) {
-    const sessionFound = await this.prisma.minigSession.findUnique({
+    const sessionFound = await this.prisma.miningSession.findUnique({
       where: { uid: data.uid },
     });
 
@@ -24,16 +24,14 @@ export class MsShipService {
 
     const planet = await this.prisma.planet.findUnique({
       where: { id: data.planetId },
-      include: { planetResource: true },
+      include: { resources: true },
     });
 
     if (!isDefined(planet)) {
       throw new RpcException(new NotFoundException('Planet not found'));
     }
 
-    const resource = planet.planetResource.find(
-      (res) => res.id === data.resourceId,
-    );
+    const resource = planet.resources.find((res) => res.id === data.resourceId);
 
     if (!isDefined(resource))
       throw new RpcException(
@@ -62,13 +60,13 @@ export class MsShipService {
 
     // Рассчитываем добычу, но НЕ списываем ресурсы сейчас
     const miningSpeed = ship.miningPower;
-    const miningRate = miningSpeed * RARITY_MINING_MULTIPLIER[resource.rarity];
+    const miningRate = miningSpeed * RARITY_MINING_MULTIPLIER[resource.rarity]; // единицы ресурса в мин
     const maxByRemaining = resource.current;
     const amountToMine = Math.min(maxByRemaining, maxByRemaining);
     const timeMinutes = Math.floor(amountToMine / miningRate);
     const timeMs = timeMinutes * 60 * 1000;
 
-    const session = await this.prisma.minigSession.upsert({
+    const session = await this.prisma.miningSession.upsert({
       where: { uid: data.uid },
       create: {
         uid: data.uid,
@@ -107,7 +105,7 @@ export class MsShipService {
   }
 
   async claimMining(uid: string) {
-    const session = await this.prisma.minigSession.findUnique({
+    const session = await this.prisma.miningSession.findUnique({
       where: { uid },
     });
 
@@ -174,7 +172,7 @@ export class MsShipService {
   }
 
   async getCurrentProcessMining(uid: string) {
-    const session = await this.prisma.minigSession.findFirst({
+    const session = await this.prisma.miningSession.findFirst({
       where: {
         uid,
         status: 'IN_PROGRESS',

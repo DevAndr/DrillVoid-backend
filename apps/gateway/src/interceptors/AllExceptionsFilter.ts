@@ -26,10 +26,12 @@ export class AllExceptionsFilter implements ExceptionFilter {
         ? exception.getResponse()
         : 'Internal server error';
 
-    if (exception?.response?.statusCode) {
-      status = exception.response.statusCode;
-      message = exception.response.message;
+    if (exception?.statusCode) {
+      status = exception.statusCode;
+      message = exception.message;
     }
+
+    console.log('AllExceptionsFilter', { exception });
 
     response.status(status).json({
       success: false,

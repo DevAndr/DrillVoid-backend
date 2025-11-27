@@ -77,4 +77,16 @@ export class MsGameDataService {
       }
     });
   }
+
+  getGameData(uid: string) {
+    return this.prisma.gameData.findUnique({
+      where: { uid },
+      include: {
+        planetVisits: true,
+        balances: true,
+        ships: true,
+        inventoryItems: true,
+      },
+    });
+  }
 }

@@ -27,6 +27,9 @@ export class MsResponseInterceptor<T>
       catchError((error) => {
         const statusCode =
           (error.status as number) || HttpStatus.INTERNAL_SERVER_ERROR;
+
+        // console.log('MsResponseInterceptor', { error });
+
         return throwError(() => ({
           success: false,
           data: null,

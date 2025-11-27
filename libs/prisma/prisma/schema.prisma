@@ -41,7 +41,7 @@ model GameData {
   planetVisits   PlanetVisit[]
   balances       Balance[]
   ships          Ship[]
-  InventoryItems InventoryItem[]
+  inventoryItems InventoryItem[]
 
   @@id([id, uid]) // Составной первичный ключ
   @@unique([id, uid]) // uid остается уникальным

@@ -24,7 +24,6 @@ import { distanceBetweenCoord } from '../../gateway/src/planet/utils';
 import { RpcException } from '@nestjs/microservices';
 import { RARITY_MINING_MULTIPLIER } from '@app/contracts';
 import { createXor4096 } from './utils';
-import seedrandom from 'seedrandom';
 import { xor4096 } from 'seedrandom';
 
 @Injectable()
@@ -336,7 +335,14 @@ export class MsPlanetService {
     });
 
     if (isDefined(foundPlanet)) {
-      return { ...foundPlanet, isCreated: true };
+      let owner = null;
+      if (isDefined(foundPlanet.ownerBy)) {
+        owner = await this.prisma.user.findUnique({
+          where: { uid: foundPlanet.ownerBy },
+        });
+      }
+
+      return { ...foundPlanet, owner, isCreated: true };
     }
 
     const [x, y, z] = seed.split('_');
@@ -346,7 +352,7 @@ export class MsPlanetService {
       y: Number(y),
       z: Number(z),
     });
-    return { ...genPlanet, isCreated: false };
+    return { ...genPlanet, owner: null, isCreated: false };
   }
 
   //получение времени майнинга всей планеты в часах
