@@ -23,7 +23,7 @@ import { PlanetResourceCreateManyInput } from '../../../libs/prisma/generated/pr
 import { distanceBetweenCoord } from '../../gateway/src/planet/utils';
 import { RpcException } from '@nestjs/microservices';
 import { RARITY_MINING_MULTIPLIER } from '@app/contracts';
-import { createXor4096 } from './utils';
+import { createXor4096, mapperPlanetPrisma } from './utils';
 import { xor4096 } from 'seedrandom';
 
 @Injectable()
@@ -129,6 +129,7 @@ export class MsPlanetService {
   }
 
   async jumpToPlanet(uid: string, target: Point3D) {
+    console.log({ uid });
     const gameData = await this.prisma.gameData.findUnique({
       where: {
         uid,
@@ -342,7 +343,7 @@ export class MsPlanetService {
         });
       }
 
-      return { ...foundPlanet, owner, isCreated: true };
+      return { ...mapperPlanetPrisma(foundPlanet), owner, isCreated: true };
     }
 
     const [x, y, z] = seed.split('_');

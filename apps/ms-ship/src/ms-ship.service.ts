@@ -140,7 +140,7 @@ export class MsShipService {
     console.log({ mined, completedFraction });
 
     await this.prisma.$transaction(async (tx) => {
-      await tx.minigSession.update({
+      await tx.miningSession.update({
         where: { id: session.id },
         data: {
           mined,

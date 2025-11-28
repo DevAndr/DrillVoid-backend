@@ -1,7 +1,14 @@
-import { Inject, Injectable } from '@nestjs/common';
-import { MS_AUTH_NAME, MS_AUTH_PATTERNS, Tokens } from '@app/contracts';
+import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
+import {
+  MS_AUTH_NAME,
+  MS_AUTH_PATTERNS,
+  RefreshPayload,
+  Tokens,
+  User,
+} from '@app/contracts';
 import { ClientProxy } from '@nestjs/microservices';
 import { firstValueFrom } from 'rxjs';
+import { isDefined } from '@app/core/utils';
 
 @Injectable()
 export class AuthService {
@@ -18,19 +25,21 @@ export class AuthService {
     );
   }
 
-  setTokensInCookie(req: Request, tokens: Tokens) {
-    // @ts-ignore
-    req.res.cookie('accessToken', `${tokens.accessToken}`, {
-      httpOnly: true,
-      maxAge: 60000 * 5, // 5 минут              //1000 * 60 * 60 * 24 * 7, // 7 days
-      secure: true,
-    });
+  async refreshToken(data: RefreshPayload) {
+    return firstValueFrom<Tokens>(
+      this.authClient.send(MS_AUTH_PATTERNS.AUTH_REFRESH, data),
+    );
+  }
 
-    // @ts-ignore
-    req.res.cookie('refreshToken', `${tokens.refreshToken}`, {
-      httpOnly: true,
-      maxAge: 1000 * 60 * 60 * 24 * 30, // 30 days
-      secure: true,
-    });
+  async getUser(uid: string) {
+    const currentUser = await firstValueFrom<User>(
+      this.authClient.send(MS_AUTH_PATTERNS.AUTH_GET_USER, uid),
+    );
+
+    if (!isDefined(currentUser)) {
+      throw new HttpException(`Пользователь не найден`, HttpStatus.NOT_FOUND);
+    }
+
+    return currentUser;
   }
 }

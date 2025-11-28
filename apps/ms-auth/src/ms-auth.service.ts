@@ -1,4 +1,5 @@
 import {
+  ForbiddenException,
   HttpException,
   HttpStatus,
   Inject,
@@ -144,6 +145,46 @@ export class MsAuthService {
       },
       data: {
         hashRefreshToken,
+      },
+    });
+  }
+
+  async refresh(uid: string, refreshToken: string) {
+    if (!isDefined(refreshToken))
+      throw new ForbiddenException('Access Denied. Empty a refresh token');
+
+    const user = await this.prisma.user.findUnique({
+      where: {
+        uid,
+      },
+    });
+
+    if (!user || !user?.hashRefreshToken)
+      throw new ForbiddenException('Access Denied');
+
+    const rtMatches = await argon.verify(user.hashRefreshToken, refreshToken);
+    if (!rtMatches) throw new ForbiddenException('Access Denied');
+
+    const tokens = await this.createTokens(
+      user.uid,
+      user.telegramId,
+      user?.username,
+    );
+    await this.updateRefreshToken(user.uid, tokens.refreshToken);
+
+    return tokens;
+  }
+
+  async getUser(uid: string) {
+    return this.prisma.user.findUnique({
+      where: { uid },
+      select: {
+        uid: true,
+        username: true,
+        telegramId: true,
+        urlPhoto: true,
+        createdAt: true,
+        updatedAt: true,
       },
     });
   }

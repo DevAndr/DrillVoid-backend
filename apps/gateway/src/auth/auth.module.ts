@@ -5,9 +5,17 @@ import { ClientsModule } from '@nestjs/microservices';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { configRabbitMq } from '@app/core/rabbitmq/config';
 import { MS_AUTH_NAME, RABBIT_MQ_QUEUE_AUTH } from '@app/contracts';
+import { JwtModule } from '@nestjs/jwt';
+import { AtStrategy, RtStrategy } from './strategy';
 
 @Module({
   imports: [
+    JwtModule.register({
+      global: true,
+      signOptions: {
+        subject: 'uid',
+      },
+    }),
     ClientsModule.registerAsync([
       {
         name: MS_AUTH_NAME,
@@ -25,6 +33,6 @@ import { MS_AUTH_NAME, RABBIT_MQ_QUEUE_AUTH } from '@app/contracts';
     ]),
   ],
   controllers: [AuthController],
-  providers: [AuthService],
+  providers: [AuthService, AtStrategy, RtStrategy],
 })
 export class AuthModule {}

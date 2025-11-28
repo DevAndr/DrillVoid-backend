@@ -1,6 +1,18 @@
-import { Body, Controller, Get, Post, Req } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  ForbiddenException,
+  Get,
+  Post,
+  Req,
+  UseGuards,
+} from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { PayloadLoginTelegramDto } from './types';
+import { GetCurrentUser, GetCurrentUserId, Public } from '../decorators';
+import { RtGuard } from '../guards';
+import { isDefined } from '@app/core/utils';
+import { setTokensInCookie } from './utils';
 
 @Controller('auth')
 export class AuthController {
@@ -11,12 +23,37 @@ export class AuthController {
     return this.authService.test('1235');
   }
 
+  @Public()
   @Post('telegram')
   async loginWIthTelegram(@Req() req, @Body() data: PayloadLoginTelegramDto) {
     console.log(data);
     const authData = await this.authService.loginWithTelegram(data.initData);
     console.log(authData.tokens);
-    this.authService.setTokensInCookie(req, authData?.tokens);
+    setTokensInCookie(req, authData?.tokens);
     return authData;
+  }
+
+  @Public()
+  @UseGuards(RtGuard)
+  @Post('refresh')
+  async refreshToken(
+    @Req() req,
+    @GetCurrentUserId() uid: string,
+    @GetCurrentUser('refreshToken') refreshToken: string,
+    // @Cookies('refreshToken') refreshToken: string,
+  ) {
+    if (!isDefined(refreshToken))
+      throw new ForbiddenException('Access Denied. Empty a refresh token');
+
+    const tokens = await this.authService.refreshToken({ uid, refreshToken });
+    console.log('refreshToken', { uid, refreshToken, tokens });
+    setTokensInCookie(req, tokens);
+    return tokens;
+  }
+
+  @Get('me')
+  getCurrentUser(@GetCurrentUserId() uid: string) {
+    console.log({ uid });
+    return this.authService.getUser(uid);
   }
 }
