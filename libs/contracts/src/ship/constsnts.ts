@@ -7,6 +7,7 @@ export const MS_SHIP_PATTERNS = {
   MINING_FINISH: 'ship.mining_finish',
   MINING_CLAIM: 'ship.mining_claim',
   MINING_PROGRESS: 'ship.mining_progress',
+  CURRENT_SHIP: 'ship.current_ship',
 };
 
 export const RARITY_MINING_MULTIPLIER: Record<Rarity, number> = {

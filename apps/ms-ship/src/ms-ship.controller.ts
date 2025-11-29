@@ -27,4 +27,9 @@ export class MsShipController {
   handleProgressMining(@Payload() uid: string) {
     return this.msShipService.getCurrentProcessMining(uid);
   }
+
+  @EventPattern(MS_SHIP_PATTERNS.CURRENT_SHIP)
+  handleCurrentShip(@Payload() uid: string) {
+    return this.msShipService.getCurrentShip(uid);
+  }
 }

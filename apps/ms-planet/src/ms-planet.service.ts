@@ -171,16 +171,6 @@ export class MsPlanetService {
       throw new BadRequestException('Недостаточно топлива');
     }
 
-    //TODO: на будущее
-    // const fuelRequired = distance * ship.fuelPerUnit;
-    //
-    // if (ship.fuel < fuelRequired) {
-    //   throw new Error("Недостаточно топлива");
-    // }
-    //
-    // // списываем топливо
-    // await this.shipService.updateFuel(userId, ship.fuel - fuelRequired);
-
     const seed = this.makeSeedByPoint(target);
     let planet = await this.prisma.planet.findUnique({ where: { seed } });
 
@@ -212,16 +202,6 @@ export class MsPlanetService {
             drillPowerRequired: 1, //TODO: сделать потом случайным в зависимости от rarity
             rarity: resource.rarity,
           });
-
-          // this.prisma.planetResource.create({
-          //   data: {
-          //     planetId: planet.id,
-          //     type: resource.type,
-          //     totalAmount: resource.totalAmount,
-          //     current: resource.remainingAmount,
-          //     drillPowerRequired: 1, //TODO: сделать потом случайным в зависимости от rarity
-          //   },
-          // });
         }
 
         await tx.planetResource.createMany({ data: createResources });

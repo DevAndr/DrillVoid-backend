@@ -207,4 +207,17 @@ export class MsShipService {
   }
 
   stopMining() {}
+
+  async getCurrentShip(uid: string) {
+    const gameData = await this.prisma.gameData.findUnique({ where: { uid } });
+
+    if (!isDefined(gameData))
+      throw new RpcException(new NotFoundException('Game data not found'));
+
+    return this.prisma.ship.findUnique({
+      where: {
+        id: gameData.shipId,
+      },
+    });
+  }
 }

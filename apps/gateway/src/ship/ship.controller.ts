@@ -1,6 +1,7 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { ShipService } from './ship.service';
 import { StartMiningData } from '@app/contracts';
+import { GetCurrentUserId } from '../decorators';
 
 @Controller('ship')
 export class ShipController {
@@ -21,8 +22,13 @@ export class ShipController {
     return this.shipService.miningClaim(uid);
   }
 
-  @Get('progress/:uid')
-  handleProgressMining(@Param('uid') uid: string) {
+  @Get('progress')
+  handleProgressMining(@GetCurrentUserId() uid: string) {
     return this.shipService.miningProgress(uid);
+  }
+
+  @Get('current_ship')
+  handleCurrentShip(@GetCurrentUserId() uid: string) {
+    return this.shipService.getCurrentShip(uid);
   }
 }

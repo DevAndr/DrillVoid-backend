@@ -34,4 +34,10 @@ export class ShipService {
       this.shipClient.send(MS_SHIP_PATTERNS.MINING_PROGRESS, uid),
     );
   }
+
+  getCurrentShip(uid: string) {
+    return firstValueFrom(
+      this.shipClient.send(MS_SHIP_PATTERNS.CURRENT_SHIP, uid),
+    );
+  }
 }
