@@ -89,4 +89,11 @@ export class MsGameDataService {
       },
     });
   }
+
+  getResources(uid: string) {
+    return this.prisma.inventoryItem.findMany({
+      where: { uid },
+      orderBy: { amount: 'desc' },
+    });
+  }
 }

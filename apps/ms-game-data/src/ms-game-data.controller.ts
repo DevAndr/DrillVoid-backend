@@ -23,4 +23,10 @@ export class MsGameDataController {
     console.log(`Pattern: ${context.getPattern()}`, uid);
     return this.msGameDataService.getGameData(uid);
   }
+
+  @MessagePattern(MS_GAME_DATA_PATTERNS.GET_RESOURCES)
+  handleGetResources(@Payload() uid: string, @Ctx() context: RmqContext) {
+    console.log(`Pattern: ${context.getPattern()}`, uid);
+    return this.msGameDataService.getResources(uid);
+  }
 }

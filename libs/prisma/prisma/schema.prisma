@@ -137,7 +137,7 @@ model Planet {
 }
 
 model InventoryItem {
-  id    String   @id @default(cuid())
+  id    String   @id @default(uuid())
   gamne GameData @relation(fields: [uid], references: [uid])
 
   resource ResourceType @unique // имя ресурса, например "XenonCrystal"

@@ -14,4 +14,10 @@ export class GameDataService {
       this.gameDataClient.send(MS_GAME_DATA_PATTERNS.GET_GAME_DATA, uid),
     );
   }
+
+  getResources(uid: string) {
+    return firstValueFrom(
+      this.gameDataClient.send(MS_GAME_DATA_PATTERNS.GET_RESOURCES, uid),
+    );
+  }
 }

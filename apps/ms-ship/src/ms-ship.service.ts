@@ -63,7 +63,7 @@ export class MsShipService {
     const miningRate = miningSpeed * RARITY_MINING_MULTIPLIER[resource.rarity]; // единицы ресурса в мин
     const maxByRemaining = resource.current;
     const amountToMine = Math.min(maxByRemaining, maxByRemaining);
-    const timeMinutes = Math.floor(amountToMine / miningRate);
+    const timeMinutes = Math.ceil(amountToMine / miningRate);
     const timeMs = timeMinutes * 60 * 1000;
 
     const session = await this.prisma.miningSession.upsert({
@@ -202,11 +202,72 @@ export class MsShipService {
       remainingMs: remaining,
       totalMs: totalDuration,
       progressPercent: +(progress * 100).toFixed(2),
-      status: remaining === 0 ? 'READY_TO_COLLECT' : 'IN_PROGRESS',
+      status: remaining === 0 ? 'FINISHED' : 'IN_PROGRESS',
     };
   }
 
-  stopMining() {}
+  async stopMining(uid: string) {
+    const session = await this.prisma.miningSession.findFirst({
+      where: {
+        uid,
+        status: 'IN_PROGRESS',
+      },
+    });
+
+    if (!isDefined(session))
+      throw new RpcException(new NotFoundException('Session not found'));
+
+    const resource = await this.prisma.planetResource.findUnique({
+      where: {
+        id: session.resourceId,
+      },
+    });
+
+    if (!isDefined(resource))
+      throw new RpcException(
+        new NotFoundException('Planet resource not found'),
+      );
+
+    const now = Date.now();
+    const start = session.startedAt.getTime();
+    const finish = session.finishedAt.getTime();
+
+    const totalDuration = finish - start;
+    const elapsed = now - start;
+    const progress = Math.min(1, elapsed / totalDuration);
+    const mined = Math.floor(session.estimatedAmount * progress);
+
+    await this.prisma.$transaction(async (tx) => {
+      await tx.miningSession.update({
+        where: { id: session.id },
+        data: {
+          mined,
+          status: 'FINISHED',
+        },
+      });
+
+      await tx.inventoryItem.upsert({
+        where: { uid, resource: resource.type },
+        create: {
+          uid,
+          resource: resource.type,
+          amount: mined,
+        },
+        update: {
+          amount: { increment: mined },
+        },
+      });
+
+      await tx.planetResource.update({
+        where: {
+          id: session.resourceId,
+        },
+        data: { current: { decrement: mined } },
+      });
+    });
+
+    return { claim: mined };
+  }
 
   async getCurrentShip(uid: string) {
     const gameData = await this.prisma.gameData.findUnique({ where: { uid } });

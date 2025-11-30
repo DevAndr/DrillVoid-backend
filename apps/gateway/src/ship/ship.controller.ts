@@ -17,8 +17,8 @@ export class ShipController {
     return this.shipService.miningFinish(uid);
   }
 
-  @Post('claim_mining/:uid')
-  handleClaimMining(@Param('uid') uid: string) {
+  @Post('claim_mining')
+  handleClaimMining(@GetCurrentUserId() uid: string) {
     return this.shipService.miningClaim(uid);
   }
 

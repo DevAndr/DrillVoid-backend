@@ -15,7 +15,7 @@ export class MsShipController {
 
   @EventPattern(MS_SHIP_PATTERNS.MINING_FINISH)
   handleEndMining(@Payload() uid: string) {
-    // return this.msShipService.stopMining(data);
+    return this.msShipService.stopMining(uid);
   }
 
   @EventPattern(MS_SHIP_PATTERNS.MINING_CLAIM)
