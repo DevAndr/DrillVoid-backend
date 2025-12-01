@@ -16,7 +16,6 @@ export class PlanetController {
 
   @Post('generate_planet/:uid')
   handleGeneratePlanet(@Param('uid') uid: string, @Body() data) {
-    console.log({ uid });
     return this.planetService.generatePlanet(data);
   }
 

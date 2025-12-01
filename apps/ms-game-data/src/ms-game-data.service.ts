@@ -12,7 +12,6 @@ export class MsGameDataService {
   constructor(private readonly prisma: PrismaService) {}
 
   initial(uid: string) {
-    console.log({ uid });
     return this.prisma.$transaction(async (tx) => {
       const ship = await tx.ship.create({
         data: {

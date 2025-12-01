@@ -137,8 +137,6 @@ export class MsShipService {
 
     const mined = Math.floor(session.estimatedAmount * completedFraction);
 
-    console.log({ mined, completedFraction });
-
     await this.prisma.$transaction(async (tx) => {
       await tx.miningSession.update({
         where: { id: session.id },

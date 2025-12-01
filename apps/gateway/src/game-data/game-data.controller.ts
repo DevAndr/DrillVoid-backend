@@ -8,13 +8,11 @@ export class GameDataController {
 
   @Get('/:uid')
   handleGeneratePlanet(@Param('uid') uid: string) {
-    console.log({ uid });
     return this.gameDataService.getGameData(uid);
   }
 
   @Get('resources')
   handleGetResources(@GetCurrentUserId() uid: string) {
-    console.log({ uid });
     return this.gameDataService.getResources(uid);
   }
 }

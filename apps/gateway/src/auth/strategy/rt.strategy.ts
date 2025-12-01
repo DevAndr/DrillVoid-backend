@@ -21,7 +21,6 @@ export class RtStrategy extends PassportStrategy(Strategy, 'jwt-refresh') {
 
   private static extractJWT(req: any): string | null {
     const cookies = req.cookies;
-    console.log(cookies);
     if (cookies) return cookies?.refreshToken;
 
     return null;

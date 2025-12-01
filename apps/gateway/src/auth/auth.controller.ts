@@ -26,9 +26,7 @@ export class AuthController {
   @Public()
   @Post('telegram')
   async loginWIthTelegram(@Req() req, @Body() data: PayloadLoginTelegramDto) {
-    console.log(data);
     const authData = await this.authService.loginWithTelegram(data.initData);
-    console.log(authData.tokens);
     setTokensInCookie(req, authData?.tokens);
     return authData;
   }
@@ -46,14 +44,12 @@ export class AuthController {
       throw new ForbiddenException('Access Denied. Empty a refresh token');
 
     const tokens = await this.authService.refreshToken({ uid, refreshToken });
-    console.log('refreshToken', { uid, refreshToken, tokens });
     setTokensInCookie(req, tokens);
     return tokens;
   }
 
   @Get('me')
   getCurrentUser(@GetCurrentUserId() uid: string) {
-    console.log({ uid });
     return this.authService.getUser(uid);
   }
 }

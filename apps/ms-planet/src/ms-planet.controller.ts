@@ -26,56 +26,37 @@ export class MsPlanetController {
   // }
 
   @MessagePattern(MS_PLANET_PATTERNS.GENERATE_PLANET)
-  handleGeneratePlanetV2(@Payload() data: Point3D, @Ctx() context: RmqContext) {
-    console.log(`Pattern: ${context.getPattern()}`, data);
+  handleGeneratePlanetV2(@Payload() data: Point3D) {
     return this.msPlanetService.planetGenerate(data);
   }
 
   @MessagePattern(MS_PLANET_PATTERNS.SCAN)
-  handleScanPlanets(
-    @Payload() data: PayloadScanPlanets,
-    @Ctx() context: RmqContext,
-  ) {
-    console.log(`Pattern: ${context.getPattern()}`, data);
+  handleScanPlanets(@Payload() data: PayloadScanPlanets) {
     return this.msPlanetService.generateNearbyPlanets(data.point, data.options);
   }
 
   @MessagePattern(MS_PLANET_PATTERNS.JUMP_TO_PLANET)
-  handleJumpPlanet(
-    @Payload() data: PayloadJumpToPlanet,
-    @Ctx() context: RmqContext,
-  ) {
-    console.log(`Pattern: ${context.getPattern()}`, data);
+  handleJumpPlanet(@Payload() data: PayloadJumpToPlanet) {
     return this.msPlanetService.jumpToPlanet(data.uid, data.target);
   }
 
   @MessagePattern(MS_PLANET_PATTERNS.GET_PLANET_BY_SEED)
-  handleGetPlanetBySeed(@Payload() data: string, @Ctx() context: RmqContext) {
-    console.log(`Pattern: ${context.getPattern()}`, data);
+  handleGetPlanetBySeed(@Payload() data: string) {
     return this.msPlanetService.getPlanetBySeed(data);
   }
 
   @MessagePattern(MS_PLANET_PATTERNS.GENERATE_PLANET_BY_SEED)
-  handleGeneratePlanetBySeed(
-    @Payload() data: string,
-    @Ctx() context: RmqContext,
-  ) {
-    console.log(`Pattern: ${context.getPattern()}`, data);
+  handleGeneratePlanetBySeed(@Payload() data: string) {
     return this.msPlanetService.generatePlanetBySeed(data);
   }
 
   @MessagePattern(MS_PLANET_PATTERNS.TIME_MINING_PLANET)
-  handleTimeMiningPlanet(
-    @Payload() data: PayloadTimePlanet,
-    @Ctx() context: RmqContext,
-  ) {
-    console.log(`Pattern: ${context.getPattern()}`, data);
+  handleTimeMiningPlanet(@Payload() data: PayloadTimePlanet) {
     return this.msPlanetService.getTotalTimeMiningPlanet(data);
   }
 
   @MessagePattern(MS_PLANET_PATTERNS.TEST)
-  handleTest(@Payload() data: string, @Ctx() context: RmqContext) {
-    console.log(`Pattern: ${context.getPattern()}`, data);
+  handleTest(@Payload() data: string) {
     this.msPlanetService.test(data);
 
     return { data: 'test' };

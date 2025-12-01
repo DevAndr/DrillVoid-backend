@@ -11,7 +11,6 @@ import { Response } from 'express';
 @Catch()
 export class AllExceptionsFilter implements ExceptionFilter {
   catch(exception: unknown, host: ArgumentsHost) {
-    console.log({ exception });
     const ctx = host.switchToHttp();
     const response = ctx.getResponse<Response>();
     const request = ctx.getRequest();
@@ -30,8 +29,6 @@ export class AllExceptionsFilter implements ExceptionFilter {
       status = exception.statusCode;
       message = exception.message;
     }
-
-    console.log('AllExceptionsFilter', { exception });
 
     response.status(status).json({
       success: false,

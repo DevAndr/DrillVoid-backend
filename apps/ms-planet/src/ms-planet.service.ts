@@ -129,7 +129,6 @@ export class MsPlanetService {
   }
 
   async jumpToPlanet(uid: string, target: Point3D) {
-    console.log({ uid });
     const gameData = await this.prisma.gameData.findUnique({
       where: {
         uid,
@@ -384,8 +383,6 @@ export class MsPlanetService {
       const timeMinutes = Math.floor(amountToMine / miningRate);
       totalMinutes += timeMinutes;
     }
-
-    console.log({ totalMinutes });
 
     return {
       totalTimeMining: (totalMinutes / 60).toFixed(1),

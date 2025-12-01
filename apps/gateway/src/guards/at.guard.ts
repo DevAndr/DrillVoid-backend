@@ -11,7 +11,6 @@ export class AtGuard extends AuthGuard('jwt') {
   getRequest(ctx: ExecutionContext): any {
     if (ctx.getType() === 'http') {
       const req = ctx.switchToHttp().getRequest();
-      console.log(req.cookies?.accessToken);
       return req; //req.cookies?.accessToken;
     }
   }
