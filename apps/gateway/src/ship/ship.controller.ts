@@ -8,8 +8,11 @@ export class ShipController {
   constructor(private readonly shipService: ShipService) {}
 
   @Post('start_mining')
-  handleStartMining(@Body() data: StartMiningData) {
-    return this.shipService.miningStart(data);
+  handleStartMining(
+    @Body() data: StartMiningData,
+    @GetCurrentUserId() uid: string,
+  ) {
+    return this.shipService.miningStart({ ...data, uid });
   }
 
   @Post('finish_mining')
